@@ -4,31 +4,46 @@ import { MdLocalPhone } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div className="container mx-auto py-16">
-      <div className="flex flex-row items-center justify-between gap-4 py-6">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
+      
+      {/* Top Section */}
+      <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left">
+        
+        {/* Left */}
         <div>
-          <p>Terms Of Use</p>
+          <p className="text-sm md:text-base">Terms Of Use</p>
         </div>
-        <div className="flex gap-4">
-          <p className="flex items-center gap-4">
+
+        {/* Right */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          
+          {/* Email */}
+          <p className="flex items-center gap-3 text-sm md:text-base break-all sm:break-normal">
             <span className="border p-2 rounded-full bg-[#71849633]">
-              <FaRegEnvelope size={24} />
+              <FaRegEnvelope size={18} />
             </span>
             <span>team@beneighbourly.com.au</span>
           </p>
-          <p className="flex items-center gap-4">
+
+          {/* Phone */}
+          <p className="flex items-center gap-3 text-sm md:text-base">
             <span className="border p-2 rounded-full bg-[#71849633]">
-              <MdLocalPhone size={24} />
+              <MdLocalPhone size={18} />
             </span>
-            <span>team@beneighbourly.com.au</span>
+            <span>+61 123 456 789</span>
           </p>
+
         </div>
       </div>
 
-      <div className="mt-4 bg-[#71849633] w-full p-[1px]" />
+      {/* Divider */}
+      <div className="mt-2 bg-[#71849633] w-full h-[1px]" />
 
-      <div className="mt-6">
-        <p className="text-[#202939] text-center ">© 2026 neighbourly. All rights reserved</p>
+      {/* Bottom */}
+      <div className="mt-4 md:mt-6 text-center">
+        <p className="text-[#202939] text-xs sm:text-sm md:text-base">
+          © 2026 neighbourly. All rights reserved
+        </p>
       </div>
     </div>
   );

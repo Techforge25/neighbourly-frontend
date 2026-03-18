@@ -1,3 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+
+@theme {
+  --font-manrope: var(--font-manrope);
+  --font-poppins: var(--font-poppins);
+  --font-outfit: var(--font-outfit);
+}

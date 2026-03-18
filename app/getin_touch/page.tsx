@@ -6,7 +6,7 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <Banner text="Get in Touch" banner="" />
+      <Banner text="Get in Touch" banner="/images/getintouch.png" />
       <ContactUsForm/>
       <UseFull color="#718496"/>
     </div>

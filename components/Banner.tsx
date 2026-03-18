@@ -1,14 +1,31 @@
 import React from "react";
 
-const Banner = ({ text,banner }: { text: string; banner: string }) => {
-  console.log("Banner props:", { text, banner });
+const Banner = ({
+  text,
+  banner,
+  width,
+  height,
+}: {
+  text: string;
+  banner: string;
+  width?: string;
+  height?: string;
+}) => {
   return (
-    <div className={`relative h-[600px] bg-[url('${banner?banner:"/images/getintouch.jpg"}')] bg-cover bg-center`}>
-      {/* Warm gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#2b1a12]/70 via-[#8b4a2b]/40 to-[#f3b39d]/30"></div>
+    <div
+      className={`relative bg-cover bg-center flex items-center justify-center ${
+        height ? height : "h-[400px] md:h-[500px] lg:h-[700px]"
+      }`}
+      style={{
+        backgroundImage: `url(${banner || "/images/getintouch.png"})`,
+      }}
+    >
 
-      {/* Content */}
-      <h1 className="relative z-10 text-white text-[62px] font-bold text-center pt-40">
+      {/* Text Content */}
+      <h1
+        className={`relative z-10 text-white font-semibold text-center px-4
+        text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[62px] font-manrope md:w-[950px] md:leading-[67px] leadibng-[37px]`}
+      >
         {text}
       </h1>
     </div>
