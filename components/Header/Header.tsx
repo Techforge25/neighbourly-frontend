@@ -13,8 +13,8 @@ const Header = () => {
 
   console.log(pathName);
   return (
-    <section className="max-w-8xl mx-auto py-2 px-6">
-      <div className="flex items-center justify-between">
+    <section className="w-[90%] py-[20px] mx-auto">
+      <div className="flex items-center justify-between ">
         {/* Logo */}
         <div>
           <Image
@@ -33,7 +33,7 @@ const Header = () => {
             {navItems.map((item, index) => (
               <button
                 key={index}
-                className={`${pathName === item.href ? "text-[#F3B39D] border-b-2 border-[#F3B39D]" : "text-[#171717]"} font-medium text-[16px]`}
+                className={`${pathName === item.href ? "text-[#F3B39D] border-b-2 border-[#F3B39D]" : "text-[#171717]"} font-medium text-[16px] font-manrope`}
               >
                 <Link href={item.href}>{item.label}</Link>
               </button>
@@ -44,7 +44,7 @@ const Header = () => {
 
         {/* Button */}
         <div>
-          <button className="md:flex hidden items-center gap-2 border lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-[#F3B39D] text-white lg:text-[16px] text-sm">
+          <button className="md:flex hidden items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-[#F3B39D] text-white lg:text-[16px] font-outfit text-sm">
             <span>Share your recommendation</span>
             <span>
               <IoMdAdd size={20} />
@@ -66,8 +66,8 @@ const Header = () => {
 
         {/* Mobile Responsive */}
         <div
-          className={`absolute top-14 right-0 bg-[#f0eae9f8] w-full h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out
-          ${isOpenMenu ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
+          className={`absolute top-20 right-0 bg-[#f0eae9f8] w-full h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out
+          ${isOpenMenu ? "translate-y-0 opacity-100 z-1000" : "-translate-y-full opacity-0 pointer-events-none z-1000"}`}
         >
           {navItems.map((item, index) => (
             <ul key={index}>
