@@ -1,50 +1,53 @@
-"use client"
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
-import { useEffect, useState } from "react"
-import { AnimatePresence, motion, type MotionProps } from "motion/react"
-
-import { cn } from "@/lib/utils"
-
-interface WordRotateProps {
-  words: string[]
-  duration?: number
-  motionProps?: MotionProps
-  className?: string
+interface WordItem {
+  text: string;
+  bgColor?: string;
+  textColor?: string;
+  icon?: React.ReactNode;
 }
 
-export function WordRotate({
-  words,
-  duration = 2500,
-  motionProps = {
-    initial: { opacity: 0, y: -50 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 50 },
-    transition: { duration: 0.25, ease: "easeOut" },
-  },
-  className,
-}: WordRotateProps) {
-  const [index, setIndex] = useState(0)
+interface WordRotateProps {
+  words: string[] | WordItem[];
+  className?: string;
+  duration?: number; // seconds per word
+}
+
+export default function WordRotate({ words, className = "", duration = 3 }: WordRotateProps) {
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % words.length)
-    }, duration)
+      setIndex((prev) => (prev + 1) % words.length);
+    }, duration * 1000);
+    return () => clearInterval(interval);
+  }, [words.length, duration]);
 
-    // Clean up interval on unmount
-    return () => clearInterval(interval)
-  }, [words, duration])
+  // Handle both strings and objects
+  const currentWord = typeof words[index] === "string"
+    ? { text: words[index] as string, bgColor: undefined, textColor: undefined, icon: undefined }
+    : (words[index] as WordItem);
 
   return (
-    <div className="overflow-hidden py-2">
+    <div
+      className={`flex items-center justify-start p-2 md:w-78 rounded-full transition-colors duration-700`}
+      style={{ backgroundColor: currentWord.bgColor }}
+    >
       <AnimatePresence mode="wait">
-        <motion.h1
-          key={words[index]}
-          className={cn(className)}
-          {...motionProps}
+        <motion.div
+          key={currentWord.text}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.5 }}
+          className={`flex items-center gap-2 ${className}`}
+          style={{ color: currentWord.textColor }}
         >
-          {words[index]}
-        </motion.h1>
+          {currentWord.icon && <span className="flex">{currentWord.icon}</span>}
+          <span>{currentWord.text}</span>
+        </motion.div>
       </AnimatePresence>
     </div>
-  )
+  );
 }

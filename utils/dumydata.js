@@ -10,7 +10,7 @@ export const navItems = [
     label: "Home",
   },
   {
-    href: "/our_story",
+    href: "/our-story",
     label: "Our Story",
   },
   {
@@ -18,7 +18,7 @@ export const navItems = [
     label: "Discover",
   },
   {
-    href: "/getin_touch",
+    href: "/getin-touch",
     label: "Get in Touch",
   },
 ];
@@ -67,19 +67,19 @@ export const trusted_Data = [
 
 export const feel_Diff = [
   {
-    icon: <FaClockRotateLeft color="#D98C74" size={30} />,
+    icon: <FaClockRotateLeft color="#D98C74" size={24} />,
     text: "Recommendations from people nearby, not strangers online.",
     iconBorder: "border-[#D98C74]",
     ib: "bg-[#D98C74]/20",
   },
   {
-    icon: <RiShakeHandsLine color="#3A5670" size={30} />,
+    icon: <RiShakeHandsLine color="#3A5670" size={24} />,
     text: "A free service designed to help neighbours find trusted local services.",
     iconBorder: "border-[#3A5670]",
     ib: "bg-[#3A5670]/20",
   },
   {
-    icon: <FaUsers color="#C167A6" size={30} />,
+    icon: <FaUsers color="#C167A6" size={24} />,
     text: "Built to connect communities and shine a light on great local businesses.",
     iconBorder: "border-[#C167A6]",
     ib: "bg-[#C167A6]/20",

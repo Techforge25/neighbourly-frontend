@@ -4,19 +4,28 @@ import React from "react";
 
 const Work = () => {
   return (
-    <div className="container mx-auto py-14">
-      <h5 className="lg:text-[42px] text-[21px] text-center font-bold text-[#303231] pb-6">
+    <div className="md:max-w-[1296px] mx-auto md:my-20 p-4">
+      <h5 className="lg:text-[42px] text-[32px] text-center font-bold text-[#303231] font-manrope md:py-10">
         How Neighbourly <span className="text-[#F3B39D]">Works</span>{" "}
       </h5>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6 gap-3 p-4">
+      <div className="flex flex-col md:flex-row flex-wrap justify-center gap-6 md:gap-8 lg:gap-10">
         {work_Data.map((item, ind) => (
-          <div key={ind} className={`${item.bg} p-6 rounded-lg flex flex-col items-start gap-4 `}>
-            <div className={`${item.iconBg} w-fit text-white text-[20px] p-2 rounded-2xl`}>
+          <div
+            key={ind}
+            className={`${item.bg} p-4 sm:p-6 flex flex-col items-start gap-3 sm:gap-4 max-w-full mx-auto w-full md:max-w-[346px]`}
+          >
+            <div
+              className={`${item.iconBg} w-fit text-white text-[18px] sm:text-[20px] p-2 sm:p-2.5 rounded-2xl`}
+            >
               {item.icon}
             </div>
-            <p className={`text-[24px] text-[#12141D] lg:w-40`}>{item.title}</p>
-            <p className="text-[16px] text-[#697586] lg:w-[70%]">{item.text}</p>
+            <p className="text-[20px] sm:text-[22px] md:text-[24px] text-[#12141D] font-manrope font-semibold leading-snug sm:leading-[28px] md:leading-[30px] lg:max-w-[316px]">
+              {item.title}
+            </p>
+            <p className="text-[14px] sm:text-[15px] md:text-[16px] text-[#697586] font-poppins font-medium leading-[20px] sm:leading-[22px] md:leading-[24px] lg:max-w-[328px]">
+              {item.text}
+            </p>
           </div>
         ))}
       </div>

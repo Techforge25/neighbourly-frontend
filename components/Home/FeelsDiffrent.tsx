@@ -4,21 +4,21 @@ import React from "react";
 
 const FeelsDiffrent = () => {
   return (
-    <div className="container mx-auto py-12 sm:py-16 lg:py-20 px-4">
-      <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-20">
+    <div className="md:max-w-[1296px] mx-auto md:my-20 my-10 p-4 ">
+      <div className="md:max-w-[1080px] mx-auto flex md:flex-row flex-col items-center ">
         {/* LEFT CONTENT */}
-        <div className="w-full lg:w-1/2">
-          <h5 className="text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] font-bold text-[#303231] text-center lg:text-left">
-            Why Neighbourly{" "}
+        <div className="md:max-w-[515px] mx-auto flex flex-col gap-[52px]">
+          <h5 className="text-[42px] leading-[49px] font-bold font-manrope">
+            <span className="text-[#303231]">Why Neighbourly</span>
             <span className="text-[#F3B39D]">feels different</span>
           </h5>
 
-          <div className="mt-10 sm:mt-14 lg:mt-20">
+          <div className="flex flex-col gap-[42px]">
             {feel_Diff.map((item, ind) => (
               <div key={ind}>
-                <div className="flex items-start sm:items-center gap-4 sm:gap-6 lg:gap-8 pb-4">
+                <div className="flex items-center gap-[18px] md:max-w-[427px] ">
                   <p
-                    className={`border p-2 sm:p-3 rounded-full ${item.ib} ${item.iconBorder}`}
+                    className={`border p-2 rounded-full ${item.ib} ${item.iconBorder}`}
                   >
                     {item.icon}
                   </p>
@@ -33,20 +33,20 @@ const FeelsDiffrent = () => {
         </div>
 
         {/* RIGHT IMAGE SECTION */}
-        <div className="relative w-full lg:w-1/2 flex justify-center">
+        <div className="relative">
           <Image
             src="/images/feels.png"
             alt="Description of the image"
             width={500}
             height={300}
-            className="w-full max-w-[500px] h-auto"
+            className="w-[485px]"
           />
 
-          <div className="absolute top-[70%] sm:top-[75%] md:top-[80%] lg:top-65 rounded w-[95%] sm:w-[65%] p-4 sm:p-5 md:p-6 mx-auto left-0 right-0 bg-[#718496] text-white">
-            <p className="text-[18px] sm:text-[21px] md:text-[26px] lg:text-[31px]">
+          <div className="absolute max-w-[460px] mx-auto lg:left-0 left-1.5 lg:right-0 right-1.5 lg:p-4 p-2 bottom-2  bg-[#718496] text-[white]">
+            <p className="lg:text-[30px] text-[22px] md:leading-[46px] leading-[20px] font-medium font-manrope">
               Find trusted locals in your area
             </p>
-            <p className="text-[14px] sm:text-[15px] md:text-[16px]">
+            <p className="lg:text-[16px] text-[12px] lg:leading-[28px] leading-[20px] font-poppins">
               Discover{" "}
               <span className="font-bold">
                 plumbers, electricians, cleaners
