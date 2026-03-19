@@ -11,9 +11,8 @@ const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const pathName = usePathname();
 
-  console.log(pathName);
   return (
-    <section className="w-[90%] py-[20px] mx-auto">
+    <section className="w-[90%] py-[30px]   mx-auto">
       <div className="flex items-center justify-between ">
         {/* Logo */}
         <div>

@@ -9,11 +9,11 @@ const Work = () => {
         How Neighbourly <span className="text-[#F3B39D]">Works</span>{" "}
       </h5>
 
-      <div className="flex flex-col md:flex-row flex-wrap justify-center gap-6 md:gap-8 lg:gap-10">
+      <div className="flex flex-col md:flex-row flex-grow justify-center gap-[8px] md:gap-[16px] lg:gap-[32px]">
         {work_Data.map((item, ind) => (
           <div
             key={ind}
-            className={`${item.bg} p-4 sm:p-6 flex flex-col items-start gap-3 sm:gap-4 max-w-full mx-auto w-full md:max-w-[346px]`}
+            className={`${item.bg} p-4 sm:p-6 flex flex-col items-start gap-3 sm:gap-4 max-w-full mx-auto w-full lg:min-w-[346px]`}
           >
             <div
               className={`${item.iconBg} w-fit text-white text-[18px] sm:text-[20px] p-2 sm:p-2.5 rounded-2xl`}

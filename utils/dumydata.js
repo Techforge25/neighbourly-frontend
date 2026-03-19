@@ -4,6 +4,7 @@ import { PiThumbsUpBold } from "react-icons/pi";
 import { RiHandHeartFill, RiShakeHandsLine } from "react-icons/ri";
 import { TbMap } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import CustomIcon from "@/components/CustomIcon";
 export const navItems = [
   {
     href: "/",
@@ -93,21 +94,155 @@ export const our_story_data = [
 
 export const Community_Sec_Data = [
   {
-    icon:<TbMap size={24} color="white" />,
-    title:"Suburb-first",
-    text:"Recommendations shaped by the people, streets and services closest to you.",
-    iconBg:"bg-[#FE9A86]"
+    icon: <TbMap size={24} color="white" />,
+    title: "Suburb-first",
+    text: "Recommendations shaped by the people, streets and services closest to you.",
+    iconBg: "bg-[#FE9A86]",
   },
   {
-    icon:<FaUserGroup size={24} color="white" />,
-    title:"People nearby",
-    text:"Discover local services recommended by neighbours, not strangers online.",
-    iconBg:"bg-[#8FA58A]"
+    icon: <FaUserGroup size={24} color="white" />,
+    title: "People nearby",
+    text: "Discover local services recommended by neighbours, not strangers online.",
+    iconBg: "bg-[#8FA58A]",
   },
   {
-    icon:<IoShieldCheckmarkOutline size={24} color="white" />,
-    title:"Trusted locally",
-    text:"Built on genuine community recommendations that help you choose with confidence.",
-    iconBg:"bg-[#3A5670]"
+    icon: <IoShieldCheckmarkOutline size={24} color="white" />,
+    title: "Trusted locally",
+    text: "Built on genuine community recommendations that help you choose with confidence.",
+    iconBg: "bg-[#3A5670]",
+  },
+];
+
+export const Tab_Data = [
+  {
+    title: "most recommended",
+    icon: "",
+  },
+  {
+    title: "Plumbers",
+    icon: <CustomIcon variant="fixer"   />,
+  },
+  {
+    title: "Electricians",
+    icon: <CustomIcon variant="plugh" />,
+  },
+  {
+    title: "Handyman",
+    icon: <CustomIcon variant="handyman" />,
+  },
+  
+];
+
+export const Suburb_Data = [
+  {
+    isVerified: true,
+    verifiedBy:"by neighbourly",
+    name:"Shannon",
+    image:"/images/suburb1.png",
+    category:"plumbers",
+    slug:"dave at A to Z plumbing",
+    recommendation:"recommended by 5 neighbours",
+    res:[
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      },
+
+    ],
+    trusted:{
+      title:"Trusted across",
+      tag:["curl curl","freshwater","manly"],
+    },
+    mine:{
+      image:["/images/suburb1.png","/images/suburb1.png","/images/suburb1.png"],
+      data:"Alex in manly + 11 others"
+    }
+
+
+  },
+  {
+    isVerified: true,
+    verifiedBy:"by neighbourly",
+    name:"Shannon",
+    image:"/images/suburb1.png",
+    category:"electricians",
+    slug:"dave at A to Z plumbing",
+    recommendation:"recommended by 5 neighbours",
+    res:[
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      },
+
+    ],
+    trusted:{
+      title:"Trusted across",
+      tag:["curl curl","freshwater","manly"],
+    },
+    mine:{
+      image:["/images/suburb1.png","/images/suburb1.png","/images/suburb1.png"],
+      data:"Alex in manly + 11 others"
+    }
+
+
+  },
+  {
+    isVerified: true,
+    verifiedBy:"by neighbourly",
+    name:"Shannon",
+    image:"/images/suburb1.png",
+    category:"handyman",
+    slug:"dave at A to Z plumbing",
+    recommendation:"recommended by 5 neighbours",
+    res:[
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      },
+
+    ],
+    trusted:{
+      title:"Trusted across",
+      tag:["curl curl","freshwater","manly"],
+    },
+    mine:{
+      image:["/images/suburb1.png","/images/suburb1.png","/images/suburb1.png"],
+      data:"Alex in manly + 11 others"
+    }
+
+
   },
 ]

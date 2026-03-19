@@ -2,8 +2,29 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+
+
+
 @theme {
+  /* fonts Start */
   --font-manrope: var(--font-manrope);
   --font-poppins: var(--font-poppins);
   --font-outfit: var(--font-outfit);
+  /* fonts End */
+
+  /* Color Start */
+  --color-heading: #D98C74;
+  --color-para: #697586;
+  --color-secondary: #718496;
+  --color-primary: #F3B39D;
+  --color-heading1: #49566C;
+  --color-border1: #E3E8EF;
+  --color-tabText: #202939;
+  --color-verified: #1D69E1;
+  --color-lightbg: #E0E7ED80;
+  --color-textdark: #12141D;
+  --color-bgLight: #F4F8FF;
+
+  /* Color End */
+
 }

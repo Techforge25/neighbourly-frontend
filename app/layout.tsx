@@ -3,6 +3,7 @@ import { Manrope, Outfit, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import ClientProvider from "@/components/ClientProvider";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -32,9 +33,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${outfit.variable} ${poppins.variable} antialiased`}>
-        <Header />
-        {children}
+      <body
+        className={`${manrope.variable} ${outfit.variable} ${poppins.variable} antialiased`}
+      >
+        <div className="bg-white  shadow-2xl shadow-heading1">
+          <Header />
+        </div>
+        <ClientProvider>{children}</ClientProvider>
         <Footer />
       </body>
     </html>
