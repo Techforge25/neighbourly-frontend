@@ -2,6 +2,7 @@
 import { IoMdArrowForward } from "react-icons/io";
 import WordRotate from "../ui/word-rotate";
 import CustomIcon from "../CustomIcon";
+import Link from "next/link";
 
 const Banner = () => {
   const words = [
@@ -67,10 +68,14 @@ const Banner = () => {
             placeholder="Enter your suburb or postcode"
             className="w-full  py-2 px-3 text-[#697586] text-[14px] sm:text-[16px] outline-none rounded-full"
           />
-          <button className="flex items-center justify-center gap-2 bg-[#718496] text-white px-3 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer">
+          <Link
+            href="/suberb-search"
+            className="flex items-center justify-center gap-2 bg-[#718496] text-white px-3 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer"
+          >
             Search
             <IoMdArrowForward size={20} className="sm:size-[24px]" />
-          </button>
+          </Link>
+
         </div>
       </div>
     </div>
