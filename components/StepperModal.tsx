@@ -22,7 +22,7 @@ export default function StepperModal({
   const prevStep = () => setStep((s) => s - 1);
 
   const resetAll = () => {
-    setFormData({});
+    setFormData({ firstName: "", mobile: "" });
     setStep(1);
   };
 

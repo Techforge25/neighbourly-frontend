@@ -16,8 +16,8 @@ export default function StepAbout({
   onNext,
   onBack,
 }: {
-  data: StepAboutData;
-  setData: React.Dispatch<React.SetStateAction<StepAboutData>>;
+  data: any;
+  setData: any;
   onNext: () => void;
   onBack: () => void;
 }) {
