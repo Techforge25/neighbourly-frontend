@@ -3,6 +3,7 @@ import { IoMdArrowForward } from "react-icons/io";
 import WordRotate from "../ui/word-rotate";
 import CustomIcon from "../CustomIcon";
 import Link from "next/link";
+import Image from "next/image";
 
 const Banner = () => {
   const words = [
@@ -23,7 +24,8 @@ const Banner = () => {
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Video background */}
-      <video
+
+      {/* <video
         className="absolute top-0 left-0 w-full h-full object-cover"
         autoPlay
         loop
@@ -32,7 +34,15 @@ const Banner = () => {
       >
         <source src="/video/banner.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
+
+      <Image
+        src="/images/cardbg.png"
+        alt="Banner Video"
+        className="absolute top-0 left-0 w-full h-full  object-cover"
+        width={1920}
+        height={1080}
+      />
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-[#D98C74]/16 "></div>
