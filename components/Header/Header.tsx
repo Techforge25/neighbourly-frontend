@@ -6,6 +6,7 @@ import { IoMdAdd, IoMdMenu } from "react-icons/io";
 import { useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+import ButtonModal from "../ButtomModal";
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -42,14 +43,18 @@ const Header = () => {
         {/* nav item */}
 
         {/* Button */}
-        <div>
+        {/* <div>
           <button className="md:flex hidden items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-[#F3B39D] text-white lg:text-[16px] font-outfit text-sm">
             <span>Share your recommendation</span>
             <span>
               <IoMdAdd size={20} />
             </span>
           </button>
+        </div> */}
+        <div className="md:flex hidden">
+          <ButtonModal />
         </div>
+
         {/* Button */}
 
         {/* Button */}
@@ -74,13 +79,8 @@ const Header = () => {
             </ul>
           ))}
           {/* Button */}
-          <div>
-            <button className="md:hidden flex items-center gap-2 px-4  py-3 rounded-full bg-[#F3B39D] text-white lg:text-[16px] text-sm">
-              <span>Share your recommendation</span>
-              <span>
-                <IoMdAdd size={20} />
-              </span>
-            </button>
+          <div className="">
+            <ButtonModal />
           </div>
           {/* Button */}
         </div>

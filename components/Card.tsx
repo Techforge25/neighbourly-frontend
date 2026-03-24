@@ -30,7 +30,7 @@ const Card = () => {
             {filteredData?.map((item, ind) => (
               <div
                 key={ind}
-                className="border-[1px] border-secondary p-[16px] rounded-[18px] min-w-[410px]"
+                className="border-[1px] border-secondary p-[16px] rounded-[18px] max-w-[410px]"
               >
                 {item.isVerified && (
                   <div>
@@ -110,7 +110,7 @@ const Card = () => {
                     </div>
 
                     <div className="w-full max-w-[378px] flex flex-col gap-2 mt-4">
-                      <div className="flex items-center gap-2 sm:gap-8">
+                      <div className="flex items-center gap-2 sm:gap-6">
                         <p>
                           <IoEarthSharp size={24} />
                         </p>
@@ -149,16 +149,16 @@ const Card = () => {
                       </div>
                     </div>
 
-                    <div className="my-2 flex flex-wrap gap-2 sm:gap-[13px]">
-                      <button className="flex-1 min-w-[117px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
+                    <div className="my-2 flex gap-2 sm:gap-[13px]">
+                      <button className="flex items-center justify-center gap-2 sm:gap-6 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
                         <p className="text-[16px] font-outfit">Website</p>
                         <LuGlobe size={20} />
                       </button>
-                      <button className="flex-1 min-w-[117px] flex items-center justify-center gap-2 sm:gap-8 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
+                      <button className="flex items-center justify-center gap-2 sm:gap-6 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
                         <p className="text-[16px] font-outfit">Call</p>
                         <MdOutlineCall size={20} />
                       </button>
-                      <button className="flex-1 min-w-[117px] flex items-center justify-center gap-2 sm:gap-8 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
+                      <button className="flex items-center justify-center gap-2 sm:gap-6 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
                         <p className="text-[16px] font-outfit">Chat</p>
                         <MdOutlineChat size={20} />
                       </button>

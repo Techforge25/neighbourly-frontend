@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { IoMdAdd } from "react-icons/io";
+import ButtonModal from "../ButtomModal";
 
 const TrustSection = () => {
   return (
@@ -20,12 +22,7 @@ const TrustSection = () => {
             suburb — not through paid listings or whoever pays most for the
             lead.
           </p>
-          <button className="w-[285px] md:flex hidden items-center gap-2 border lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-[#F3B39D] text-white lg:text-[16px] text-sm">
-            <span>Share your recommendation</span>
-            <span>
-              <IoMdAdd size={20} />
-            </span>
-          </button>
+          <ButtonModal />
         </div>
 
         {/* Image Section */}

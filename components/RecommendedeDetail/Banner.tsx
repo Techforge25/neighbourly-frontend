@@ -1,12 +1,19 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
-import { IoShareSocial } from "react-icons/io5";
+import { IoMdArrowBack } from "react-icons/io";
+import { IoEarthSharp, IoShareSocial } from "react-icons/io5";
 import { LuGlobe } from "react-icons/lu";
-import { MdOutlineCall, MdOutlineChat } from "react-icons/md";
+import { MdOutlineCall, MdOutlineChat, MdVerified } from "react-icons/md";
 
 const Banner = () => {
+
+const router =useRouter()
+
   return (
-    <main>
+    <main className="shadow-md ">
       <div
         className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 h-[208px] bg-no-repeat bg-center bg-cover relative"
         style={{ backgroundImage: "url('/images/detailbg.png')" }}
@@ -35,12 +42,62 @@ const Banner = () => {
             {"fdfdfdffdf"}
           </p>
         </div>
+
+
+        <div className="absolute md:top-6 top-4 left-6 md:left-20">
+
+          <div className="flex items-center md:gap-[10px] gap-[6px] ">
+            
+           <button onClick={()=>router.back()} className="md:px-4 md:py-4 px-2 py-2 rounded-full bg-primary cursor-pointer">
+            
+             <IoMdArrowBack size={24} color="#ffff" />
+            
+           </button>
+
+            <button className="border-[0.8px] border-[#D5E8FC] flex items-center md:gap-[6.41px] gap-[3.21px] md:w-[210.61px] w-[160px] md:px-[13px] px-[6px] md:py-[8px] py-[4px] rounded-full bg-white">
+              <span><MdVerified size={24} color="#1D69E1" /></span>
+              <div className="text-start">
+
+                <p className="capitalize text-[16px] text-verified">verified</p>
+                <p className="capitalize text-[11px] text-secondary">by neighbourly</p>
+
+              </div>
+            </button>
+
+          </div>
+
+        </div>
+
+
+
       </div>
 
       <div className="w-full max-w-[1296px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center gap-6 sm:gap-[24px] mt-10">
         <p className="text-[20px] sm:text-[22px] md:text-[24px] leading-[28px] sm:leading-[30px] font-semibold font-manrope text-center">
           A to Z Plumbing
         </p>
+
+        <div className="flex md:flex-row flex-col  gap-2 mt-4">
+          <div className="flex items-center gap-[8px] ">
+            <p>
+              <IoEarthSharp size={24} />
+            </p>
+            <p className="text-[18px] leading-[30px] font-manrope text-tabText font-semibold ">
+              Trusted across
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2 mt-2">
+            <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] h-[32px] w-[106px] capitalize">
+              curl curl
+            </button>
+            <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] h-[32px] w-[106px] capitalize">
+              freshwater
+            </button>
+            <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] h-[32px] w-[106px] capitalize">
+              manly
+            </button>
+          </div>
+        </div>
 
         <div className="w-full max-w-[792px]">
           <div className="my-2 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-[13px]">

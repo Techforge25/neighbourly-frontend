@@ -246,3 +246,270 @@ export const Suburb_Data = [
 
   },
 ]
+
+
+export const comment = [
+
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+  {
+    image:"/images/sayavatar.png",
+    name:"Olivia",
+    email:"Olivia@gmail.com",
+    phone:"+138474957",
+    address:"block 2 away",
+    rating:[
+
+      {
+        text:"fast response",
+        bg:"bg-[#D98C74]/20",
+        textColor:"text-[#D98C74]"
+      },
+      {
+        text:"reliable",
+        bg:"bg-[#64A256]/20",
+        textColor:"text-[#64A256]"
+      },
+      {
+        text:"fair price",
+        bg:"bg-[#4D6D8C]/20",
+        textColor:"text-[#4D6D8C]"
+      }
+    ],
+    date:'2 weeks ago'
+  },
+
+
+]

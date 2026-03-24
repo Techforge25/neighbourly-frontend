@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Manrope, Outfit, Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ClientProvider from "@/components/ClientProvider";
+import Header from "@/components/Header/Header";
 
 const manrope = Manrope({
   variable: "--font-manrope",
