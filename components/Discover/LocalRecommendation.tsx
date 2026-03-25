@@ -4,10 +4,11 @@ import Card from "../Card";
 
 const LocalRecommendation = () => {
   return (
-    <div className="max-w-[1296px] mx-auto my-20 p-4">
-      <div className="flex flex-col md:gap-[32px] gap-[16px]">
-        <p className="w-[50%] mx-auto text-[42px] text-center font-manrope font-bold md:leading-[49px] leading-[30px]">
+    <div className="max-w-[1296px] mx-auto my-20">
+      <div className="flex flex-col">
+        <p className="md:text-[42px] text-[32px] text-center font-manrope font-bold md:leading-[49px] leading-[40px] p-4">
           <span className="text-textdark">Want to see more </span>
+          <br />
           <span className="text-primary">local recommendations?</span>
         </p>
 

@@ -22,7 +22,7 @@ const page = () => {
       <TabBar />
       <Card />
       <LocalRecommendation/>
-      <UseFull />
+      {/* <UseFull /> */}
     </div>
   )
 }

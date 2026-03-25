@@ -5,11 +5,12 @@ import React from "react";
 const FeelsDiffrent = () => {
   return (
     <div className="md:max-w-[1296px] mx-auto md:my-20 my-10 p-4 ">
-      <div className="md:max-w-[1080px] mx-auto flex md:flex-row flex-col items-center ">
+      <div className="md:max-w-[1080px] mx-auto flex md:flex-row flex-col md:gap-0 gap-4 items-center ">
         {/* LEFT CONTENT */}
         <div className="md:max-w-[515px] mx-auto flex flex-col gap-[52px]">
           <h5 className="text-[42px] leading-[49px] font-bold font-manrope">
             <span className="text-[#303231]">Why Neighbourly</span>
+            {" "}
             <span className="text-[#F3B39D]">feels different</span>
           </h5>
 
@@ -44,10 +45,11 @@ const FeelsDiffrent = () => {
 
           <div className="absolute max-w-[460px] mx-auto lg:left-0 left-1.5 lg:right-0 right-1.5 lg:p-4 p-2 bottom-2  bg-[#718496] text-[white]">
             <p className="lg:text-[30px] text-[22px] md:leading-[46px] leading-[20px] font-medium font-manrope">
-              Find trusted locals in your area
+              Find trusted local services in your area  
             </p>
             <p className="lg:text-[16px] text-[12px] lg:leading-[28px] leading-[20px] font-poppins">
-              Discover{" "}
+              Discover
+              {" "}
               <span className="font-bold">
                 plumbers, electricians, cleaners
               </span>{" "}

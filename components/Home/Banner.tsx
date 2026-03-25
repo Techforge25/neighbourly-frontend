@@ -41,7 +41,7 @@ const Banner = () => {
       {/* Video background */}
 
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full  object-cover"
         autoPlay
         loop
         muted
@@ -59,14 +59,14 @@ const Banner = () => {
         className={`font-manrope absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-5xl`}
       >
         {/* Heading */}
-        <div className=" mb-6 font-manrope md:w-[718px] mx-auto flex flex-col items-center justify-center gap-[12px]">
+        <div className=" mb-6 font-manrope md:w-[800px] mx-auto flex flex-col items-center justify-center gap-[12px]">
           <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-            Your suburb’s most
+            Find the local services your neighbours
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-2">
             <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-              recommended
+               trust
             </p>
             <div className="w-68">
               <WordRotate
@@ -76,6 +76,12 @@ const Banner = () => {
               />
             </div>
           </div>
+
+          <p className="mt-2 text-[18px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
+            Search your suburb to discover plumbers, electricians, cleaners and more — recommended by people nearby, not strangers online.
+          </p>
+
+
         </div>
 
         {/* Search bar */}
@@ -87,9 +93,9 @@ const Banner = () => {
           />
           <Link
             href="/suberb-search"
-            className="flex items-center justify-center gap-2 bg-[#718496] text-white px-3 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer"
+            className="flex items-center justify-center gap-2 bg-[#718496] text-white min-w-max  px-4 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer"
           >
-            Search
+            Search your suburb
             <IoMdArrowForward size={20} className="sm:size-[24px]" />
           </Link>
         </div>

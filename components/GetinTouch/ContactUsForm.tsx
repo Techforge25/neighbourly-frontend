@@ -41,8 +41,9 @@ const ContactUsForm = () => {
           <span className="text-[#F3B39D]">hear from you</span>
         </h2>
         <p className="text-[#262729] mt-3 text-[18px] md:w-[710px] mx-auto">
-          Whether you have a question about how Neighbourly works or want to see
-          us in your suburb, reach out below.
+          Whether you have a question about how Neighbourly works, want to
+          recommend a service, or would like to see us in your suburb, reach out
+          below.
         </p>
       </div>
 
@@ -72,7 +73,9 @@ const ContactUsForm = () => {
 
             {/* Email */}
             <div>
-              <label className="text-[14px] text-[#202939]">Email Address</label>
+              <label className="text-[14px] text-[#202939]">
+                Email Address
+              </label>
               <input
                 type="email"
                 name="email"
@@ -118,15 +121,22 @@ const ContactUsForm = () => {
           </button>
 
           {/* Footer note */}
-          <p className="flex items-center justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope">
+          <p className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope md:w-[635px] mx-auto">
             <span>
               <GoShieldCheck size={24} />
             </span>
-            <span>
+            <p className="flex flex-col gap-2 w-[90%]">
               {" "}
-              Your details are safe with us. We only use this information to
-              respond to your inquiry.
+              <span>
+                Your details are safe with us. We only use this information to
+                respond to your enquiry.
+              </span>
+              {" "}
+            <span>
+              We’re starting on the Northern Beaches and would love to hear from
+              residents, local businesses and community groups.
             </span>
+            </p>
           </p>
         </form>
       </div>

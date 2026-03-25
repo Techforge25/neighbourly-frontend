@@ -33,8 +33,7 @@ const Service = () => {
 
           <div className="bg-[#E0E7ED] md:p-6 p-4">
             <p className="lg:max-w-[467px] mx-auto text-[16px] font-medium leading-[28px] font-poppins text-[#3A5670]">
-              We only ask for a few details so we can keep recommendations
-              genuinely and useful for nearby neighbours.
+             We only ask for a few details to keep recommendations genuine and useful for nearby neighbours.
             </p>
           </div>
 
