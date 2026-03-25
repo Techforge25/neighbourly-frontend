@@ -35,14 +35,26 @@ const dispatch = useDispatch();
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentData = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
+  const recommendationCount = (businessName) => {
+    return currentData.filter((item) => item.businessName === businessName).length;
+  };
+
+const uniqueData = Array.from(
+  new Map(
+    currentData.map(item => [item.businessName, item])
+  ).values()
+);
+
+  console.log("Unique Business Names:", uniqueData);
+
   return (
     <div className="max-w-[1296px]  mx-auto md:my-10">
       {currentData.length > 0 ? (
         <>
           <div  className="flex items-center gap-4 flex-wrap justify-center">
-            {currentData?.map((item, ind) => (
+            {uniqueData?.map((item, ind) => (
               <div
-              onClick={()=>{router.push(`/suberb-search`)}}
+              onClick={()=>{router.push(`/recomended-detial`)}}
                 key={ind}
                 className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px]"
               >
@@ -97,7 +109,7 @@ const dispatch = useDispatch();
                     </div>
 
                     <div className="text-textdark font-manrope font-[24px] leading-[30px] font-semibold capitalize">
-                      { "DSDSDSDSD"}
+                      {item.businessName}
                     </div>
 
                     <div className="flex items-center gap-2 sm:gap-[8px]">
@@ -105,7 +117,7 @@ const dispatch = useDispatch();
                         <LuThumbsUp size={24} className="text-secondary" />
                       </span>
                       <span className="text-secondary capitalize font-poppins font-medium text-[16px] leading-[28px]">
-                        {"0 Recommendations"}
+                        {`recommended by ${recommendationCount(item.businessName)} neighbours`}
                       </span>
                     </div>
 
@@ -127,8 +139,8 @@ const dispatch = useDispatch();
                       <p>
                         <CustomIcon variant="location" />
                       </p>
-                      <p className="text-[18px] leading-[30px] font-manrope text-tabText">
-                        {"N/A"}
+                      <p className="text-[18px] leading-[30px] font-manrope font-medium text-tabText">
+                        {"Trusted across"}
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
@@ -150,7 +162,7 @@ const dispatch = useDispatch();
                     </div>
 
                     <div className="bg-secondary w-full px-2 py-2 rounded-full text-white capitalize font-manrope font-medium text-[11px] leading-[16px]">
-                      {"N/A"}
+                      {`${item.recommendedBy} + ${recommendationCount(item.businessName)-1}  Others `}
                     </div>
                   </div>
 
@@ -169,7 +181,7 @@ const dispatch = useDispatch();
                       </button>
                     </Link>
 
-                    <Link href={`https://wa.me/+${item.phone}`} target="_blank">
+                    <Link href={`sms:${item.phone}?body=Hi ${item.contactPerson}`} target="_blank">
                       <button className=" cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
                         <p className="text-[16px] font-outfit">Chat</p>
                         <MdOutlineChat size={20} />
