@@ -37,6 +37,7 @@ export default function StepEmailOtp({
     }),
     onSubmit: async (values) => {
       try {
+        setLoading(true);
         const res = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}auth/user`,
           { email: values.email },
@@ -47,12 +48,15 @@ export default function StepEmailOtp({
         if (data?.data?.OTPRequired) {
           setOtpSent(true);
           toast.success("OTP sent successfully!");
+          setLoading(false);
         } else {
           setOtpSent(false);
           // toast.error("OTP not required for this email.");
+          setLoading(false);
         }
       } catch (err) {
         console.error(err.message, "Error sending OTP");
+        setLoading(false);
       }
     },
   });
@@ -158,8 +162,14 @@ export default function StepEmailOtp({
                 type="submit"
                 className={`bg-primary w-full mx-auto mt-6 text-[16px] font-poppins px-[1px] py-[8px] rounded-full text-white flex items-center justify-center gap-4`}
               >
-                <span>Next</span>
-                <IoArrowForward size={24} />
+                {!loading ? (
+                  <>
+                    <span>Next</span>
+                    <IoArrowForward size={24} />
+                  </>
+                ) : (
+                  <p className="" >Loading...</p>
+                )}
               </button>
             )}
 
@@ -187,7 +197,7 @@ export default function StepEmailOtp({
 
                   {/* Right Button */}
                   <button
-                  onClick={nextStepThree}
+                    onClick={nextStepThree}
                     type="button"
                     className="bg-[#6E7F8D] w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center gap-3"
                   >

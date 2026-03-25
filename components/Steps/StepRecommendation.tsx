@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import Multiselect from "multiselect-react-dropdown";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -12,7 +13,7 @@ interface RecommendationData {
   service: string;
   location: string;
   website: string;
-  recommendationReason: string;
+  recommendationReason: string[];
 }
 
 const SERVICE_OPTIONS = [
@@ -27,13 +28,8 @@ const SERVICE_OPTIONS = [
   "Other",
 ];
 
-const RECOMMEND_OPTIONS = [
-  "Fast Response",
-  "Reliable",
-  "Fair Price"
-];
+const RECOMMEND_OPTIONS = ["Fast Response", "Reliable", "Fair Price"];
 
-// Validation schema using Yup
 const RecommendationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
   businessName: Yup.string().required("Business name is required"),
@@ -43,7 +39,9 @@ const RecommendationSchema = Yup.object().shape({
   service: Yup.string().required("Please select a service"),
   location: Yup.string().required("Location is required"),
   website: Yup.string().url("Enter a valid URL").nullable(),
-  recommendationReason: Yup.string().required("Please select a reason"),
+  recommendationReason: Yup.array()
+    .min(1, "Select at least one reason")
+    .of(Yup.string().required()),
 });
 
 export default function StepRecommendation({
@@ -56,40 +54,26 @@ export default function StepRecommendation({
   setData: React.Dispatch<React.SetStateAction<RecommendationData>>;
   onBack: () => void;
   onSubmit: () => void;
-}) 
-{
-
-
-   const handleGetFormData = async (values: RecommendationData) => {
-
+}) {
+  const handleGetFormData = async (values: RecommendationData) => {
     try {
-
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}recommendation`,{
-        personName:values.firstName,
-        businessName:values.businessName,
-        contact:values.theirNumber,
-        serviceType:values.service,
-        location:values.location,
-        website:values.website,
-        reasonsOfRecommendation:[values.recommendationReason]
-
-      });
-
-      const data = res.data;
-      console.log("Recommendation submitted successfully:", data);
-
-
-
-
-      
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}recommendation`,
+        {
+          personName: values.firstName,
+          businessName: values.businessName,
+          contact: values.theirNumber,
+          serviceType: values.service,
+          location: values.location,
+          website: values.website,
+          reasonsOfRecommendation: values.recommendationReason,
+        },
+      );
+      console.log("Recommendation submitted successfully:", res.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
-
   };
-
-
 
   return (
     <Formik
@@ -97,16 +81,15 @@ export default function StepRecommendation({
       validationSchema={RecommendationSchema}
       onSubmit={(values) => {
         setData(values);
-        // onSubmit();
         handleGetFormData(values);
       }}
     >
-      {({ values, handleChange, handleBlur, errors, touched }) => (
+      {({ values, errors, touched, setFieldValue }) => (
         <Form className="w-full rounded-2xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
             {/* First Name */}
             <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
+              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
                 First Name Of Who You Recommend{" "}
                 <span className="text-red-500">*</span>
               </Label>
@@ -129,7 +112,7 @@ export default function StepRecommendation({
 
             {/* Business Name */}
             <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
+              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
                 The Business Name <span className="text-red-500">*</span>
               </Label>
               <Field
@@ -151,7 +134,7 @@ export default function StepRecommendation({
 
             {/* Their Number */}
             <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
+              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
                 Their Number <span className="text-red-500">*</span>
               </Label>
               <Field
@@ -173,7 +156,7 @@ export default function StepRecommendation({
 
             {/* Service */}
             <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
+              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
                 What Service They Provide{" "}
                 <span className="text-red-500">*</span>
               </Label>
@@ -204,7 +187,7 @@ export default function StepRecommendation({
 
             {/* Location */}
             <div className="flex flex-col gap-[10px] sm:col-span-2">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
+              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
                 Location <span className="text-red-500">*</span>
               </Label>
               <Field
@@ -245,40 +228,41 @@ export default function StepRecommendation({
                 className="text-red-500 text-[12px]"
               />
             </div>
-
           </div>
 
-          {/* Why You Recomendation Them  */}
+          {/* MultiSelect for Recommendation Reasons */}
+          <div className="flex flex-col gap-[10px] w-full mt-6">
+            <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+              Reasons for Recommendation <span className="text-red-500">*</span>
+            </Label>
 
-           <div className="flex flex-col gap-[10px] w-full mt-6">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
-                What Service They Provide{" "}
-                <span className="text-red-500">*</span>
-              </Label>
-              <Field
-                as="select"
-                name="recommendationReason"
-                className={`flex w-full border rounded-[12px] px-3 py-3 text-[16px] text-para ${
-                  errors.recommendationReason
-                    ? "border-red-500"
-                    : "border-[#E4E4E4]"
-                }`}
-              >
-                <option value="" disabled>
-                 recommendationReason
-                </option>
-                {RECOMMEND_OPTIONS.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage
-                name="service"
-                component="div"
-                className="text-red-500 text-[12px]"
-              />
-            </div>
+            <Multiselect
+              options={RECOMMEND_OPTIONS}
+              isObject={false}
+              selectedValues={values.recommendationReason}
+              onSelect={(selectedList: string[]) => {
+                setFieldValue("recommendationReason", selectedList); // ✅ Fix
+              }}
+              onRemove={(selectedList: string[]) => {
+                setFieldValue("recommendationReason", selectedList); // ✅ Fix
+              }}
+              showCheckbox={true}
+              placeholder="Select reasons"
+              style={{
+                chips: {
+                  background: "#D98C74",
+                },
+              }}
+            />
+
+            {errors.recommendationReason && touched.recommendationReason && (
+              <div className="text-red-500 text-[12px]">
+                {Array.isArray(errors.recommendationReason)
+                  ? errors.recommendationReason.join(", ")
+                  : errors.recommendationReason}
+              </div>
+            )}
+          </div>
 
           {/* Buttons */}
           <div className="grid grid-cols-2 gap-4 mt-8">

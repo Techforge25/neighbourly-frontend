@@ -3,7 +3,7 @@ import Image from "next/image";
 import { navItems } from "@/utils/dumydata";
 import Link from "next/link";
 import { IoMdAdd, IoMdMenu } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import ButtonModal from "../ButtomModal";
@@ -11,6 +11,22 @@ import ButtonModal from "../ButtomModal";
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const pathName = usePathname();
+
+  useEffect(() => {
+  if (isOpenMenu) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  // cleanup (important)
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [isOpenMenu]);
+
+
+
 
   return (
     <section className="w-[90%] py-[30px]   mx-auto">
@@ -43,14 +59,6 @@ const Header = () => {
         {/* nav item */}
 
         {/* Button */}
-        {/* <div>
-          <button className="md:flex hidden items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-[#F3B39D] text-white lg:text-[16px] font-outfit text-sm">
-            <span>Share your recommendation</span>
-            <span>
-              <IoMdAdd size={20} />
-            </span>
-          </button>
-        </div> */}
         <div className="md:flex hidden">
           <ButtonModal />
         </div>
@@ -74,12 +82,12 @@ const Header = () => {
           ${isOpenMenu ? "translate-y-0 opacity-100 z-1000" : "-translate-y-full opacity-0 pointer-events-none z-1000"}`}
         >
           {navItems.map((item, index) => (
-            <ul key={index}>
+            <ul key={index} onClick={() => setIsOpenMenu(false)} >
               <Link href={item.href}>{item.label}</Link>
             </ul>
           ))}
           {/* Button */}
-          <div className="">
+          <div >
             <ButtonModal />
           </div>
           {/* Button */}
