@@ -2,7 +2,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Multiselect from "multiselect-react-dropdown";
+import Select from "react-select";
+
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -28,7 +29,11 @@ const SERVICE_OPTIONS = [
   "Other",
 ];
 
-const RECOMMEND_OPTIONS = ["Fast Response", "Reliable", "Fair Price"];
+const RECOMMEND_OPTIONS = [
+  { value: "Fast Response", label: "Fast Response" },
+  { value: "Reliable", label: "Reliable" },
+  { value: "Fair Price", label: "Fair Price" },
+];
 
 const RecommendationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
@@ -231,32 +236,51 @@ export default function StepRecommendation({
           </div>
 
           {/* MultiSelect for Recommendation Reasons */}
-          <div className="flex flex-col gap-[10px] w-full mt-6">
+          <div className="flex flex-col gap-2 mt-4">
             <Label className="text-[14px] leading-[20px] font-manrope font-medium">
               Reasons for Recommendation <span className="text-red-500">*</span>
             </Label>
 
-            <Multiselect
-              options={RECOMMEND_OPTIONS}
-              isObject={false}
-              selectedValues={values.recommendationReason}
-              onSelect={(selectedList: string[]) => {
-                setFieldValue("recommendationReason", selectedList); // ✅ Fix
+            <Select
+              options={RECOMMEND_OPTIONS} // already {value, label} objects
+              isMulti
+              // Map Formik value array into objects for react-select
+              value={(values.recommendationReason || []).map((val) => ({
+                value: val,
+                label: val,
+              }))}
+              onChange={(selectedOptions: any) => {
+                // Convert selected objects back to string array
+                setFieldValue(
+                  "recommendationReason",
+                  selectedOptions
+                    ? selectedOptions.map((opt: any) => opt.value)
+                    : [],
+                );
               }}
-              onRemove={(selectedList: string[]) => {
-                setFieldValue("recommendationReason", selectedList); // ✅ Fix
-              }}
-              showCheckbox={true}
+              className="react-select-container"
+              classNamePrefix="react-select"
               placeholder="Select reasons"
-              style={{
-                chips: {
-                  background: "#D98C74",
-                },
+              styles={{
+                multiValue: (base) => ({
+                  ...base,
+                  backgroundColor: "#f3b39d",
+                  color: "white",
+                }),
+                multiValueLabel: (base) => ({
+                  ...base,
+                  color: "white",
+                }),
+                multiValueRemove: (base) => ({
+                  ...base,
+                  color: "white",
+                  ":hover": { backgroundColor: "#f3b39d", color: "black" },
+                }),
               }}
             />
 
             {errors.recommendationReason && touched.recommendationReason && (
-              <div className="text-red-500 text-[12px]">
+              <div className="text-red-500 text-[12px] mt-1">
                 {Array.isArray(errors.recommendationReason)
                   ? errors.recommendationReason.join(", ")
                   : errors.recommendationReason}
