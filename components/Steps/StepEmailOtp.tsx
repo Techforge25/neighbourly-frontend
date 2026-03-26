@@ -7,6 +7,7 @@ import OtpInput from "../OtpInput";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { api } from '../../src/service/axios';
 
 interface UserData {
   isProfileCompleted?: boolean;
@@ -38,9 +39,9 @@ export default function StepEmailOtp({
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_BASE_URL}auth/user`,
-          { email: values.email },
+        const res = await api.post(
+          `auth/user`,
+          { email: values.email }
         );
 
         const data = res.data;
