@@ -1,9 +1,9 @@
 "use client";
 import { RootState } from "@/store";
-import { recommendations, Suburb_Data } from "@/utils/dumydata";
+import { recommendations } from "@/utils/dumydata";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiLocationMarker } from "react-icons/hi";
 import { IoEarthSharp, IoShareSocial } from "react-icons/io5";
 import { LuGlobe, LuThumbsUp } from "react-icons/lu";
@@ -13,6 +13,7 @@ import CustomIcon from "./CustomIcon";
 import { useRouter } from "next/navigation";
 import ShareModal from "./ShareModal";
 import { openShare } from "@/store/shareSlice";
+import { api } from "@/src/service/axios";
 
 const Card = () => {
 
@@ -20,12 +21,31 @@ const Card = () => {
 const dispatch = useDispatch();
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
 
+const [categoryData, setCategoryData] = useState<any[]>([]);
+
+  const getCategotyData = async () => {
+    try {
+      const res = await api.get("recommendation");
+      const cetData = res.data;
+      setCategoryData(cetData?.data?.docs);
+    } catch (error: any) {
+      console.log(error?.response?.data);
+    }
+  };
+
+  useEffect(() => {
+    getCategotyData();
+  }, []);
+  
+
   const filteredData =
     activeTab.toLowerCase() === "Most Recommended".toLowerCase()
-      ? recommendations // "Most Recommended" hai → sab items dikhao
-      : recommendations.filter(
-          (item) => item.tradeType.toLowerCase() === activeTab.toLowerCase(),
+      ? categoryData // "Most Recommended" hai → sab items dikhao
+      : categoryData.filter(
+          (item) => item?.serviceType.toLowerCase() === activeTab.toLowerCase(),
         );
+
+        
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 9;
@@ -35,26 +55,15 @@ const dispatch = useDispatch();
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentData = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
-  const recommendationCount = (businessName) => {
-    return currentData.filter((item) => item.businessName === businessName).length;
-  };
-
-const uniqueData = Array.from(
-  new Map(
-    currentData.map(item => [item.businessName, item])
-  ).values()
-);
-
-  console.log("Unique Business Names:", uniqueData);
 
   return (
     <div className="max-w-[1296px]  mx-auto md:my-10">
       {currentData.length > 0 ? (
         <>
           <div  className="flex items-center gap-4 flex-wrap justify-center">
-            {uniqueData?.map((item, ind) => (
+            {currentData?.map((item, ind) => (
               <div
-              onClick={()=>{router.push(`/recomended-detial`)}}
+              onClick={()=>{router.push(`/recomended-detial/${item._id}`)}}
                 key={ind}
                 className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px]"
               >
@@ -98,18 +107,18 @@ const uniqueData = Array.from(
                         />
                       </div>
                       <p className="text-center text-base font-semibold text-gray-900 mt-2">
-                        {item.contactPerson}
+                        {item.personName}
                       </p>
                     </div>
                   </div>
 
                   <div className="w-full w-[378px] flex-col gap-2 mt-20">
-                    <div className="text-[14px] font-manrope leading-[16px] capitalize bg-[#E0E7ED80] rounded-full font-medium h-[24px] w-[79px] flex items-center justify-center text-para mt-4">
-                      {item.tradeType}
+                    <div className="text-[14px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para mt-4">
+                      {item?.serviceType}
                     </div>
 
                     <div className="text-textdark font-manrope font-[24px] leading-[30px] font-semibold capitalize">
-                      {item.businessName}
+                      {item?.businessName}
                     </div>
 
                     <div className="flex items-center gap-2 sm:gap-[8px]">
@@ -117,15 +126,15 @@ const uniqueData = Array.from(
                         <LuThumbsUp size={24} className="text-secondary" />
                       </span>
                       <span className="text-secondary capitalize font-poppins font-medium text-[16px] leading-[28px]">
-                        {`recommended by ${recommendationCount(item.businessName)} neighbours`}
+                        {`recommended by ${item?.recommendationCount} neighbours`}
                       </span>
                     </div>
 
                     <div className="flex gap-[8px] mt-2">
-                      {item.reasons.map((resItem, index) => (
+                      {item.reasonsOfRecommendation.map((resItem:any, index : number) => (
                         <div key={index}>
                           <p
-                            className={`font-manrope text-[14px] leading-[16px] font-medium border border-[#E0E7ED80] rounded-full px-2 py-1 ${index === 0 ? "bg-[#FFEFEA] text-primary" : index === 1 ? "bg-[#EAF9E7] text-[#64A256]" : "text-[#4D6D8C] bg-[#E0E7ED]"}`}
+                            className={`font-manrope text-[14px] leading-[16px] font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0 ? "bg-primary_light text-primary" : index === 1 ? "bg-success_light text-success" : "text-text-dark bg-light-bg"}`}
                           >
                             {resItem.slice(0, 10)}...
                           </p>
@@ -144,8 +153,8 @@ const uniqueData = Array.from(
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] h-[32px] w-[106px]">
-                        {item.suburb}
+                      <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF]">
+                        {item.location}
                       </button>
                     </div>
                   </div>
@@ -162,26 +171,26 @@ const uniqueData = Array.from(
                     </div>
 
                     <div className="bg-secondary w-full px-2 py-2 rounded-full text-white capitalize font-manrope font-medium text-[11px] leading-[16px]">
-                      {`${item.recommendedBy} + ${recommendationCount(item.businessName)-1}  Others `}
+                      {`${item.personName} + ${item?.recommendationCount}  Others `}
                     </div>
                   </div>
 
                   <div className="my-2 flex gap-2 sm:gap-[8px]">
-                    <Link href={item.website}>
+                  
                       <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
                         <p className="text-[16px] font-outfit">Website</p>
                         <LuGlobe size={20} />
                       </button>
-                    </Link>
+                    
 
-                    <Link href={`tel:${item.phone}`}>
+                    <Link href={`tel:${item?.phone}`}>
                       <button className="flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
                         <p className="text-[16px] font-outfit">Call</p>
                         <MdOutlineCall size={20} />
                       </button>
                     </Link>
 
-                    <Link href={`sms:${item.phone}?body=Hi ${item.contactPerson}`} target="_blank">
+                    <Link href={`sms:${item?.phone}?body=Hi ${item?.contactPerson}`} target="_blank">
                       <button className=" cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
                         <p className="text-[16px] font-outfit">Chat</p>
                         <MdOutlineChat size={20} />
@@ -207,7 +216,7 @@ const uniqueData = Array.from(
 
           {filteredData.length > 9 && (
             <div className="flex justify-center items-center gap-2 mt-8">
-              {/* Prev */}
+              
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 className="px-3 py-1 border rounded"
@@ -215,7 +224,7 @@ const uniqueData = Array.from(
                 Prev
               </button>
 
-              {/* Page Numbers */}
+              
               {Array.from({ length: totalPages }, (_, i) => (
                 <button
                   key={i}
@@ -228,7 +237,7 @@ const uniqueData = Array.from(
                 </button>
               ))}
 
-              {/* Next */}
+              
               <button
                 onClick={() =>
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
@@ -241,7 +250,7 @@ const uniqueData = Array.from(
           )}
         </>
       ) : (
-        <div className="text-[32px] font-manrope font-semibold">
+        <div className="text-[32px] font-manrope font-semibold text-center text-para">
           Not Category Data Found ...
         </div>
       )}

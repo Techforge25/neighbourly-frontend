@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { api } from '../../src/service/axios';
+import { useRouter } from "next/navigation";
 
 interface UserData {
   isProfileCompleted?: boolean;
@@ -18,13 +19,17 @@ interface UserData {
 export default function StepEmailOtp({
   onVerified,
   nextStepThree,
+  onClose
 }: {
   onVerified: () => void;
   nextStepThree: () => void;
+  onClose: () => void;
+
 }) {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const router = useRouter();
 
   // ✅ Formik setup
   const formik = useFormik({
@@ -55,8 +60,9 @@ export default function StepEmailOtp({
           // toast.error("OTP not required for this email.");
           setLoading(false);
         }
-      } catch (err) {
-        console.error(err.message, "Error sending OTP");
+      } catch (err:any) {
+        console.error("Otp is Not Send",err?.response?.data);
+        // console.error(err?.message,);
         setLoading(false);
       }
     },
@@ -190,8 +196,9 @@ export default function StepEmailOtp({
                 <div className="flex items-center justify-center gap-6">
                   {/* Left Button */}
                   <button
+                  onClick={()=>{router.push('/discover'),onClose()}}
                     type="button"
-                    className="bg-[#E3A18B] w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
+                    className="bg-[#E3A18B] cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
                   >
                     View Full Recommendations
                   </button>
@@ -200,7 +207,7 @@ export default function StepEmailOtp({
                   <button
                     onClick={nextStepThree}
                     type="button"
-                    className="bg-[#6E7F8D] w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center gap-3"
+                    className="bg-[#6E7F8D] cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center gap-3"
                   >
                     Share Another Recommendation
                     <IoArrowForward size={20} />

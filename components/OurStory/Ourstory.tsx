@@ -4,7 +4,7 @@ import React from "react";
 
 const Ourstory = () => {
   return (
-    <div className="md:w-[1104px] w-[90%] mx-auto md:my-20 my-10 p-4">
+    <div className="md:w-[90%] w-[90%] mx-auto md:my-20 my-10 p-4">
       <div className="flex item-center justify-between flex-col lg:flex-row md:gap-20 gap-8">
         <div>
           <div className="">

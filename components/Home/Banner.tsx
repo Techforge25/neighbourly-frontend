@@ -36,6 +36,8 @@ const Banner = () => {
     },
   ];
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Video background */}
@@ -52,7 +54,7 @@ const Banner = () => {
       </video>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-[#D98C74]/16 "></div>
+      <div className="absolute inset-0 bg-[#000]/16 "></div>
 
       {/* Content */}
       <div
@@ -66,7 +68,7 @@ const Banner = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-2">
             <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-               trust
+              trust
             </p>
             <div className="w-68">
               <WordRotate
@@ -78,24 +80,25 @@ const Banner = () => {
           </div>
 
           <p className="mt-2 text-[18px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
-            Search your suburb to discover plumbers, electricians, cleaners and more — recommended by people nearby, not strangers online.
+            Search your suburb to discover plumbers, electricians, cleaners and
+            more — recommended by people nearby, not strangers online.
           </p>
-
-
         </div>
 
         {/* Search bar */}
         <div className="flex flex-row items-center gap-4 bg-white rounded-full p-2 md:w-[718px] mx-auto">
           <input
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             type="text"
             placeholder="Enter your suburb or postcode"
             className="w-full  py-2 px-3 text-[#697586] text-[14px] sm:text-[16px] outline-none rounded-full"
           />
           <Link
-            href="/suberb-search"
+            href={`/suberb-search/?search=${encodeURIComponent(searchTerm)}`}
             className="flex items-center justify-center gap-2 bg-[#718496] text-white min-w-max  px-4 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer"
           >
-            Search your suburb
+            Search
             <IoMdArrowForward size={20} className="sm:size-[24px]" />
           </Link>
         </div>

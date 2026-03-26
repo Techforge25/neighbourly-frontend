@@ -6,6 +6,17 @@ import StepAbout from "./Steps/StepAbout";
 import StepRecommendation from "./Steps/StepRecommendation";
 import StepSuccess from "./Steps/StepSuccess";
 
+interface RecommendationData {
+  firstName: string;
+  businessName: string;
+  theirNumber: string;
+  service: string;
+  location: string;
+  recommendationReason: string[];
+  comment: string;
+  email: string;
+}
+
 export default function StepperModal({
   isOpen,
   onClose,
@@ -15,14 +26,32 @@ export default function StepperModal({
 }) {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ firstName: "", mobile: "" });
+  const [formData, setFormData] = useState<RecommendationData>({
+    firstName: "",
+    businessName: "",
+    theirNumber: "",
+    service: "",
+    location: "",
+    recommendationReason: [],
+    comment: "",
+    email: "",
+  });
 
   const nextStep = () => setStep((s) => s + 1);
   const nextStepThree = () => setStep((s) => s + 2);
   const prevStep = () => setStep((s) => s - 1);
 
   const resetAll = () => {
-    setFormData({ firstName: "", mobile: "" });
+    setFormData({
+      firstName: "",
+      businessName: "",
+      theirNumber: "",
+      service: "",
+      location: "",
+      recommendationReason: [],
+      comment: "",
+      email: "",
+    });
     setStep(1);
   };
 
@@ -45,8 +74,6 @@ export default function StepperModal({
 
   if (!isOpen) return null;
 
-  console.log(step, "stepstepstepstepstepstep");
-
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
@@ -54,7 +81,7 @@ export default function StepperModal({
     >
       {/* Modal Box */}
       <div
-        className={` ${step === 4 ? 'bg-[#F1EAE5]' : 'bg-white'} w-full max-w-2xl rounded-2xl p-6 relative shadow-xl`}
+        className={` ${step === 4 ? "bg-[#F1EAE5]" : "bg-white max-h-[732px]"} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl`}
         onClick={(e) => e.stopPropagation()} // 👈 prevent close inside click
       >
         {/* ❌ Close Button */}
@@ -66,7 +93,7 @@ export default function StepperModal({
                 Recommend a Business
               </h4>
 
-              <button onClick={onClose} className="">
+              <button onClick={onClose} className="cursor-pointer">
                 ✕
               </button>
             </div>
@@ -86,7 +113,13 @@ export default function StepperModal({
 
         {/* Steps */}
         <div className="mt-6">
-          {step === 1 && <StepEmailOtp onVerified={handleOtpVerified} nextStepThree={nextStepThree} />}
+          {step === 1 && (
+            <StepEmailOtp
+              onVerified={handleOtpVerified}
+              nextStepThree={nextStepThree}
+              onClose={onClose}
+            />
+          )}
 
           {step === 2 && (
             <StepAbout

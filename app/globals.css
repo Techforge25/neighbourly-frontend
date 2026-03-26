@@ -26,7 +26,22 @@
   --color-bgLight: #F4F8FF;
   --color-green: #8FA58A;
   --color-border: #E4E4E4;
+  --color-primary_light: #FFEFEA;
+  --color-success: #64A256;
+  --color-success_light: #EAF9E7;
+  --color-text-dark: #4D6D8C;
+  --color-light-bg: #E0E7ED;
 
   /* Color End */
 
+}
+
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
 }

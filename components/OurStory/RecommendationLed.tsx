@@ -3,7 +3,7 @@ import React from "react";
 
 const RecommendationLed = () => {
   return (
-    <div className="lg:w-[1296px] w-[90%] mx-auto md:my-20 my-10">
+    <div className="lg:w-[90%]  mx-auto md:my-20 my-10">
       <div className="flex flex-col md:gap-[62px] gap-[10px]">
         <div className="text-center md:w-[672px] w-[90%] mx-auto flex items-center flex-col gap-[12px]">
           <div className="md:text-[42px] text-[26px] font-bold font-manrope leadin-[49px]">
@@ -26,7 +26,7 @@ const RecommendationLed = () => {
               alt="Description of the image"
               width={500}
               height={300}
-              className="md:w-[332px] md:h-[680px] object-contain"
+              className="w-[332px] h-[680px] object-contain"
             />
 
 

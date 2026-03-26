@@ -4,7 +4,18 @@ import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import MapEmbed from "./MapEmbed";
 
-const NeighburSay = () => {
+type Props = {
+  recomendedDetail: any;
+};
+
+const NeighburSay = ({recomendedDetail}: Props) => {
+
+const userRecommendationDetail = recomendedDetail?.users || [];
+  console.log(recomendedDetail?.users,"recomendedDetai Neighbourly")
+
+
+
+
   return (
     <section className="max-w-[1440px] mx-auto my-22">
       <div className="container mx-auto px-4">
@@ -15,15 +26,15 @@ const NeighburSay = () => {
         What Neighbors Say
       </h2>
 
-      {comment.map((item, ind) => (
+      {userRecommendationDetail.map((item:any, ind:number) => (
         <div
           key={ind}
-          className="bg-[#F3F6F966] rounded-[18px] p-4 md:p-6 mb-4 max-w-full"
+          className="bg-[#F3F6F966] rounded-[18px] p-4 md:p-4 mb-4 max-w-full"
         >
           <div className="flex flex-col md:flex-row justify-between items-start">
             <div className="flex items-start gap-3 md:gap-4">
               <Image
-                src={item.image}
+                src={`/images/sayavatar.png`}
                 height={100}
                 width={100}
                 alt="image"
@@ -34,15 +45,19 @@ const NeighburSay = () => {
                   {item.name}
                 </h5>
 
-                <div className="flex flex-wrap items-center gap-2 md:gap-3 text-para font-poppins text-[12px] md:text-[14px]">
+                <div className="flex  items-center gap-2 md:gap-3 text-para font-poppins text-[12px] md:text-[14px]">
                   <p>{item.email}</p>
                   <span className="w-1.5 h-1.5 bg-para rounded-full" />
-                  <p>{item.phone}</p>
+                  <p>{item?.phone?item?.phone:"N/A"}</p>
                   <span className="w-1.5 h-1.5 bg-para rounded-full" />
                   <p>{item.address}</p>
                 </div>
 
-                <div className="mt-2 flex flex-wrap gap-2">
+                <p className="text-para font-poppins text-[14px]">
+                  {item.comment?item.comment:"N/A"}
+                </p>
+
+                {/* <div className="mt-2 flex flex-wrap gap-2">
                   {item.rating.map((str, ind) => (
                     <button
                       key={ind}
@@ -51,7 +66,8 @@ const NeighburSay = () => {
                       {str.text}
                     </button>
                   ))}
-                </div>
+                </div> */}
+                
               </div>
             </div>
 

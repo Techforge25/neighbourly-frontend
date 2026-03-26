@@ -1,16 +1,17 @@
 import { Heart, Share2, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface StepSuccessProps {
   onClose: () => void;
-  onViewRecommendations?: () => void;
-  onSearchAnother?: () => void;
 }
 
 export default function StepSuccess({
   onClose,
-  onViewRecommendations,
-  onSearchAnother,
 }: StepSuccessProps) {
+
+  const router = useRouter();
+
+
   return (
     <div className="">
       {/* Share button */}
@@ -45,16 +46,12 @@ export default function StepSuccess({
 
         {/* Action buttons */}
         <div className="flex gap-3">
-          <button
-            onClick={onViewRecommendations}
-            className="flex-1 py-3.5 px-6 rounded-full bg-primary text-white text-[16px] leading-[16px] "
-          >
+
+          <button onClick={()=>{router.push('/discover'),onClose()}} className="flex-1 py-3.5 px-6 rounded-full bg-primary text-white text-[16px] leading-[16px] ">
             View Recommendations
           </button>
-          <button
-            onClick={onSearchAnother}
-            className="flex-1 py-3.5 px-6 rounded-full bg-secondary text-white text-[16px] leading-[16px] "
-          >
+
+          <button onClick={()=>{router.push('/'),onClose()}} className="flex-1 py-3.5 px-6 rounded-full bg-secondary text-white text-[16px] leading-[16px] ">
             Search Another Suburb
           </button>
         </div>

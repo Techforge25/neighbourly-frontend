@@ -5,7 +5,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
 
 import * as Yup from "yup";
-import { api } from '../../src/service/axios';
+import { api } from "../../src/service/axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { comment } from "@/utils/dumydata";
 
 interface RecommendationData {
   firstName: string;
@@ -13,8 +16,9 @@ interface RecommendationData {
   theirNumber: string;
   service: string;
   location: string;
-  website: string;
   recommendationReason: string[];
+  comment: string;
+  email: string;
 }
 
 const SERVICE_OPTIONS = [
@@ -36,17 +40,30 @@ const RECOMMEND_OPTIONS = [
 ];
 
 const RecommendationSchema = Yup.object().shape({
-  firstName: Yup.string().required("First name is required"),
-  businessName: Yup.string().required("Business name is required"),
+  firstName: Yup.string().required("Name is required"),
+  businessName: Yup.string()
+    .matches(
+      /^[a-zA-Z ]*$/,
+      "Business name can only contain letters and spaces",
+    )
+    .required("Business name is required"),
   theirNumber: Yup.string()
     .required("Number is required")
-    .matches(/^\+?[0-9]{7,15}$/, "Invalid phone number"),
+    .matches(
+      /^0[0-9]{10}$/,
+      "Contact number must be in international format (e.g., 03001234567)",
+    ),
   service: Yup.string().required("Please select a service"),
-  location: Yup.string().required("Location is required"),
-  website: Yup.string().url("Enter a valid URL").nullable(),
+  location: Yup.string()
+    .trim()
+    .min(10, "Location must be at least 10 characters long")
+    .required("Location is required"),
   recommendationReason: Yup.array()
     .min(1, "Select at least one reason")
     .of(Yup.string().required()),
+  email: Yup.string()
+    .email("Enter a valid email")
+    .required("Email is required"),
 });
 
 export default function StepRecommendation({
@@ -61,21 +78,31 @@ export default function StepRecommendation({
   onSubmit: () => void;
 }) {
   const handleGetFormData = async (values: RecommendationData) => {
+    console.log(values, "Form Data");
+
     try {
-      const res = await api.post(
-        `recommendation`,
-        {
-          personName: values.firstName,
-          businessName: values.businessName,
-          contact: values.theirNumber,
-          serviceType: values.service,
-          location: values.location,
-          website: values.website,
-          reasonsOfRecommendation: values.recommendationReason,
-        },
-      );
-      console.log("Recommendation submitted successfully:", res.data);
-    } catch (error:any) {
+      const res = await api.post(`recommendation`, {
+        personName: values.firstName,
+        businessName: values.businessName,
+        contact: values.theirNumber,
+        serviceType: values.service,
+        location: values.location,
+        reasonsOfRecommendation: values.recommendationReason,
+        comment: values.comment,
+        email: values.email,
+      });
+
+      const successMessage = res.data.message;
+
+      toast.success(successMessage);
+
+      console.log("Recommendation submitted successfully:", res);
+      onSubmit();
+    } catch (error: any) {
+      if (error.response) {
+        console.log("Server responded with an error:",error.response.data.message);
+      }
+
       console.log("Failed to create recommendation:", error);
     }
   };
@@ -137,15 +164,37 @@ export default function StepRecommendation({
               />
             </div>
 
-            {/* Their Number */}
+            {/* Email */}
             <div className="flex flex-col gap-[10px]">
               <Label className="text-[14px] leading-[20px] font-manrope font-medium">
-                Their Number <span className="text-red-500">*</span>
+                Email <span className="text-red-500">*</span>
+              </Label>
+              <Field
+                as={Input}
+                name="email"
+                placeholder="info@gmail.com"
+                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
+                  errors.email && touched.email
+                    ? "border-red-500"
+                    : "border-[#E4E4E4]"
+                }`}
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-red-500 text-[12px]"
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div className="flex flex-col gap-[10px]">
+              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+                Phone Number <span className="text-red-500">*</span>
               </Label>
               <Field
                 as={Input}
                 name="theirNumber"
-                placeholder="e.g. +12397879793"
+                placeholder="e.g. 012385868664"
                 className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
                   errors.theirNumber && touched.theirNumber
                     ? "border-red-500"
@@ -191,14 +240,14 @@ export default function StepRecommendation({
             </div>
 
             {/* Location */}
-            <div className="flex flex-col gap-[10px] sm:col-span-2">
+            <div className="flex flex-col gap-[10px]">
               <Label className="text-[14px] leading-[20px] font-manrope font-medium">
                 Location <span className="text-red-500">*</span>
               </Label>
               <Field
                 as={Input}
                 name="location"
-                placeholder="location"
+                placeholder="Suburb, City"
                 className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
                   errors.location && touched.location
                     ? "border-red-500"
@@ -211,34 +260,12 @@ export default function StepRecommendation({
                 className="text-red-500 text-[12px]"
               />
             </div>
-
-            {/* Website */}
-            <div className="flex flex-col gap-[10px] sm:col-span-2">
-              <Label className="text-[14px] leading-[20px] font-medium text-muted-foreground">
-                Website (Optional)
-              </Label>
-              <Field
-                as={Input}
-                name="website"
-                placeholder="website URL"
-                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
-                  errors.website && touched.website
-                    ? "border-red-500"
-                    : "border-[#E4E4E4]"
-                }`}
-              />
-              <ErrorMessage
-                name="website"
-                component="div"
-                className="text-red-500 text-[12px]"
-              />
-            </div>
           </div>
 
           {/* MultiSelect for Recommendation Reasons */}
           <div className="flex flex-col gap-2 mt-4">
             <Label className="text-[14px] leading-[20px] font-manrope font-medium">
-              Reasons for Recommendation <span className="text-red-500">*</span>
+              why you recommend them <span className="text-red-500">*</span>
             </Label>
 
             <Select
@@ -275,7 +302,7 @@ export default function StepRecommendation({
                   ...base,
                   color: "white",
                   ":hover": { backgroundColor: "#f3b39d", color: "black" },
-                }),
+                }),   
               }}
             />
 
@@ -287,6 +314,21 @@ export default function StepRecommendation({
               </div>
             )}
           </div>
+
+          {/* Optional Comment  */}
+          <div className="flex flex-col gap-2 mt-4">
+            <Label className="text-[14px] leading-[20px] font-medium text-#202939">
+              {`Comment (Optional)`}
+            </Label>
+            <Field
+              as="textarea"
+              name="comment"
+              placeholder="Tell us a little about your experience"
+              className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope focus:outline-none text-para `}
+            />
+          </div>
+
+          {/* Optional Comment  */}
 
           {/* Buttons */}
           <div className="grid grid-cols-2 gap-4 mt-8">
