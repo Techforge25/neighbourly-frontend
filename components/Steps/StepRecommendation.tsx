@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
 
 import * as Yup from "yup";
-import axios from "axios";
+import { api } from '../../src/service/axios';
 
 interface RecommendationData {
   firstName: string;
@@ -62,8 +62,8 @@ export default function StepRecommendation({
 }) {
   const handleGetFormData = async (values: RecommendationData) => {
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}recommendation`,
+      const res = await api.post(
+        `recommendation`,
         {
           personName: values.firstName,
           businessName: values.businessName,
@@ -75,8 +75,8 @@ export default function StepRecommendation({
         },
       );
       console.log("Recommendation submitted successfully:", res.data);
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+      console.log("Failed to create recommendation:", error);
     }
   };
 
