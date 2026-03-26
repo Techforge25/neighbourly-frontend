@@ -10,14 +10,14 @@ const page = () => {
   return (
     <div className="">
       <Banner
-        text="Building stronger communities through trusted hyper-Local recommendations."
+        text="Building stronger communities through trusted hyper-local recommendations."
         banner="/images/ourstory.png"
       />
       <Ourstory />
       <Trusted />
       <RecommendationLed />
       <Community/>
-      <UseFull color="#718496"/>
+      {/* <UseFull color="#718496"/> */}
     </div>
   );
 };

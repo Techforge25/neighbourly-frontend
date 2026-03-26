@@ -27,22 +27,22 @@ export const navItems = [
 export const work_Data = [
   {
     icon: <HiOutlineSearch size={35} />,
-    title: "Search yoursuburb",
+    title: "Search your suburb",
     text: "Discover local services recommended by people nearby.",
     iconBg: "bg-[#FE9A86]",
     bg: "bg-[#FFEFEA]",
   },
   {
     icon: <PiThumbsUpBold size={35} />,
-    title: "See who locals recommend",
-    text: "Browse trusted recommendations from neighbours in your area.",
+    title: "See who locals trust",
+    text: "Browse the people and businesses most recommended in your area.",
     iconBg: "bg-[#8FA58A]",
     bg: "bg-[#EAF9E7]",
   },
   {
     icon: <RiHandHeartFill size={35} />,
-    title: "See who locals recommend",
-    text: "Browse trusted recommendations from neighbours in your area.",
+    title: "Share a recommendation",
+    text: "Help others discover great local services in your suburb.",
     iconBg: "bg-[#718496]",
     bg: "bg-[#E0E7ED]",
   },
@@ -136,10 +136,10 @@ export const Tab_Data = [
 export const Suburb_Data = [
   {
     isVerified: true,
-    verifiedBy:"by neighbourly",
+    verifiedBy:"by Neighbourly",
     name:"Shannon",
     image:"/images/suburb1.png",
-    category:"plumbers",
+    category:"Plumberss",
     slug:"dave at A to Z plumbing",
     recommendation:"recommended by 5 neighbours",
     res:[
@@ -173,10 +173,10 @@ export const Suburb_Data = [
   },
   {
     isVerified: true,
-    verifiedBy:"by neighbourly",
+    verifiedBy:"by Neighbourly",
     name:"Shannon",
     image:"/images/suburb1.png",
-    category:"electricians",
+    category:"Electricianss",
     slug:"dave at A to Z plumbing",
     recommendation:"recommended by 5 neighbours",
     res:[
@@ -210,7 +210,7 @@ export const Suburb_Data = [
   },
   {
     isVerified: true,
-    verifiedBy:"by neighbourly",
+    verifiedBy:"by Neighbourly",
     name:"Shannon",
     image:"/images/suburb1.png",
     category:"handyman",
@@ -513,3 +513,266 @@ export const comment = [
 
 
 ]
+
+export const recommendations = [
+  {
+    suburb: "Curl Curl",
+    tradeType: "Plumbers",
+    recommendedBy: "Olivia",
+    businessName: "A to Z Plumbing Solutions",
+    contactPerson: "Shannon",
+    phone: "0400 318 553",
+    reasons: ["Good quality work", "Reliable", "Fair pricing"],
+    website: ""
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Rebecca",
+    businessName: "A to Z Plumbing Solutions",
+    contactPerson: "Shannon",
+    phone: "0400 318 553",
+    reasons: ["Responsive", "Local reputation", "Easy to deal with"],
+    website: ""
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Sara",
+    businessName: "A to Z Plumbing Solutions",
+    contactPerson: "Shannon",
+    phone: "0400 318 553",
+    reasons: ["Local reputation", "Good quality work", "Easy to deal with"],
+    website: ""
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Charlotte",
+    businessName: "Affordable Hot Water",
+    contactPerson: "Marcel",
+    phone: "1300 765 764",
+    reasons: ["Good quality work", "Helpful / went the extra mile", "Local reputation"],
+    website: "https://www.affordablehotwater.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Liz",
+    businessName: "Affordable Hot Water",
+    contactPerson: "Marcel",
+    phone: "1300 765 764",
+    reasons: ["Tidy and respectful", "Helpful / went the extra mile", "Local reputation"],
+    website: "https://www.affordablehotwater.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Brad",
+    businessName: "Affordable Hot Water",
+    contactPerson: "Marcel",
+    phone: "1300 765 764",
+    reasons: ["Local reputation", "Problem solved properly", "Reliable"],
+    website: "https://www.affordablehotwater.com.au/"
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Plumbers",
+    recommendedBy: "Amelia",
+    businessName: "All In Plumbing",
+    contactPerson: "Jeremy",
+    phone: "0424 264 849",
+    reasons: ["Reliable", "Good quality work", "Responsive"],
+    website: "https://allinplumbing.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Anne-Marie",
+    businessName: "All In Plumbing",
+    contactPerson: "Jeremy",
+    phone: "0424 264 849",
+    reasons: ["Responsive", "Helpful / went the extra mile", "Reliable"],
+    website: "https://allinplumbing.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Isla",
+    businessName: "All In Plumbing",
+    contactPerson: "Jeremy",
+    phone: "0424 264 849",
+    reasons: ["Helpful / went the extra mile", "Responsive", "Problem solved properly"],
+    website: "https://allinplumbing.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Duncan",
+    businessName: "All In Plumbing",
+    contactPerson: "Jeremy",
+    phone: "0424 264 849",
+    reasons: ["Responsive", "Tidy and respectful", "Fair pricing"],
+    website: "https://allinplumbing.com.au/"
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Plumbers",
+    recommendedBy: "Nina",
+    businessName: "All Master Plumbing",
+    contactPerson: "Damian",
+    phone: "0431 156 166",
+    reasons: ["Reliable", "Easy to deal with", "Problem solved properly"],
+    website: ""
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Christian",
+    businessName: "All Master Plumbing",
+    contactPerson: "Damian",
+    phone: "0431 156 166",
+    reasons: ["Trustworthy", "Fair pricing", "Easy to deal with"],
+    website: ""
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Joshua",
+    businessName: "All Master Plumbing",
+    contactPerson: "Damian",
+    phone: "0431 156 166",
+    reasons: ["Responsive", "Trustworthy", "Good quality work"],
+    website: ""
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Handyman",
+    recommendedBy: "Mia",
+    businessName: "AMS Renovations & Maintenance",
+    contactPerson: "John",
+    phone: "0425 338 894",
+    reasons: ["Good quality work", "Problem solved properly", "Local reputation"],
+    website: ""
+  },
+  {
+    suburb: "Manly",
+    tradeType: "Handyman",
+    recommendedBy: "Ava",
+    businessName: "Antika Painting & Handyman Services",
+    contactPerson: "Mawi",
+    phone: "0452 466 160",
+    reasons: ["Trustworthy", "Local reputation", "Fair pricing"],
+    website: ""
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Plumbers",
+    recommendedBy: "Nicole",
+    businessName: "Anytime Drains",
+    contactPerson: "Mark",
+    phone: "0421 149 129",
+    reasons: ["Reliable", "Tidy and respectful", "Good quality work"],
+    website: "https://www.anytimedrains.com.au/"
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Electricians",
+    recommendedBy: "Andrew",
+    businessName: "Fresh Electrical",
+    contactPerson: "Ben",
+    phone: "0424 841 376",
+    reasons: ["Trustworthy", "Responsive", "Good quality work"],
+    website: "https://www.freshelectrical.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Plumbers",
+    recommendedBy: "Mark",
+    businessName: "Anytime Drains",
+    contactPerson: "Mark",
+    phone: "0421 149 129",
+    reasons: ["Problem solved properly", "Good quality work", "Fair pricing"],
+    website: "https://www.anytimedrains.com.au/"
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Electricians",
+    recommendedBy: "Andrew",
+    businessName: "Lumivolt",
+    contactPerson: "Shane",
+    phone: "0401 204 392",
+    reasons: ["Reliable", "Trustworthy", "Good quality work"],
+    website: "https://www.lumivolt.com.au"
+  },
+  {
+    suburb: "Manly",
+    tradeType: "Plumbers",
+    recommendedBy: "Grace",
+    businessName: "Anytime Drains",
+    contactPerson: "Mark",
+    phone: "0421 149 129",
+    reasons: ["Local reputation", "Trustworthy", "Responsive"],
+    website: "https://www.anytimedrains.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Electricians",
+    recommendedBy: "Chloe",
+    businessName: "Arcs N Sparks Electrical Services",
+    contactPerson: "Chris",
+    phone: "0404 153 371",
+    reasons: ["Good quality work", "Reliable", "Responsive"],
+    website: "https://arcsnsparks.com.au/"
+  },
+  {
+    suburb: "Freshwater",
+    tradeType: "Electricians",
+    recommendedBy: "Vanessa",
+    businessName: "Arcs N Sparks Electrical Services",
+    contactPerson: "Chris",
+    phone: "0404 153 371",
+    reasons: ["Fair pricing", "Good quality work", "Responsive"],
+    website: "https://arcsnsparks.com.au/"
+  },
+  {
+    suburb: "Manly",
+    tradeType: "Electricians",
+    recommendedBy: "Cindy-Leigh",
+    businessName: "Arcs N Sparks Electrical Services",
+    contactPerson: "Chris",
+    phone: "0404 153 371",
+    reasons: ["Good quality work", "Problem solved properly", "Fair pricing"],
+    website: "https://arcsnsparks.com.au/"
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Plumbers",
+    recommendedBy: "Andy",
+    businessName: "Hickey Plumbing",
+    contactPerson: "Dan",
+    phone: "0410 162 926",
+    reasons: ["Good quality work", "Responsive", "Problem solved properly"],
+    website: "https://hickeyplumbing.com.au/"
+  },
+  {
+    suburb: "Curl Curl",
+    tradeType: "Handyman",
+    recommendedBy: "Andre",
+    businessName: "",
+    contactPerson: "Tim",
+    phone: "0410 297 637",
+    reasons: ["Trustworthy", "Local reputation", "Easy to deal with"],
+    website: ""
+  },
+  {
+    suburb: "Manly",
+    tradeType: "Plumbers",
+    recommendedBy: "Harrison",
+    businessName: "At Your Service Plumbing",
+    contactPerson: "Reid",
+    phone: "0468 175 068",
+    reasons: ["Tidy and respectful", "Trustworthy", "Easy to deal with"],
+    website: "https://atyourserviceplumbing.com.au/"
+  }
+];

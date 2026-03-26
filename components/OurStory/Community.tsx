@@ -7,6 +7,7 @@ const Community = () => {
       <div className="flex flex-col gap-[62px]">
         <h4 className="md:text-[42px] text-[28px] font-bold font-manrope text-center md:w-[532px] mx-auto leading-[49px]">
           <span className="text-[#202939]">A hyper-local</span>
+          {" "}
           <span className="text-[#F3B39D]">community service</span>
         </h4>
 

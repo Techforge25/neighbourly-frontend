@@ -1,7 +1,12 @@
+import { openShare } from "@/store/shareSlice";
 import React from "react";
 import { FiShare2 } from "react-icons/fi";
+import { useDispatch } from "react-redux";
 
 const UseFull = ({color}:{color?: string}) => {
+
+  const dispatch = useDispatch();
+
   return (
     <div className={`bg-[${color?color:"#FE9A86"}] bg-[url('/images/find.png')] bg-cover bg-center min-h-[400px] sm:min-h-[450px] lg:h-[520px] flex items-center`}>
       <div className="container mx-auto px-4 py-12 sm:py-14 lg:py-16">
@@ -10,7 +15,9 @@ const UseFull = ({color}:{color?: string}) => {
           
           {/* Heading */}
           <p className=" text-[22px] sm:text-[28px] md:text-[34px] lg:text-[42px] text-center text-[#303231] font-bold leading-snug font-manrope">
-            know someone who’d<span className="text-white">find this useful?</span>
+            <span >know someone who’d</span>
+            {" "}
+            <span className="text-white">find this useful?</span>
           </p>
 
           {/* Description */}
@@ -21,7 +28,7 @@ const UseFull = ({color}:{color?: string}) => {
 
           {/* Button */}
           <div className="mt-6 flex items-center justify-center">
-            <button className="flex items-center gap-3 sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-[14px] sm:text-[16px] font-outfit">
+            <button onClick={() => dispatch(openShare())} className="flex items-center gap-3 sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-[14px] sm:text-[16px] font-outfit">
               <span>Share Neighbourly</span>
               <FiShare2 size={20} className="sm:size-[24px]" />
             </button>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaRegEnvelope } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
@@ -5,24 +6,23 @@ import { MdLocalPhone } from "react-icons/md";
 const Footer = () => {
   return (
     <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
-      
       {/* Top Section */}
       <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left">
-        
         {/* Left */}
         <div>
           <p className="text-sm md:text-base">Terms Of Use</p>
         </div>
 
         {/* Right */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-          
+        <div className="flex flex-col sm:flex-row md:items-center gap-4 sm:gap-6">
           {/* Email */}
           <p className="flex items-center gap-3 text-sm md:text-base break-all sm:break-normal">
             <span className="border p-2 rounded-full bg-[#71849633]">
               <FaRegEnvelope size={18} />
             </span>
-            <span>team@beneighbourly.com.au</span>
+            <Link href={"mailto:team@beNeighbourly.com.au"}>
+              team@beNeighbourly.com.au
+            </Link>
           </p>
 
           {/* Phone */}
@@ -30,9 +30,8 @@ const Footer = () => {
             <span className="border p-2 rounded-full bg-[#71849633]">
               <MdLocalPhone size={18} />
             </span>
-            <span>+61 123 456 789</span>
+            <Link href={"tel:+61123456789"}>+61123456789</Link>
           </p>
-
         </div>
       </div>
 
@@ -42,7 +41,7 @@ const Footer = () => {
       {/* Bottom */}
       <div className="mt-4 md:mt-6 text-center">
         <p className="text-[#202939] text-xs sm:text-sm md:text-base">
-          © 2026 neighbourly. All rights reserved
+          © 2026 Neighbourly. All rights reserved.
         </p>
       </div>
     </div>

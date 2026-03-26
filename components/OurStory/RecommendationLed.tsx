@@ -7,9 +7,10 @@ const RecommendationLed = () => {
       <div className="flex flex-col md:gap-[62px] gap-[10px]">
         <div className="text-center md:w-[672px] w-[90%] mx-auto flex items-center flex-col gap-[12px]">
           <div className="md:text-[42px] text-[26px] font-bold font-manrope leadin-[49px]">
-            <span className="text-[#303231]">Recommendation-led</span>{" "}
+            <span className="text-[#303231]">Built around recommendations</span>
+            {" "}
             <span className="text-[#F3B39D]">
-              on those closest to you.
+              from the people closest to you
             </span>{" "}
           </div>
           <p className="md:w-[528px] text-[16px] text-[#697586] mx-auto">

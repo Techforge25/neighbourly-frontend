@@ -14,6 +14,7 @@ const TrustSection = () => {
             <span className="text-[#303231]">
               Find the local services your neighbours
             </span>
+            {" "}
             <span className="text-[#F3B39D]">trust and recommend.</span>
           </p>
           <p className="text-[16px]  text-[#697586] font-medium leding-[28px]">

@@ -8,7 +8,7 @@ const page = () => {
     <div>
       <Banner text="Get in Touch" banner="/images/getintouch.png" />
       <ContactUsForm/>
-      <UseFull color="#718496"/>
+      {/* <UseFull color="#718496"/> */}
     </div>
   );
 };

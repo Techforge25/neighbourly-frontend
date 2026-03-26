@@ -59,7 +59,7 @@ const router =useRouter()
               <div className="text-start">
 
                 <p className="capitalize text-[16px] text-verified">verified</p>
-                <p className="capitalize text-[11px] text-secondary">by neighbourly</p>
+                <p className="capitalize text-[11px] text-secondary">by Neighbourly</p>
 
               </div>
             </button>

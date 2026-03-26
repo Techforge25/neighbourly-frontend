@@ -9,7 +9,7 @@ const Ourstory = () => {
         <div>
           <div className="">
             <p className="md:text-[42px] text-[32px] text-[#303231] font-bold font-manrope">
-              our <span className="text-[#F3B39D]">story</span>
+              <span>Our </span><span className="text-[#F3B39D]">story</span>
             </p>
             <p className="text-[16px] text-[#202939] md:mt-10 mt-4 font-poppins leading-[24px]">
               Neighbourly started with a frustration we knew well: how hard it
@@ -32,10 +32,10 @@ const Ourstory = () => {
           <div className="border-l-4 border-[#F3B39D] md:mt-10 mt-4 pl-2">
             <p className="flex flex-col">
               <span className="text-[#202939] lg:text-[23px] text-[16px] font-semibold font-poppins">
-                Kate and Andrew Gordon
+                Kate and Andrew Gordon, Founders
               </span>
               <span className="text-[#697586] text-[16px] font-poppins">
-                Founder
+                Founders
               </span>
             </p>
           </div>
