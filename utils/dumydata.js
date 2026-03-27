@@ -802,3 +802,29 @@ export const recommendations = [
 ];
 
 
+export const SERVICE_OPTIONS = [
+  "Accountant",
+  "Plumber",
+  "Electrician",
+  "Builder",
+  "Painter",
+  "Landscaper",
+  "Cleaner",
+  "Mechanic",
+  "Other",
+];
+
+export const RECOMMEND_OPTIONS = [
+  { value: "Fast Response", label: "Fast Response" },
+  { value: "Reliable", label: "Reliable" },
+  { value: "Fair pricing", label: "Fair pricing" },
+  { value: "Good Quality Work", label: "Good quality work" },
+  { value: "Good Quality Work", label: "Good quality work" },
+  { value: "Responsive", label: "Responsive" },
+  { value: "Local reputation", label: "Local reputation" },
+  { value: "Easy to deal with", label: "Easy to deal with" },
+  { value: "Helpful / went the extra mile", label: "Helpful / went the extra mile" },
+  { value: "Tidy and respectful", label: "Tidy and respectful" },
+  { value: "Problem solved properly", label: "Problem solved properly" },
+  { value: "Trustworthy", label: "Trustworthy" },
+];

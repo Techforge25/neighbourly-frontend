@@ -3,7 +3,7 @@ import { RootState } from "@/store";
 import { recommendations } from "@/utils/dumydata";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useLayoutEffect, useState } from "react";
 import { HiLocationMarker } from "react-icons/hi";
 import { IoEarthSharp, IoShareSocial } from "react-icons/io5";
 import { LuGlobe, LuThumbsUp } from "react-icons/lu";
@@ -19,11 +19,17 @@ import Loader from "./Loader";
 const Card = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
-
   const [categoryData, setCategoryData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isProfile,setIsProfile]=useState<any>(false)
+  
+  
+  useLayoutEffect(()=>{
+    const isProfileCompleted = localStorage?.getItem("isProfileCompleted");
+    setIsProfile(isProfileCompleted)
+
+  },[])
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -31,14 +37,17 @@ const Card = () => {
 
     const search = subrubValue ? `?location=${subrubValue}` : "";
 
-    const filterQuery = activeTab === "Most Recommended" ? " ":`?filter=${activeTab}`;
+    const filterQuery =
+      activeTab === "Most Recommended" ? " " : `?filter=${activeTab}`;
 
     const getCategotyData = async () => {
       setIsLoading(true);
       try {
-        const res = await api.get(`recommendation${search?search:filterQuery}`);
+        const res = await api.get(
+          `recommendation${search ? search : filterQuery}`,
+        );
         const cetData = res.data;
-        setCategoryData(cetData?.data?.docs);
+        setCategoryData(isProfile?cetData?.data?.docs:cetData?.data?.docs?.slice(0,3));
         setIsLoading(false);
       } catch (error: any) {
         console.log(error?.response?.data);
@@ -49,9 +58,8 @@ const Card = () => {
     getCategotyData();
   }, [activeTab]);
 
-
   return (
-    <div className="md:my-10">
+    <div className="md:my-10 max-w-[1396px] mx-auto">
       {categoryData?.length > 0 ? (
         <>
           <div className="flex items-center gap-4 flex-wrap justify-center">
@@ -126,7 +134,7 @@ const Card = () => {
                       </span>
                     </div>
 
-                    <div className="flex gap-[8px] mt-2">
+                    <div className="grid grid-cols-3 gap-2">
                       {item.reasonsOfRecommendation.map(
                         (resItem: any, index: number) => (
                           <div key={index}>
@@ -174,10 +182,10 @@ const Card = () => {
                   </div>
 
                   <div className="my-2 flex gap-2 sm:gap-[8px]">
-                    <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
+                    {/* <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
                       <p className="text-[16px] font-outfit">Website</p>
                       <LuGlobe size={20} />
-                    </button>
+                    </button> */}
 
                     <Link href={`tel:${item?.phone}`}>
                       <button className="flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">

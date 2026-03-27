@@ -3,13 +3,10 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
-
-import * as Yup from "yup";
 import { api } from "../../src/service/axios";
-import { useState } from "react";
 import { toast } from "react-toastify";
-import { comment } from "@/utils/dumydata";
-
+import { RecommendationSchema } from "@/validations/Recommendations";
+import { RECOMMEND_OPTIONS, SERVICE_OPTIONS } from "@/utils/dumydata";
 interface RecommendationData {
   firstName: string;
   businessName: string;
@@ -19,57 +16,6 @@ interface RecommendationData {
   recommendationReason: string[];
   comment: string;
 }
-
-const SERVICE_OPTIONS = [
-  "Accountant",
-  "Plumber",
-  "Electrician",
-  "Builder",
-  "Painter",
-  "Landscaper",
-  "Cleaner",
-  "Mechanic",
-  "Other",
-];
-
-const RECOMMEND_OPTIONS = [
-  { value: "Fast Response", label: "Fast Response" },
-  { value: "Reliable", label: "Reliable" },
-  { value: "Fair pricing", label: "Fair pricing" },
-  { value: "Good Quality Work", label: "Good quality work" },
-  { value: "Good Quality Work", label: "Good quality work" },
-  { value: "Responsive", label: "Responsive" },
-  { value: "Local reputation", label: "Local reputation" },
-  { value: "Easy to deal with", label: "Easy to deal with" },
-  { value: "Helpful / went the extra mile", label: "Helpful / went the extra mile" },
-  { value: "Tidy and respectful", label: "Tidy and respectful" },
-  { value: "Problem solved properly", label: "Problem solved properly" },
-  { value: "Trustworthy", label: "Trustworthy" },
-];
-
-const RecommendationSchema = Yup.object().shape({
-  firstName: Yup.string().required("Name is required"),
-  businessName: Yup.string()
-    .matches(
-      /^[a-zA-Z ]*$/,
-      "Business name can only contain letters and spaces",
-    )
-    .required("Business name is required"),
-  theirNumber: Yup.string()
-    .required("Number is required")
-    .matches(
-      /^0[0-9]{10}$/,
-      "Contact number must be in international format (e.g., 03001234567)",
-    ),
-  service: Yup.string().required("Please select a service"),
-  location: Yup.string()
-    .trim()
-    .min(3, "Location must be at least  3 characters long")
-    .required("Location is required"),
-  recommendationReason: Yup.array()
-    .min(1, "Select at least one reason")
-    .of(Yup.string().required()),
-});
 
 export default function StepRecommendation({
   data,
@@ -84,6 +30,8 @@ export default function StepRecommendation({
 }) {
   const getAboutData = localStorage.getItem("stepAboutData");
   const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
+
+
 
   const handleGetFormData = async (values: RecommendationData) => {
     try {
@@ -110,13 +58,13 @@ export default function StepRecommendation({
         }),
       };
 
-      const res = await api.post(url, payload,{
+      const res = await api.post(url, payload, {
         withCredentials: true,
       });
 
       toast.success(res.data.message);
       console.log("Recommendation submitted successfully:", res);
-        localStorage.removeItem("stepAboutData");
+      localStorage.removeItem("stepAboutData");
       onSubmit();
     } catch (error: any) {
       if (error.response) {
@@ -124,7 +72,6 @@ export default function StepRecommendation({
           "Server responded with an error:",
           error.response.data.message,
         );
-        toast.error(error.response.data.message);
       }
 
       console.log("Failed to create recommendation:", error);
@@ -240,35 +187,29 @@ export default function StepRecommendation({
                 className="text-red-500 text-[12px]"
               />
             </div>
-
-            
           </div>
 
-
           {/* Location */}
-            <div className="flex flex-col gap-[10px] mt-4">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
-                Suburb <span className="text-red-500">*</span>
-              </Label>
-              <Field
-                as={Input}
-                name="location"
-                placeholder="Suburb, City"
-                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
-                  errors.location && touched.location
-                    ? "border-red-500"
-                    : "border-[#E4E4E4]"
-                }`}
-              />
-              <ErrorMessage
-                name="location"
-                component="div"
-                className="text-red-500 text-[12px]"
-              />
-            </div>
-
-
-
+          <div className="flex flex-col gap-[10px] mt-4">
+            <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+              Suburb <span className="text-red-500">*</span>
+            </Label>
+            <Field
+              as={Input}
+              name="location"
+              placeholder="Suburb, City"
+              className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
+                errors.location && touched.location
+                  ? "border-red-500"
+                  : "border-[#E4E4E4]"
+              }`}
+            />
+            <ErrorMessage
+              name="location"
+              component="div"
+              className="text-red-500 text-[12px]"
+            />
+          </div>
 
           {/* MultiSelect for Recommendation Reasons */}
           <div className="flex flex-col gap-2 mt-4">

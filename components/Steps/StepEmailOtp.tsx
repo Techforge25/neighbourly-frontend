@@ -48,8 +48,8 @@ export default function StepEmailOtp({
           `auth/user`,
           { email: values.email }
         );
-
         const data = res.data;
+        localStorage.setItem("isProfileCompleted", JSON.stringify(data?.data?.isProfileCompleted));
         setUserData(data.data);
         if (data?.data?.OTPRequired) {
           setOtpSent(true);
