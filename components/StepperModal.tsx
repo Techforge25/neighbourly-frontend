@@ -14,7 +14,6 @@ interface RecommendationData {
   location: string;
   recommendationReason: string[];
   comment: string;
-  email: string;
 }
 
 export default function StepperModal({
@@ -34,7 +33,6 @@ export default function StepperModal({
     location: "",
     recommendationReason: [],
     comment: "",
-    email: "",
   });
 
   const nextStep = () => setStep((s) => s + 1);
@@ -50,7 +48,6 @@ export default function StepperModal({
       location: "",
       recommendationReason: [],
       comment: "",
-      email: "",
     });
     setStep(1);
   };

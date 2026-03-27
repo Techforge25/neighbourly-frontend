@@ -5,6 +5,7 @@ import CustomIcon from "../CustomIcon";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Banner = () => {
   const words = [
@@ -37,6 +38,7 @@ const Banner = () => {
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -61,14 +63,14 @@ const Banner = () => {
         className={`font-manrope absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-5xl`}
       >
         {/* Heading */}
-        <div className=" mb-6 font-manrope md:w-[800px] mx-auto flex flex-col items-center justify-center gap-[12px]">
+        <div className=" mb-6 font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center gap-[12px]">
           <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-            Find the local services your neighbours
+            Find the local services your
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-2">
             <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-              trust
+              neighbours trust
             </p>
             <div className="w-68">
               <WordRotate
@@ -94,13 +96,18 @@ const Banner = () => {
             placeholder="Enter your suburb or postcode"
             className="w-full  py-2 px-3 text-[#697586] text-[14px] sm:text-[16px] outline-none rounded-full"
           />
-          <Link
-            href={`/suberb-search/?search=${encodeURIComponent(searchTerm)}`}
-            className="flex items-center justify-center gap-2 bg-[#718496] text-white min-w-max  px-4 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer"
+          <button
+            onClick={() => {
+              router.push(
+                `/suberb-search/?search=${encodeURIComponent(searchTerm)}`,
+              );
+            }}
+            disabled={!searchTerm}
+            className={`flex items-center justify-center gap-2 bg-[#718496] text-white min-w-max  px-4 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
           >
             Search
             <IoMdArrowForward size={20} className="sm:size-[24px]" />
-          </Link>
+          </button>
         </div>
       </div>
     </div>

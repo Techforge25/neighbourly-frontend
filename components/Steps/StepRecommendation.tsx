@@ -18,7 +18,6 @@ interface RecommendationData {
   location: string;
   recommendationReason: string[];
   comment: string;
-  email: string;
 }
 
 const SERVICE_OPTIONS = [
@@ -61,9 +60,6 @@ const RecommendationSchema = Yup.object().shape({
   recommendationReason: Yup.array()
     .min(1, "Select at least one reason")
     .of(Yup.string().required()),
-  email: Yup.string()
-    .email("Enter a valid email")
-    .required("Email is required"),
 });
 
 export default function StepRecommendation({
@@ -77,30 +73,51 @@ export default function StepRecommendation({
   onBack: () => void;
   onSubmit: () => void;
 }) {
-  const handleGetFormData = async (values: RecommendationData) => {
-    console.log(values, "Form Data");
+  const getAboutData = localStorage.getItem("stepAboutData");
+  const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
 
+  // console.log("parsedAboutData", parsedAboutData);
+
+  const handleGetFormData = async (values: RecommendationData) => {
     try {
-      const res = await api.post(`recommendation`, {
+      const isStep2 = parsedAboutData?.step === 2;
+
+      const url = isStep2 ? "recommendation/with-user-info" : "recommendation";
+
+      const payload = {
         personName: values.firstName,
         businessName: values.businessName,
-        contact: values.theirNumber,
+        [parsedAboutData?.step === 2 ? "businessContact" : "contact"]:
+          values.theirNumber,
         serviceType: values.service,
         location: values.location,
         reasonsOfRecommendation: values.recommendationReason,
         comment: values.comment,
-        email: values.email,
+
+        // ✅ extra fields only if step 2
+        ...(isStep2 && {
+          fullName: parsedAboutData.firstName,
+          userContact: parsedAboutData.mobile,
+          userStreet: parsedAboutData.street,
+          userAddress: parsedAboutData.suburb,
+        }),
+      };
+
+      const res = await api.post(url, payload,{
+        withCredentials: true,
       });
 
-      const successMessage = res.data.message;
-
-      toast.success(successMessage);
-
+      toast.success(res.data.message);
       console.log("Recommendation submitted successfully:", res);
+        localStorage.removeItem("stepAboutData");
       onSubmit();
     } catch (error: any) {
       if (error.response) {
-        console.log("Server responded with an error:",error.response.data.message);
+        console.log(
+          "Server responded with an error:",
+          error.response.data.message,
+        );
+        toast.error(error.response.data.message);
       }
 
       console.log("Failed to create recommendation:", error);
@@ -159,28 +176,6 @@ export default function StepRecommendation({
               />
               <ErrorMessage
                 name="businessName"
-                component="div"
-                className="text-red-500 text-[12px]"
-              />
-            </div>
-
-            {/* Email */}
-            <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
-                Email <span className="text-red-500">*</span>
-              </Label>
-              <Field
-                as={Input}
-                name="email"
-                placeholder="info@gmail.com"
-                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
-                  errors.email && touched.email
-                    ? "border-red-500"
-                    : "border-[#E4E4E4]"
-                }`}
-              />
-              <ErrorMessage
-                name="email"
                 component="div"
                 className="text-red-500 text-[12px]"
               />
@@ -302,7 +297,7 @@ export default function StepRecommendation({
                   ...base,
                   color: "white",
                   ":hover": { backgroundColor: "#f3b39d", color: "black" },
-                }),   
+                }),
               }}
             />
 

@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -11,75 +13,142 @@ interface StepAboutData {
 }
 
 export default function StepAbout({
-  data,
-  setData,
   onNext,
   onBack,
 }: {
-  data: any;
-  setData: any;
   onNext: () => void;
   onBack: () => void;
 }) {
+  // ✅ Load from localStorage
+  const savedData: StepAboutData = JSON.parse(
+    localStorage.getItem("stepAboutData") || "null",
+  ) || {
+    firstName: "",
+    mobile: "",
+    street: "",
+    suburb: "",
+  };
+
+  const formik = useFormik<StepAboutData>({
+    initialValues: savedData,
+
+    validationSchema: Yup.object({
+      firstName: Yup.string().required("First name is required"),
+
+      mobile: Yup.string()
+        .matches(/^[0-9+]+$/, "Invalid phone number")
+        .required("Mobile number is required"),
+
+      street: Yup.string().required("Street is required"),
+
+      suburb: Yup.string().required("Suburb is required"),
+    }),
+
+    onSubmit: (values) => {
+      // ✅ Save data
+      if (formik.isValid) {
+        localStorage.setItem(
+        "stepAboutData",
+        JSON.stringify({ ...values, step: 2 }));
+      }
+
+      // ✅ Save step number
+      localStorage.setItem("currentStep", "1");
+
+      onNext();
+    },
+  });
+
+  // ✅ Auto save on change (optional but powerful)
+  useEffect(() => {
+    localStorage.setItem(
+      "stepAboutData",
+      JSON.stringify({ ...formik.values, step: 2 }));
+  }, [formik.values]);
+
   return (
-    <div className="w-full  rounded-2xl">
+    <form onSubmit={formik.handleSubmit} className="w-full rounded-2xl">
       <div className="grid grid-cols-2 gap-4">
+        {/* First Name */}
         <div className="flex flex-col gap-[12px]">
-          <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
-            First Name <span className="text-red-500">*</span>
-          </Label>
+          <Label>First Name *</Label>
           <Input
+            name="firstName"
             placeholder="e.g. olivia"
-            value={data.firstName}
-            onChange={(e) => setData({ ...data, firstName: e.target.value })}
-            className="border-[1px] border-[#E4E4E4] rounded-[12px] px-[12px] py-[13px] text-[16px] font-para font-manrope   "
+            value={formik.values.firstName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.firstName && formik.errors.firstName && (
+            <span className="text-red-500 text-sm">
+              {formik.errors.firstName}
+            </span>
+          )}
         </div>
+
+        {/* Mobile */}
         <div className="flex flex-col gap-[12px]">
-          <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
-            You Mobile Number <span className="text-red-500">*</span>
-          </Label>
+          <Label>Mobile Number *</Label>
           <Input
-            placeholder="e.g. +12385868664"
-            value={data.mobile}
-            onChange={(e) => setData({ ...data, mobile: e.target.value })}
-            className="border-[1px] border-[#E4E4E4] rounded-[12px] px-[12px] py-[13px] text-[16px] font-para font-manrope   "
+            name="mobile"
+            placeholder="e.g. 012385868664"
+            value={formik.values.mobile}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.mobile && formik.errors.mobile && (
+            <span className="text-red-500 text-sm">{formik.errors.mobile}</span>
+          )}
         </div>
+
+        {/* Street */}
         <div className="flex flex-col gap-[12px]">
-          <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
-            The Street You Live On <span className="text-red-500">*</span>
-          </Label>
+          <Label>Street Name *</Label>
           <Input
+            name="street"
             placeholder="e.g. Smith St"
-            value={data.street}
-            onChange={(e) => setData({ ...data, street: e.target.value })}
-            className="border-[1px] border-[#E4E4E4] rounded-[12px] px-[12px] py-[13px] text-[16px] font-para font-manrope   "
+            value={formik.values.street}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.street && formik.errors.street && (
+            <span className="text-red-500 text-sm">{formik.errors.street}</span>
+          )}
         </div>
+
+        {/* Suburb */}
         <div className="flex flex-col gap-[12px]">
-          <Label className="text-[14px] leading-[20px] font-manrope font-medium ">
-            Your Suburb <span className="text-red-500">*</span>
-          </Label>
+          <Label>Suburb *</Label>
           <Input
+            name="suburb"
             placeholder="e.g. Collingwood"
-            value={data.suburb}
-            onChange={(e) => setData({ ...data, suburb: e.target.value })}
-            className="border-[1px] border-[#E4E4E4] rounded-[12px] px-[12px] py-[13px] text-[16px] font-para font-manrope   "
+            value={formik.values.suburb}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched.suburb && formik.errors.suburb && (
+            <span className="text-red-500 text-sm">{formik.errors.suburb}</span>
+          )}
         </div>
       </div>
 
+      {/* Buttons */}
       <div className="grid grid-cols-2 gap-4 pt-2 mt-4">
-        <button  className="rounded-full border-[1px] border-[#E4E4E4] py-[16px] px-[27px] flex items-center justify-center text-[16px] font-poppins " onClick={onBack}>
-          <ArrowLeft size={24} />
-          Back
-        </button>
-        <button  className="rounded-full py-[16px] px-[27px] flex items-center justify-center gap-2 bg-primary text-[16px] font-poppins text-white" onClick={onNext} >
-          Submit Recommendation
-          <ArrowRight size={24} />
+        <button
+          className="rounded-full border-[1px] border-[#E4E4E4] py-[16px] px-[27px] flex items-center justify-center text-[16px] font-poppins "
+          onClick={onBack}
+        >
+          {" "}
+          <ArrowLeft size={24} /> Back{" "}
+        </button>{" "}
+        <button
+          className="rounded-full py-[16px] px-[27px] flex items-center justify-center gap-2 bg-primary text-[16px] font-poppins text-white"
+          onClick={onNext}
+        >
+          {" "}
+          Submit Recommendation <ArrowRight size={24} />{" "}
         </button>
       </div>
-    </div>
+    </form>
   );
 }

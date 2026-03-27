@@ -1,15 +1,29 @@
 "use client"; // ✅ must be a client component
 
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from "@/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { checkAuth } from "@/store/authSlice";
+
+
+const AuthChecker: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+};
 
 const ClientProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+
+  
   return (
     <Provider store={store}>
+      <AuthChecker />
       {children}
 
       <ToastContainer />

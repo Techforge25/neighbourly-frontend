@@ -14,56 +14,53 @@ import { useRouter } from "next/navigation";
 import ShareModal from "./ShareModal";
 import { openShare } from "@/store/shareSlice";
 import { api } from "@/src/service/axios";
+import Loader from "./Loader";
 
 const Card = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-  const router = useRouter()
-const dispatch = useDispatch();
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
 
-const [categoryData, setCategoryData] = useState<any[]>([]);
-
-  const getCategotyData = async () => {
-    try {
-      const res = await api.get("recommendation");
-      const cetData = res.data;
-      setCategoryData(cetData?.data?.docs);
-    } catch (error: any) {
-      console.log(error?.response?.data);
-    }
-  };
+  const [categoryData, setCategoryData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const subrubValue = params.get("search")?.split(",")[0].replace(/\s+/g, "");
+
+    const search = subrubValue ? `?location=${subrubValue}` : "";
+
+    const filterQuery = activeTab === "Most Recommended" ? " ":`?filter=${activeTab}`;
+
+    const getCategotyData = async () => {
+      setIsLoading(true);
+      try {
+        const res = await api.get(`recommendation${search?search:filterQuery}`);
+        const cetData = res.data;
+        setCategoryData(cetData?.data?.docs);
+        setIsLoading(false);
+      } catch (error: any) {
+        console.log(error?.response?.data);
+        setIsLoading(false);
+      }
+    };
+
     getCategotyData();
-  }, []);
-  
+  }, [activeTab]);
 
-  const filteredData =
-    activeTab.toLowerCase() === "Most Recommended".toLowerCase()
-      ? categoryData // "Most Recommended" hai → sab items dikhao
-      : categoryData.filter(
-          (item) => item?.serviceType.toLowerCase() === activeTab.toLowerCase(),
-        );
-
-        
-
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 9;
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentData = filteredData.slice(startIndex, startIndex + itemsPerPage);
-
+  console.log(activeTab, "activeTab");
 
   return (
     <div className="max-w-[1296px]  mx-auto md:my-10">
-      {currentData.length > 0 ? (
+      {categoryData?.length > 0 ? (
         <>
-          <div  className="flex items-center gap-4 flex-wrap justify-center">
-            {currentData?.map((item, ind) => (
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            {categoryData?.map((item, ind) => (
               <div
-              onClick={()=>{router.push(`/recomended-detial/${item._id}`)}}
+                onClick={() => {
+                  router.push(`/recomended-detial/${item.businessId}`);
+                }}
                 key={ind}
                 className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px]"
               >
@@ -131,15 +128,17 @@ const [categoryData, setCategoryData] = useState<any[]>([]);
                     </div>
 
                     <div className="flex gap-[8px] mt-2">
-                      {item.reasonsOfRecommendation.map((resItem:any, index : number) => (
-                        <div key={index}>
-                          <p
-                            className={`font-manrope text-[14px] leading-[16px] font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0 ? "bg-primary_light text-primary" : index === 1 ? "bg-success_light text-success" : "text-text-dark bg-light-bg"}`}
-                          >
-                            {resItem.slice(0, 10)}...
-                          </p>
-                        </div>
-                      ))}
+                      {item.reasonsOfRecommendation.map(
+                        (resItem: any, index: number) => (
+                          <div key={index}>
+                            <p
+                              className={`font-manrope text-[14px] leading-[16px] md:w-[129px] w-[64.5px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0 ? "bg-primary_light text-primary" : index === 1 ? "bg-success_light text-success" : "text-text-dark bg-light-bg"}`}
+                            >
+                              {resItem.slice(0, 1)}...
+                            </p>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
 
@@ -176,12 +175,10 @@ const [categoryData, setCategoryData] = useState<any[]>([]);
                   </div>
 
                   <div className="my-2 flex gap-2 sm:gap-[8px]">
-                  
-                      <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
-                        <p className="text-[16px] font-outfit">Website</p>
-                        <LuGlobe size={20} />
-                      </button>
-                    
+                    <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
+                      <p className="text-[16px] font-outfit">Website</p>
+                      <LuGlobe size={20} />
+                    </button>
 
                     <Link href={`tel:${item?.phone}`}>
                       <button className="flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
@@ -190,7 +187,10 @@ const [categoryData, setCategoryData] = useState<any[]>([]);
                       </button>
                     </Link>
 
-                    <Link href={`sms:${item?.phone}?body=Hi ${item?.contactPerson}`} target="_blank">
+                    <Link
+                      href={`sms:${item?.phone}?body=Hi ${item?.contactPerson}`}
+                      target="_blank"
+                    >
                       <button className=" cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
                         <p className="text-[16px] font-outfit">Chat</p>
                         <MdOutlineChat size={20} />
@@ -199,59 +199,26 @@ const [categoryData, setCategoryData] = useState<any[]>([]);
                   </div>
 
                   <div className="w-full max-w-[378px] mx-auto mt-6">
-                    <button onClick={(e) => {dispatch(openShare(),e.stopPropagation())}} className="bg-secondary cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full py-3 text-[12px] leading-[13.57px] font-outfit capitalize">
+                    <button
+                      onClick={(e) => {
+                        dispatch(openShare(), e.stopPropagation());
+                      }}
+                      className="bg-secondary cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full py-3 text-[12px] leading-[13.57px] font-outfit capitalize"
+                    >
                       <p>share with friend</p>
                       <IoShareSocial size={20} />
                     </button>
                   </div>
-
-
-
                 </div>
               </div>
             ))}
 
             <ShareModal />
           </div>
-
-          {filteredData.length > 9 && (
-            <div className="flex justify-center items-center gap-2 mt-8">
-              
-              <button
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                className="px-3 py-1 border rounded"
-              >
-                Prev
-              </button>
-
-              
-              {Array.from({ length: totalPages }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`px-3 py-1 rounded ${
-                    currentPage === i + 1 ? "bg-secondary text-white" : "border"
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-
-              
-              <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                }
-                className="px-3 py-1 border rounded"
-              >
-                Next
-              </button>
-            </div>
-          )}
         </>
       ) : (
         <div className="text-[32px] font-manrope font-semibold text-center text-para">
-          Not Category Data Found ...
+          {isLoading ? <Loader /> : "No recommendations found in this suburb"}
         </div>
       )}
     </div>

@@ -18,7 +18,7 @@ type Props = {
 const Banner = ({ recomendedDetail }: Props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const isLoading = !recomendedDetail?.business;
+  const isLoading = !recomendedDetail;
 
   return (
     <main className="shadow-md ">
@@ -51,7 +51,7 @@ const Banner = ({ recomendedDetail }: Props) => {
             {isLoading ? (
               <span className="block w-[120px] h-[16px] bg-lightbg rounded animate-pulse"></span>
             ) : (
-              recomendedDetail?.business?.personName
+              recomendedDetail?.personName
             )}
           </p>
         </div>
@@ -85,7 +85,7 @@ const Banner = ({ recomendedDetail }: Props) => {
           {isLoading ? (
             <span className="block mx-auto w-[200px] h-[20px] bg-lightbg rounded animate-pulse"></span>
           ) : (
-            recomendedDetail?.business?.businessName
+            recomendedDetail?.businessName
           )}
         </p>
 
@@ -99,12 +99,11 @@ const Banner = ({ recomendedDetail }: Props) => {
             </p>
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
-
             <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] capitalize">
               {isLoading ? (
                 <span className="block w-[80px] h-[14px] bg-lightbg rounded animate-pulse"></span>
               ) : (
-                recomendedDetail?.business?.location
+                recomendedDetail?.location
               )}
             </button>
           </div>
@@ -112,22 +111,24 @@ const Banner = ({ recomendedDetail }: Props) => {
 
         <div className="w-full max-w-[792px]">
           <div className="my-2 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-[13px]">
-            <button className="w-full sm:flex-1 sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
+            <button className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
               <p className="font-outfit">Website</p>
               <LuGlobe size={20} />
             </button>
 
-            <Link href={`tel:${recomendedDetail?.business?.contact}`}>
-              <button className="w-full sm:flex-1 sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-white bg-primary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">
+            <Link href={`tel:${recomendedDetail?.contact}`}>
+              <button className="w-full sm:flex-1 sm:w-[256px] cursor-pointer flex items-center justify-center gap-2 sm:gap-8 text-white bg-primary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">
                 <p className="font-outfit">Call</p>
                 <MdOutlineCall size={20} />
               </button>
             </Link>
 
-            <button className="w-full sm:flex-1 sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-white bg-secondary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">
-              <p className="font-outfit">Chat</p>
-              <MdOutlineChat size={20} />
-            </button>
+            <Link href={`sms:${recomendedDetail?.contact}?body=Hello%20there!`}>
+              <button className="w-full sm:flex-1 sm:w-[256px] cursor-pointer flex items-center justify-center gap-2 sm:gap-8 text-white bg-secondary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">
+                <p className="font-outfit">Chat</p>
+                <MdOutlineChat size={20} />
+              </button>
+            </Link>
           </div>
         </div>
 

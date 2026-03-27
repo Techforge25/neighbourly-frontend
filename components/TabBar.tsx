@@ -17,7 +17,7 @@ const TabBar: React.FC = () => {
       const res = await api.get("recommendation");
       const cetData = res.data;
       const uniqueData = [
-        { serviceType: "most recommended" },
+        { serviceType: "Most Recommended" },
         ...Array.from(
           new Map(
             cetData?.data?.docs?.map((item: any) => [item.serviceType, item]),

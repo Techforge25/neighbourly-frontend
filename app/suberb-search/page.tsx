@@ -1,4 +1,3 @@
-"use client"
 import Card from '@/components/Card'
 import LocalRecommendation from '@/components/Discover/LocalRecommendation'
 import Banner from '@/components/SuberbSearch/Banner'

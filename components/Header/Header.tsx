@@ -32,7 +32,7 @@ const Header = () => {
     <section className="w-[90%] py-[20px] mx-auto">
       <div className="flex items-center justify-between ">
         {/* Logo */}
-        <div>
+        <Link href={'/'}>
           <Image
             src="/images/logo.png"
             alt="Logo"
@@ -40,7 +40,7 @@ const Header = () => {
             height={1000}
             className="lg:w-[196px] w-[160px] object-contain"
           />
-        </div>
+        </Link>
         {/* Logo */}
 
         {/* nav item */}

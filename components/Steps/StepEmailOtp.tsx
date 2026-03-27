@@ -55,13 +55,14 @@ export default function StepEmailOtp({
           setOtpSent(true);
           toast.success("OTP sent successfully!");
           setLoading(false);
-        } else {
+        } else if (data?.data?.isProfileCompleted) {
           setOtpSent(false);
-          // toast.error("OTP not required for this email.");
           setLoading(false);
+        }else{
+          onVerified()
         }
       } catch (err:any) {
-        console.error("Otp is Not Send",err?.response?.data);
+        console.log("Otp is Not Send",err?.response?.data);
         // console.error(err?.message,);
         setLoading(false);
       }
@@ -72,16 +73,10 @@ export default function StepEmailOtp({
     const email = formik.values.email.trim();
 
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}auth/user/verify-otp`,
+      const res = await api.post(`auth/user/verify-otp`,
         {
           email,
           accountVerificationToken: String(otp),
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
         },
       );
 

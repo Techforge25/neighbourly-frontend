@@ -27,6 +27,8 @@ useEffect(()=>{
   getRocommedndedDetail();
 },[params?.id])
 
+// console.log(recomendedDetail,"recomendedDetail in page")
+
   return (
     <div>
       <Banner recomendedDetail={recomendedDetail} />
