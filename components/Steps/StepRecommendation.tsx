@@ -7,6 +7,7 @@ import { api } from "../../src/service/axios";
 import { toast } from "react-toastify";
 import { RecommendationSchema } from "@/validations/Recommendations";
 import { RECOMMEND_OPTIONS, SERVICE_OPTIONS } from "@/utils/dumydata";
+import { useState } from "react";
 interface RecommendationData {
   firstName: string;
   businessName: string;
@@ -30,8 +31,7 @@ export default function StepRecommendation({
 }) {
   const getAboutData = localStorage.getItem("stepAboutData");
   const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
-
-
+  const [isError, setIsError] = useState<any>("");
 
   const handleGetFormData = async (values: RecommendationData) => {
     try {
@@ -72,6 +72,7 @@ export default function StepRecommendation({
           "Server responded with an error:",
           error.response.data.message,
         );
+        setIsError(error.response.data.message);
       }
 
       console.log("Failed to create recommendation:", error);
@@ -89,6 +90,17 @@ export default function StepRecommendation({
     >
       {({ values, errors, touched, setFieldValue }) => (
         <Form className="w-full rounded-2xl">
+          {isError && (
+            <p
+              className={`text-red-500 text-[12px] transition-all duration-300 ease-out transform ${
+                isError
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-2"
+              }`}
+            >
+              {isError}
+            </p>
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
             {/* First Name */}
             <div className="flex flex-col gap-[10px]">

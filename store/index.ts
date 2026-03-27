@@ -3,6 +3,7 @@ import tabReducer from "./tabSlice";
 import shareReducer from "./shareSlice";
 import authReducer from './authSlice';
 import errorReducer from './errorSlice';
+import paginationReducer from "./paginationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     share: shareReducer,
     auth: authReducer,
     error: errorReducer,
+    pagination: paginationReducer,
 
   },
 });

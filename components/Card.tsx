@@ -15,21 +15,22 @@ import ShareModal from "./ShareModal";
 import { openShare } from "@/store/shareSlice";
 import { api } from "@/src/service/axios";
 import Loader from "./Loader";
+import PaginatedList from "./PaginatedList";
+import { setPage, setPaginationData } from "@/store/paginationSlice";
 
 const Card = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
+  const { page, limit, totalPages } = useSelector((state: RootState) => state.pagination);
   const [categoryData, setCategoryData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isProfile,setIsProfile]=useState<any>(false)
-  
-  
-  useLayoutEffect(()=>{
-    const isProfileCompleted = localStorage?.getItem("isProfileCompleted");
-    setIsProfile(isProfileCompleted)
+  const [isProfile, setIsProfile] = useState<any>(false);
 
-  },[])
+  useLayoutEffect(() => {
+    const isProfileCompleted = localStorage?.getItem("isProfileCompleted");
+    setIsProfile(isProfileCompleted);
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -44,10 +45,20 @@ const Card = () => {
       setIsLoading(true);
       try {
         const res = await api.get(
-          `recommendation${search ? search : filterQuery}`,
+           `recommendation${search ? search : filterQuery}&page=${page} &limit=${limit}`
         );
         const cetData = res.data;
-        setCategoryData(isProfile?cetData?.data?.docs:cetData?.data?.docs?.slice(0,3));
+        setCategoryData(
+          isProfile ? cetData?.data?.docs : cetData?.data?.docs?.slice(0, 3),
+        );
+        dispatch(
+          setPaginationData({
+            totalPages: cetData.data.totalPages,
+            totalDocs: cetData.data.totalDocs,
+            hasNextPage: cetData.data.hasNextPage,
+            hasPrevPage: cetData.data.hasPrevPage,
+          })
+        );
         setIsLoading(false);
       } catch (error: any) {
         console.log(error?.response?.data);
@@ -56,7 +67,7 @@ const Card = () => {
     };
 
     getCategotyData();
-  }, [activeTab]);
+  }, [page, limit, activeTab, isProfile, dispatch]);
 
   return (
     <div className="md:my-10 max-w-[1396px] mx-auto">
@@ -221,6 +232,27 @@ const Card = () => {
             ))}
 
             <ShareModal />
+          </div>
+
+          {/* --- Reuse PaginatedList buttons here --- */}
+          <div className="mt-6 flex gap-2 justify-center items-center">
+            <button
+              disabled={page === 1}
+              onClick={() => dispatch(setPage(page - 1))}
+              className="px-3 py-1 border rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            <span>Page {page} of {totalPages}</span>
+
+            <button
+              disabled={page === totalPages}
+              onClick={() => dispatch(setPage(page + 1))}
+              className="px-3 py-1 border rounded disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         </>
       ) : (

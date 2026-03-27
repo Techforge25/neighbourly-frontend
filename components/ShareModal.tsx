@@ -37,11 +37,6 @@ const ShareModal = () => {
         ),
     },
     {
-      name: "Instagram",
-      icon: <FaInstagram className="text-pink-500" />,
-      action: () => alert("Instagram sharing not supported"),
-    },
-    {
       name: "Email",
       icon: <MdEmail className="text-orange-400" />,
       action: () =>
