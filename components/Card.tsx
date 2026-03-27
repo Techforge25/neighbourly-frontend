@@ -49,10 +49,9 @@ const Card = () => {
     getCategotyData();
   }, [activeTab]);
 
-  console.log(activeTab, "activeTab");
 
   return (
-    <div className="max-w-[1296px]  mx-auto md:my-10">
+    <div className="md:my-10">
       {categoryData?.length > 0 ? (
         <>
           <div className="flex items-center gap-4 flex-wrap justify-center">

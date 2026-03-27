@@ -35,7 +35,16 @@ const SERVICE_OPTIONS = [
 const RECOMMEND_OPTIONS = [
   { value: "Fast Response", label: "Fast Response" },
   { value: "Reliable", label: "Reliable" },
-  { value: "Fair Price", label: "Fair Price" },
+  { value: "Fair pricing", label: "Fair pricing" },
+  { value: "Good Quality Work", label: "Good quality work" },
+  { value: "Good Quality Work", label: "Good quality work" },
+  { value: "Responsive", label: "Responsive" },
+  { value: "Local reputation", label: "Local reputation" },
+  { value: "Easy to deal with", label: "Easy to deal with" },
+  { value: "Helpful / went the extra mile", label: "Helpful / went the extra mile" },
+  { value: "Tidy and respectful", label: "Tidy and respectful" },
+  { value: "Problem solved properly", label: "Problem solved properly" },
+  { value: "Trustworthy", label: "Trustworthy" },
 ];
 
 const RecommendationSchema = Yup.object().shape({
@@ -55,7 +64,7 @@ const RecommendationSchema = Yup.object().shape({
   service: Yup.string().required("Please select a service"),
   location: Yup.string()
     .trim()
-    .min(10, "Location must be at least 10 characters long")
+    .min(3, "Location must be at least  3 characters long")
     .required("Location is required"),
   recommendationReason: Yup.array()
     .min(1, "Select at least one reason")
@@ -75,8 +84,6 @@ export default function StepRecommendation({
 }) {
   const getAboutData = localStorage.getItem("stepAboutData");
   const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
-
-  // console.log("parsedAboutData", parsedAboutData);
 
   const handleGetFormData = async (values: RecommendationData) => {
     try {
@@ -234,10 +241,14 @@ export default function StepRecommendation({
               />
             </div>
 
-            {/* Location */}
-            <div className="flex flex-col gap-[10px]">
+            
+          </div>
+
+
+          {/* Location */}
+            <div className="flex flex-col gap-[10px] mt-4">
               <Label className="text-[14px] leading-[20px] font-manrope font-medium">
-                Location <span className="text-red-500">*</span>
+                Suburb <span className="text-red-500">*</span>
               </Label>
               <Field
                 as={Input}
@@ -255,7 +266,9 @@ export default function StepRecommendation({
                 className="text-red-500 text-[12px]"
               />
             </div>
-          </div>
+
+
+
 
           {/* MultiSelect for Recommendation Reasons */}
           <div className="flex flex-col gap-2 mt-4">

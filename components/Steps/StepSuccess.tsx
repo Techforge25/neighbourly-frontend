@@ -21,7 +21,7 @@ export default function StepSuccess({
         </button>
 
         {/* Close button */}
-        <button onClick={onClose} className="" aria-label="Close">
+        <button onClick={()=>{onClose(),window.location.reload()}} className="" aria-label="Close">
           <X className="w-5 h-5" />
         </button>
       </div>

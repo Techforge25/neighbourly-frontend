@@ -1,6 +1,4 @@
 import { work_Data } from "@/utils/dumydata";
-import { Manrope } from "next/font/google";
-import React from "react";
 
 const Work = () => {
   return (
@@ -9,11 +7,11 @@ const Work = () => {
         How Neighbourly <span className="text-[#F3B39D]">Works</span>{" "}
       </h5>
 
-      <div className="flex flex-col md:flex-row flex-1 justify-center gap-[8px] md:gap-[16px] lg:gap-[30px]">
+      <div className="flex flex-col md:flex-row flex-1 justify-center gap-[8px] md:gap-[16px] lg:gap-[30px] w-[] mx-auto">
         {work_Data.map((item, ind) => (
           <div
             key={ind}
-            className={`${item.bg} p-4 sm:p-6 flex flex-col md:items-start items-center gap-3 sm:gap-4 max-w-full mx-auto w-full lg:min-w-[346px]`}
+            className={`${item.bg} p-4 sm:p-6 flex flex-col md:items-start items-center gap-3 sm:gap-4`}
           >
             <div
               className={`${item.iconBg} w-fit text-white text-[18px] sm:text-[20px] p-2 sm:p-2.5 rounded-2xl`}
