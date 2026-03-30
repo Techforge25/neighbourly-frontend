@@ -39,10 +39,14 @@ export default function RootLayout({
         className={`${manrope.variable} ${outfit.variable} ${poppins.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <div className="bg-white  shadow-2xl shadow-heading1">
-          <Header />
-        </div>
-        <ClientProvider>{children}</ClientProvider>
+
+        <ClientProvider>
+          <div className="bg-white  shadow-2xl shadow-heading1">
+            <Header />
+          </div>
+          {children}
+
+        </ClientProvider>
         <Footer />
       </body>
     </html>

@@ -25,6 +25,9 @@ const Card = () => {
   );
   const [categoryData, setCategoryData] = useState<any>([]);
   const [isListTrue, setIsListTrue] = useState(false);
+  const { triggerRecommendations } = useSelector(
+    (state: RootState) => state.share,
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -39,13 +42,15 @@ const Card = () => {
     const getCategotyData = async () => {
       setIsLoading(true);
       try {
+        console.log(isListTrue, "is list true")
         const res = await api.get(
-          `recommendation?page=${page}&limit=${!isListTrue?limit:9}${search ? `${search}${filterQuery}` : filterQuery}`,
+          `recommendation?page=${page}&limit=${!isListTrue ? limit : 9}${search ? `${search}${filterQuery}` : filterQuery}`,
         );
         const cetData = res.data;
         setIsListTrue(cetData?.data?.showFullList);
         dispatch(setCardLength(cetData?.data?.recommendations?.docs.length));
         dispatch(setIsShowFullList(cetData?.data?.showFullList));
+
 
         setCategoryData(cetData?.data?.recommendations);
         dispatch(
@@ -64,9 +69,7 @@ const Card = () => {
     };
 
     getCategotyData();
-  }, [page, activeTab, dispatch]);
-
-  console.log(isListTrue, "categoryData");
+  }, [page, limit, activeTab, dispatch, isListTrue, triggerRecommendations]);
 
   return (
     <div className="md:my-10 max-w-[1396px] mx-auto">
@@ -149,13 +152,12 @@ const Card = () => {
                         (resItem: any, index: number) => (
                           <div key={index}>
                             <p
-                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${
-                                index === 0
-                                  ? "bg-primary_light text-primary"
-                                  : index === 1
-                                    ? "bg-success_light text-success"
-                                    : "text-text-dark bg-light-bg"
-                              }`}
+                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0
+                                ? "bg-primary_light text-primary"
+                                : index === 1
+                                  ? "bg-success_light text-success"
+                                  : "text-text-dark bg-light-bg"
+                                }`}
                             >
                               {resItem}
                             </p>

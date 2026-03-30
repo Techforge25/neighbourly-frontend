@@ -14,7 +14,6 @@ export const store = configureStore({
     error: errorReducer,
     pagination: paginationReducer,
     cardLength: cardLengthReducer,
-
   },
 });
 
