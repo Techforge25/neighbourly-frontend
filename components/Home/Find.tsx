@@ -29,10 +29,10 @@ const Find = () => {
           <div className="mt-6 flex items-center justify-center">
             <button
               onClick={() => dispatch(openShare())}
-              className="flex items-center gap-3 cursor-pointer sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-[14px] sm:text-[16px] font-outfit"
+              className="flex items-center gap-3 cursor-pointer sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white hover:bg-[#ebe8e8] text-[14px] sm:text-[16px] font-outfit"
             >
               <span>Share Neighbourly</span>
-              <FiShare2 size={20} className="sm:size-[24px]" />
+              <FiShare2 size={20} />
             </button>
           </div>
           

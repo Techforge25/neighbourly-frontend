@@ -110,11 +110,11 @@ const Banner = ({ recomendedDetail }: Props) => {
         </div>
 
         <div className="w-full max-w-[792px]">
-          <div className="my-2 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-[13px]">
-            <button className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
+          <div className="my-2 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-[13px]">
+            {/* <button className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
               <p className="font-outfit">Website</p>
               <LuGlobe size={20} />
-            </button>
+            </button> */}
 
             <Link href={`tel:${recomendedDetail?.contact}`}>
               <button className="w-full sm:flex-1 sm:w-[256px] cursor-pointer flex items-center justify-center gap-2 sm:gap-8 text-white bg-primary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">

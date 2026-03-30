@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { GoShieldCheck } from "react-icons/go";
+import { api } from "@/src/service/axios";
+import { toast } from "react-toastify";
 
 const ContactUsForm = () => {
+  const [isLoading, setIsLoading] = useState<any>(false);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -26,9 +30,24 @@ const ContactUsForm = () => {
         .required("Message is required"),
     }),
 
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      resetForm();
+    onSubmit: async (values, { resetForm }) => {
+      setIsLoading(true);
+      try {
+        const res: any = await api.post("getInTouch/send-feedback", {
+          fullName: values.name,
+          email: values.email,
+          message: values.message,
+        });
+        setIsLoading(false);
+        resetForm();
+        if (res.success) {
+          toast.success(res.data);
+        }
+        console.log(res);
+      } catch (error: any) {
+        console.log(error.response.data.message);
+        setIsLoading(false);
+      }
     },
   });
 
@@ -37,8 +56,7 @@ const ContactUsForm = () => {
       {/* Heading */}
       <div className="text-center mb-10">
         <h2 className="md:text-[42px] text-[28px]  font-bold text-[#010101] font-manrope">
-          We&apos;d love to{" "}
-          <span className="text-[#F3B39D]">hear from you</span>
+          We&apos;d love to <span className="text-primary">hear from you</span>
         </h2>
         <p className="text-[#262729] mt-3 text-[18px] md:w-[710px] mx-auto">
           Whether you have a question about how Neighbourly works, want to
@@ -48,7 +66,7 @@ const ContactUsForm = () => {
       </div>
 
       {/* Form Card */}
-      <div className="md:w-[1074px] mx-auto bg-white rounded-2xl shadow-md shadow-[#000000]/20 p-6 sm:p-8">
+      <div className="bg-white rounded-2xl shadow-md shadow-[#000000]/20 p-6 sm:p-8 max-w-[1074px] mx-auto">
         <form onSubmit={formik.handleSubmit}>
           {/* Row 1 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -117,11 +135,11 @@ const ContactUsForm = () => {
             type="submit"
             className="mt-6 w-full cursor-pointer bg-[#F3B39D] hover:bg-[#e59c86] text-white py-3 rounded-full font-medium transition-all duration-300"
           >
-            Submit →
+            {isLoading ? "Loading..." : "Submit →"}
           </button>
 
           {/* Footer note */}
-          <p className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope md:w-[635px] mx-auto">
+          <div className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope md:w-[635px] mx-auto">
             <span>
               <GoShieldCheck size={24} />
             </span>
@@ -130,14 +148,13 @@ const ContactUsForm = () => {
               <span>
                 Your details are safe with us. We only use this information to
                 respond to your enquiry.
+              </span>{" "}
+              <span>
+                We’re starting on the Northern Beaches and would love to hear
+                from residents, local businesses and community groups.
               </span>
-              {" "}
-            <span>
-              We’re starting on the Northern Beaches and would love to hear from
-              residents, local businesses and community groups.
-            </span>
             </p>
-          </p>
+          </div>
         </form>
       </div>
     </div>

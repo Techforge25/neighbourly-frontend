@@ -8,15 +8,17 @@ interface PaginationState {
   totalDocs: number;
   hasNextPage: boolean;
   hasPrevPage: boolean;
+  pagingCounter:number
 }
 
 const initialState: PaginationState = {
   page: 1,
-  limit: 10,
+  limit: 3,
   totalPages: 1,
   totalDocs: 0,
   hasNextPage: false,
   hasPrevPage: false,
+  pagingCounter:1
 };
 
 const paginationSlice = createSlice({

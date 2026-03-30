@@ -2,11 +2,14 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoArrowBack, IoLocationOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Banner = () => {
   const router = useRouter();
 
   const [suburb, setSuburb] = useState<string | null>(null);
+
+   const cardLength = useSelector((state) => state.cardLength.cardLength);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -39,9 +42,9 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="flex md:flex-start items-center md:flex-row flex-col mt-4">
+        <div className="flex items-start gap-4">
           <button className="bg-white md:px-[41px] px-[21px] md:py-[5px] py-[2.5px]  rounded-[100px] text-[#FE9A86] md:text-[40px] text-[20px] font-extrabold font-manrope">
-            24
+            {cardLength}
           </button>
           <h1 className="font-bold font-manrope lg:text-[62px] text-[32px] text-white lg:leading-[68px] text-center flex flex-col whitespace-pre-wrap ">
             <span>Recommendations in</span>

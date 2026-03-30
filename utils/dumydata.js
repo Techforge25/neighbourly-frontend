@@ -95,7 +95,7 @@ export const our_story_data = [
 export const Community_Sec_Data = [
   {
     icon: <TbMap size={24} color="white" />,
-    title: "address-first",
+    title: "Address-first",
     text: "Recommendations shaped by the people, streets and services closest to you.",
     iconBg: "bg-[#FE9A86]",
   },

@@ -4,6 +4,7 @@ import shareReducer from "./shareSlice";
 import authReducer from './authSlice';
 import errorReducer from './errorSlice';
 import paginationReducer from "./paginationSlice";
+import cardLengthReducer from "@/store/searchCountSlice"
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     auth: authReducer,
     error: errorReducer,
     pagination: paginationReducer,
+    cardLength: cardLengthReducer
 
   },
 });

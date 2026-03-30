@@ -7,7 +7,7 @@ import OtpInput from "../OtpInput";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { api } from '../../src/service/axios';
+import { api } from "../../src/service/axios";
 import { useRouter } from "next/navigation";
 
 interface UserData {
@@ -19,12 +19,11 @@ interface UserData {
 export default function StepEmailOtp({
   onVerified,
   nextStepThree,
-  onClose
+  onClose,
 }: {
   onVerified: () => void;
   nextStepThree: () => void;
   onClose: () => void;
-
 }) {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -44,12 +43,12 @@ export default function StepEmailOtp({
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const res = await api.post(
-          `auth/user`,
-          { email: values.email }
-        );
+        const res = await api.post(`auth/user`, { email: values.email });
         const data = res.data;
-        localStorage.setItem("isProfileCompleted", JSON.stringify(data?.data?.isProfileCompleted));
+        localStorage.setItem(
+          "isProfileCompleted",
+          JSON.stringify(data?.data?.isProfileCompleted),
+        );
         setUserData(data.data);
         if (data?.data?.OTPRequired) {
           setOtpSent(true);
@@ -58,11 +57,11 @@ export default function StepEmailOtp({
         } else if (data?.data?.isProfileCompleted) {
           setOtpSent(false);
           setLoading(false);
-        }else{
-          onVerified()
+        } else {
+          onVerified();
         }
-      } catch (err:any) {
-        console.log("Otp is Not Send",err?.response?.data);
+      } catch (err: any) {
+        console.log("Otp is Not Send", err?.response?.data);
         // console.error(err?.message,);
         setLoading(false);
       }
@@ -73,12 +72,10 @@ export default function StepEmailOtp({
     const email = formik.values.email.trim();
 
     try {
-      const res = await api.post(`auth/user/verify-otp`,
-        {
-          email,
-          accountVerificationToken: String(otp),
-        },
-      );
+      const res = await api.post(`auth/user/verify-otp`, {
+        email,
+        accountVerificationToken: String(otp),
+      });
 
       const data = res.data;
 
@@ -126,6 +123,7 @@ export default function StepEmailOtp({
   const handleResend = useCallback(() => {
     setTimer(60);
     setCanResend(false);
+    formik.submitForm();
     setOtp("");
   }, [setOtp]);
 
@@ -170,7 +168,7 @@ export default function StepEmailOtp({
                     <IoArrowForward size={24} />
                   </>
                 ) : (
-                  <p className="" >Loading...</p>
+                  <p className="">Loading...</p>
                 )}
               </button>
             )}
@@ -191,7 +189,9 @@ export default function StepEmailOtp({
                 <div className="flex items-center justify-center gap-6">
                   {/* Left Button */}
                   <button
-                  onClick={()=>{router.push('/discover'),onClose()}}
+                    onClick={() => {
+                      (router.push("/discover"), onClose());
+                    }}
                     type="button"
                     className="bg-[#E3A18B] cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
                   >
@@ -254,7 +254,7 @@ export default function StepEmailOtp({
                   type="button"
                   onClick={handleResend}
                   disabled={!canResend}
-                  className="text-sm font-medium text-muted-foreground underline transition-colors hover:text-resend disabled:opacity-40 disabled:no-underline"
+                  className="text-sm cursor-pointer font-medium text-muted-foreground underline transition-colors hover:text-resend disabled:opacity-40 disabled:no-underline"
                 >
                   Resend OTP
                 </button>

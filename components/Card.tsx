@@ -17,12 +17,15 @@ import { api } from "@/src/service/axios";
 import Loader from "./Loader";
 import PaginatedList from "./PaginatedList";
 import { setPage, setPaginationData } from "@/store/paginationSlice";
+import { setCardLength } from "@/store/searchCountSlice";
 
 const Card = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
-  const { page, limit, totalPages } = useSelector((state: RootState) => state.pagination);
+  const { page, limit, totalPages } = useSelector(
+    (state: RootState) => state.pagination,
+  );
   const [categoryData, setCategoryData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isProfile, setIsProfile] = useState<any>(false);
@@ -36,28 +39,31 @@ const Card = () => {
     const params = new URLSearchParams(window.location.search);
     const subrubValue = params.get("search")?.split(",")[0].replace(/\s+/g, "");
 
-    const search = subrubValue ? `?location=${subrubValue}` : "";
+    const search = subrubValue ? `&location=${subrubValue}` : "";
 
     const filterQuery =
-      activeTab === "Most Recommended" ? " " : `?filter=${activeTab}`;
+      activeTab === "Most Recommended" ? "" : `&filter=${activeTab}`;
 
     const getCategotyData = async () => {
       setIsLoading(true);
       try {
         const res = await api.get(
-           `recommendation${search ? search : filterQuery}&page=${page} &limit=${limit}`
+          `recommendation?page=${page}&limit=${limit}${search ? `${search}${filterQuery}` : filterQuery}`,
         );
         const cetData = res.data;
+        
+        dispatch(setCardLength(cetData?.data?.docs.length));
+
         setCategoryData(
-          isProfile ? cetData?.data?.docs : cetData?.data?.docs?.slice(0, 3),
+          isProfile === "true" ? cetData?.data?.docs : cetData?.data?.docs,
         );
         dispatch(
           setPaginationData({
-            totalPages: cetData.data.totalPages,
-            totalDocs: cetData.data.totalDocs,
-            hasNextPage: cetData.data.hasNextPage,
-            hasPrevPage: cetData.data.hasPrevPage,
-          })
+            totalPages: res.data.totalPages,
+            totalDocs: res.data.totalDocs,
+            hasNextPage: res.data.hasNextPage,
+            hasPrevPage: res.data.hasPrevPage,
+          }),
         );
         setIsLoading(false);
       } catch (error: any) {
@@ -192,7 +198,7 @@ const Card = () => {
                     </div>
                   </div>
 
-                  <div className="my-2 flex gap-2 sm:gap-[8px]">
+                  <div className="my-2 flex gap-2 justify-center sm:gap-[8px]">
                     {/* <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
                       <p className="text-[16px] font-outfit">Website</p>
                       <LuGlobe size={20} />
@@ -244,7 +250,9 @@ const Card = () => {
               Prev
             </button>
 
-            <span>Page {page} of {totalPages}</span>
+            <span>
+              Page {page} of {totalPages}
+            </span>
 
             <button
               disabled={page === totalPages}

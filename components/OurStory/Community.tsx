@@ -13,7 +13,7 @@ const Community = () => {
 
         <div className="flex items-center justify-between md:flex-row flex-col gap-10">
           {Community_Sec_Data.map((item, ind) => (
-            <div key={ind} className="md:w-[320px] mx-auto text-center">
+            <div key={ind} className="md:w-[340px] mx-auto text-center">
               <div className={`${item.iconBg} w-fit mx-auto p-4 rounded-[8px]`}>{item.icon}</div>
               <p className="text-[24px]  text-[#12141D] font-manrope font-bold mt-[20px]">{item.title}</p>
               <p className="text-[16px] text-[#697586]  mt-[10px]">{item.text}</p>
