@@ -12,6 +12,7 @@ const Page = () => {
         textColor="text-heading1"
         text="The services your neighbours trust and recommend."
       />
+      mainpage
       <TabBar />
       <Card />
       <LocalRecommendation />

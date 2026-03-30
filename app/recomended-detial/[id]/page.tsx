@@ -1,37 +1,16 @@
-"use client";
 import Banner from "@/components/RecommendedeDetail/Banner";
 import NeighburSay from "@/components/RecommendedeDetail/NeighburSay";
-import { api } from "@/src/service/axios";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 
-const page = () => {
-  const params = useParams();
-  const [recomendedDetail, setRecomendedDetail] = useState<any>([]);
-
-  const getRocommedndedDetail = async () => {
-    try {
-
-      const res = await api.get(`recommendation/${params?.id}`);
-      const data = res.data;
-      setRecomendedDetail(data?.data);
-
-    } catch (error: any) {
-      console.log(error.response.data)
-    }
-  }
-
-  useEffect(() => {
-    getRocommedndedDetail();
-  }, [params?.id])
-
-  // console.log(recomendedDetail,"recomendedDetail in page")
+const page = async ({ params }: any) => {
+  const { id } = await params;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}recommendation/${id}`);
+  const posts = await res.json();
 
   return (
     <div>
-      <Banner recomendedDetail={recomendedDetail} />
+      <Banner recomendedDetail={posts?.data} />
 
-      <NeighburSay recomendedDetail={recomendedDetail} />
+      <NeighburSay recomendedDetail={posts?.data} />
     </div>
   );
 };

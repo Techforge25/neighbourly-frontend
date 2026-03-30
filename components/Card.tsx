@@ -2,7 +2,7 @@
 import { RootState } from "@/store";
 import Image from "next/image";
 import Link from "next/link";
-import React, {  useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { IoShareSocial } from "react-icons/io5";
 import { LuThumbsUp } from "react-icons/lu";
 import { MdOutlineCall, MdOutlineChat, MdVerified } from "react-icons/md";
@@ -23,14 +23,8 @@ const Card = () => {
   const { page, limit, totalPages } = useSelector(
     (state: RootState) => state.pagination,
   );
-  const [categoryData, setCategoryData] = useState<any[]>([]);
+  const [categoryData, setCategoryData] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isProfile, setIsProfile] = useState<any>(false);
-
-  useLayoutEffect(() => {
-    const isProfileCompleted = localStorage?.getItem("isProfileCompleted");
-    setIsProfile(isProfileCompleted);
-  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -51,15 +45,13 @@ const Card = () => {
 
         dispatch(setCardLength(cetData?.data?.recommendations?.docs.length));
 
-        setCategoryData(
-          isProfile === "true" ? cetData?.data?.recommendations?.docs : cetData?.data?.recommendations?.docs,
-        );
+        setCategoryData(cetData?.data?.recommendations);
         dispatch(
           setPaginationData({
-            totalPages: res?.data?.recommendations?.totalPages,
-            totalDocs: res?.data?.recommendations?.totalDocs,
-            hasNextPage: res?.data?.recommendations?.hasNextPage,
-            hasPrevPage: res?.data?.recommendations?.hasPrevPage,
+            totalPages: cetData?.data?.recommendations?.totalPages,
+            totalDocs: cetData?.data?.recommendations?.totalDocs,
+            hasNextPage: cetData?.data?.recommendations?.hasNextPage,
+            hasPrevPage: cetData?.data?.recommendations?.hasPrevPage,
           }),
         );
         setIsLoading(false);
@@ -70,22 +62,20 @@ const Card = () => {
     };
 
     getCategotyData();
-  }, [page, limit, activeTab, isProfile, dispatch]);
-
-  
+  }, [page, activeTab, dispatch]);
 
   return (
     <div className="md:my-10 max-w-[1396px] mx-auto">
-      {categoryData?.length > 0 ? (
+      {categoryData?.docs?.length > 0 ? (
         <>
           <div className="flex items-center gap-4 flex-wrap justify-center">
-            {categoryData?.map((item, ind) => (
+            {categoryData?.docs?.map((item: any, ind: any) => (
               <div
                 onClick={() => {
                   router.push(`/recomended-detial/${item.businessId}`);
                 }}
                 key={ind}
-                className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[764px] sm:min-w-[410px] min-w-[390px]"
+                className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[764px] max-w-[410px]"
               >
                 <div className="flex items-center gap-2 sm:gap-[6.41px]">
                   <span>
@@ -150,14 +140,20 @@ const Card = () => {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 h-[32px]">
-                      {item.reasonsOfRecommendation.map(
+                    <div className="grid grid-cols-3 gap-3 h-[32px] mt-2 pb-10">
+                      {[...new Set(item.reasonsOfRecommendation.flat())].map(
                         (resItem: any, index: number) => (
                           <div key={index}>
                             <p
-                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0 ? "bg-primary_light text-primary" : index === 1 ? "bg-success_light text-success" : "text-text-dark bg-light-bg"}`}
+                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${
+                                index === 0
+                                  ? "bg-primary_light text-primary"
+                                  : index === 1
+                                    ? "bg-success_light text-success"
+                                    : "text-text-dark bg-light-bg"
+                              }`}
                             >
-                              {resItem.slice(0, 1)}...
+                              {resItem}
                             </p>
                           </div>
                         ),
@@ -165,7 +161,7 @@ const Card = () => {
                     </div>
                   </div>
 
-                  <div className="w-full max-w-[378px] flex flex-col gap-2 mt-10">
+                  <div className="w-full max-w-[378px] flex flex-col gap-2 mt-20">
                     <div className="flex items-center gap-2">
                       <p>
                         <CustomIcon variant="location" />
@@ -176,7 +172,7 @@ const Card = () => {
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF]">
-                        {item.location}
+                        {item?.location}
                       </button>
                     </div>
                   </div>
@@ -242,9 +238,9 @@ const Card = () => {
           {/* --- Reuse PaginatedList buttons here --- */}
           <div className="mt-6 flex gap-2 justify-center items-center">
             <button
-              disabled={page === 1}
+              disabled={!categoryData?.hasPrevPage}
               onClick={() => dispatch(setPage(page - 1))}
-              className="px-3 py-1 border rounded disabled:opacity-50"
+              className="px-3 py-1 border rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Prev
             </button>
@@ -254,9 +250,9 @@ const Card = () => {
             </span>
 
             <button
-              disabled={page === totalPages}
+              disabled={!categoryData?.hasNextPage}
               onClick={() => dispatch(setPage(page + 1))}
-              className="px-3 py-1 border rounded disabled:opacity-50"
+              className="px-3 py-1 border rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
             </button>

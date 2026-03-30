@@ -10,14 +10,10 @@ type Props = {
 };
 
 const NeighburSay = ({ recomendedDetail }: Props) => {
-  const userRecommendationDetail = recomendedDetail || [];
-
-  console.log(recomendedDetail, "recomendedDetai Neighbourly");
-
   return (
     <section className="max-w-[1440px] mx-auto my-22">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-center md:gap-8 gap-6 max-w-[1280px] mx-auto">
+        <div className="flex flex-col lg:flex-row justify-center md:gap-8 gap-6 max-w-[1280px] mx-auto">
           {/* Left Panel */}
           <div className="flex-1 max-w-full md:max-w-[838px] border border-[#D5E8FC] rounded-[22px] p-8 md:p-10 overflow-y-auto max-h-[786px]">
             <h2 className="text-2xl md:text-3xl font-bold text-textdark capitalize font-manrope mb-6">
