@@ -13,17 +13,17 @@ const Header = () => {
   const pathName = usePathname();
 
   useEffect(() => {
-  if (isOpenMenu) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+    if (isOpenMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  // cleanup (important)
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [isOpenMenu]);
+    // cleanup (important)
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpenMenu]);
 
 
 

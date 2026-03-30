@@ -8,7 +8,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { api } from "../../src/service/axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { setTriggerRecommendations } from "@/store/shareSlice";
+import { useDispatch } from "react-redux";
 
 interface UserData {
   isProfileCompleted?: boolean;
@@ -29,6 +31,8 @@ export default function StepEmailOtp({
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
   const router = useRouter();
+  const pathname = usePathname()
+  const dispatch = useDispatch()
 
   // ✅ Formik setup
   const formik = useFormik({
@@ -192,7 +196,12 @@ export default function StepEmailOtp({
                   {/* Left Button */}
                   <button
                     onClick={() => {
-                      (router.push("/discover"), onClose());
+                      if (pathname === "/discover") {
+                        dispatch(setTriggerRecommendations(true))
+                        onClose()
+                      } else {
+                        (router.push("/discover"), onClose());
+                      }
                     }}
                     type="button"
                     className="bg-primary cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
