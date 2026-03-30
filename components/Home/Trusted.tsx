@@ -1,7 +1,39 @@
+"use client";
+import { api } from "@/src/service/axios";
 import { trusted_Data } from "@/utils/dumydata";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Trusted = () => {
+  const [state, setState] = useState<any>([]);
+  const getStats = async () => {
+    try {
+      const res = await api.get("stats");
+      setState([
+        {
+          num: `+ ${res.data.data.recommendations}`,
+          text: "Neighbour recommendations",
+          textColor: "text-[#8FA58A]",
+        },
+        {
+          num: `+ ${res.data.data.businesses}`,
+          text: "Local businesses",
+          textColor: "text-[#FFFFFF]",
+        },
+        {
+          num: `+ ${res.data.data.addresses}`,
+          text: "Total addresss",
+          textColor: "text-[#F3B39D]",
+        },
+      ]);
+      console.log(res,"State")
+    } catch (error) {}
+  };
+  
+  useEffect(() => {
+    getStats();
+  }, []);
+  
+  console.log(state, "REs Data");
   return (
     <div className="bg-[#1D1D1D]">
       <div className="container mx-auto p-4">
@@ -11,7 +43,7 @@ const Trusted = () => {
         </h6>
 
         <div className="flex lg:items-center lg:justify-between lg:flex-row flex-col md:gap-10 gap-6 md:py-16 py-8">
-          {trusted_Data.map((item, ind) => (
+          {state.map((item: any, ind: number) => (
             <div key={ind}>
               <p
                 className={`${item.textColor} lg:text-[52px] md:text-[40px] text-[20px] font-bold font-manrope`}
