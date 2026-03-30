@@ -16,10 +16,6 @@ const Page = () => {
       <Card />
       <LocalRecommendation/>
       {/* <UseFull color="#718496" /> */}
-
-
-
-
     </div>
   );
 };

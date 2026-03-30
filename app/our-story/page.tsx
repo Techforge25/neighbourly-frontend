@@ -4,7 +4,13 @@ import Ourstory from "@/components/OurStory/Ourstory";
 import RecommendationLed from "@/components/OurStory/RecommendationLed";
 import Trusted from "@/components/Trusted";
 import UseFull from "@/components/UseFull";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Neighbourly - Our Story",
+  description: "Discover trusted local services recommended by your neighbors.",
+};
 
 const page = () => {
   return (
@@ -16,7 +22,7 @@ const page = () => {
       <Ourstory />
       <Trusted />
       <RecommendationLed />
-      <Community/>
+      <Community />
       {/* <UseFull color="#718496"/> */}
     </div>
   );

@@ -3,13 +3,19 @@ import LocalRecommendation from '@/components/Discover/LocalRecommendation'
 import Banner from '@/components/SuberbSearch/Banner'
 import TabBar from '@/components/TabBar'
 import UseFull from '@/components/UseFull'
+import { Metadata } from 'next'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: "Neighbourly - Suburb Search",
+  description: "Discover trusted local services recommended by your neighbors.",
+};
 
 const page = () => {
 
   return (
     <div>
-      <Banner/>
+      <Banner />
       <div>
         <Image
           src="/images/suburbmap.png"
@@ -21,7 +27,7 @@ const page = () => {
       </div>
       <TabBar />
       <Card />
-      <LocalRecommendation/>
+      <LocalRecommendation />
       {/* <UseFull /> */}
     </div>
   )

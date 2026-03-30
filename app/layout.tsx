@@ -32,11 +32,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  
+
   return (
     <html lang="en">
       <body
         className={`${manrope.variable} ${outfit.variable} ${poppins.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
         <div className="bg-white  shadow-2xl shadow-heading1">
           <Header />
