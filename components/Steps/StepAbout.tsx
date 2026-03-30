@@ -8,7 +8,6 @@ import { Input } from "../ui/input";
 interface StepAboutData {
   firstName: string;
   mobile: string;
-  street: string;
   suburb: string;
 }
 
@@ -25,7 +24,6 @@ export default function StepAbout({
   ) || {
     firstName: "",
     mobile: "",
-    street: "",
     suburb: "",
   };
 
@@ -39,8 +37,6 @@ export default function StepAbout({
         .matches(/^[0-9+]+$/, "Invalid phone number")
         .required("Mobile number is required"),
 
-      street: Yup.string().required("Street is required"),
-
       suburb: Yup.string().required("Suburb is required"),
     }),
 
@@ -48,23 +44,20 @@ export default function StepAbout({
       // ✅ Save data
       if (formik.isValid) {
         localStorage.setItem(
-        "stepAboutData",
-        JSON.stringify({ ...values, step: 2 }));
+          "stepAboutData",
+          JSON.stringify({ ...values, step: 2 }),
+        );
+        onNext();
       }
-
-      // ✅ Save step number
-      localStorage.setItem("currentStep", "1");
-
-      onNext();
     },
   });
 
-  // ✅ Auto save on change (optional but powerful)
-  useEffect(() => {
-    localStorage.setItem(
-      "stepAboutData",
-      JSON.stringify({ ...formik.values, step: 2 }));
-  }, [formik.values]);
+  // handele Back
+
+  const handleOnBack = () =>{
+    localStorage.removeItem("stepAboutData");
+    onBack();
+  }
 
   return (
     <form onSubmit={formik.handleSubmit} className="w-full rounded-2xl">
@@ -100,50 +93,35 @@ export default function StepAbout({
             <span className="text-red-500 text-sm">{formik.errors.mobile}</span>
           )}
         </div>
+      </div>
 
-        {/* Street */}
-        <div className="flex flex-col gap-[12px]">
-          <Label>Street Name *</Label>
-          <Input
-            name="street"
-            placeholder="e.g. Smith St"
-            value={formik.values.street}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.street && formik.errors.street && (
-            <span className="text-red-500 text-sm">{formik.errors.street}</span>
-          )}
-        </div>
-
-        {/* Suburb */}
-        <div className="flex flex-col gap-[12px]">
-          <Label>Suburb *</Label>
-          <Input
-            name="suburb"
-            placeholder="e.g. Collingwood"
-            value={formik.values.suburb}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.suburb && formik.errors.suburb && (
-            <span className="text-red-500 text-sm">{formik.errors.suburb}</span>
-          )}
-        </div>
+      {/* Suburb */}
+      <div className="flex flex-col gap-[12px] mt-4">
+        <Label>Suburb *</Label>
+        <Input
+          name="suburb"
+          placeholder="e.g. Collingwood"
+          value={formik.values.suburb}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.suburb && formik.errors.suburb && (
+          <span className="text-red-500 text-sm">{formik.errors.suburb}</span>
+        )}
       </div>
 
       {/* Buttons */}
       <div className="grid grid-cols-2 gap-4 pt-2 mt-4">
         <button
-          className="rounded-full border-[1px] border-[#E4E4E4] py-[16px] px-[27px] flex items-center justify-center text-[16px] font-poppins "
-          onClick={onBack}
+          className="rounded-full border-[1px] cursor-pointer border-[#E4E4E4] py-[16px] px-[27px] flex items-center justify-center text-[16px] font-poppins "
+          onClick={handleOnBack}
         >
           {" "}
           <ArrowLeft size={24} /> Back{" "}
         </button>{" "}
         <button
+          type="submit"
           className="rounded-full py-[16px] px-[27px] flex items-center justify-center gap-2 bg-primary text-[16px] font-poppins text-white"
-          onClick={onNext}
         >
           {" "}
           Submit Recommendation <ArrowRight size={24} />{" "}

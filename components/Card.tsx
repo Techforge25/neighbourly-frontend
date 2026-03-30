@@ -1,12 +1,10 @@
 "use client";
 import { RootState } from "@/store";
-import { recommendations } from "@/utils/dumydata";
 import Image from "next/image";
 import Link from "next/link";
-import React, { use, useEffect, useLayoutEffect, useState } from "react";
-import { HiLocationMarker } from "react-icons/hi";
-import { IoEarthSharp, IoShareSocial } from "react-icons/io5";
-import { LuGlobe, LuThumbsUp } from "react-icons/lu";
+import React, {  useEffect, useLayoutEffect, useState } from "react";
+import { IoShareSocial } from "react-icons/io5";
+import { LuThumbsUp } from "react-icons/lu";
 import { MdOutlineCall, MdOutlineChat, MdVerified } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import CustomIcon from "./CustomIcon";
@@ -15,7 +13,6 @@ import ShareModal from "./ShareModal";
 import { openShare } from "@/store/shareSlice";
 import { api } from "@/src/service/axios";
 import Loader from "./Loader";
-import PaginatedList from "./PaginatedList";
 import { setPage, setPaginationData } from "@/store/paginationSlice";
 import { setCardLength } from "@/store/searchCountSlice";
 
@@ -51,18 +48,18 @@ const Card = () => {
           `recommendation?page=${page}&limit=${limit}${search ? `${search}${filterQuery}` : filterQuery}`,
         );
         const cetData = res.data;
-        
-        dispatch(setCardLength(cetData?.data?.docs.length));
+
+        dispatch(setCardLength(cetData?.data?.recommendations?.docs.length));
 
         setCategoryData(
-          isProfile === "true" ? cetData?.data?.docs : cetData?.data?.docs,
+          isProfile === "true" ? cetData?.data?.recommendations?.docs : cetData?.data?.recommendations?.docs,
         );
         dispatch(
           setPaginationData({
-            totalPages: res.data.totalPages,
-            totalDocs: res.data.totalDocs,
-            hasNextPage: res.data.hasNextPage,
-            hasPrevPage: res.data.hasPrevPage,
+            totalPages: res?.data?.recommendations?.totalPages,
+            totalDocs: res?.data?.recommendations?.totalDocs,
+            hasNextPage: res?.data?.recommendations?.hasNextPage,
+            hasPrevPage: res?.data?.recommendations?.hasPrevPage,
           }),
         );
         setIsLoading(false);
@@ -75,6 +72,8 @@ const Card = () => {
     getCategotyData();
   }, [page, limit, activeTab, isProfile, dispatch]);
 
+  
+
   return (
     <div className="md:my-10 max-w-[1396px] mx-auto">
       {categoryData?.length > 0 ? (
@@ -86,7 +85,7 @@ const Card = () => {
                   router.push(`/recomended-detial/${item.businessId}`);
                 }}
                 key={ind}
-                className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px]"
+                className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[764px] sm:min-w-[410px] min-w-[390px]"
               >
                 <div className="flex items-center gap-2 sm:gap-[6.41px]">
                   <span>
@@ -151,12 +150,12 @@ const Card = () => {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-3 gap-2 h-[32px]">
                       {item.reasonsOfRecommendation.map(
                         (resItem: any, index: number) => (
                           <div key={index}>
                             <p
-                              className={`font-manrope text-[14px] leading-[16px] md:w-[129px] w-[64.5px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0 ? "bg-primary_light text-primary" : index === 1 ? "bg-success_light text-success" : "text-text-dark bg-light-bg"}`}
+                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0 ? "bg-primary_light text-primary" : index === 1 ? "bg-success_light text-success" : "text-text-dark bg-light-bg"}`}
                             >
                               {resItem.slice(0, 1)}...
                             </p>
@@ -166,7 +165,7 @@ const Card = () => {
                     </div>
                   </div>
 
-                  <div className="w-full max-w-[378px] flex flex-col gap-2 mt-4">
+                  <div className="w-full max-w-[378px] flex flex-col gap-2 mt-10">
                     <div className="flex items-center gap-2">
                       <p>
                         <CustomIcon variant="location" />

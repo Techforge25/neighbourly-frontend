@@ -177,6 +177,7 @@ export default function StepEmailOtp({
             {userData?.isProfileCompleted && (
               <>
                 <div className="bg-[#F4FAFF] rounded-[18px] p-[32px] flex items-start gap-[12px] ">
+
                   <AiOutlineExclamationCircle size={40} className="text-para" />
 
                   <p className="text-para font-poppins text-[16px] leading-[23px]">
@@ -216,7 +217,7 @@ export default function StepEmailOtp({
         {otpSent && (
           <div className="flex  items-center justify-center bg-background px-4">
             <div className="w-full max-w-lg text-center">
-              <h1 className="text-3xl font-bold tracking-tight text-foreground">
+              <h1 className="text-3xl font-bold tracking-tight text-textdark">
                 Verify OTP
               </h1>
               <p className="mt-2 text-muted-foreground">
@@ -224,10 +225,10 @@ export default function StepEmailOtp({
               </p>
 
               <div className="mt-10 text-left">
-                <label className="text-sm font-medium text-foreground">
+                <label className="text-sm font-medium text-textdark ml-9">
                   Enter Verification Code
                 </label>
-                <div className="mt-3">
+                <div className="mt-3 ">
                   <OtpInput value={otp} onChange={setOtp} />
                 </div>
               </div>
@@ -256,7 +257,7 @@ export default function StepEmailOtp({
                   disabled={!canResend}
                   className="text-sm cursor-pointer font-medium text-muted-foreground underline transition-colors hover:text-resend disabled:opacity-40 disabled:no-underline"
                 >
-                  Resend OTP
+                  Resend OTP {" "}
                 </button>
               </div>
             </div>
@@ -266,10 +267,3 @@ export default function StepEmailOtp({
     </div>
   );
 }
-
-// Mock APIs
-const fakeSendOtp = (email: string) =>
-  new Promise((res) => setTimeout(res, 1000));
-
-const fakeVerifyOtp = (otp: string) =>
-  new Promise((res) => setTimeout(() => res(otp === "123456"), 1000));

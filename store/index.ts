@@ -13,7 +13,7 @@ export const store = configureStore({
     auth: authReducer,
     error: errorReducer,
     pagination: paginationReducer,
-    cardLength: cardLengthReducer
+    cardLength: cardLengthReducer,
 
   },
 });

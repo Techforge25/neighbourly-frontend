@@ -15,10 +15,6 @@ export const RecommendationSchema = Yup.object().shape({
       "Contact number must be an Australian mobile number (e.g., 0412345678 or +61412345678)",
     ),
   service: Yup.string().required("Please select a service"),
-  location: Yup.string()
-    .trim()
-    .min(3, "Location must be at least  3 characters long")
-    .required("Location is required"),
   recommendationReason: Yup.array()
     .min(1, "Select at least one reason")
     .of(Yup.string().required()),

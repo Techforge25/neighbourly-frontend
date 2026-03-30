@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import StepperModal from "./StepperModal";
 
-export default function ButtonModal() {
+export default function ButtonModal({bg}:any) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function ButtonModal() {
       <div>
         <button
           onClick={() => setOpenModal(true)}
-          className="flex  items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full cursor-pointer bg-primary hover:bg-[#e59c86] hover:transition-colors text-white lg:text-[16px] font-outfit text-sm"
+          className={`flex  items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full cursor-pointer ${bg?"bg-secondary":'bg-primary hover:bg-[#e59c86]'}   text-white lg:text-[16px] font-outfit text-sm`}
         >
           <span>Share your recommendation</span>
           <IoMdAdd size={20} />

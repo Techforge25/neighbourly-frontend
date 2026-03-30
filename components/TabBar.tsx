@@ -20,7 +20,7 @@ const TabBar: React.FC = () => {
         { serviceType: "Most Recommended" },
         ...Array.from(
           new Map(
-            cetData?.data?.docs?.map((item: any) => [item.serviceType, item]),
+            cetData?.data?.recommendations?.docs?.map((item: any) => [item.serviceType, item]),
           ).values(),
         ),
       ];

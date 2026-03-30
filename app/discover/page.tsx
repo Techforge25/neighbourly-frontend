@@ -14,7 +14,7 @@ const Page = () => {
       />
       <TabBar />
       <Card />
-      <LocalRecommendation/>
+      <LocalRecommendation />
       {/* <UseFull color="#718496" /> */}
     </div>
   );

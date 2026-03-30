@@ -58,7 +58,7 @@ const OtpInput = ({ length = 6, value, onChange }: OtpInputProps) => {
   );
 
   return (
-    <div className="flex gap-3">
+    <div className="flex items-center justify-center gap-3">
       {Array.from({ length }).map((_, i) => (
         <input
           key={i}

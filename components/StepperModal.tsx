@@ -37,6 +37,7 @@ export default function StepperModal({
 
   const nextStep = () => setStep((s) => s + 1);
   const nextStepThree = () => setStep((s) => s + 2);
+  const nextStepOne = () => setStep((s) => s - 2);
   const prevStep = () => setStep((s) => s - 1);
 
   const resetAll = () => {
@@ -133,6 +134,7 @@ export default function StepperModal({
               setData={setFormData}
               onBack={prevStep}
               onSubmit={handleSubmit}
+              nextStepOne={nextStepOne}
             />
           )}
 

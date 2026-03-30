@@ -23,11 +23,13 @@ export default function StepRecommendation({
   setData,
   onBack,
   onSubmit,
+  nextStepOne,
 }: {
   data: RecommendationData;
   setData: React.Dispatch<React.SetStateAction<RecommendationData>>;
   onBack: () => void;
   onSubmit: () => void;
+  nextStepOne: () => void;
 }) {
   const getAboutData = localStorage.getItem("stepAboutData");
   const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
@@ -45,7 +47,6 @@ export default function StepRecommendation({
         [parsedAboutData?.step === 2 ? "businessContact" : "contact"]:
           values.theirNumber,
         serviceType: values.service,
-        location: values.location,
         reasonsOfRecommendation: values.recommendationReason,
         comment: values.comment,
 
@@ -53,7 +54,6 @@ export default function StepRecommendation({
         ...(isStep2 && {
           fullName: parsedAboutData.firstName,
           userContact: parsedAboutData.mobile,
-          userStreet: parsedAboutData.street,
           userAddress: parsedAboutData.suburb,
         }),
       };
@@ -76,6 +76,16 @@ export default function StepRecommendation({
       }
 
       console.log("Failed to create recommendation:", error);
+    }
+  };
+
+  // handel Back
+
+  const handleBack = () => {
+    if (parsedAboutData?.step !== 2) {
+      nextStepOne();
+    } else {
+      onBack();
     }
   };
 
@@ -202,26 +212,6 @@ export default function StepRecommendation({
           </div>
 
           {/* Location */}
-          <div className="flex flex-col gap-[10px] mt-4">
-            <Label className="text-[14px] leading-[20px] font-manrope font-medium">
-              Suburb <span className="text-red-500">*</span>
-            </Label>
-            <Field
-              as={Input}
-              name="location"
-              placeholder="Suburb, City"
-              className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
-                errors.location && touched.location
-                  ? "border-red-500"
-                  : "border-[#E4E4E4]"
-              }`}
-            />
-            <ErrorMessage
-              name="location"
-              component="div"
-              className="text-red-500 text-[12px]"
-            />
-          </div>
 
           {/* MultiSelect for Recommendation Reasons */}
           <div className="flex flex-col gap-2 mt-4">
@@ -296,14 +286,23 @@ export default function StepRecommendation({
             <button
               type="button"
               className="rounded-full border border-[#E4E4E4] py-4 px-7 flex items-center justify-center gap-2 text-[16px] text-black"
-              onClick={onBack}
+              onClick={handleBack}
             >
               <ArrowLeft size={20} />
               Back
             </button>
             <button
               type="submit"
-              className="rounded-full py-4 px-7 flex items-center justify-center gap-2 bg-primary text-[16px] text-[#fff]"
+              disabled={
+                !(
+                  values.firstName &&
+                  values.businessName &&
+                  values.theirNumber &&
+                  values.service &&
+                  values.recommendationReason.length > 0
+                )
+              }
+              className="rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer py-4 px-7 flex items-center justify-center gap-2 bg-primary text-[16px] text-[#fff]"
             >
               Submit Recommendation
               <ArrowRight size={20} />
