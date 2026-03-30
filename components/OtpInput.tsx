@@ -58,31 +58,41 @@ const OtpInput = ({ length = 6, value, onChange }: OtpInputProps) => {
   );
 
   return (
-    <div className="flex items-center justify-center gap-3">
-      {Array.from({ length }).map((_, i) => (
-        <input
-          key={i}
-          ref={(el) => {
-            inputRefs.current[i] = el;
-          }}
-          type="text"
-          inputMode="numeric"
-          maxLength={1}
-          value={digits[i] || ""}
-          onChange={(e) => handleChange(i, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(i, e)}
-          onPaste={handlePaste}
-          onFocus={() => setFocusedIndex(i)}
-          onBlur={() => setFocusedIndex(null)}
-          className={`w-16 h-16 text-center text-2xl font-semibold rounded-lg border-2  bg-otp-bg outline-none transition-colors ${
-            focusedIndex === i || digits[i]
-              ? "border-primary"
-              : "border-[#D5E8FC]"
-          }`}
-          aria-label={`Digit ${i + 1}`}
-        />
-      ))}
-    </div>
+    <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
+    {Array.from({ length }).map((_, i) => (
+      <input
+        key={i}
+        ref={(el) => {
+          inputRefs.current[i] = el;
+        }}
+        type="text"
+        inputMode="numeric"
+        maxLength={1}
+        value={digits[i] || ""}
+        onChange={(e) => handleChange(i, e.target.value)}
+        onKeyDown={(e) => handleKeyDown(i, e)}
+        onPaste={handlePaste}
+        onFocus={() => setFocusedIndex(i)}
+        onBlur={() => setFocusedIndex(null)}
+        className={`
+          w-10 h-10 
+          sm:w-12 sm:h-12 
+          md:w-14 md:h-14 
+          lg:w-16 lg:h-16
+          
+          text-lg sm:text-xl md:text-2xl
+          text-center font-semibold rounded-lg border-2
+          bg-otp-bg outline-none transition-colors
+          
+          ${focusedIndex === i || digits[i]
+            ? "border-primary"
+            : "border-[#D5E8FC]"
+          }
+        `}
+        aria-label={`Digit ${i + 1}`}
+      />
+    ))}
+  </div>
   );
 };
 

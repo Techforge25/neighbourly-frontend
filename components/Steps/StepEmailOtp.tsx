@@ -217,14 +217,14 @@ export default function StepEmailOtp({
         {otpSent && (
           <div className="flex  items-center justify-center bg-background px-4">
             <div className="w-full max-w-lg text-center">
-              <h1 className="text-3xl font-bold tracking-tight text-textdark">
+              <h1 className="md:text-[24px] text-[20px] font-bold font-manrope tracking-tight text-textdark">
                 Verify OTP
               </h1>
-              <p className="mt-2 text-muted-foreground">
+              <p className="mt-2 text-textdark md:text-[16px] text-[14px] ">
                 Enter The 6 Digit Code Sent To Your Email
               </p>
 
-              <div className="mt-10 text-left">
+              <div className="md:mt-10 mt-4 text-left">
                 <label className="text-sm font-medium text-textdark ml-9">
                   Enter Verification Code
                 </label>
@@ -237,12 +237,12 @@ export default function StepEmailOtp({
                 type="button"
                 onClick={verifyOtp}
                 disabled={otp.length < 6}
-                className={`mt-8 flex w-full ${otp.length < 6 ? "" : "bg-primary text-white"}  items-center justify-center gap-2 rounded-xl bg-verify-btn py-4 text-base font-medium text-verify-btn-foreground transition-opacity hover:opacity-80 disabled:opacity-40`}
+                className={`md:mt-8 mt-4 flex w-full ${otp.length < 6 ? "" : "bg-primary text-white"}  items-center justify-center gap-2 rounded-xl bg-verify-btn md:py-4 py-2 text-base font-medium text-verify-btn-foreground transition-opacity hover:opacity-80 disabled:opacity-40`}
               >
                 Verify OTP <FaArrowRight className="h-5 w-5" />
               </button>
 
-              <div className="mt-5 space-y-1">
+              <div className="md:mt-5 mt-2 space-y-1">
                 {!canResend && (
                   <p className="text-sm text-muted-foreground">
                     Resend OTP in{" "}

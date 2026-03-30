@@ -807,6 +807,7 @@ export const SERVICE_OPTIONS = [
   "Plumber",
   "Electrician",
   "Builder",
+  "Handyman",
   "Painter",
   "Landscaper",
   "Cleaner",

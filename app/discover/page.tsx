@@ -1,22 +1,14 @@
 import Banner from "@/components/Banner";
 import Card from "@/components/Card";
 import LocalRecommendation from "@/components/Discover/LocalRecommendation";
+import DiscoverSearch from "@/components/DiscoverSearchmain/DiscoverSearch";
 import TabBar from "@/components/TabBar";
 import UseFull from "@/components/UseFull";
 
 const Page = () => {
   return (
     <div>
-      <Banner
-        banner="/images/discover.png"
-        textColor="text-heading1"
-        text="The services your neighbours trust and recommend."
-      />
-      mainpage
-      <TabBar />
-      <Card />
-      <LocalRecommendation />
-      {/* <UseFull color="#718496" /> */}
+      <DiscoverSearch/>
     </div>
   );
 };

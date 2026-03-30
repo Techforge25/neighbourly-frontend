@@ -2,12 +2,7 @@ import * as Yup from "yup";
 
 export const RecommendationSchema = Yup.object().shape({
   firstName: Yup.string().required("Name is required"),
-  businessName: Yup.string()
-    .matches(
-      /^[a-zA-Z ]*$/,
-      "Business name can only contain letters and spaces",
-    )
-    .required("Business name is required"),
+  businessName: Yup.string().required("Business name is required"),
   theirNumber: Yup.string()
     .required("Number is required")
     .matches(
