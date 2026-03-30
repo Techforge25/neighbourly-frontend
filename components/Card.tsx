@@ -14,7 +14,7 @@ import { openShare } from "@/store/shareSlice";
 import { api } from "@/src/service/axios";
 import Loader from "./Loader";
 import { setPage, setPaginationData } from "@/store/paginationSlice";
-import { setCardLength } from "@/store/searchCountSlice";
+import { setCardLength, setIsShowFullList } from "@/store/searchCountSlice";
 
 const Card = () => {
   const router = useRouter();
@@ -24,6 +24,7 @@ const Card = () => {
     (state: RootState) => state.pagination,
   );
   const [categoryData, setCategoryData] = useState<any>([]);
+  const [isListTrue, setIsListTrue] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -39,11 +40,12 @@ const Card = () => {
       setIsLoading(true);
       try {
         const res = await api.get(
-          `recommendation?page=${page}&limit=${limit}${search ? `${search}${filterQuery}` : filterQuery}`,
+          `recommendation?page=${page}&limit=${!isListTrue?limit:9}${search ? `${search}${filterQuery}` : filterQuery}`,
         );
         const cetData = res.data;
-
+        setIsListTrue(cetData?.data?.showFullList);
         dispatch(setCardLength(cetData?.data?.recommendations?.docs.length));
+        dispatch(setIsShowFullList(cetData?.data?.showFullList));
 
         setCategoryData(cetData?.data?.recommendations);
         dispatch(
@@ -63,6 +65,8 @@ const Card = () => {
 
     getCategotyData();
   }, [page, activeTab, dispatch]);
+
+  console.log(isListTrue, "categoryData");
 
   return (
     <div className="md:my-10 max-w-[1396px] mx-auto">
@@ -140,7 +144,7 @@ const Card = () => {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 h-[32px] mt-2 pb-10">
+                    <div className="grid grid-cols-3 gap-3 h-[32px] mt-2 pb-40">
                       {[...new Set(item.reasonsOfRecommendation.flat())].map(
                         (resItem: any, index: number) => (
                           <div key={index}>
@@ -161,7 +165,7 @@ const Card = () => {
                     </div>
                   </div>
 
-                  <div className="w-full max-w-[378px] flex flex-col gap-2 mt-20">
+                  <div className="w-full max-w-[378px] flex flex-col gap-2">
                     <div className="flex items-center gap-2">
                       <p>
                         <CustomIcon variant="location" />
@@ -193,14 +197,9 @@ const Card = () => {
                     </div>
                   </div>
 
-                  <div className="my-2 flex gap-2 justify-center sm:gap-[8px]">
-                    {/* <button className="flex cursor-pointer items-center justify-center gap-2 sm:gap-4 text-[#3A5670] border-[#D5E8FC] text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 border-[1px] rounded-full">
-                      <p className="text-[16px] font-outfit">Website</p>
-                      <LuGlobe size={20} />
-                    </button> */}
-
-                    <Link href={`tel:${item?.phone}`}>
-                      <button className="flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
+                  <div className="my-2 flex items-center gap-2 w-full">
+                    <Link href={`tel:${item?.phone}`} className="w-full">
+                      <button className="w-full flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
                         <p className="text-[16px] font-outfit">Call</p>
                         <MdOutlineCall size={20} />
                       </button>
@@ -209,8 +208,9 @@ const Card = () => {
                     <Link
                       href={`sms:${item?.phone}?body=Hi ${item?.contactPerson}`}
                       target="_blank"
+                      className="w-full"
                     >
-                      <button className=" cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit px-4 py-4 rounded-full">
+                      <button className="w-full cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
                         <p className="text-[16px] font-outfit">Chat</p>
                         <MdOutlineChat size={20} />
                       </button>
@@ -222,7 +222,7 @@ const Card = () => {
                       onClick={(e) => {
                         dispatch(openShare(), e.stopPropagation());
                       }}
-                      className="bg-secondary cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full py-3 text-[12px] leading-[13.57px] font-outfit capitalize"
+                      className="bg-secondary cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
                     >
                       <p>share with friend</p>
                       <IoShareSocial size={20} />
@@ -236,27 +236,29 @@ const Card = () => {
           </div>
 
           {/* --- Reuse PaginatedList buttons here --- */}
-          <div className="mt-6 flex gap-2 justify-center items-center">
-            <button
-              disabled={!categoryData?.hasPrevPage}
-              onClick={() => dispatch(setPage(page - 1))}
-              className="px-3 py-1 border rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Prev
-            </button>
+          {isListTrue && (
+            <div className="mt-6 flex gap-2 justify-center items-center">
+              <button
+                disabled={!categoryData?.hasPrevPage || isLoading}
+                onClick={() => dispatch(setPage(page - 1))}
+                className="px-3 py-1 border rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Prev
+              </button>
 
-            <span>
-              Page {page} of {totalPages}
-            </span>
+              <span>
+                Page {page} of {totalPages}
+              </span>
 
-            <button
-              disabled={!categoryData?.hasNextPage}
-              onClick={() => dispatch(setPage(page + 1))}
-              className="px-3 py-1 border rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Next
-            </button>
-          </div>
+              <button
+                disabled={!categoryData?.hasNextPage || isLoading}
+                onClick={() => dispatch(setPage(page + 1))}
+                className="px-3 py-1 border rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </>
       ) : (
         <div className="text-[32px] font-manrope font-semibold text-center text-para">

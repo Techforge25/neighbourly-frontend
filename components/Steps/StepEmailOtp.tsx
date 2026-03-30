@@ -133,6 +133,7 @@ export default function StepEmailOtp({
     return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
   };
 
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -194,7 +195,7 @@ export default function StepEmailOtp({
                       (router.push("/discover"), onClose());
                     }}
                     type="button"
-                    className="bg-[#E3A18B] cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
+                    className="bg-primary cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
                   >
                     View Full Recommendations
                   </button>
@@ -203,7 +204,7 @@ export default function StepEmailOtp({
                   <button
                     onClick={nextStepThree}
                     type="button"
-                    className="bg-[#6E7F8D] cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center gap-3"
+                    className="bg-secondary cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center gap-3"
                   >
                     Share Another Recommendation
                     <IoArrowForward size={20} />

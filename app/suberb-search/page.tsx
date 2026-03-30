@@ -2,7 +2,6 @@ import Card from '@/components/Card'
 import LocalRecommendation from '@/components/Discover/LocalRecommendation'
 import Banner from '@/components/SuberbSearch/Banner'
 import TabBar from '@/components/TabBar'
-import UseFull from '@/components/UseFull'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-
   return (
     <div>
       <Banner />
@@ -28,7 +26,6 @@ const page = () => {
       <TabBar />
       <Card />
       <LocalRecommendation />
-      {/* <UseFull /> */}
     </div>
   )
 }
