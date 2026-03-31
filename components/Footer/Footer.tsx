@@ -21,7 +21,7 @@ const Footer = () => {
               <FaRegEnvelope size={18} />
             </span>
             <Link href={"mailto:team@beNeighbourly.com.au"}>
-              team@beNeighbourly.com.au
+              team@beneighbourly.com.au
             </Link>
           </p>
 
@@ -30,7 +30,7 @@ const Footer = () => {
             <span className="border p-2 rounded-full bg-[#71849633]">
               <MdLocalPhone size={18} />
             </span>
-            <Link href={"tel:+61123456789"}>+61123456789</Link>
+            <Link href={"tel:0408845101"}>0408845101</Link>
           </p>
         </div>
       </div>

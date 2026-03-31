@@ -38,7 +38,7 @@ const Ourstory = () => {
           <div className="border-l-4 border-primary md:mt-10 mt-4 pl-2">
             <p className="flex flex-col">
               <span className="text-tabText lg:text-[23px] text-[16px] font-semibold font-poppins">
-                Kate and Andrew Gordon, Founders
+                Kate and Andrew Gordon
               </span>
               <span className="text-para text-[16px] font-poppins">
                 Founders

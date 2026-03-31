@@ -1,5 +1,8 @@
+"use client"
+import { openShare } from "@/store/shareSlice";
 import { Heart, Share2, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 interface StepSuccessProps {
   onClose: () => void;
@@ -10,13 +13,14 @@ export default function StepSuccess({
 }: StepSuccessProps) {
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
 
   return (
     <div className="">
       {/* Share button */}
       <div className="flex items-center justify-between px-4">
-        <button className="bg-white px-4 py-4 rounded-full" aria-label="Share">
+        <button onClick={() => dispatch(openShare())} className="bg-white px-4 py-4 rounded-full" aria-label="Share">
           <Share2 className="w-5 h-5" />
         </button>
 
@@ -34,14 +38,14 @@ export default function StepSuccess({
 
         {/* Heading */}
         <h2 className="text-[28px] font-bold leading-[42px] font-manrope text-center text-[#0F172A] ">
-          Thanks — Your Recommendation
+          Thanks — your recommendation
           <br />
-          Has Been Received!
+          has been received!
         </h2>
 
         {/* Subtext */}
         <p className="text-[18px] font-manrope font-medium leading-[28px]  text-center w-[342px] mx-auto text-[#202939]">
-          Your Contribution Helps Build A Stronger Community.
+          your contribution helps build a stronger community.
         </p>
 
         {/* Action buttons */}

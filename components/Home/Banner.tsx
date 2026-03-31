@@ -41,11 +41,11 @@ const Banner = () => {
   const router = useRouter();
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-[67.2vh] w-full overflow-hidden">
       {/* Video background */}
 
       <video
-        className="absolute top-0 left-0 w-full h-full  object-cover"
+        className="absolute top-0 left-0 w-full h-[67.2vh] object-cover"
         autoPlay
         loop
         muted
@@ -64,18 +64,18 @@ const Banner = () => {
       >
         {/* Heading */}
         <div className=" mb-6 font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center gap-[12px]">
-          <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+          <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
             Find the local services your
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-2">
-            <p className="font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 md:mt-2">
+            <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               neighbours trust
             </p>
             <div className="w-68">
               <WordRotate
                 words={words}
-                className="font-bold font-manrope md:text-[30px] text-[25px] text-white font-monrope"
+                className="font-bold font-manrope md:text-[30px] text-[24px] text-white font-monrope"
                 duration={1.5}
               />
             </div>

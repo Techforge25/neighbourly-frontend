@@ -18,12 +18,13 @@ const page = () => {
       <Banner
         text="Building stronger communities through trusted hyper-local recommendations."
         banner="/images/ourstory.png"
+        textSize="md:text-[62px] text-[32px] mt-32 md:leading-[62px] leading-[30px]"
       />
       <Ourstory />
       <Trusted />
       <RecommendationLed />
       <Community />
-      {/* <UseFull color="#718496"/> */}
+      <UseFull color="#718496"/>
     </div>
   );
 };

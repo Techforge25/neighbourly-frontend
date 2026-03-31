@@ -106,7 +106,7 @@ const Card = () => {
                   router.push(`/recomended-detial/${item.businessId}`);
                 }}
                 key={ind}
-                className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[764px] max-w-[410px]"
+                className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[783px] max-w-[410px]"
               >
                 <div className="flex items-center gap-2 sm:gap-[6.41px]">
                   <span>
@@ -125,7 +125,16 @@ const Card = () => {
                 <div className=" max-w-[764px]">
                   <div
                     className="relative w-full max-w-[378px] h-[135px] mx-auto rounded-[18px] bg-contain bg-center bg-no-repeat mt-4"
-                    style={{ backgroundImage: "url('/images/cardbg.png')" }}
+                    style={{
+                      backgroundImage:
+                        item.serviceType == "Plumber"
+                          ? "url('/images/cardbg.png')"
+                          : item.serviceType == "Electrician"
+                            ? "url('/images/electricinabg.png')"
+                            : item.serviceType == "Handyman"
+                              ? "url('/images/handymanbg.png')"
+                              : "url('/images/cardbg.png')",
+                    }}
                   >
                     <div className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg cursor-pointer">
                       <Image
@@ -140,7 +149,15 @@ const Card = () => {
                     <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
                       <div className="w-[80px] h-[80px] rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
                         <Image
-                          src="/images/suburb1.png"
+                          src={
+                            item?.serviceType == "Plumber"
+                              ? "/images/plumber.png"
+                              : item?.serviceType == "Electrician"
+                                ? "/images/electrician.png"
+                                : item?.serviceType == "Handyman"
+                                  ? "/images/handyman.png"
+                                  : "/images/suburb1.png"
+                          }
                           alt="Avatar"
                           width={100}
                           height={100}
@@ -150,56 +167,66 @@ const Card = () => {
                       <p className="text-center md:text-[16px] text-[14px]  font-semibold text-gray-900 mt-2">
                         {item.personName}
                       </p>
+                      <div className="md:text-[14px] text-[12px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para mt-4">
+                        {item?.serviceType}
+                      </div>
                     </div>
                   </div>
 
                   <div className="w-full w-[378px] flex-col gap-2 mt-20">
-                    <div className="md:text-[14px] text-[12px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para mt-4">
-                      {item?.serviceType}
+                    <div className="border-[1px] border-modal-line p-[12px] rounded-[12px] flex flex-col gap-[10px] ">
+                      <div className="flex items-center gap-2 sm:gap-[8px]">
+                        <span className="bg-secondary h-[32px] w-[32px] flex items-center justify-center rounded-[5px] ">
+                          <LuThumbsUp size={24} className="text-white" />
+                        </span>
+                        <span className="text-tabText capitalize font-poppins font-medium md:text-[18px] text-[14px] leading-[28px]">
+                          {`recommended by`}
+                        </span>
+                      </div>
+
+                      <div className="">
+                        <span className="text-green text-[32px] font-medium font-poppins">
+                          {item?.recommendationCount}
+                        </span>{" "}
+                        <span className="text-[13px] text-secondary font-medium font-poppins">
+                          Neighbours
+                        </span>
+                      </div>
                     </div>
 
-                    <div className="text-textdark font-manrope font-[24px] leading-[30px] font-semibold capitalize">
+                    <div className="text-textdark font-manrope text-[24px] leading-[30px] font-semibold capitalize mt-4">
                       {item?.businessName}
                     </div>
 
-                    <div className="flex items-center gap-2 sm:gap-[8px]">
-                      <span>
-                        <LuThumbsUp size={24} className="text-secondary" />
-                      </span>
-                      <span className="text-secondary capitalize font-poppins font-medium md:text-[16px] text-[14px] leading-[28px]">
-                        {`recommended by ${item?.recommendationCount} neighbours`}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-3 h-[32px] mt-2 md:pb-40 pb-30">
-                      {[...new Set(item.reasonsOfRecommendation.flat())].map(
-                        (resItem: any, index: number) => (
+                    <div className="grid grid-cols-3 gap-x-2 h-[32px] mt-3">
+                      {[...new Set(item.reasonsOfRecommendation.flat())]
+                        ?.slice(0, 3)
+                        ?.map((resItem: any, index: number) => (
                           <div key={index}>
                             <p
-                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${getColorByIndex(index)}`}
+                              className={`font-manrope text-[14px] leading-[18px] md:w-[120px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${getColorByIndex(index)}`}
                             >
                               {resItem}
                             </p>
                           </div>
-                        ),
-                      )}
+                        ))}
                     </div>
                   </div>
 
-                  <div className="w-full max-w-[378px] flex flex-col gap-2">
+                  <div className="w-full max-w-[378px] flex flex-col gap-2 mt-4">
                     <div className="flex items-center gap-2">
                       <p>
                         <CustomIcon variant="location" />
                       </p>
                       <p className="text-[18px] leading-[30px] font-manrope font-medium text-tabText">
-                        {"Trusted across"}
+                        {"Most recommend in"}
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
                       {item?.addresses?.map((items: any, indx: number) => (
                         <button
                           key={indx}
-                          className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-bgLight"
+                          className="text-[14px] font-manrope text-tabText font-medium px-[12px] rounded-full bg-bgLight"
                         >
                           <span>{items}</span>
                         </button>
@@ -237,7 +264,7 @@ const Card = () => {
                       className="w-full"
                     >
                       <button className="w-full cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
-                        <p className="text-[16px] font-outfit">Chat</p>
+                        <p className="text-[16px] font-outfit">Text</p>
                         <MdOutlineChat size={20} />
                       </button>
                     </Link>
@@ -248,9 +275,9 @@ const Card = () => {
                       onClick={(e) => {
                         dispatch(openShare(), e.stopPropagation());
                       }}
-                      className="bg-secondary cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
+                      className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
                     >
-                      <p>share with friend</p>
+                      <p>Share</p>
                       <IoShareSocial size={20} />
                     </button>
                   </div>
@@ -288,7 +315,11 @@ const Card = () => {
         </>
       ) : (
         <div className="text-[32px] font-manrope font-semibold text-center text-para">
-          {isLoading ? <Loader /> : "No recommendations found in this suburb"}
+          {isLoading ? (
+            <Loader />
+          ) : (
+            "We haven't reached your suburb yet. Be the first to start the community!"
+          )}
         </div>
       )}
     </div>

@@ -79,14 +79,18 @@ import { setActiveTab } from "@/store/tabSlice";
 import { api } from "@/src/service/axios";
 import { useEffect, useState, useRef } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { usePathname } from "next/navigation";
 
 const TabBar: React.FC = () => {
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
   const cardLength = useSelector((state: RootState) => state.cardLength.cardLength);
+  const params = usePathname()
   const dispatch = useDispatch<AppDispatch>();
 
   const [categoryData, setCategoryData] = useState<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  console.log(params,"paramsparams")
 
   const getCategotyData = async () => {
     try {
@@ -94,7 +98,6 @@ const TabBar: React.FC = () => {
       const cetData = res.data;
 
       const uniqueData = [
-        { serviceType: "Most Recommended" },
         ...Array.from(
           new Map(
             cetData?.data?.recommendations?.docs?.map((item: any) => [
@@ -132,7 +135,7 @@ const TabBar: React.FC = () => {
           {/* Left Button */}
           <button
             onClick={scrollLeft}
-            className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer"
+            className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer md:hidden flex"
           >
             <MdKeyboardArrowLeft size={20} className="text-tabText font-medium" />
           </button>
@@ -164,7 +167,7 @@ const TabBar: React.FC = () => {
           {/* Right Button */}
           <button
             onClick={scrollRight}
-            className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer"
+            className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer md:hidden flex"
           >
             <MdKeyboardArrowRight size={20} className="text-tabText font-medium" />
           </button>

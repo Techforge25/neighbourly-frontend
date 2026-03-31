@@ -19,15 +19,20 @@ const ContactUsForm = () => {
 
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(2, "Name must be at least 2 characters")
+        .matches(/^[A-Za-z]+$/, "Name can contain alphabets only")
+        .min(3, "Name must be at least 3 characters")
+        .max(40, "Name cannot exceed 40 characters")
         .required("Full name is required"),
 
       email: Yup.string()
+        .trim()
+        .lowercase()
         .email("Invalid email address")
         .required("Email is required"),
 
       message: Yup.string()
         .min(10, "Message must be at least 10 characters")
+        .max(2000, "Message cannot exceed 2000 characters")
         .required("Message is required"),
     }),
 
@@ -143,8 +148,9 @@ const ContactUsForm = () => {
 
           {/* Button */}
           <button
+          disabled={!formik.values.message || !formik.values.email || !formik.values.name }
             type="submit"
-            className="mt-6 w-full cursor-pointer bg-primary hover:bg-heading text-white py-3 rounded-full font-medium transition-all duration-300"
+            className="mt-6 w-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-primary hover:bg-heading text-white py-3 rounded-full font-medium transition-all duration-300"
           >
             {isLoading ? "Loading..." : "Submit →"}
           </button>

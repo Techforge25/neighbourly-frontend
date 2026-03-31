@@ -26,7 +26,7 @@ export default function StepperHeader({ step, steps = ["Email", "About You", "Re
               <span className="md:text-[14px] text-[12px] text-textdark">{label}</span>
             </div>
             {!isLast && (
-              <div className={`md:w-30 w-15 h-0.5 mx-2 mb-5 transition-colors ${
+              <div className={`md:w-30 w-20 h-0.5 mx-2 mb-5 transition-colors ${
                 step > stepNum ? "bg-green" : "bg-modal-line"
               }`} />
             )}

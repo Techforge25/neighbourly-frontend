@@ -34,6 +34,7 @@ const FeelsDiffrent = () => {
                     {item.text}
                   </p>
                 </div>
+                  <div className="bg-border1  h-[1px] md:mt-4 mt-2 md:w-[427px]"/>
               </div>
             ))}
           </div>
@@ -41,8 +42,8 @@ const FeelsDiffrent = () => {
 
         {/* RIGHT IMAGE SECTION */}
         <motion.div
-          initial={{ x: 100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
           className="relative"
@@ -51,12 +52,12 @@ const FeelsDiffrent = () => {
             src="/images/feels.png"
             alt="Description of the image"
             width={500}
-            height={300}
-            className="w-[485px]"
+            height={500}
+            className="w-[485px] h-[580px] object-cover"
           />
 
-          <div className="absolute max-w-[460px] mx-auto lg:left-0 left-1.5 lg:right-0 right-1.5 lg:p-4 p-2 bottom-2  bg-[#718496] text-[white]">
-            <p className="lg:text-[30px] text-[22px] md:leading-[46px] leading-[20px] font-medium font-manrope">
+          <div className="absolute max-w-[460px] mx-auto lg:left-0 left-1.5 lg:right-0 right-1.5 lg:p-4 p-2 bottom-2  bg-secondary text-white">
+            <p className="lg:text-[22px] text-[22px] font-semibold font-manrope">
               Find trusted local services in your area
             </p>
             <p className="lg:text-[16px] text-[12px] lg:leading-[28px] leading-[20px] font-poppins">

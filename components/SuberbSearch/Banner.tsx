@@ -1,4 +1,5 @@
 "use client";
+import { RootState } from "@/store";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoArrowBack, IoLocationOutline } from "react-icons/io5";
@@ -9,7 +10,7 @@ const Banner = () => {
 
   const [suburb, setSuburb] = useState<string | null>(null);
 
-   const cardLength = useSelector((state) => state.cardLength.cardLength);
+   const cardLength = useSelector((state:RootState) => state.cardLength.cardLength);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

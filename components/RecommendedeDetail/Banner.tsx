@@ -138,21 +138,21 @@ const Banner = ({ recomendedDetail }: Props) => {
 
             <Link href={`sms:${recomendedDetail?.contact}?body=Hello%20there!`}>
               <button className="w-full sm:flex-1 sm:w-[256px] cursor-pointer flex items-center justify-center gap-2 sm:gap-8 text-white bg-secondary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">
-                <p className="font-outfit">Chat</p>
+                <p className="font-outfit">Text</p>
                 <MdOutlineChat size={20} />
               </button>
             </Link>
           </div>
         </div>
 
-        <div className="w-full max-w-[792px] mx-auto mt-1 sm:mt-6">
+        <div className="w-full max-w-[792px] mx-auto sm:mt-6">
           <button
             onClick={(e) => {
               dispatch(openShare(), e.stopPropagation());
             }}
-            className="bg-secondary text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full py-3 text-[12px] leading-[13.57px] font-outfit capitalize"
+            className="bg-green text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full py-3 text-[12px] leading-[13.57px] font-outfit capitalize"
           >
-            <p>share with friend</p>
+            <p>share</p>
             <IoShareSocial size={20} />
           </button>
         </div>
