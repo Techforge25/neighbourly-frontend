@@ -820,7 +820,6 @@ export const RECOMMEND_OPTIONS = [
   { value: "Reliable", label: "Reliable" },
   { value: "Fair pricing", label: "Fair pricing" },
   { value: "Good Quality Work", label: "Good quality work" },
-  { value: "Good Quality Work", label: "Good quality work" },
   { value: "Responsive", label: "Responsive" },
   { value: "Local reputation", label: "Local reputation" },
   { value: "Easy to deal with", label: "Easy to deal with" },

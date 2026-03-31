@@ -20,6 +20,12 @@ const Banner = ({ recomendedDetail }: Props) => {
   const router = useRouter();
   const isLoading = !recomendedDetail;
 
+  const filterLocation = (detail: any) => {
+    const data = detail.map((item: any) => item.user.address);
+    const uniqueData = [...new Set(data)];
+    return uniqueData;
+  };
+
   return (
     <main className="shadow-md ">
       <div
@@ -90,22 +96,29 @@ const Banner = ({ recomendedDetail }: Props) => {
         </p>
 
         <div className="flex md:flex-row flex-col  gap-2 mt-4">
-          <div className="flex items-center gap-[8px] ">
+          <div className="flex items-center md:gap-[8px] gap-2 ">
             <p>
-              <IoEarthSharp size={24} />
+              <IoEarthSharp size={20} />
             </p>
             <p className="text-[18px] leading-[30px] font-manrope text-tabText font-semibold ">
               Trusted across
             </p>
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
-            <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] capitalize">
-              {isLoading ? (
-                <span className="block w-[80px] h-[14px] bg-lightbg rounded animate-pulse"></span>
-              ) : (
-                recomendedDetail?.location
-              )}
-            </button>
+            {filterLocation(recomendedDetail?.recommendations).map(
+              (item: any, ind: number) => (
+                <button
+                  key={ind}
+                  className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] capitalize"
+                >
+                  {isLoading ? (
+                    <span className="block w-[80px] h-[14px] bg-lightbg rounded animate-pulse"></span>
+                  ) : (
+                    <span className="">{item}</span>
+                  )}
+                </button>
+              ),
+            )}
           </div>
         </div>
 

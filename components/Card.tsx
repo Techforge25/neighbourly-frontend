@@ -42,7 +42,7 @@ const Card = () => {
     const getCategotyData = async () => {
       setIsLoading(true);
       try {
-        console.log(isListTrue, "is list true")
+        console.log(isListTrue, "is list true");
         const res = await api.get(
           `recommendation?page=${page}&limit=${!isListTrue ? limit : 9}${search ? `${search}${filterQuery}` : filterQuery}`,
         );
@@ -50,7 +50,6 @@ const Card = () => {
         setIsListTrue(cetData?.data?.showFullList);
         dispatch(setCardLength(cetData?.data?.recommendations?.docs.length));
         dispatch(setIsShowFullList(cetData?.data?.showFullList));
-
 
         setCategoryData(cetData?.data?.recommendations);
         dispatch(
@@ -71,8 +70,33 @@ const Card = () => {
     getCategotyData();
   }, [page, limit, activeTab, dispatch, isListTrue, triggerRecommendations]);
 
+  const colorClasses = [
+    "bg-primary_light text-primary",
+    "bg-success_light text-success",
+    "text-text-dark bg-light-bg",
+    "text-textdark bg-textdark/5",
+    "text-verified bg-verified/5",
+    "text-green bg-green/5",
+    "text-share-modal-icon bg-share-modal-icon/5",
+    "text-secondary bg-secondary/5",
+    "text-para bg-para/5",
+    "text-tabText bg-tabText/5",
+    "text-tabText bg-border",
+    "text-tabText bg-border",
+    "text-modal-line bg-modal-line/5",
+  ];
+
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colorClasses.length);
+    return colorClasses[randomIndex];
+  };
+
+  const getColorByIndex = (index: number) => {
+  return colorClasses[index % colorClasses.length];
+};
+
   return (
-    <div className="md:my-10 max-w-[1396px] mx-auto">
+    <div className="md:my-10 max-w-[1396px] mx-auto mmd:p-0 p-4">
       {categoryData?.docs?.length > 0 ? (
         <>
           <div className="flex items-center gap-4 flex-wrap justify-center">
@@ -123,14 +147,14 @@ const Card = () => {
                           className="w-[60px] h-[60px] object-contain"
                         />
                       </div>
-                      <p className="text-center text-base font-semibold text-gray-900 mt-2">
+                      <p className="text-center md:text-[16px] text-[14px]  font-semibold text-gray-900 mt-2">
                         {item.personName}
                       </p>
                     </div>
                   </div>
 
                   <div className="w-full w-[378px] flex-col gap-2 mt-20">
-                    <div className="text-[14px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para mt-4">
+                    <div className="md:text-[14px] text-[12px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para mt-4">
                       {item?.serviceType}
                     </div>
 
@@ -142,22 +166,17 @@ const Card = () => {
                       <span>
                         <LuThumbsUp size={24} className="text-secondary" />
                       </span>
-                      <span className="text-secondary capitalize font-poppins font-medium text-[16px] leading-[28px]">
+                      <span className="text-secondary capitalize font-poppins font-medium md:text-[16px] text-[14px] leading-[28px]">
                         {`recommended by ${item?.recommendationCount} neighbours`}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 h-[32px] mt-2 pb-40">
+                    <div className="grid grid-cols-3 gap-3 h-[32px] mt-2 md:pb-40 pb-30">
                       {[...new Set(item.reasonsOfRecommendation.flat())].map(
                         (resItem: any, index: number) => (
                           <div key={index}>
                             <p
-                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${index === 0
-                                ? "bg-primary_light text-primary"
-                                : index === 1
-                                  ? "bg-success_light text-success"
-                                  : "text-text-dark bg-light-bg"
-                                }`}
+                              className={`font-manrope text-[14px] leading-[18px] md:w-[129px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${getColorByIndex(index)}`}
                             >
                               {resItem}
                             </p>
@@ -177,9 +196,14 @@ const Card = () => {
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <button className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF]">
-                        {item?.location}
-                      </button>
+                      {item?.addresses?.map((items: any, indx: number) => (
+                        <button
+                          key={indx}
+                          className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-bgLight"
+                        >
+                          <span>{items}</span>
+                        </button>
+                      ))}
                     </div>
                   </div>
 

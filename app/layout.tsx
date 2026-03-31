@@ -46,8 +46,11 @@ export default function RootLayout({
           </div>
           {children}
 
+        <div className="bg-white">
+          <Footer />
+        </div>
+
         </ClientProvider>
-        <Footer />
       </body>
     </html>
   );

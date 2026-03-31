@@ -15,7 +15,7 @@ const Find = () => {
         <div className="w-full">
           {/* Heading */}
           <p className=" text-[22px] sm:text-[28px] md:text-[34px] lg:text-[42px] text-center text-[#303231] font-bold leading-snug font-manrope">
-            <span>know someone who’d</span>{" "}
+            <span>Know someone who’d</span>{" "}
             <span className="text-white">find this useful?</span>
           </p>
 

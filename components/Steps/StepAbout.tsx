@@ -64,16 +64,17 @@ export default function StepAbout({
       <div className="grid grid-cols-2 gap-4">
         {/* First Name */}
         <div className="flex flex-col gap-[12px]">
-          <Label>First Name *</Label>
+          <Label>First Name <span className="text-red-500">*</span> </Label>
           <Input
             name="firstName"
             placeholder="e.g. olivia"
             value={formik.values.firstName}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="border md:text-[14px] text-[12px]"
           />
           {formik.touched.firstName && formik.errors.firstName && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 md:text-[14px] text-[12px]">
               {formik.errors.firstName}
             </span>
           )}
@@ -81,50 +82,53 @@ export default function StepAbout({
 
         {/* Mobile */}
         <div className="flex flex-col gap-[12px]">
-          <Label>Mobile Number *</Label>
+          <Label>Mobile Number <span className="text-red-500">*</span> </Label>
           <Input
             name="mobile"
             placeholder="e.g. 012385868664"
             value={formik.values.mobile}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="border md:text-[14px] text-[12px]"
           />
           {formik.touched.mobile && formik.errors.mobile && (
-            <span className="text-red-500 text-sm">{formik.errors.mobile}</span>
+            <span className="text-red-500 md:text-[14px] text-[12px]">{formik.errors.mobile}</span>
           )}
         </div>
       </div>
 
       {/* Suburb */}
       <div className="flex flex-col gap-[12px] mt-4">
-        <Label>Suburb *</Label>
+        <Label>Suburb <span className="text-red-500">*</span> </Label>
         <Input
           name="suburb"
           placeholder="e.g. Collingwood"
           value={formik.values.suburb}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          className="border md:text-[14px] text-[12px]"
         />
         {formik.touched.suburb && formik.errors.suburb && (
-          <span className="text-red-500 text-sm">{formik.errors.suburb}</span>
+          <span className="text-red-500 md:text-[14px] text-[12px]">{formik.errors.suburb}</span>
         )}
       </div>
 
       {/* Buttons */}
-      <div className="grid grid-cols-2 gap-4 pt-2 mt-4">
+      <div className="grid grid-cols-2 md:gap-4 gap-2 pt-2 mt-4">
         <button
-          className="rounded-full border-[1px] cursor-pointer border-[#E4E4E4] py-[16px] px-[27px] flex items-center justify-center text-[16px] font-poppins "
+          className="rounded-full border-[1px] cursor-pointer border-border md:py-[16px] md:px-[27px] flex items-center justify-center md:text-[16px] text-[12px] font-poppins "
           onClick={handleOnBack}
         >
           {" "}
-          <ArrowLeft size={24} /> Back{" "}
+          <ArrowLeft size={20} className="size-[20px]" /> Back{" "}
         </button>{" "}
         <button
+
           type="submit"
-          className="rounded-full py-[16px] px-[27px] flex items-center justify-center gap-2 bg-primary text-[16px] font-poppins text-white"
+          className="rounded-full md:py-[16px] py-[10px] md:px-[27px] flex items-center justify-center gap-2 bg-primary md:text-[16px] text-[11px] font-poppins text-white"
         >
-          {" "}
-          Submit Recommendation <ArrowRight size={24} />{" "}
+          Submit Recommendation
+          <ArrowRight size={20} className="size-[20px]" />{" "}
         </button>
       </div>
     </form>

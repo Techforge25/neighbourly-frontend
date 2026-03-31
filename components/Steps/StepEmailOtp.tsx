@@ -31,8 +31,8 @@ export default function StepEmailOtp({
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
   const router = useRouter();
-  const pathname = usePathname()
-  const dispatch = useDispatch()
+  const pathname = usePathname();
+  const dispatch = useDispatch();
 
   // ✅ Formik setup
   const formik = useFormik({
@@ -137,7 +137,6 @@ export default function StepEmailOtp({
     return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
   };
 
-
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -164,13 +163,14 @@ export default function StepEmailOtp({
             )}
             {!userData?.isProfileCompleted && (
               <button
+                disabled={!formik.values.email}
                 type="submit"
-                className={`bg-primary w-full mx-auto mt-6 text-[16px] font-poppins px-[1px] py-[8px] rounded-full text-white flex items-center justify-center gap-4`}
+                className={`bg-primary disabled:opacity-50 disabled:cursor-not-allowed w-full mx-auto cursor-pointer md:mt-6 text-[14px] md:text-[16px] font-poppins px-[1px] py-[8px] rounded-full text-white flex items-center justify-center gap-4`}
               >
                 {!loading ? (
                   <>
                     <span>Next</span>
-                    <IoArrowForward size={24} />
+                    <IoArrowForward size={24} className="size-[20px]" />
                   </>
                 ) : (
                   <p className="">Loading...</p>
@@ -182,7 +182,6 @@ export default function StepEmailOtp({
             {userData?.isProfileCompleted && (
               <>
                 <div className="bg-[#F4FAFF] rounded-[18px] p-[32px] flex items-start gap-[12px] ">
-
                   <AiOutlineExclamationCircle size={40} className="text-para" />
 
                   <p className="text-para font-poppins text-[16px] leading-[23px]">
@@ -197,8 +196,8 @@ export default function StepEmailOtp({
                   <button
                     onClick={() => {
                       if (pathname === "/discover") {
-                        dispatch(setTriggerRecommendations(true))
-                        onClose()
+                        dispatch(setTriggerRecommendations(true));
+                        onClose();
                       } else {
                         (router.push("/discover"), onClose());
                       }
@@ -267,7 +266,7 @@ export default function StepEmailOtp({
                   disabled={!canResend}
                   className="text-sm cursor-pointer font-medium text-muted-foreground underline transition-colors hover:text-resend disabled:opacity-40 disabled:no-underline"
                 >
-                  Resend OTP {" "}
+                  Resend OTP{" "}
                 </button>
               </div>
             </div>

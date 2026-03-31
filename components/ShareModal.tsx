@@ -3,14 +3,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { closeShare } from "@/store/shareSlice";
-import {
-  FaWhatsapp,
-  FaFacebookF,
-  FaInstagram,
-} from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { CiFacebook } from "react-icons/ci";
+import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { MdEmail, MdKeyboardArrowRight, MdOutlineEmail } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { FiLink } from "react-icons/fi";
+import { FiLink, FiUsers } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const ShareModal = () => {
@@ -22,33 +19,37 @@ const ShareModal = () => {
   const shareOptions = [
     {
       name: "WhatsApp",
-      icon: <FaWhatsapp className="text-green-500" />,
+      icon: <FaWhatsapp size={30} className="text-green-500" />,
       action: () =>
         window.open(
-          `https://wa.me/?text=${encodeURIComponent(window.location.href)}`
+          `https://wa.me/?text=${encodeURIComponent(window.location.href)}`,
         ),
+        bg:"bg-green-500/5"
     },
     {
       name: "Facebook",
-      icon: <FaFacebookF className="text-blue-500" />,
+      icon: <CiFacebook size={30} className="text-blue-500" />,
       action: () =>
         window.open(
-          `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`
+          `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
         ),
+        bg:"bg-blue-500/5"
     },
     {
       name: "Email",
-      icon: <MdEmail className="text-orange-400" />,
+      icon: <MdOutlineEmail size={30} className="text-share-modal-icon" />,
       action: () =>
         (window.location.href = `mailto:?body=${window.location.href}`),
+      bg:"bg-share-modal-icon/5"
     },
     {
       name: "Copy link",
-      icon: <FiLink />,
+      icon: <FiLink size={30} className="text-secondary" />,
       action: () => {
         navigator.clipboard.writeText(window.location.href);
-        toast.success("Link copied to clipboard!")
+        toast.success("Link copied to clipboard!");
       },
+      bg:"bg-secondary/5"
     },
   ];
 
@@ -58,14 +59,19 @@ const ShareModal = () => {
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-3">
           <h2 className="text-xl font-semibold">Share Neighbourly</h2>
-          <button className="cursor-pointer" onClick={() => dispatch(closeShare())}>
+          <button
+            className="cursor-pointer"
+            onClick={() => dispatch(closeShare())}
+          >
             <IoClose size={22} />
           </button>
         </div>
 
         {/* Icon */}
         <div className="flex justify-center my-6">
-          <div className="bg-red-100 p-4 rounded-full">👥</div>
+          <div className="p-4 rounded-full text-share-modal-icon bg-share-modal-icon/10">
+            <FiUsers size={20} />
+          </div>
         </div>
 
         {/* Options */}
@@ -74,20 +80,18 @@ const ShareModal = () => {
             <button
               key={i}
               onClick={item.action}
-              className="flex items-center justify-between border rounded-xl p-4"
+              className="flex items-center justify-between border-[1px] border-modal-line rounded-xl p-4 cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="bg-gray-100 p-2 rounded-lg">
-                  {item.icon}
-                </div>
-                <span>{item.name}</span>
+                <div className={`${item.bg} p-2 rounded-lg`}>{item.icon}</div>
+                <span className="md:text-[16px] text-[14px] text-tabText font-medium font-manrope">{item.name}</span>
               </div>
-              <span>{">"}</span>
+              <span><MdKeyboardArrowRight size={24} className="text-para" /></span>
             </button>
           ))}
         </div>
 
-        <p className="text-center text-gray-500 text-sm mt-6">
+        <p className="text-center text-para text-sm mt-6">
           Neighbourly helps communities grow together
         </p>
       </div>

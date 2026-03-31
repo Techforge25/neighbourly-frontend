@@ -1,6 +1,5 @@
 "use client";
 import { api } from "@/src/service/axios";
-import { trusted_Data } from "@/utils/dumydata";
 import React, { useEffect, useState } from "react";
 
 const Trusted = () => {
@@ -25,7 +24,6 @@ const Trusted = () => {
           textColor: "text-[#F3B39D]",
         },
       ]);
-      console.log(res,"State")
     } catch (error) {}
   };
   

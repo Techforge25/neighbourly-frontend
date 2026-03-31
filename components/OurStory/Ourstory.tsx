@@ -4,14 +4,14 @@ import React from "react";
 
 const Ourstory = () => {
   return (
-    <div className="md:w-[90%] w-[90%] mx-auto md:my-20 my-10 p-4">
+    <div className="md:w-[80%] w-[90%] mx-auto md:my-20 my-10 p-4">
       <div className="flex item-center justify-between flex-col lg:flex-row md:gap-20 gap-8">
         <div>
           <div className="">
-            <p className="md:text-[42px] text-[32px] text-[#303231] font-bold font-manrope">
-              <span>Our </span><span className="text-[#F3B39D]">story</span>
+            <p className="md:text-[42px] text-[32px] text-tabText font-bold font-manrope">
+              <span>Our </span><span className="text-primary">story</span>
             </p>
-            <p className="text-[16px] text-[#202939] md:mt-10 mt-4 font-poppins leading-[24px]">
+            <p className="text-[16px] text-tabText md:mt-10 mt-4 font-poppins leading-[24px]">
               Neighbourly started with a frustration we knew well: how hard it
               can be to find local service providers you can genuinely trust.
             </p>
@@ -21,7 +21,7 @@ const Ourstory = () => {
             <div className="mt-10 flex flex-col mdd:gap-5 gap-2.5">
               {our_story_data.map((item, ind) => (
                 <div key={ind}>
-                  <p className="text-[16px] text-[#697586] font-poppins leading-[24px]">
+                  <p className="text-[16px] text-para font-poppins leading-[24px] text-justify">
                     {item}
                   </p>
                 </div>
@@ -29,12 +29,12 @@ const Ourstory = () => {
             </div>
           }
 
-          <div className="border-l-4 border-[#F3B39D] md:mt-10 mt-4 pl-2">
+          <div className="border-l-4 border-primary md:mt-10 mt-4 pl-2">
             <p className="flex flex-col">
-              <span className="text-[#202939] lg:text-[23px] text-[16px] font-semibold font-poppins">
+              <span className="text-tabText lg:text-[23px] text-[16px] font-semibold font-poppins">
                 Kate and Andrew Gordon, Founders
               </span>
-              <span className="text-[#697586] text-[16px] font-poppins">
+              <span className="text-para text-[16px] font-poppins">
                 Founders
               </span>
             </p>

@@ -87,7 +87,7 @@ export default function StepperModal({
         {step !== 4 && (
           <>
             <div className="flex items-center justify-between py-3">
-              <h4 className="text-[24px] leading-[30px] font-semibold text-[#12141D]">
+              <h4 className="md:text-[24px] text-[18px] md:leading-[30px] leading-[15px] font-semibold text-[#12141D]">
                 Recommend a Business
               </h4>
 
@@ -99,7 +99,7 @@ export default function StepperModal({
           </>
         )}
 
-        {/* 🔄 Loader Overlay */}
+        {/* Loader Overlay */}
         {loading && (
           <div className="absolute inset-0 bg-white/70 flex items-center justify-center z-10 rounded-2xl">
             <Loader />

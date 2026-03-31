@@ -44,7 +44,7 @@ const Banner = () => {
 
         <div className="flex items-start gap-4">
           <button className="bg-white md:px-[41px] px-[21px] md:py-[5px] py-[2.5px]  rounded-[100px] text-[#FE9A86] md:text-[40px] text-[20px] font-extrabold font-manrope">
-            {cardLength}
+            {cardLength?cardLength:"0"}
           </button>
           <h1 className="font-bold font-manrope lg:text-[62px] text-[32px] text-white lg:leading-[68px] text-center flex flex-col whitespace-pre-wrap ">
             <span>Recommendations in</span>

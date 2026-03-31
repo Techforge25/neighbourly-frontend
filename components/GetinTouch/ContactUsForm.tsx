@@ -39,11 +39,9 @@ const ContactUsForm = () => {
           message: values.message,
         });
         setIsLoading(false);
+        toast.success(res.data?.data);
         resetForm();
-        if (res.success) {
-          toast.success(res.data);
-        }
-        console.log(res);
+        console.log(res?.data?.data, "Response From Get In Touch Form");
       } catch (error: any) {
         console.log(error.response.data.message);
         setIsLoading(false);
@@ -133,22 +131,21 @@ const ContactUsForm = () => {
           {/* Button */}
           <button
             type="submit"
-            className="mt-6 w-full cursor-pointer bg-[#F3B39D] hover:bg-[#e59c86] text-white py-3 rounded-full font-medium transition-all duration-300"
+            className="mt-6 w-full cursor-pointer bg-primary hover:bg-heading text-white py-3 rounded-full font-medium transition-all duration-300"
           >
             {isLoading ? "Loading..." : "Submit →"}
           </button>
 
           {/* Footer note */}
-          <div className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope md:w-[635px] mx-auto">
+          <div className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope">
             <span>
               <GoShieldCheck size={24} />
             </span>
-            <p className="flex flex-col gap-2 w-[90%]">
-              {" "}
+            <p className="flex flex-col gap-2">
               <span>
                 Your details are safe with us. We only use this information to
                 respond to your enquiry.
-              </span>{" "}
+              </span>
               <span>
                 We’re starting on the Northern Beaches and would love to hear
                 from residents, local businesses and community groups.

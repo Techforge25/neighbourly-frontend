@@ -13,10 +13,10 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
   return (
     <section className="max-w-[1440px] mx-auto my-22">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row justify-center md:gap-8 gap-6 max-w-[1280px] mx-auto">
+        <div className="flex flex-col xl:flex-row justify-center md:gap-8 gap-6 max-w-[1280px] mx-auto">
           {/* Left Panel */}
           <div className="flex-1 max-w-full md:max-w-[838px] border border-[#D5E8FC] rounded-[22px] p-8 md:p-10 overflow-y-auto max-h-[786px]">
-            <h2 className="text-2xl md:text-3xl font-bold text-textdark capitalize font-manrope mb-6">
+            <h2 className="md:text-[32px] text-[16px] font-bold text-textdark capitalize font-manrope mb-6">
               What Neighbors Say
             </h2>
 
@@ -39,7 +39,7 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
                         {item.name}
                       </h5>
 
-                      <div className="flex  items-center gap-2 md:gap-3 text-para font-poppins text-[12px] md:text-[14px]">
+                      <div className="flex  items-center md:flex-nowrap flex-wrap gap-2 md:gap-3 text-para font-poppins text-[12px] md:text-[14px]">
                         <p>{item.user.email}</p>
                         <span className="w-1.5 h-1.5 bg-para rounded-full" />
                         <p>{recomendedDetail?.contact? recomendedDetail?.contact : "N/A"}</p>
