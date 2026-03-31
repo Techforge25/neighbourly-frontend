@@ -78,7 +78,7 @@ const Header = () => {
 
         {/* Mobile Responsive */}
         <div
-          className={`absolute top-20 right-0 bg-[#f0eae9f8] w-full h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out
+          className={`absolute top-14 right-0 bg-[#f0eae9f8] w-full h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out
           ${isOpenMenu ? "translate-y-0 opacity-100 z-1000" : "-translate-y-full opacity-0 pointer-events-none z-1000"}`}
         >
           {navItems.map((item, index) => (
