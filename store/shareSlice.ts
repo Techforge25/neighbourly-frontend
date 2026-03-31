@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isOpen: false,
   triggerRecommendations: false,
+  link:""
 };
 
 const shareSlice = createSlice({
@@ -17,9 +18,12 @@ const shareSlice = createSlice({
     },
     setTriggerRecommendations: (state, action) => {
       state.triggerRecommendations = action.payload;
+    },
+    setLink: (state, action) => {
+      state.link = action.payload;
     }
   },
 });
 
-export const { openShare, closeShare, setTriggerRecommendations } = shareSlice.actions;
+export const { openShare, closeShare, setTriggerRecommendations , setLink } = shareSlice.actions;
 export default shareSlice.reducer;

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomIcon from "./CustomIcon";
 import { useRouter } from "next/navigation";
 import ShareModal from "./ShareModal";
-import { openShare } from "@/store/shareSlice";
+import { openShare, setLink } from "@/store/shareSlice";
 import { api } from "@/src/service/axios";
 import Loader from "./Loader";
 import { setPage, setPaginationData } from "@/store/paginationSlice";
@@ -103,7 +103,7 @@ const Card = () => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
                 onClick={() => {
-                  router.push(`/recomended-detial/${item.businessId}`);
+                  router.push(`/recomended-detail/${item.businessId}`);
                 }}
                 key={ind}
                 className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[783px] max-w-[410px]"
@@ -273,7 +273,11 @@ const Card = () => {
                   <div className="w-full max-w-[378px] mx-auto mt-6">
                     <button
                       onClick={(e) => {
-                        dispatch(openShare(), e.stopPropagation());
+                        e.stopPropagation();
+                        dispatch(openShare());
+                        dispatch(
+                          setLink(`recomended-detail/${item.businessId}`),
+                        );
                       }}
                       className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
                     >

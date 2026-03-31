@@ -26,6 +26,8 @@ const Banner = ({ recomendedDetail }: Props) => {
     return uniqueData;
   };
 
+  console.log(recomendedDetail,"recomendedDetailrecomendedDetail")
+
   return (
     <main className="shadow-md ">
       <div
@@ -86,7 +88,7 @@ const Banner = ({ recomendedDetail }: Props) => {
         </div>
       </div>
 
-      <div className="w-full max-w-[1296px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center gap-6 sm:gap-[24px] mt-10">
+      <div className="w-full max-w-[1296px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center gap-6 sm:gap-[24px] md:mt-10 mt-4">
         <p className="text-[20px] sm:text-[22px] md:text-[24px] leading-[28px] sm:leading-[30px] font-semibold font-manrope text-center">
           {isLoading ? (
             <span className="block mx-auto w-[200px] h-[20px] bg-lightbg rounded animate-pulse"></span>
@@ -95,7 +97,7 @@ const Banner = ({ recomendedDetail }: Props) => {
           )}
         </p>
 
-        <div className="flex md:flex-row flex-col  gap-2 mt-4">
+        <div className="flex md:flex-row flex-col  md:gap-2 md:mt-4">
           <div className="flex items-center md:gap-[8px] gap-2 ">
             <p>
               <IoEarthSharp size={20} />
@@ -124,10 +126,12 @@ const Banner = ({ recomendedDetail }: Props) => {
 
         <div className="w-full max-w-[792px]">
           <div className="my-2 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-[13px]">
-            {/* <button className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
-              <p className="font-outfit">Website</p>
-              <LuGlobe size={20} />
-            </button> */}
+            <button  onClick={(e) => {
+              dispatch(openShare(), e.stopPropagation());
+            }} className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
+              <p>share</p>
+              <IoShareSocial size={20} />
+            </button>
 
             <Link href={`tel:${recomendedDetail?.contact}`}>
               <button className="w-full sm:flex-1 sm:w-[256px] cursor-pointer flex items-center justify-center gap-2 sm:gap-8 text-white bg-primary text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 rounded-full">
@@ -143,18 +147,6 @@ const Banner = ({ recomendedDetail }: Props) => {
               </button>
             </Link>
           </div>
-        </div>
-
-        <div className="w-full max-w-[792px] mx-auto sm:mt-6">
-          <button
-            onClick={(e) => {
-              dispatch(openShare(), e.stopPropagation());
-            }}
-            className="bg-green text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full py-3 text-[12px] leading-[13.57px] font-outfit capitalize"
-          >
-            <p>share</p>
-            <IoShareSocial size={20} />
-          </button>
         </div>
       </div>
 

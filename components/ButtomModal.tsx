@@ -1,9 +1,21 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import StepperModal from "./StepperModal";
 
 export default function ButtonModal({bg}:any) {
   const [openModal, setOpenModal] = useState(false);
+    useEffect(() => {
+    if (openModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [openModal]);
 
   return (
     <>

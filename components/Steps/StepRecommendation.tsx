@@ -111,10 +111,10 @@ export default function StepRecommendation({
               {isError}
             </p>
           )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 md:gap-y-5 gap-y-2">
             {/* First Name */}
-            <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+            <div className="flex flex-col md:gap-[10px] gap-[5px]">
+              <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
                 First Name Of Who You Recommend{" "}
                 <span className="text-red-500">*</span>
               </Label>
@@ -122,7 +122,7 @@ export default function StepRecommendation({
                 as={Input}
                 name="firstName"
                 placeholder="e.g. Shannon"
-                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
+                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope text-para ${
                   errors.firstName && touched.firstName
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -136,15 +136,15 @@ export default function StepRecommendation({
             </div>
 
             {/* Business Name */}
-            <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+            <div className="flex flex-col md:gap-[10px] gap-[px]">
+              <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
                 The Business Name <span className="text-red-500">*</span>
               </Label>
               <Field
                 as={Input}
                 name="businessName"
                 placeholder="e.g. Sunny Day Plumbing"
-                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
+                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope text-para ${
                   errors.businessName && touched.businessName
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -158,15 +158,15 @@ export default function StepRecommendation({
             </div>
 
             {/* Phone Number */}
-            <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+            <div className="flex flex-col md:gap-[10px] gap-[px]">
+              <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
                 Phone Number <span className="text-red-500">*</span>
               </Label>
               <Field
                 as={Input}
                 name="theirNumber"
                 placeholder="e.g. 012385868664"
-                className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope text-para ${
+                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope text-para ${
                   errors.theirNumber && touched.theirNumber
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -180,15 +180,15 @@ export default function StepRecommendation({
             </div>
 
             {/* Service */}
-            <div className="flex flex-col gap-[10px]">
-              <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+            <div className="flex flex-col md:gap-[10px] gap-[px]">
+              <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
                 What Service They Provide{" "}
                 <span className="text-red-500">*</span>
               </Label>
               <Field
                 as="select"
                 name="service"
-                className={`flex w-full border rounded-[12px] px-3 py-3 text-[16px] text-para ${
+                className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] text-para ${
                   errors.service && touched.service
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -215,7 +215,7 @@ export default function StepRecommendation({
 
           {/* MultiSelect for Recommendation Reasons */}
           <div className="flex flex-col gap-2 mt-4">
-            <Label className="text-[14px] leading-[20px] font-manrope font-medium">
+            <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
               why you recommend them <span className="text-red-500">*</span>
             </Label>
 
@@ -267,25 +267,25 @@ export default function StepRecommendation({
           </div>
 
           {/* Optional Comment  */}
-          <div className="flex flex-col gap-2 mt-4">
-            <Label className="text-[14px] leading-[20px] font-medium text-#202939">
+          <div className="flex flex-col md:gap-2 gap-1 md:mt-4 mt-1">
+            <Label className="md:text-[14px] text-[12px] leading-[20px] font-medium text-#202939">
               {`Comment (Optional)`}
             </Label>
             <Field
               as="textarea"
               name="comment"
               placeholder="Tell us a little about your experience"
-              className={`border border-input rounded-[12px] px-3 py-3 text-[16px] h-auto font-manrope focus:outline-none text-para `}
+              className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope focus:outline-none text-para `}
             />
           </div>
 
           {/* Optional Comment  */}
 
           {/* Buttons */}
-          <div className="grid grid-cols-2 md:gap-4 gap-2 md:mt-8 mt-4">
+          <div className="grid grid-cols-2 items-center md:gap-4 gap-2 md:mt-8 mt-4">
             <button
               type="button"
-              className="rounded-full border border-[#E4E4E4] py-4 px-7 flex items-center justify-center gap-2 md:text-[16px] text-[14px] text-black"
+              className="rounded-full border border-[#E4E4E4] md:py-4 md:px-7  px-4 py-2 flex items-center justify-center gap-2 md:text-[16px] text-[14px] text-black"
               onClick={handleBack}
             >
               <ArrowLeft size={20} />
@@ -302,10 +302,10 @@ export default function StepRecommendation({
                   values.recommendationReason.length > 0
                 )
               }
-              className="rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer py-4 px-7 flex items-center justify-center gap-2 bg-primary md:text-[16px] text-[12px] text-[#fff]"
+              className="rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center justify-center gap-2 bg-primary md:text-[16px] text-[12px] text-[#fff]"
             >
               Submit Recommendation
-              <ArrowRight size={20} />
+              <ArrowRight size={20} className="md:flex hidden" />
             </button>
           </div>
         </Form>

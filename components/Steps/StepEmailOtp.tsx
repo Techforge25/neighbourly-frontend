@@ -181,17 +181,17 @@ export default function StepEmailOtp({
             {/* Is Profile Is Completed  */}
             {userData?.isProfileCompleted && (
               <>
-                <div className="bg-[#F4FAFF] rounded-[18px] p-[32px] flex items-start gap-[12px] ">
+                <div className="bg-[#F4FAFF] rounded-[18px] md:p-[32px] p-[16px] flex items-start gap-[12px] ">
                   <AiOutlineExclamationCircle size={40} className="text-para" />
 
-                  <p className="text-para font-poppins text-[16px] leading-[23px]">
+                  <p className="text-para font-poppins md:text-[16px] text-[12px] leading-[23px]">
                     It seems you have already submitted atleast 1 recommendation
                     you can either watch the full recommendations list or submit
                     another recommendation.
                   </p>
                 </div>
 
-                <div className="flex items-center justify-center gap-6">
+                <div className="flex items-center justify-center md:gap-6 gap-4">
                   {/* Left Button */}
                   <button
                     onClick={() => {
@@ -203,7 +203,7 @@ export default function StepEmailOtp({
                       }
                     }}
                     type="button"
-                    className="bg-primary cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center"
+                    className="bg-primary cursor-pointer w-[320px] md:h-[56px] py-3 md:text-[16px] text-[11px] font-medium rounded-full text-white flex items-center justify-center"
                   >
                     View Full Recommendations
                   </button>
@@ -212,10 +212,10 @@ export default function StepEmailOtp({
                   <button
                     onClick={nextStepThree}
                     type="button"
-                    className="bg-secondary cursor-pointer w-[320px] h-[56px] text-[16px] font-medium rounded-full text-white flex items-center justify-center gap-3"
+                    className="bg-secondary cursor-pointer w-[320px] md:h-[56px] md:text-[16px] text-[12px] font-medium rounded-full text-white flex items-center justify-center gap-3"
                   >
                     Share Another Recommendation
-                    <IoArrowForward size={20} />
+                    <IoArrowForward size={20} className="md:flex hidden" />
                   </button>
                 </div>
               </>

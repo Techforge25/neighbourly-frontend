@@ -79,7 +79,7 @@ export default function StepperModal({
     >
       {/* Modal Box */}
       <div
-        className={` ${step === 4 ? "bg-[#F1EAE5]" : "bg-white max-h-[732px]"} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl`}
+        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px]"} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl`}
         onClick={(e) => e.stopPropagation()} // 👈 prevent close inside click
       >
         {/* ❌ Close Button */}

@@ -64,21 +64,24 @@ const Banner = () => {
       >
         {/* Heading */}
         <div className=" mb-6 font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center gap-[12px]">
-          <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-            Find the local services your
-          </p>
+          <div className="flex items-center justify-center md:gap-4 gap-2">
+            <button onClick={()=>{router.push('/discover')}} className="cursor-pointer font-bold font-manrope md:text-[30px] text-[24px] text-white font-monrope text-white bg-secondary md:px-4 px-2 py-1  rounded-full">Discover</button>
+            <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+              services your
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 md:mt-2">
             <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               neighbours trust
             </p>
-            <div className="w-68">
+            {/* <div className="w-68">
               <WordRotate
                 words={words}
                 className="font-bold font-manrope md:text-[30px] text-[24px] text-white font-monrope"
                 duration={1.5}
               />
-            </div>
+            </div> */}
           </div>
 
           <p className="mt-2 text-[18px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">

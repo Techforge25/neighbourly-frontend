@@ -54,17 +54,19 @@ export default function StepAbout({
 
   // handele Back
 
-  const handleOnBack = () =>{
+  const handleOnBack = () => {
     localStorage.removeItem("stepAboutData");
     onBack();
-  }
+  };
 
   return (
     <form onSubmit={formik.handleSubmit} className="w-full rounded-2xl">
       <div className="grid grid-cols-2 gap-4">
         {/* First Name */}
         <div className="flex flex-col gap-[12px]">
-          <Label>First Name <span className="text-red-500">*</span> </Label>
+          <Label>
+            First Name <span className="text-red-500">*</span>{" "}
+          </Label>
           <Input
             name="firstName"
             placeholder="e.g. olivia"
@@ -82,7 +84,9 @@ export default function StepAbout({
 
         {/* Mobile */}
         <div className="flex flex-col gap-[12px]">
-          <Label>Mobile Number <span className="text-red-500">*</span> </Label>
+          <Label>
+            Mobile Number <span className="text-red-500">*</span>{" "}
+          </Label>
           <Input
             name="mobile"
             placeholder="e.g. 012385868664"
@@ -92,14 +96,18 @@ export default function StepAbout({
             className="border md:text-[14px] text-[12px]"
           />
           {formik.touched.mobile && formik.errors.mobile && (
-            <span className="text-red-500 md:text-[14px] text-[12px]">{formik.errors.mobile}</span>
+            <span className="text-red-500 md:text-[14px] text-[12px]">
+              {formik.errors.mobile}
+            </span>
           )}
         </div>
       </div>
 
       {/* Suburb */}
       <div className="flex flex-col gap-[12px] mt-4">
-        <Label>Suburb <span className="text-red-500">*</span> </Label>
+        <Label>
+          Suburb <span className="text-red-500">*</span>{" "}
+        </Label>
         <Input
           name="suburb"
           placeholder="e.g. Collingwood"
@@ -109,26 +117,27 @@ export default function StepAbout({
           className="border md:text-[14px] text-[12px]"
         />
         {formik.touched.suburb && formik.errors.suburb && (
-          <span className="text-red-500 md:text-[14px] text-[12px]">{formik.errors.suburb}</span>
+          <span className="text-red-500 md:text-[14px] text-[12px]">
+            {formik.errors.suburb}
+          </span>
         )}
       </div>
 
       {/* Buttons */}
-      <div className="grid grid-cols-2 md:gap-4 gap-2 pt-2 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 items-center pt-2 mt-4">
         <button
-          className="rounded-full border-[1px] cursor-pointer border-border md:py-[16px] md:px-[27px] flex items-center justify-center md:text-[16px] text-[12px] font-poppins "
+          className="rounded-full border-[1px] border-border w-full flex items-center justify-center py-2 md:py-[16px] px-4 md:px-[27px] text-[12px] md:text-[16px] font-poppins cursor-pointer"
           onClick={handleOnBack}
         >
-          {" "}
-          <ArrowLeft size={20} className="size-[20px]" /> Back{" "}
-        </button>{" "}
-        <button
+          <ArrowLeft size={20} className="mr-2" /> Back
+        </button>
 
+        <button
           type="submit"
-          className="rounded-full md:py-[16px] py-[10px] md:px-[27px] flex items-center justify-center gap-2 bg-primary md:text-[16px] text-[11px] font-poppins text-white"
+          className="rounded-full w-full flex items-center justify-center gap-2 py-2 md:py-[16px] px-4 md:px-[27px] text-[11px] md:text-[16px] font-poppins bg-primary text-white"
         >
           Submit Recommendation
-          <ArrowRight size={20} className="size-[20px]" />{" "}
+          <ArrowRight size={20} className="ml-2" />
         </button>
       </div>
     </form>

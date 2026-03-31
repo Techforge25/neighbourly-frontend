@@ -13,6 +13,9 @@ import { toast } from "react-toastify";
 const ShareModal = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state: RootState) => state.share.isOpen);
+  const link = useSelector((state: RootState) => state.share.link);
+
+  console.log(link, "Links");
 
   if (!isOpen) return null;
 
@@ -24,7 +27,7 @@ const ShareModal = () => {
         window.open(
           `https://wa.me/?text=${encodeURIComponent(window.location.href)}`,
         ),
-        bg:"bg-green-500/5"
+      bg: "bg-green-500/5",
     },
     {
       name: "Facebook",
@@ -33,23 +36,27 @@ const ShareModal = () => {
         window.open(
           `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
         ),
-        bg:"bg-blue-500/5"
+      bg: "bg-blue-500/5",
     },
     {
       name: "Email",
       icon: <MdOutlineEmail size={30} className="text-share-modal-icon" />,
       action: () =>
         (window.location.href = `mailto:?body=${window.location.href}`),
-      bg:"bg-share-modal-icon/5"
+      bg: "bg-share-modal-icon/5",
     },
     {
       name: "Copy link",
       icon: <FiLink size={30} className="text-secondary" />,
       action: () => {
-        navigator.clipboard.writeText(window.location.href);
+        navigator.clipboard.writeText(
+          link
+            ? `https://neighbourly-frontend-delta.vercel.app/${link}`
+            : window.location.href,
+        );
         toast.success("Link copied to clipboard!");
       },
-      bg:"bg-secondary/5"
+      bg: "bg-secondary/5",
     },
   ];
 
@@ -84,9 +91,13 @@ const ShareModal = () => {
             >
               <div className="flex items-center gap-3">
                 <div className={`${item.bg} p-2 rounded-lg`}>{item.icon}</div>
-                <span className="md:text-[16px] text-[14px] text-tabText font-medium font-manrope">{item.name}</span>
+                <span className="md:text-[16px] text-[14px] text-tabText font-medium font-manrope">
+                  {item.name}
+                </span>
               </div>
-              <span><MdKeyboardArrowRight size={24} className="text-para" /></span>
+              <span>
+                <MdKeyboardArrowRight size={24} className="text-para" />
+              </span>
             </button>
           ))}
         </div>

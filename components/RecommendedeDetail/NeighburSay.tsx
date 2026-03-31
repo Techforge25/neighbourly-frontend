@@ -11,11 +11,11 @@ type Props = {
 
 const NeighburSay = ({ recomendedDetail }: Props) => {
   return (
-    <section className="max-w-[1440px] mx-auto my-22">
+    <section className="max-w-[1440px] mx-auto md:my-22 mt-4">
       <div className="container mx-auto px-4">
         <div className="flex flex-col xl:flex-row justify-center md:gap-8 gap-6 max-w-[1280px] mx-auto">
           {/* Left Panel */}
-          <div className="flex-1 max-w-full md:max-w-[838px] border border-[#D5E8FC] rounded-[22px] p-8 md:p-10 overflow-y-auto max-h-[786px]">
+          <div className="flex-1 max-w-full md:max-w-[838px] border border-modal-line rounded-[22px] p-8 md:p-10 overflow-y-auto md:max-h-[786px] max-h-[400px]">
             <h2 className="md:text-[32px] text-[16px] font-bold text-textdark capitalize font-manrope mb-6">
               What Neighbors Say
             </h2>
