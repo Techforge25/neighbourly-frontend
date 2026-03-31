@@ -1,13 +1,27 @@
+"use client";
 import { work_Data } from "@/utils/dumydata";
+import { motion } from "framer-motion";
 
 const Work = () => {
   return (
     <div className="container mx-auto md:my-20 p-4">
-      <h5 className="lg:text-[42px] text-[32px] text-center font-bold text-[#303231] font-manrope md:py-10">
+      <motion.h5
+        initial={{ y: -100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="lg:text-[42px] text-[32px] text-center font-bold text-[#303231] font-manrope md:py-10"
+      >
         How Neighbourly <span className="text-[#F3B39D]">Works</span>{" "}
-      </h5>
+      </motion.h5>
 
-      <div className="flex flex-col md:flex-row flex-1 justify-center gap-[8px] md:gap-[16px] lg:gap-[30px] w-[] mx-auto">
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="flex flex-col md:flex-row flex-1 justify-center gap-[8px] md:gap-[16px] lg:gap-[30px] w-[] mx-auto"
+      >
         {work_Data.map((item, ind) => (
           <div
             key={ind}
@@ -26,7 +40,7 @@ const Work = () => {
             </p>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -2,10 +2,12 @@
 import Card from "../Card";
 import ButtonModal from "../ButtomModal";
 import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const LocalRecommendation = () => {
-  const cardLength = useSelector((state) => state.cardLength.isShowFullList);
-  console.log(cardLength, "card Length In Sub RUb");
+  const cardLength = useSelector(
+    (state: RootState) => state.cardLength.isShowFullList,
+  );
   return (
     <>
       {!cardLength && (

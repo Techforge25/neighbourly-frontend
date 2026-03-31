@@ -1,6 +1,7 @@
 "use client";
 import { api } from "@/src/service/axios";
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Trusted = () => {
   const [state, setState] = useState<any>([]);
@@ -26,20 +27,32 @@ const Trusted = () => {
       ]);
     } catch (error) {}
   };
-  
+
   useEffect(() => {
     getStats();
   }, []);
-  
+
   return (
     <div className="bg-[#1D1D1D]">
       <div className="container mx-auto p-4">
-        <h6 className="lg:text-[54px] text-[35px] font-bold text-[white] md:mt-10 mt-6 font-manrope ">
+        <motion.h6
+          initial={{ y: -100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="lg:text-[54px] md:text-[35px] text-[28px] font-bold text-[white] md:mt-10 mt-6 font-manrope "
+        >
           Trusted by neighbours <br />{" "}
           <span className="text-[#F3B39D]">across Sydney</span>{" "}
-        </h6>
+        </motion.h6>
 
-        <div className="flex lg:items-center lg:justify-between lg:flex-row flex-col md:gap-10 gap-6 md:py-16 py-8">
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="flex lg:items-center lg:justify-between lg:flex-row flex-col md:gap-10 gap-6 md:py-16 py-8"
+        >
           {state.map((item: any, ind: number) => (
             <div key={ind}>
               <p
@@ -52,7 +65,7 @@ const Trusted = () => {
               </p>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

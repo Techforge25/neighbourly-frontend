@@ -15,6 +15,7 @@ import { api } from "@/src/service/axios";
 import Loader from "./Loader";
 import { setPage, setPaginationData } from "@/store/paginationSlice";
 import { setCardLength, setIsShowFullList } from "@/store/searchCountSlice";
+import { motion } from "framer-motion";
 
 const Card = () => {
   const router = useRouter();
@@ -86,14 +87,9 @@ const Card = () => {
     "text-modal-line bg-modal-line/5",
   ];
 
-  const getRandomColor = () => {
-    const randomIndex = Math.floor(Math.random() * colorClasses.length);
-    return colorClasses[randomIndex];
-  };
-
   const getColorByIndex = (index: number) => {
-  return colorClasses[index % colorClasses.length];
-};
+    return colorClasses[index % colorClasses.length];
+  };
 
   return (
     <div className="md:my-10 max-w-[1396px] mx-auto mmd:p-0 p-4">
@@ -101,7 +97,11 @@ const Card = () => {
         <>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             {categoryData?.docs?.map((item: any, ind: any) => (
-              <div
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true }}
                 onClick={() => {
                   router.push(`/recomended-detial/${item.businessId}`);
                 }}
@@ -255,7 +255,7 @@ const Card = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
 
             <ShareModal />

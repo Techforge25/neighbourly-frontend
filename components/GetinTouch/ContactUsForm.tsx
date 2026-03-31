@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { GoShieldCheck } from "react-icons/go";
 import { api } from "@/src/service/axios";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const ContactUsForm = () => {
   const [isLoading, setIsLoading] = useState<any>(false);
@@ -52,7 +53,13 @@ const ContactUsForm = () => {
   return (
     <div className="bg-[#f7f7f7] py-16 px-4">
       {/* Heading */}
-      <div className="text-center mb-10">
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="text-center mb-10"
+      >
         <h2 className="md:text-[42px] text-[28px]  font-bold text-[#010101] font-manrope">
           We&apos;d love to <span className="text-primary">hear from you</span>
         </h2>
@@ -61,10 +68,16 @@ const ContactUsForm = () => {
           recommend a service, or would like to see us in your suburb, reach out
           below.
         </p>
-      </div>
+      </motion.div>
 
       {/* Form Card */}
-      <div className="bg-white rounded-2xl shadow-md shadow-[#000000]/20 p-6 sm:p-8 max-w-[1074px] mx-auto">
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="bg-white rounded-2xl shadow-md shadow-[#000000]/20 p-6 sm:p-8 max-w-[1074px] mx-auto"
+      >
         <form onSubmit={formik.handleSubmit}>
           {/* Row 1 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -153,7 +166,7 @@ const ContactUsForm = () => {
             </p>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };
