@@ -41,11 +41,11 @@ const Banner = () => {
   const router = useRouter();
 
   return (
-    <div className="relative h-[67.2vh] w-full overflow-hidden">
+    <div className="relative h-[70.2vh] w-full overflow-hidden">
       {/* Video background */}
 
       <video
-        className="absolute top-0 left-0 w-full h-[67.2vh] object-cover"
+        className="absolute top-0 left-0 w-full h-[70.2vh] object-cover"
         autoPlay
         loop
         muted
@@ -60,10 +60,10 @@ const Banner = () => {
 
       {/* Content */}
       <div
-        className={`font-manrope absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-5xl`}
+        className={`font-manrope absolute top-8/12 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-5xl`}
       >
         {/* Heading */}
-        <div className=" mb-6 font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center gap-[12px]">
+        <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
           <div className="flex items-center justify-center md:gap-4 gap-2">
             <button onClick={()=>{router.push('/discover')}} className="cursor-pointer font-bold font-manrope md:text-[30px] text-[24px] text-white font-monrope text-white bg-secondary md:px-4 px-2 py-1  rounded-full">Discover</button>
             <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
@@ -71,7 +71,7 @@ const Banner = () => {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 md:mt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center">
             <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               neighbours trust
             </p>
@@ -84,14 +84,14 @@ const Banner = () => {
             </div> */}
           </div>
 
-          <p className="mt-2 text-[18px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
+          <p className="md:text-[18px] text-[14px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
             Search your suburb to discover plumbers, electricians, cleaners and
             more — recommended by people nearby, not strangers online.
           </p>
         </div>
 
         {/* Search bar */}
-        <div className="flex flex-row items-center gap-4 bg-white rounded-full p-2 md:w-[718px] mx-auto">
+        <div className="flex flex-row items-center gap-4 bg-white rounded-full p-2 md:w-[718px] mx-auto md:mt-5 mt-4 ">
           <input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

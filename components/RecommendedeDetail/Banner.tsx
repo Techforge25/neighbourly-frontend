@@ -26,7 +26,7 @@ const Banner = ({ recomendedDetail }: Props) => {
     return uniqueData;
   };
 
-  console.log(recomendedDetail,"recomendedDetailrecomendedDetail")
+  console.log(recomendedDetail, "recomendedDetailrecomendedDetail");
 
   return (
     <main className="shadow-md ">
@@ -47,7 +47,15 @@ const Banner = ({ recomendedDetail }: Props) => {
         <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
           <div className="w-[80px] h-[80px] rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/suburb1.png"
+              src={
+                recomendedDetail?.serviceType == "Plumber"
+                  ? "/images/plumber.png"
+                  : recomendedDetail?.serviceType == "Electrician"
+                    ? "/images/electrician.png"
+                    : recomendedDetail?.serviceType == "Handyman"
+                      ? "/images/handyman.png"
+                      : "/images/suburb1.png"
+              }
               alt="Avatar"
               width={100}
               height={100}
@@ -126,9 +134,12 @@ const Banner = ({ recomendedDetail }: Props) => {
 
         <div className="w-full max-w-[792px]">
           <div className="my-2 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-[13px]">
-            <button  onClick={(e) => {
-              dispatch(openShare(), e.stopPropagation());
-            }} className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full">
+            <button
+              onClick={(e) => {
+                dispatch(openShare(), e.stopPropagation());
+              }}
+              className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full"
+            >
               <p>share</p>
               <IoShareSocial size={20} />
             </button>
