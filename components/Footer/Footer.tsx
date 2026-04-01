@@ -9,9 +9,9 @@ const Footer = () => {
       {/* Top Section */}
       <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left">
         {/* Left */}
-        <div>
+        <Link href={"/terms-of-use"} className="flex items-center gap-3">
           <p className="text-sm md:text-base">Terms Of Use</p>
-        </div>
+        </Link>
 
         {/* Right */}
         <div className="flex flex-col sm:flex-row md:items-center gap-4 sm:gap-6">

@@ -19,7 +19,7 @@ const ContactUsForm = () => {
 
     validationSchema: Yup.object({
       name: Yup.string()
-        .matches(/^[A-Za-z]+$/, "Name can contain alphabets only")
+        .matches(/^[A-Za-z\s]+$/, "Name can contain alphabets only")
         .min(3, "Name must be at least 3 characters")
         .max(40, "Name cannot exceed 40 characters")
         .required("Full name is required"),
