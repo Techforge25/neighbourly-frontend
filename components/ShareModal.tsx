@@ -15,8 +15,6 @@ const ShareModal = () => {
   const isOpen = useSelector((state: RootState) => state.share.isOpen);
   const link = useSelector((state: RootState) => state.share.link);
 
-  console.log(link, "Links");
-
   if (!isOpen) return null;
 
   const shareOptions = [

@@ -13,12 +13,12 @@ const manrope = Manrope({
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // optional but recommended
+  weight: ["300", "400", "500", "600", "700"],
 });
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // optional but recommended
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,25 +31,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-
   return (
     <html lang="en">
       <body
         className={`${manrope.variable} ${outfit.variable} ${poppins.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-
         <ClientProvider>
           <div className="bg-white  shadow-2xl shadow-heading1">
             <Header />
           </div>
-          {children}
 
-        <div className="bg-white">
-          <Footer />
-        </div>
+          <main>{children}</main>
 
+          <div className="bg-white">
+            <Footer />
+          </div>
         </ClientProvider>
       </body>
     </html>

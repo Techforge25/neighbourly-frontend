@@ -23,7 +23,7 @@ const Banner = () => {
   return (
     <div className="bg-gradient-to-r from-primary to-secondary h-[400px] w-full rounded-lg flex items-center justify-center relative">
       <div className="h-[164px] mx-auto">
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center md:mb-0 mb-3 ">
           <button className="flex items-center bg-[#FFFFFF42] px-4  py-1 text-white rounded-full font-manrope font-bold text-[12px] leading-[16px] ">
             <span>
               <IoLocationOutline size={20} />
@@ -43,7 +43,7 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="flex items-start gap-4">
+        <div className="flex md:items-start items-center md:flex-row flex-col md:gap-4">
           <button className="bg-white md:px-[41px] px-[21px] md:py-[5px] py-[2.5px]  rounded-[100px] text-[#FE9A86] md:text-[40px] text-[20px] font-extrabold font-manrope">
             {cardLength?cardLength:"0"}
           </button>

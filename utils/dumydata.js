@@ -1,8 +1,8 @@
-import { FaClockRotateLeft, FaUserGroup, FaUsers } from "react-icons/fa6";
+import { FaBookOpenReader, FaClockRotateLeft, FaUserGroup, FaUsers } from "react-icons/fa6";
 import { HiOutlineSearch } from "react-icons/hi";
 import { PiThumbsUpBold } from "react-icons/pi";
 import { RiHandHeartFill, RiShakeHandsLine } from "react-icons/ri";
-import { TbMap } from "react-icons/tb";
+import { TbCurrencyDollarOff, TbMap } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import CustomIcon from "@/components/CustomIcon";
 export const navItems = [
@@ -61,7 +61,7 @@ export const trusted_Data = [
   },
   {
     num: "+3",
-    text: "Total addresss",
+    text: "Total address",
     textColor: "text-[#F3B39D]",
   },
 ];
@@ -540,7 +540,11 @@ export const recommendations = [
     businessName: "A to Z Plumbing Solutions",
     contactPerson: "Shannon",
     phone: "0400 318 553",
-    reasonsOfRecommendation: ["Responsive", "Local reputation", "Easy to deal with"],
+    reasonsOfRecommendation: [
+      "Responsive",
+      "Local reputation",
+      "Easy to deal with",
+    ],
     website: "",
   },
   {
@@ -550,7 +554,11 @@ export const recommendations = [
     businessName: "A to Z Plumbing Solutions",
     contactPerson: "Shannon",
     phone: "0400 318 553",
-    reasonsOfRecommendation: ["Local reputation", "Good quality work", "Easy to deal with"],
+    reasonsOfRecommendation: [
+      "Local reputation",
+      "Good quality work",
+      "Easy to deal with",
+    ],
     website: "",
   },
   {
@@ -588,7 +596,11 @@ export const recommendations = [
     businessName: "Affordable Hot Water",
     contactPerson: "Marcel",
     phone: "1300 765 764",
-    reasonsOfRecommendation: ["Local reputation", "Problem solved properly", "Reliable"],
+    reasonsOfRecommendation: [
+      "Local reputation",
+      "Problem solved properly",
+      "Reliable",
+    ],
     website: "https://www.affordablehotwater.com.au/",
   },
   {
@@ -608,7 +620,11 @@ export const recommendations = [
     businessName: "All In Plumbing",
     contactPerson: "Jeremy",
     phone: "0424 264 849",
-    reasonsOfRecommendation: ["Responsive", "Helpful / went the extra mile", "Reliable"],
+    reasonsOfRecommendation: [
+      "Responsive",
+      "Helpful / went the extra mile",
+      "Reliable",
+    ],
     website: "https://allinplumbing.com.au/",
   },
   {
@@ -632,7 +648,11 @@ export const recommendations = [
     businessName: "All In Plumbing",
     contactPerson: "Jeremy",
     phone: "0424 264 849",
-    reasonsOfRecommendation: ["Responsive", "Tidy and respectful", "Fair pricing"],
+    reasonsOfRecommendation: [
+      "Responsive",
+      "Tidy and respectful",
+      "Fair pricing",
+    ],
     website: "https://allinplumbing.com.au/",
   },
   {
@@ -642,7 +662,11 @@ export const recommendations = [
     businessName: "All Master Plumbing",
     contactPerson: "Damian",
     phone: "0431 156 166",
-    reasonsOfRecommendation: ["Reliable", "Easy to deal with", "Problem solved properly"],
+    reasonsOfRecommendation: [
+      "Reliable",
+      "Easy to deal with",
+      "Problem solved properly",
+    ],
     website: "",
   },
   {
@@ -652,7 +676,11 @@ export const recommendations = [
     businessName: "All Master Plumbing",
     contactPerson: "Damian",
     phone: "0431 156 166",
-    reasonsOfRecommendation: ["Trustworthy", "Fair pricing", "Easy to deal with"],
+    reasonsOfRecommendation: [
+      "Trustworthy",
+      "Fair pricing",
+      "Easy to deal with",
+    ],
     website: "",
   },
   {
@@ -686,7 +714,11 @@ export const recommendations = [
     businessName: "Antika Painting & Handyman Services",
     contactPerson: "Mawi",
     phone: "0452 466 160",
-    reasonsOfRecommendation: ["Trustworthy", "Local reputation", "Fair pricing"],
+    reasonsOfRecommendation: [
+      "Trustworthy",
+      "Local reputation",
+      "Fair pricing",
+    ],
     website: "",
   },
   {
@@ -696,7 +728,11 @@ export const recommendations = [
     businessName: "Anytime Drains",
     contactPerson: "Mark",
     phone: "0421 149 129",
-    reasonsOfRecommendation: ["Reliable", "Tidy and respectful", "Good quality work"],
+    reasonsOfRecommendation: [
+      "Reliable",
+      "Tidy and respectful",
+      "Good quality work",
+    ],
     website: "https://www.anytimedrains.com.au/",
   },
   {
@@ -716,7 +752,11 @@ export const recommendations = [
     businessName: "Anytime Drains",
     contactPerson: "Mark",
     phone: "0421 149 129",
-    reasonsOfRecommendation: ["Problem solved properly", "Good quality work", "Fair pricing"],
+    reasonsOfRecommendation: [
+      "Problem solved properly",
+      "Good quality work",
+      "Fair pricing",
+    ],
     website: "https://www.anytimedrains.com.au/",
   },
   {
@@ -756,7 +796,11 @@ export const recommendations = [
     businessName: "Arcs N Sparks Electrical Services",
     contactPerson: "Chris",
     phone: "0404 153 371",
-    reasonsOfRecommendation: ["Fair pricing", "Good quality work", "Responsive"],
+    reasonsOfRecommendation: [
+      "Fair pricing",
+      "Good quality work",
+      "Responsive",
+    ],
     website: "https://arcsnsparks.com.au/",
   },
   {
@@ -766,7 +810,11 @@ export const recommendations = [
     businessName: "Arcs N Sparks Electrical Services",
     contactPerson: "Chris",
     phone: "0404 153 371",
-    reasonsOfRecommendation: ["Good quality work", "Problem solved properly", "Fair pricing"],
+    reasonsOfRecommendation: [
+      "Good quality work",
+      "Problem solved properly",
+      "Fair pricing",
+    ],
     website: "https://arcsnsparks.com.au/",
   },
   {
@@ -776,7 +824,11 @@ export const recommendations = [
     businessName: "Hickey Plumbing",
     contactPerson: "Dan",
     phone: "0410 162 926",
-    reasonsOfRecommendation: ["Good quality work", "Responsive", "Problem solved properly"],
+    reasonsOfRecommendation: [
+      "Good quality work",
+      "Responsive",
+      "Problem solved properly",
+    ],
     website: "https://hickeyplumbing.com.au/",
   },
   {
@@ -786,7 +838,11 @@ export const recommendations = [
     businessName: "",
     contactPerson: "Tim",
     phone: "0410 297 637",
-    reasonsOfRecommendation: ["Trustworthy", "Local reputation", "Easy to deal with"],
+    reasonsOfRecommendation: [
+      "Trustworthy",
+      "Local reputation",
+      "Easy to deal with",
+    ],
     website: "",
   },
   {
@@ -796,11 +852,14 @@ export const recommendations = [
     businessName: "At Your Service Plumbing",
     contactPerson: "Reid",
     phone: "0468 175 068",
-    reasonsOfRecommendation: ["Tidy and respectful", "Trustworthy", "Easy to deal with"],
+    reasonsOfRecommendation: [
+      "Tidy and respectful",
+      "Trustworthy",
+      "Easy to deal with",
+    ],
     website: "https://atyourserviceplumbing.com.au/",
   },
 ];
-
 
 export const SERVICE_OPTIONS = [
   "Accountant",
@@ -823,8 +882,57 @@ export const RECOMMEND_OPTIONS = [
   { value: "Responsive", label: "Responsive" },
   { value: "Local reputation", label: "Local reputation" },
   { value: "Easy to deal with", label: "Easy to deal with" },
-  { value: "Helpful / went the extra mile", label: "Helpful / went the extra mile" },
+  {
+    value: "Helpful / went the extra mile",
+    label: "Helpful / went the extra mile",
+  },
   { value: "Tidy and respectful", label: "Tidy and respectful" },
   { value: "Problem solved properly", label: "Problem solved properly" },
   { value: "Trustworthy", label: "Trustworthy" },
 ];
+
+export const colorClasses = [
+  "bg-primary_light text-primary",
+  "bg-success_light text-success",
+  "text-text-dark bg-light-bg",
+  "text-textdark bg-textdark/5",
+  "text-verified bg-verified/5",
+  "text-green bg-green/5",
+  "text-share-modal-icon bg-share-modal-icon/5",
+  "text-secondary bg-secondary/5",
+  "text-para bg-para/5",
+  "text-tabText bg-tabText/5",
+  "text-tabText bg-border",
+  "text-tabText bg-border",
+  "text-modal-line bg-modal-line/5",
+];
+
+
+export const sydneyAcrossData = [
+  {
+    icon:<TbCurrencyDollarOff size={32} className="text-white md:size-[32px] size-[28px]" />,
+    title:"No paid"
+  },
+  {
+    icon:<CustomIcon variant="trusted" />,
+    title:"No anonymous reviews"
+  },
+  {
+    icon:<FaBookOpenReader size={32} className="text-white md:size-[32px] size-[28px]" />,
+    title:"Build from local"
+  },
+]
+
+export const video_Url = [
+    {
+      url: "http://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
+    },
+    {
+      secure_url:
+        "https://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
+    },
+    {
+      playback_url:
+        "https://res.cloudinary.com/dh5msgx99/video/upload/sp_auto/v1774414879/wiqkeqds10d2xa1lcpik.m3u8",
+    },
+  ];

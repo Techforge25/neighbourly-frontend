@@ -21,7 +21,7 @@ const Trusted = () => {
         },
         {
           num: `+ ${res.data.data.addresses}`,
-          text: "Total addresss",
+          text: "Total address",
           textColor: "text-[#F3B39D]",
         },
       ]);
@@ -51,18 +51,18 @@ const Trusted = () => {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="flex lg:items-center lg:justify-between lg:flex-row flex-col md:gap-10 gap-6 md:py-16 py-8"
+          className="flex lg:items-center lg:justify-between lg:flex-row flex-col items-center justify-center md:gap-10 gap-6 md:py-16 py-8"
         >
           {state.map((item: any, ind: number) => (
             <motion.div
               key={ind}
             >
               <p
-                className={`${item.textColor} lg:text-[52px] md:text-[40px] text-[20px] font-bold font-manrope`}
+                className={`${item.textColor} lg:text-[52px] md:text-[40px] text-[32px] font-bold text-center font-manrope`}
               >
                 {item.num}
               </p>
-              <p className="text-white lg:text-[28px] text-[16px] font-manrope ">
+              <p className="text-white lg:text-[28px] text-[16px] font-manrope">
                 {item.text}
               </p>
             </motion.div>

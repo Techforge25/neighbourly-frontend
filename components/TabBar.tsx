@@ -90,8 +90,6 @@ const TabBar: React.FC = () => {
   const [categoryData, setCategoryData] = useState<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  console.log(params,"paramsparams")
-
   const getCategotyData = async () => {
     try {
       const res = await api.get("recommendation");
@@ -128,7 +126,7 @@ const TabBar: React.FC = () => {
   };
 
   return (
-    <div className="md:max-w-[1296px] my-20 p-4 mx-auto relative">
+    <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto relative">
       {cardLength ? (
         <div className="flex items-center gap-2">
 

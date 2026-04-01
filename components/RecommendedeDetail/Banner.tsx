@@ -10,9 +10,10 @@ import { MdOutlineCall, MdOutlineChat, MdVerified } from "react-icons/md";
 import ShareModal from "../ShareModal";
 import { useDispatch } from "react-redux";
 import { openShare } from "@/store/shareSlice";
+import { TypeFilterRecommendations, typeRecommendedeDetail } from "@/types";
 
 type Props = {
-  recomendedDetail: any;
+  recomendedDetail: typeRecommendedeDetail;
 };
 
 const Banner = ({ recomendedDetail }: Props) => {
@@ -20,7 +21,7 @@ const Banner = ({ recomendedDetail }: Props) => {
   const router = useRouter();
   const isLoading = !recomendedDetail;
 
-  const filterLocation = (detail: any) => {
+  const filterLocation = (detail: TypeFilterRecommendations) => {
     const data = detail.map((item: any) => item.user.address);
     const uniqueData = [...new Set(data)];
     return uniqueData;
@@ -31,8 +32,17 @@ const Banner = ({ recomendedDetail }: Props) => {
   return (
     <main className="shadow-md ">
       <div
-        className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 h-[208px] bg-no-repeat bg-center bg-cover relative"
-        style={{ backgroundImage: "url('/images/detailbg.png')" }}
+        className="h-[208px] bg-no-repeat bg-center bg-cover relative"
+        style={{
+          backgroundImage:
+            recomendedDetail?.serviceType == "Plumber"
+              ? "url('/images/cardbg.png')"
+              : recomendedDetail?.serviceType == "Electrician"
+                ? "url('/images/electricinabg.png')"
+                : recomendedDetail?.serviceType == "Handyman"
+                  ? "url('/images/handymanbg.png')"
+                  : "url('/images/cardbg.png')",
+        }}
       >
         <div className="absolute top-4 right-6 bg-white rounded-full p-2 shadow-lg cursor-pointer">
           <Image
@@ -140,7 +150,7 @@ const Banner = ({ recomendedDetail }: Props) => {
               }}
               className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full"
             >
-              <p>share</p>
+              <p>Share</p>
               <IoShareSocial size={20} />
             </button>
 

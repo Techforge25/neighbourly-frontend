@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { video_Url } from "@/utils/dumydata";
 
 const Banner = () => {
   const words = [
@@ -20,20 +21,6 @@ const Banner = () => {
       bgColor: "#718496",
       textColor: "#fff",
       icon: <CustomIcon variant="electrician" />,
-    },
-  ];
-
-  const video_Url = [
-    {
-      url: "http://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
-    },
-    {
-      secure_url:
-        "https://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
-    },
-    {
-      playback_url:
-        "https://res.cloudinary.com/dh5msgx99/video/upload/sp_auto/v1774414879/wiqkeqds10d2xa1lcpik.m3u8",
     },
   ];
 
@@ -56,23 +43,31 @@ const Banner = () => {
       </video>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-[#000]/16 "></div>
+      <div className="absolute inset-0 bg-black/16 "></div>
 
       {/* Content */}
       <div
-        className={`font-manrope absolute top-8/12 left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-5xl`}
+        className={`font-manrope absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-[900px]`}
       >
         {/* Heading */}
         <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
-          <div className="flex items-center justify-center md:gap-4 gap-2">
-            <button onClick={()=>{router.push('/discover')}} className="cursor-pointer font-bold font-manrope md:text-[30px] text-[24px] text-white font-monrope text-white bg-secondary md:px-4 px-2 py-1  rounded-full">Discover</button>
-            <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+
+          <div className="flex items-center flex-row justify-center md:gap-3">
+            <button
+              onClick={() => {
+                router.push("/discover");
+              }}
+              className="cursor-pointer font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white md:px-4 px-2 bg-secondary hover:bg-heading1 rounded-full"
+            >
+              Discover
+            </button>
+            <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               services your
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center">
-            <p className="font-bold text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+            <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               neighbours trust
             </p>
             {/* <div className="w-68">
