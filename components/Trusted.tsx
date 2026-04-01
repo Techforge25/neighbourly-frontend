@@ -21,7 +21,7 @@ const Trusted = () => {
         },
         {
           num: `+ ${res.data.data.addresses}`,
-          text: "Total address",
+          text: "Total addresses",
           textColor: "text-[#F3B39D]",
         },
       ]);
