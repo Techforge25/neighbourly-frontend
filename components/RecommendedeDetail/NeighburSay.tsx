@@ -16,7 +16,7 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col xl:flex-row justify-center md:gap-8 gap-6 max-w-[1280px] mx-auto">
           {/* Left Panel */}
-          <div className="flex-1 max-w-full md:max-w-[838px] border border-modal-line rounded-[22px] p-8 md:p-10 overflow-y-auto md:max-h-[786px] max-h-[500px]">
+          <div className="flex-1 max-w-full md:max-w-[838px] border border-modal-line rounded-[22px] p-2 md:p-10 overflow-y-auto md:max-h-[786px] max-h-[500px]">
             <h2 className="md:text-[32px] text-[16px] font-bold text-textdark capitalize font-manrope mb-6">
               What Neighbors Say
             </h2>
@@ -43,14 +43,17 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
 
                         <div className="flex  items-center md:flex-nowrap flex-wrap gap-2 md:gap-3 text-para font-poppins text-[12px] md:text-[14px]">
                           <p>{item.user.email}</p>
+
+                          <p className="flex items-center gap-1">
                           <span className="w-1.5 h-1.5 bg-para rounded-full" />
-                          <p>
                             {recomendedDetail?.contact
                               ? recomendedDetail?.contact
                               : "N/A"}
                           </p>
+                          <p className="flex items-center gap-1">
                           <span className="w-1.5 h-1.5 bg-para rounded-full" />
-                          <p>{item?.user?.address}</p>
+                            {item?.user?.address}
+                            </p>
                         </div>
 
                         <div className="mt-2 md:flex flex-wrap gap-2 hidden">
@@ -96,8 +99,8 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
           </div>
 
           {/* Right Panel */}
-          <div className="flex-1 max-w-full md:max-w-[426px] border border-[#D5E8FC] rounded-[22px] md:p-4 px-2 py-2  md:p-10">
-            <div className="flex items-center md:gap-4 gap-2 md:mb-6 mb-4">
+          <div className="flex-1 max-w-full md:max-w-[426px] border border-[#D5E8FC] rounded-[22px] md:p-4 p-2">
+            <div className="flex items-center md:gap-4 gap-2 md:mb-2 mb-1">
               <IoLocationOutline size={24} />
               <h6 className="capitalize text-[22px] md:text-[32px] font-manrope font-bold leading-[50px] text-textdark">
                 service area
