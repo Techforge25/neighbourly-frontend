@@ -44,6 +44,7 @@ const TrustSection = () => {
             width={1000}
             height={1000}
             className="w-[495px]"
+            loading="lazy"
           />
         </motion.div>
       </div>

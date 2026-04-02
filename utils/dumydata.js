@@ -919,7 +919,7 @@ export const sydneyAcrossData = [
   },
   {
     icon:<FaBookOpenReader size={32} className="text-white md:size-[32px] size-[28px]" />,
-    title:"Build from local"
+    title:"Built from local"
   },
 ]
 

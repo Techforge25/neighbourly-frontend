@@ -11,7 +11,8 @@ const DiscoverSearch = () => {
       <Banner
         banner="/images/discover.png"
         text="The services your neighbours actually recommend"
-        para="Not paid listings. Not anonymous reviews. Just trusted recommendations from people nearby."
+        para="These aren’t paid listings. They’re the most trusted local services, based on recommendations from
+        your neighbours."
       />
 
       <div className="md:my-10 my-6 md:max-w-[1297px] text-center w-[90%] mx-auto p-4 rounded-[12px] p-4">

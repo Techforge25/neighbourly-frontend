@@ -27,6 +27,7 @@ const RecommendationLed = () => {
               width={500}
               height={300}
               className="w-[332px] h-[680px] object-contain"
+              loading="lazy"
             />
 
 

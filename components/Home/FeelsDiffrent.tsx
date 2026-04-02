@@ -54,6 +54,7 @@ const FeelsDiffrent = () => {
             width={500}
             height={500}
             className="w-[485px] h-[580px] object-cover"
+            loading="lazy"
           />
 
           <div className="absolute max-w-[460px] mx-auto lg:left-0 left-1.5 lg:right-0 right-1.5 lg:p-4 p-2 bottom-2  bg-secondary text-white">

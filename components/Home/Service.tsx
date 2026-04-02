@@ -23,6 +23,7 @@ const Service = () => {
             width={1000}
             height={1000}
             className="w-[485px]"
+            loading="lazy"
           />
         </motion.div>
 

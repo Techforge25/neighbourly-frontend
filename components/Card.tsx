@@ -88,9 +88,9 @@ const Card = () => {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  onClick={() => {
-                    router.push(`/recomended-detail/${item.businessId}`);
-                  }}
+                  // onClick={() => {
+                  //   router.push(`/recomended-detail/${item.businessId}`);
+                  // }}
                   key={ind}
                   className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[783px] max-w-[410px]"
                 >
@@ -129,6 +129,7 @@ const Card = () => {
                           width={100}
                           height={100}
                           className="w-[40px] h-[41px]"
+                          loading="lazy"
                         />
                       </div>
 
@@ -148,6 +149,7 @@ const Card = () => {
                             width={100}
                             height={100}
                             className="w-[60px] h-[60px] object-contain"
+                            loading="lazy"
                           />
                         </div>
                         <p className="text-center md:text-[16px] text-[14px]  font-semibold text-gray-900">
@@ -261,9 +263,9 @@ const Card = () => {
                         onClick={(e) => {
                           e.stopPropagation();
                           dispatch(openShare());
-                          dispatch(
-                            setLink(`recomended-detail/${item.businessId}`),
-                          );
+                          // dispatch(
+                          //   setLink(`recomended-detail/${item.businessId}`),
+                          // );
                         }}
                         className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
                       >
@@ -277,9 +279,9 @@ const Card = () => {
             </div>
           </div>
 
-        <div className="md:py-20 py-6">
+          <div className="md:py-20 py-6">
             <Across />
-        </div>
+          </div>
 
           <div className=" max-w-[1396px] mx-auto md:p-0 p-4">
             <div className="flex items-center gap-4 flex-wrap justify-center">
@@ -289,9 +291,9 @@ const Card = () => {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  onClick={() => {
-                    router.push(`/recomended-detail/${item.businessId}`);
-                  }}
+                  // onClick={() => {
+                  //   router.push(`/recomended-detail/${item.businessId}`);
+                  // }}
                   key={ind}
                   className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[783px] max-w-[410px]"
                 >
@@ -330,6 +332,7 @@ const Card = () => {
                           width={100}
                           height={100}
                           className="w-[40px] h-[41px]"
+                          loading="lazy"
                         />
                       </div>
 
@@ -349,6 +352,7 @@ const Card = () => {
                             width={100}
                             height={100}
                             className="w-[60px] h-[60px] object-contain"
+                            loading="lazy"
                           />
                         </div>
                         <p className="text-center md:text-[16px] text-[14px]  font-semibold text-gray-900 mt-2">
@@ -429,6 +433,7 @@ const Card = () => {
                           width={100}
                           height={100}
                           className="w-[26px] h-[26px] object-contain inline-block rounded-full"
+                          loading="lazy"
                         />
                       </div>
 
@@ -462,11 +467,11 @@ const Card = () => {
                         onClick={(e) => {
                           e.stopPropagation();
                           dispatch(openShare());
-                          dispatch(
-                            setLink(`recomended-detail/${item.businessId}`),
-                          );
+                          // dispatch(
+                          //   setLink(`recomended-detail/${item.businessId}`),
+                          // );
                         }}
-                        className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
+                        className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[14px] leading-[13.57px] font-outfit capitalize"
                       >
                         <p>Share</p>
                         <IoShareSocial size={20} />
@@ -510,7 +515,10 @@ const Card = () => {
           {isLoading ? (
             <Loader />
           ) : (
-            <span className="md:text-[32px] text-[16px] font-manrope font-semibold text-center text-para">We haven't reached your suburb yet. Be the first to start the community!</span>
+            <span className="md:text-[32px] text-[16px] font-manrope font-semibold text-center text-para">
+              We haven't reached your suburb yet. Be the first to start the
+              community!
+            </span>
           )}
         </div>
       )}

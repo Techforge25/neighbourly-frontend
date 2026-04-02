@@ -6,13 +6,16 @@ const Across = () => {
     <section className="bg-green">
       <div className="md:max-w-[1441px] w-[90%] mx-auto md:min-h-[438px] md:py-[72px] py-[30px] md:px-[75px] px-[10px] ">
         <div className="">
-          <h4 className="md:text-[30px] text-[26px] font-bold font-manrope  leading-[30px] md:w-[500px] text-white ">
+          <h4 className="md:text-[52px] sm:text-[32px] text-[28px] font-bold font-manrope  md:leading-[60px] sm:leading-[40px] leading-[30px] md:w-[600px] text-white ">
             Trusted by neighbours across Sydney
           </h4>
 
-          <div className="flex md:items-center md:flex-row flex-col flex-wrap md:justify-between justify-center md:mt-30 mt-4 md:gap-4  gap-4">
+          <div className="flex md:items-center md:flex-row flex-col flex-wrap md:justify-between justify-center md:mt-30 mt-4 md:gap-4  gap-4 ">
             {sydneyAcrossData.map((item, ind) => (
-              <div key={ind} className="flex items-center gap-[10px] ">
+              <div
+                key={ind}
+                className="flex items-center gap-[10px] bg-light-green md:p-[16px] p-[8px] "
+              >
                 <span className="bg-icon-bg md:h-[62px] h-[40px] md:w-[62px] w-[40px] flex items-center justify-center">
                   {item.icon}
                 </span>

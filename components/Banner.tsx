@@ -34,7 +34,7 @@ const Banner = ({
           {text}
         </h1>
         {/* para */}
-        {para && <p className="text-center text-[18px] font-poppins text-white md:mt-6 mt-4 md:w-[50%] md:leading-[24px] leading-[18px] mx-auto">{para}</p>}
+        {para && <p className="text-center text-[18px] font-poppins text-white md:mt-6 mt-4 xl:w-[800px] md:leading-[24px] leading-[18px] mx-auto">{para}</p>}
       </div>
     </div>
   );

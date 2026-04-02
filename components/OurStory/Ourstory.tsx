@@ -59,6 +59,7 @@ const Ourstory = () => {
             width={1000}
             height={1000}
             className="w-full h-auto max-w-full lg:min-w-[500px] object-contain"
+            loading="lazy"
           />
         </motion.div>
       </div>

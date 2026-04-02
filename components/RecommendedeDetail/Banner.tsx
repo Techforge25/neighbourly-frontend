@@ -51,6 +51,7 @@ const Banner = ({ recomendedDetail }: Props) => {
             width={100}
             height={100}
             className="w-[40px] h-[41px]"
+            loading="lazy"
           />
         </div>
 
@@ -70,6 +71,7 @@ const Banner = ({ recomendedDetail }: Props) => {
               width={100}
               height={100}
               className="w-[60px] h-[60px] object-contain"
+              loading="lazy"
             />
           </div>
 

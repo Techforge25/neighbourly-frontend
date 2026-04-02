@@ -12,7 +12,7 @@ const Trusted = () => {
         {
           num: `+ ${res.data.data.recommendations}`,
           text: "Neighbour recommendations",
-          textColor: "text-[#8FA58A]",
+          textColor: "text-[#FFFFFF]",
         },
         {
           num: `+ ${res.data.data.businesses}`,
@@ -22,7 +22,7 @@ const Trusted = () => {
         {
           num: `+ ${res.data.data.addresses}`,
           text: "Total addresses",
-          textColor: "text-[#F3B39D]",
+          textColor: "text-[#FFFFFF]",
         },
       ]);
     } catch (error) {}
@@ -33,7 +33,7 @@ const Trusted = () => {
   }, []);
 
   return (
-    <div className="bg-[#1D1D1D]">
+    <div className="bg-green">
       <div className="container mx-auto p-4">
         <motion.h6
           initial={{ y: -100, opacity: 0 }}
@@ -43,7 +43,7 @@ const Trusted = () => {
           className="lg:text-[54px] text-[35px] font-bold text-[white] md:mt-10 mt-6 font-manrope "
         >
           Trusted by neighbours <br />{" "}
-          <span className="text-[#F3B39D]">across Sydney</span>{" "}
+          <span className="">across Sydney</span>{" "}
         </motion.h6>
 
         <motion.div

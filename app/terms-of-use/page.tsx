@@ -1,18 +1,10 @@
-"use client"
+"use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
 
 const page = () => {
-
-  const router = useRouter()
-
-
-  const handleAccept = () =>{
-    toast.success("Thank you for accepting the terms of use and privacy notice. Your acceptance has been recorded.")
-  }
-
-
   return (
     <main className="bg-white">
       <div className="w-[90%] mx-auto py-20  ">
@@ -29,7 +21,7 @@ const page = () => {
           </p>
         </div>
 
-        <div className="p-[32px] bg-[#FFF1ED] my-[42px] border-[1px] border-modal-line rounded-[12px] ">
+        <div className="p-[32px] bg-[#FFF1ED] md:my-[42px] my-[32px] border-[1px] border-modal-line rounded-[12px] ">
           <div>
             <h4 className="text-para font-medium font-poppins md:text-[16px] text-[14px]">
               Effective date: 3 April 2026
@@ -37,7 +29,12 @@ const page = () => {
             <p className="text-[16px] font-poppins md:leading-[28px] leading-[20px] ">
               <span className="text-para font-semibold">Contact:</span>{" "}
               <span className="text-verified font-semibold">
-                team@beneighbourly.com.au
+                <Link
+                  href={`mailto:team@beneighbourly.com.au`}
+                  className="visited:underline"
+                >
+                  team@beneighbourly.com.au
+                </Link>
               </span>
             </p>
 
@@ -93,12 +90,12 @@ const page = () => {
                 Neighbourly is built on genuine input from local residents about
                 the businesses and people they trust.
               </p>
-              <div>
+              <div className="md:mt-4 mt-2">
                 <span className="md:text-[16px] text-[14px] font-poppins font-medium">
                   By submitting information to Neighbourly, you confirm that:
                 </span>
 
-                <ul className="list-disc font-poppins font-medium md:text-[16px] text-[14px] text-para md:px-4 p-2">
+                <ul className="list-disc font-poppins font-medium md:text-[16px] text-[14px] text-para md:px-8 px-5">
                   <li>it is based on your own real experience</li>
                   <li>it is honest and genuine</li>
                   <li>
@@ -152,12 +149,12 @@ const page = () => {
                 number, suburb or other contact information when you submit
                 information to the site.
               </p>
-              <div>
+              <div className="md:mt-4 mt-2">
                 <span className="md:text-[16px] text-[14px] font-poppins font-medium">
                   We ask for this information so we can:
                 </span>
 
-                <ul className="list-disc font-poppins font-medium md:text-[16px] text-[14px] text-para md:px-4 p-2">
+                <ul className="list-disc font-poppins font-medium md:text-[16px] text-[14px] text-para md:px-8 px-7">
                   <li>validate submissions</li>
                   <li>confirm authenticity</li>
                   <li>reduce spam, fraud and misuse</li>
@@ -203,19 +200,6 @@ const page = () => {
             </div>
           </div>
         </div>
-
-        <div className="max-w-[821px] mx-auto flex items-center md:gap-8 gap-4">
-
-          <button onClick={()=>{router.push('/getin-touch')}} className="w-full bg-white hover:bg-light-bg border-[1px] border-modal-line md:p-[16px] p-[8px] rounded-full cursor-pointer font-outfit md:text-[16px] text-[14px] font-medium ">
-            Decline
-          </button>
-
-          <button onClick={()=>{handleAccept()}} className="w-full bg-primary hover:bg-heading md:p-[16px] p-[8px] rounded-full cursor-pointer font-outfit md:text-[16px] text-[14px] font-medium text-white ">
-            Accept
-          </button>
-        </div>
-
-
       </div>
     </main>
   );

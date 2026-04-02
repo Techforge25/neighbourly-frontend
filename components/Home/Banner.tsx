@@ -28,11 +28,11 @@ const Banner = () => {
   const router = useRouter();
 
   return (
-    <div className="relative h-[70.2vh] w-full overflow-hidden">
+    <div className="relative h-[62.2vh] w-full overflow-hidden">
       {/* Video background */}
 
       <video
-        className="absolute top-0 left-0 w-full h-[70.2vh] object-cover"
+        className="absolute top-0 left-0 w-full h-[62.2vh] object-cover"
         autoPlay
         loop
         muted
@@ -51,18 +51,17 @@ const Banner = () => {
       >
         {/* Heading */}
         <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
-
           <div className="flex items-center flex-row justify-center md:gap-3">
-            <button
+            {/* <button
               onClick={() => {
                 router.push("/discover");
               }}
               className="cursor-pointer font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white md:px-4 px-2 bg-secondary hover:bg-heading1 rounded-full"
             >
               Discover
-            </button>
+            </button> */}
             <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-              services your
+              Discover services your
             </p>
           </div>
 
