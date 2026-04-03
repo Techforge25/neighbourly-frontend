@@ -191,7 +191,7 @@ export default function StepEmailOtp({
                   </p>
                 </div>
 
-                <div className="flex items-center justify-center md:gap-6 gap-4">
+                <div className="flex items-center md:flex-row flex-col flex-col-reverse justify-center md:gap-6 sm:gap-4 gap-2">
                   {/* Left Button */}
                   <button
                     onClick={() => {
@@ -212,10 +212,10 @@ export default function StepEmailOtp({
                   <button
                     onClick={nextStepThree}
                     type="button"
-                    className="bg-secondary cursor-pointer w-[320px] md:h-[56px] md:text-[16px] text-[12px] font-medium rounded-full text-white flex items-center justify-center gap-3"
+                    className="bg-secondary cursor-pointer w-[320px] md:h-[56px] py-3 md:text-[16px] text-[12px] font-medium rounded-full text-white flex items-center justify-center gap-3"
                   >
                     Share Another Recommendation
-                    <IoArrowForward size={20} className="md:flex hidden" />
+                    <IoArrowForward size={20} className="" />
                   </button>
                 </div>
               </>

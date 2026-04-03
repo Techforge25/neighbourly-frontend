@@ -10,15 +10,16 @@ const Banner = () => {
 
   const [suburb, setSuburb] = useState<string | null>(null);
 
-   const cardLength = useSelector((state:RootState) => state.cardLength.cardLength);
+  const cardLength = useSelector(
+    (state: RootState) => state.cardLength.cardLength,
+  );
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const suburbValue = params.get("search");
-    setSuburb(suburbValue);
+    const suburbValueFilter = params.get("filter");
+    setSuburb(suburbValue || suburbValueFilter);
   }, []);
-
-  
 
   return (
     <div className="bg-gradient-to-r from-primary to-secondary h-[400px] w-full rounded-lg flex items-center justify-center relative">
@@ -45,7 +46,7 @@ const Banner = () => {
 
         <div className="flex md:items-start items-center md:flex-row flex-col md:gap-4">
           <button className="bg-white md:px-[41px] px-[21px] md:py-[5px] py-[2.5px]  rounded-[100px] text-[#FE9A86] md:text-[40px] text-[20px] font-extrabold font-manrope">
-            {cardLength?cardLength:"0"}
+            {cardLength ? cardLength : "0"}
           </button>
           <h1 className="font-bold font-manrope lg:text-[62px] text-[32px] text-white lg:leading-[68px] text-center flex flex-col whitespace-pre-wrap ">
             <span>Recommendations in</span>
