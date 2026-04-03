@@ -2,35 +2,36 @@
 import { api } from "@/src/service/axios";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { trusted_Data } from "@/utils/dumydata";
 
 const Trusted = () => {
-  const [state, setState] = useState<any>([]);
-  const getStats = async () => {
-    try {
-      const res = await api.get("stats");
-      setState([
-        {
-          num: `+ ${res.data.data.recommendations}`,
-          text: "Neighbour recommendations",
-          textColor: "text-[#FFFFFF]",
-        },
-        {
-          num: `+ ${res.data.data.businesses}`,
-          text: "Local businesses",
-          textColor: "text-[#FFFFFF]",
-        },
-        {
-          num: `+ ${res.data.data.addresses}`,
-          text: "Total addresses",
-          textColor: "text-[#FFFFFF]",
-        },
-      ]);
-    } catch (error) {}
-  };
+  // const [state, setState] = useState<any>([]);
+  // const getStats = async () => {
+  //   try {
+  //     const res = await api.get("stats");
+  //     setState([
+  //       {
+  //         num: `+ 334`,
+  //         text: "Recommendations",
+  //         textColor: "text-[#FFFFFF]",
+  //       },
+  //       {
+  //         num: `+ 3`,
+  //         text: "Suburbs",
+  //         textColor: "text-[#FFFFFF]",
+  //       },
+  //       {
+  //         num: `+ 3`,
+  //         text: "Services",
+  //         textColor: "text-[#FFFFFF]",
+  //       },
+  //     ]);
+  //   } catch (error) {}
+  // };
 
-  useEffect(() => {
-    getStats();
-  }, []);
+  // useEffect(() => {
+  //   getStats();
+  // }, []);
 
   return (
     <div className="bg-green">
@@ -53,10 +54,8 @@ const Trusted = () => {
           viewport={{ once: true }}
           className="flex lg:items-center lg:justify-between lg:flex-row flex-col items-center justify-center md:gap-10 gap-6 md:py-16 py-8"
         >
-          {state.map((item: any, ind: number) => (
-            <motion.div
-              key={ind}
-            >
+          {trusted_Data.map((item: any, ind: number) => (
+            <motion.div key={ind}>
               <p
                 className={`${item.textColor} lg:text-[52px] md:text-[40px] text-[32px] font-bold text-center font-manrope`}
               >

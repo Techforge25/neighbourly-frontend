@@ -1,4 +1,4 @@
-export  type typeRecommendedeDetail = {
+export type typeRecommendedeDetail = {
   businessName: string;
   contact: string;
   personName: string;
@@ -13,7 +13,14 @@ export  type typeRecommendedeDetail = {
       fullName: string;
     };
   }[];
-  serviceType:string
+  serviceType: string;
 };
 
-export  type TypeFilterRecommendations = Pick<typeRecommendedeDetail, "recommendations">
+export type TypeFilterRecommendations = Pick<
+  typeRecommendedeDetail,
+  "recommendations"
+>;
+
+export type TypeSearchTerm = {
+  location: [{ location: string }];
+};

@@ -24,8 +24,10 @@ const LocalRecommendation = () => {
 
           <div className="mt-20 relative w-full overflow-hidden">
             <Card />
-            <div className="absolute inset-0 backdrop-blur-md bg-gray-700/1 pointer-events-none"></div>
+            <div className="absolute inset-0 z-50 backdrop-blur-md bg-gray-700/20"></div>
           </div>
+
+          
         </div>
       )}
     </>

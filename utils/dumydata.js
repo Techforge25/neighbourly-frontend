@@ -1,4 +1,9 @@
-import { FaBookOpenReader, FaClockRotateLeft, FaUserGroup, FaUsers } from "react-icons/fa6";
+import {
+  FaBookOpenReader,
+  FaClockRotateLeft,
+  FaUserGroup,
+  FaUsers,
+} from "react-icons/fa6";
 import { HiOutlineSearch } from "react-icons/hi";
 import { PiThumbsUpBold } from "react-icons/pi";
 import { RiHandHeartFill, RiShakeHandsLine } from "react-icons/ri";
@@ -50,19 +55,19 @@ export const work_Data = [
 
 export const trusted_Data = [
   {
-    num: "+2,846",
-    text: "Neighbour recommendations",
-    textColor: "text-[#8FA58A]",
-  },
-  {
-    num: "+312",
-    text: "Local businesses",
+    num: `+ 334`,
+    text: "Recommendations",
     textColor: "text-[#FFFFFF]",
   },
   {
-    num: "+3",
-    text: "Total address",
-    textColor: "text-[#F3B39D]",
+    num: `+ 3`,
+    text: "Suburbs",
+    textColor: "text-[#FFFFFF]",
+  },
+  {
+    num: `+ 3`,
+    text: "Services",
+    textColor: "text-[#FFFFFF]",
   },
 ];
 
@@ -907,32 +912,41 @@ export const colorClasses = [
   "text-modal-line bg-modal-line/5",
 ];
 
-
 export const sydneyAcrossData = [
   {
-    icon:<TbCurrencyDollarOff size={32} className="text-white md:size-[32px] size-[28px]" />,
-    title:"No paid"
+    icon: (
+      <TbCurrencyDollarOff
+        size={32}
+        className="text-white md:size-[32px] size-[28px]"
+      />
+    ),
+    title: "No paid",
   },
   {
-    icon:<CustomIcon variant="trusted" />,
-    title:"No anonymous reviews"
+    icon: <CustomIcon variant="trusted" />,
+    title: "No anonymous reviews",
   },
   {
-    icon:<FaBookOpenReader size={32} className="text-white md:size-[32px] size-[28px]" />,
-    title:"Built from local"
+    icon: (
+      <FaBookOpenReader
+        size={32}
+        className="text-white md:size-[32px] size-[28px]"
+      />
+    ),
+    title: "Built from local",
   },
-]
+];
 
 export const video_Url = [
-    {
-      url: "http://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
-    },
-    {
-      secure_url:
-        "https://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
-    },
-    {
-      playback_url:
-        "https://res.cloudinary.com/dh5msgx99/video/upload/sp_auto/v1774414879/wiqkeqds10d2xa1lcpik.m3u8",
-    },
-  ];
+  {
+    url: "http://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
+  },
+  {
+    secure_url:
+      "https://res.cloudinary.com/dh5msgx99/video/upload/v1774414879/wiqkeqds10d2xa1lcpik.mp4",
+  },
+  {
+    playback_url:
+      "https://res.cloudinary.com/dh5msgx99/video/upload/sp_auto/v1774414879/wiqkeqds10d2xa1lcpik.m3u8",
+  },
+];

@@ -4,28 +4,70 @@ import WordRotate from "../ui/word-rotate";
 import CustomIcon from "../CustomIcon";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { video_Url } from "@/utils/dumydata";
+import { api } from "@/src/service/axios";
+import { TypeSearchTerm } from "@/types";
+
+type RecommendationLocation = TypeSearchTerm & {
+  addresses: string[];
+};
 
 const Banner = () => {
-  const words = [
-    {
-      text: "Plumbers...",
-      bgColor: "#D98C74",
-      textColor: "#fff",
-      icon: <CustomIcon variant="plumber" />,
-    },
-    {
-      text: "Electricians...",
-      bgColor: "#718496",
-      textColor: "#fff",
-      icon: <CustomIcon variant="electrician" />,
-    },
-  ];
-
   const [searchTerm, setSearchTerm] = useState("");
+  const [location, setLocation] = useState<RecommendationLocation[]>([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  const debounce = <T extends (...args: any[]) => void>(
+    func: T,
+    delay: number,
+  ) => {
+    let timeoutId: NodeJS.Timeout;
+
+    return (...args: Parameters<T>) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+
+  const searchAPI = async (query: string) => {
+    if (!query.trim()) return;
+
+    try {
+      setLoading(true);
+      const res = await api.get(`recommendation`);
+      const recommendations = res.data.data.recommendations
+        .docs as RecommendationLocation[];
+      setLocation(recommendations);
+      setLoading(false);
+      // console.log("API result:", recommendations);
+    } catch (err) {
+      console.error("API error:", err);
+      setLoading(false);
+    }
+  };
+
+  const debouncedSearch = useMemo(() => debounce(searchAPI, 3000), []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    debouncedSearch(value);
+  };
+
+  const handleSearch = () => {
+    router.push(`suberb-search?search=${encodeURIComponent(searchTerm)}`);
+  };
+
+  const uniqueAddresses = location.map((loc) => loc.addresses);
+  const uniqueLocations = Array.from(new Set(uniqueAddresses.flat()));
+
+
+  console.log("locations:", location);
 
   return (
     <div className="relative h-[62.2vh] w-full overflow-hidden">
@@ -52,14 +94,6 @@ const Banner = () => {
         {/* Heading */}
         <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
           <div className="flex items-center flex-row justify-center md:gap-3">
-            {/* <button
-              onClick={() => {
-                router.push("/discover");
-              }}
-              className="cursor-pointer font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white md:px-4 px-2 bg-secondary hover:bg-heading1 rounded-full"
-            >
-              Discover
-            </button> */}
             <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               Discover services your
             </p>
@@ -88,24 +122,41 @@ const Banner = () => {
         <div className="flex flex-row items-center gap-4 bg-white rounded-full p-2 md:w-[718px] mx-auto md:mt-5 mt-4 ">
           <input
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleChange}
             type="text"
             placeholder="Enter your suburb or postcode"
             className="w-full  py-2 px-3 text-[#697586] text-[14px] sm:text-[16px] outline-none rounded-full"
           />
           <button
-            onClick={() => {
-              router.push(
-                `/suberb-search/?search=${encodeURIComponent(searchTerm)}`,
-              );
-            }}
             disabled={!searchTerm}
+            onClick={handleSearch}
             className={`flex items-center justify-center gap-2 bg-[#718496] text-white min-w-max  px-4 py-2.5 rounded-full text-[14px] sm:text-[16px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
           >
             Search
             <IoMdArrowForward size={20} className="sm:size-[24px]" />
           </button>
         </div>
+        {searchTerm && (
+          <div className="md:w-[650px] w-[300px] mx-auto bg-white pb-2">
+            {loading ? (
+              <div className="px-4 py-2 text-gray-500">Loading...</div>
+            ) : (
+              uniqueLocations && (
+                <div className="flex flex-wrap flex-col gap-2 justify-start items-start px-4">
+                  {uniqueLocations.map((loc, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSearchTerm(loc)}
+                      className="text-para text-[16px] font-poppins font-medium cursor-pointer hover:text-blue-500"
+                    >
+                      {loc}
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

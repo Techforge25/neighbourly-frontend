@@ -239,7 +239,7 @@ const Card = () => {
                     </div>
 
                     <div className="my-2 flex items-center gap-2 w-full">
-                      <Link href={`tel:${item?.phone}`} className="w-full">
+                      <Link href={`tel:${item?.businessContact}`} className="w-full">
                         <button className="w-full flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
                           <p className="text-[16px] font-outfit">Call</p>
                           <MdOutlineCall size={20} />
@@ -247,7 +247,7 @@ const Card = () => {
                       </Link>
 
                       <Link
-                        href={`sms:${item?.phone}?body=Hi ${item?.contactPerson}`}
+                        href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
                         target="_blank"
                         className="w-full"
                       >
@@ -443,7 +443,7 @@ const Card = () => {
                     </div>
 
                     <div className="my-2 flex items-center gap-2 w-full">
-                      <Link href={`tel:${item?.phone}`} className="w-full">
+                      <Link href={`tel:${item.businessContact}`} className="w-full">
                         <button className="w-full flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
                           <p className="text-[16px] font-outfit">Call</p>
                           <MdOutlineCall size={20} />
@@ -451,7 +451,7 @@ const Card = () => {
                       </Link>
 
                       <Link
-                        href={`sms:${item?.phone}?body=Hi ${item?.contactPerson}`}
+                        href={`sms:${item.businessContact}?body=Hi ${item.businessContact}`}
                         target="_blank"
                         className="w-full"
                       >

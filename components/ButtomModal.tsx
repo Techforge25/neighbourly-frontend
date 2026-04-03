@@ -1,17 +1,16 @@
-
 import { useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import StepperModal from "./StepperModal";
 
-export default function ButtonModal({bg}:any) {
+export default function ButtonModal({ bg }: any) {
   const [openModal, setOpenModal] = useState(false);
-    useEffect(() => {
+  useEffect(() => {
     if (openModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  
+
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -23,7 +22,7 @@ export default function ButtonModal({bg}:any) {
       <div>
         <button
           onClick={() => setOpenModal(true)}
-          className={`flex  items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full cursor-pointer ${bg?"bg-secondary":'bg-primary hover:bg-[#e59c86]'}   text-white lg:text-[16px] font-outfit text-sm`}
+          className={`flex  items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full cursor-pointer ${bg ? "bg-secondary" : "bg-primary hover:bg-[#e59c86]"}   text-white lg:text-[16px] font-outfit text-sm`}
         >
           <span>Share your recommendation</span>
           <IoMdAdd size={20} />
@@ -31,7 +30,9 @@ export default function ButtonModal({bg}:any) {
       </div>
 
       {/* 🧩 Modal */}
-      <StepperModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      <div className="z-1000">
+        <StepperModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      </div>
     </>
   );
 }
