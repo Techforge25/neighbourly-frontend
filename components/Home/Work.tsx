@@ -10,9 +10,9 @@ const Work = () => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="lg:text-[42px] text-[32px] text-center font-bold text-[#303231] font-manrope md:py-10"
+        className="lg:text-[42px] text-[32px] text-center font-bold text-text-dark-secondary font-manrope md:py-10"
       >
-        How Neighbourly <span className="text-[#F3B39D]">Works</span>{" "}
+        How Neighbourly <span className="text-primary">Works</span>{" "}
       </motion.h5>
 
       <motion.div
@@ -28,14 +28,14 @@ const Work = () => {
             className={`${item.bg} p-4 sm:p-6 flex flex-col md:items-start items-center gap-3 sm:gap-4`}
           >
             <div
-              className={`${item.iconBg} w-fit text-white text-[18px] sm:text-[20px] p-2 sm:p-2.5 rounded-2xl`}
+              className={`w-fit text-white text-[18px] sm:text-[20px] p-2 sm:p-2.5 rounded-2xl`}
             >
               {item.icon}
             </div>
-            <p className="text-[20px] sm:text-[22px] md:text-[24px] text-[#12141D] font-manrope font-semibold leading-snug sm:leading-[28px] md:leading-[30px] lg:max-w-[140px]">
+            <p className="text-[20px] sm:text-[22px] text-white md:text-[24px]  font-manrope font-semibold leading-snug sm:leading-[28px] md:leading-[30px] lg:max-w-[258px]">
               {item.title}
             </p>
-            <p className="text-[14px] sm:text-[15px] md:text-[16px] text-[#697586] font-poppins font-medium leading-[20px] sm:leading-[22px] md:leading-[24px] lg:max-w-[328px]">
+            <p className="text-[14px] sm:text-[15px] text-white md:text-[16px] font-poppins font-medium leading-[20px] sm:leading-[22px] md:leading-[24px] lg:max-w-[328px]">
               {item.text}
             </p>
           </div>

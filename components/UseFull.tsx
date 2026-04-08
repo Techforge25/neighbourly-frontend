@@ -11,7 +11,7 @@ const UseFull = ({ color }: { color?: string }) => {
 
   return (
     <div
-      className={`bg-[${color ? color : "#FE9A86"}] bg-[url('/images/find.png')] bg-cover bg-center min-h-[400px] sm:min-h-[450px] lg:h-[520px] flex items-center`}
+      className={`${color ? `bg-secondary` : "bg-share-modal-icon"} bg-[url('/images/find.png')] bg-cover bg-center min-h-[400px] sm:min-h-[450px] lg:h-[520px] flex items-center`}
     >
       <div className="container mx-auto px-4 py-12 sm:py-14 lg:py-16">
         <div className="w-full">

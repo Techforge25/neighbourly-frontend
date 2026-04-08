@@ -1,4 +1,5 @@
 import Banner from "@/components/Home/Banner";
+import FAQS from "@/components/Home/FAQS";
 import FeelsDiffrent from "@/components/Home/FeelsDiffrent";
 import Find from "@/components/Home/Find";
 import Service from "@/components/Home/Service";
@@ -22,6 +23,7 @@ export default function Home() {
       <Trusted />
       <FeelsDiffrent />
       <Find />
+      <FAQS />
     </div>
   );
 }

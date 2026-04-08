@@ -146,10 +146,10 @@ const Banner = () => {
             </div> */}
           </div>
 
-          <p className="md:text-[18px] text-[14px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
+          {/* <p className="md:text-[18px] text-[14px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
             Search your suburb to discover plumbers, electricians, cleaners and
             more — recommended by people nearby, not strangers online.
-          </p>
+          </p> */}
         </div>
 
         {/* Search bar */}
@@ -181,7 +181,7 @@ const Banner = () => {
                 filteredLocations && (
 
                   <div className="flex flex-wrap flex-col gap-2 justify-start items-start px-4">
-                    {filteredLocations.map((loc, index) => (
+                    {filteredLocations?.toSorted()?.map((loc, index) => (
                       <div
                         key={index}
                         onClick={() => haldleSetTerm("location", loc)}
@@ -195,7 +195,7 @@ const Banner = () => {
               )}
               {filteredServiceTypes && (
                 <div className="flex flex-wrap flex-col gap-2 justify-start items-start px-4">
-                  {filteredServiceTypes.map((service, index) => (
+                  {filteredServiceTypes?.toSorted()?.map((service, index) => (
                     <div
                       key={index}
                       onClick={() => haldleSetTerm("service", service)}

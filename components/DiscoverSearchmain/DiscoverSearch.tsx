@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Banner from "../Banner";
 import TabBar from "../TabBar";
 import Card from "../Card";
@@ -22,8 +22,17 @@ const DiscoverSearch = () => {
         </span>
       </div>
 
-      <TabBar />
-      <Card />
+      
+        <TabBar />
+      
+
+      <div className="max-w-[1260px] md:pb-4 sm:pb-2 pb-1 mx-auto p-2 sm:text-start text-center ">
+        <p className="font-bold font-manrope text-tabText md:text-[42px] sm:text-[32px] text-[28px]">
+          See who locals trust most
+        </p>
+      </div>
+     
+        <Card />
       <LocalRecommendation />
       <UseFull color="#718496" />
     </div>

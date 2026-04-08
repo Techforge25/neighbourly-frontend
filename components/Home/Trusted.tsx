@@ -57,11 +57,11 @@ const Trusted = () => {
           {trusted_Data.map((item: any, ind: number) => (
             <motion.div key={ind}>
               <p
-                className={`${item.textColor} lg:text-[52px] md:text-[40px] text-[32px] font-bold text-center font-manrope`}
+                className={`${item.textColor} lg:text-[56px] md:text-[40px] text-[32px] font-bold text-center font-manrope`}
               >
                 {item.num}
               </p>
-              <p className="text-white lg:text-[28px] text-[16px] font-manrope">
+              <p className="text-white lg:text-[32px] text-[20px] font-manrope">
                 {item.text}
               </p>
             </motion.div>

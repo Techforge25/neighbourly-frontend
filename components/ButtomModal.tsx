@@ -22,7 +22,7 @@ export default function ButtonModal({ bg }: any) {
       <div>
         <button
           onClick={() => setOpenModal(true)}
-          className={`flex  items-center gap-2 lg:px-4 px-2 lg:py-3 py-2 rounded-full cursor-pointer ${bg ? "bg-secondary" : "bg-primary hover:bg-[#e59c86]"}   text-white lg:text-[16px] font-outfit text-sm`}
+          className={`flex  items-center gap-2 lg:px-6 px-3 lg:py-4 py-3 rounded-full cursor-pointer ${bg ? "bg-secondary" : "bg-primary hover:bg-[#e59c86]"}   text-white lg:text-[16px] text-[14px] font-outfit text-sm`}
         >
           <span>Share your recommendation</span>
           <IoMdAdd size={20} />

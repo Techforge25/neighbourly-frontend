@@ -4,6 +4,7 @@ import Banner from "@/components/SuberbSearch/Banner";
 import TabBar from "@/components/TabBar";
 import { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Neighbourly - Suburb Search",
@@ -12,8 +13,11 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <div>
-      <Banner />
+    <Suspense fallback={<div>Loading...</div>}>
+      
+        <Banner />
+     
+      {/* <Banner /> */}
       <div>
         <Image
           src="/images/suburbmap.png"
@@ -29,10 +33,12 @@ const page = () => {
           based on submissions from nearby residents.
         </span>
       </div>
-      <TabBar />
-      <Card />
+      
+        <TabBar />
+        <Card />
+      
       <LocalRecommendation />
-    </div>
+    </Suspense>
   );
 };
 

@@ -1,27 +1,23 @@
 "use client";
 import { RootState } from "@/store";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { IoShareSocial } from "react-icons/io5";
-import { LuThumbsUp } from "react-icons/lu";
-import { MdOutlineCall, MdOutlineChat, MdVerified } from "react-icons/md";
+import { useEffect,  useState } from "react";
+import { MdOutlineCall, MdOutlineChat, } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import CustomIcon from "./CustomIcon";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ShareModal from "./ShareModal";
-import { openShare, setLink } from "@/store/shareSlice";
 import { api } from "@/src/service/axios";
 import Loader from "./Loader";
 import { setPage, setPaginationData } from "@/store/paginationSlice";
 import { setCardLength, setIsShowFullList } from "@/store/searchCountSlice";
 import { motion } from "framer-motion";
-import { colorClasses } from "@/utils/dumydata";
+import { colorClasses, colorFunctions } from "@/utils/dumydata";
 import Across from "./Across";
 
 const Card = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const params = useSearchParams();
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
   const { page, limit, totalPages } = useSelector(
     (state: RootState) => state.pagination,
@@ -39,6 +35,8 @@ const Card = () => {
     const subrubValueFilter = params.get("filter");
 
     const search = subrubValue ? `&location=${subrubValue}` : "";
+
+    const seacrhFilter = `&filter=${subrubValueFilter}&location=${subrubValue}`;
 
     const filterQuery =
       activeTab === "Most Recommended" ? "" : `&filter=${activeTab}`;
@@ -71,11 +69,8 @@ const Card = () => {
     };
 
     getCategotyData();
-  }, [page, limit, activeTab, dispatch, isListTrue, triggerRecommendations]);
+  }, [page, limit, activeTab, dispatch, isListTrue, triggerRecommendations,params]);
 
-  const getColorByIndex = (index: number) => {
-    return colorClasses[index % colorClasses.length];
-  };
 
   return (
     <div className="">
@@ -89,153 +84,86 @@ const Card = () => {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  // onClick={() => {
-                  //   router.push(`/recomended-detail/${item.businessId}`);
-                  // }}
                   key={ind}
-                  className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[783px] max-w-[410px]"
+                  className="hover:border-[1px] border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] sm:min-h-[540px] h-[440px] w-[410px] bg-white "
                 >
-                  <div className="flex items-center gap-2 sm:gap-[6.41px]">
-                    <span>
-                      <MdVerified size={26} className="text-verified" />
-                    </span>
-                    <div className="flex flex-col w-[210px] gap-1">
-                      <span className="capitalize text-[15px] font-manrope font-medium leading-[16px] text-verified">
-                        verified
-                      </span>
-                      <span className="text-[11px] text-secondary font-medium font-manrope">
-                        {"By Neighbourly"}
-                      </span>
-                    </div>
-                  </div>
+                  <div className=" max-w-[764px] flex flex-col gap-[22px]">
+                    {/* B-T-Name */}
+                    <div className="flex flex-col sm:gap-[8px] gap-[6px] ">
+                      <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope  font-extrabold text-textdark">
+                        {item.personName}
+                      </p>
 
-                  <div className=" max-w-[764px]">
-                    <div
-                      className="relative w-full max-w-[378px] h-[135px] mx-auto rounded-[18px] bg-contain bg-center bg-no-repeat mt-4"
-                      style={{
-                        backgroundImage:
-                          item.serviceType == "Plumber"
-                            ? "url('/images/cardbg.png')"
-                            : item.serviceType == "Electrician"
-                              ? "url('/images/electricinabg.png')"
-                              : item.serviceType == "Handyman"
-                                ? "url('/images/handymanbg.png')"
-                                : "url('/images/cardbg.png')",
-                      }}
-                    >
-                      <div className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg cursor-pointer">
-                        <Image
-                          src="/images/location-pin.png"
-                          alt="Location Pin"
-                          width={100}
-                          height={100}
-                          className="w-[40px] h-[41px]"
-                          loading="lazy"
-                        />
-                      </div>
+                      <p className="text-para font-poppins sm:text-[16px] text-[14px]  text-center">
+                        {item?.businessName}
+                      </p>
 
-                      <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-                        <div className="w-[80px] h-[80px] rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
-                          <Image
-                            src={
-                              item?.serviceType == "Plumber"
-                                ? "/images/plumber.png"
-                                : item?.serviceType == "Electrician"
-                                  ? "/images/electrician.png"
-                                  : item?.serviceType == "Handyman"
-                                    ? "/images/handyman.png"
-                                    : "/images/suburb1.png"
-                            }
-                            alt="Avatar"
-                            width={100}
-                            height={100}
-                            className="w-[60px] h-[60px] object-contain"
-                            loading="lazy"
-                          />
-                        </div>
-                        <p className="text-center md:text-[16px] text-[14px]  font-semibold text-gray-900">
-                          {item.personName}
-                        </p>
-                        <div className="md:text-[14px] text-[12px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para">
-                          {item?.serviceType}
-                        </div>
-                      </div>
+                      <p
+                        className={`text-${colorFunctions(item?.serviceType)} sm:text-[16px] text-[14px] font-manrope font-bold text-center`}
+                      >
+                        {item?.serviceType}
+                      </p>
                     </div>
 
-                    <div className="w-full w-[378px] flex-col gap-2 mt-20">
-                      <div className="border-[1px] border-modal-line p-[12px] rounded-[12px] flex flex-col gap-[10px] ">
+                    {/* Rcommendations Count */}
+                    <div className="w-full w-[378px] flex-col gap-2 ">
+                      <div
+                        className={`border-[1px] text-white
+                        ${
+                          item.serviceType === "Plumber"
+                            ? "bg-primary"
+                            : item.serviceType === "Electrician"
+                              ? "bg-green"
+                              : "bg-secondary"
+                        } 
+                        border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px] `}
+                      >
                         <div className="flex items-center gap-2 sm:gap-[8px]">
-                          <span className="bg-secondary h-[32px] w-[32px] flex items-center justify-center rounded-[5px] ">
-                            <LuThumbsUp size={24} className="text-white" />
-                          </span>
-                          <span className="text-tabText capitalize font-poppins font-medium md:text-[18px] text-[14px] leading-[28px]">
-                            {`recommended by`}
-                          </span>
-                        </div>
-
-                        <div className="">
-                          <span className="text-green text-[32px] font-medium font-poppins">
+                          <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
                             {item?.recommendationCount}
                           </span>{" "}
-                          <span className="text-[13px] text-secondary font-medium font-poppins">
-                            Neighbours
-                          </span>
+                          <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">{`local recommendations`}</span>
                         </div>
                       </div>
+                    </div>
 
-                      <div className="text-textdark font-manrope text-[24px] leading-[30px] font-semibold capitalize mt-4">
-                        {item?.businessName}
+                    {/* Subrub Show */}
+                    <div className="w-full max-w-[378px] flex flex-col gap-1 ">
+                      <div>
+                        <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText  ">
+                          Also trusted in
+                        </p>
                       </div>
+                      <div className="flex items-center flex-wrap gap-[]">
+                        {item?.addresses?.map((items: any, indx: number) => (
+                          <p
+                            key={indx}
+                            className="font-poppins md:text-[16px] text-[14px] text-para"
+                          >
+                            <span> {items} - </span>
+                          </p>
+                        ))}
+                      </div>
+                    </div>
 
-                      <div className="grid grid-cols-3 gap-x-2 h-[32px] mt-3">
+                    {/* Local Recommendation */}
+                    <div className="flex flex-col space-y-[4px]">
+                      <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                        Locals mention
+                      </p>
+
+                      <div className="flex items-center flex-wrap ">
                         {[...new Set(item.reasonsOfRecommendation.flat())]
                           ?.slice(0, 3)
                           ?.map((resItem: any, index: number) => (
                             <div key={index}>
                               <p
-                                className={`font-manrope text-[14px] leading-[18px] md:w-[120px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${getColorByIndex(index)}`}
+                                className={`font-poppins md:text-[16px] text-[14px] text-para`}
                               >
-                                {resItem}
+                                {resItem} -{" "}
                               </p>
                             </div>
                           ))}
-                      </div>
-                    </div>
-
-                    <div className="w-full max-w-[378px] flex flex-col gap-2 mt-4">
-                      <div className="flex items-center gap-2">
-                        <p>
-                          <CustomIcon variant="location" />
-                        </p>
-                        <p className="text-[18px] leading-[30px] font-manrope font-medium text-tabText">
-                          {"Most recommend in"}
-                        </p>
-                      </div>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {item?.addresses?.map((items: any, indx: number) => (
-                          <button
-                            key={indx}
-                            className="text-[14px] font-manrope text-tabText font-medium px-[12px] rounded-full bg-bgLight"
-                          >
-                            <span>{items}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="w-full max-w-[378px] h-[45px] flex items-center gap-2 sm:gap-[9.61px] mt-6">
-                      <div className="flex -space-x-2 overflow-hidden">
-                        <Image
-                          src={"/images/sayavatar.png"}
-                          alt="avatar"
-                          width={100}
-                          height={100}
-                          className="w-[26px] h-[26px] object-contain inline-block rounded-full"
-                        />
-                      </div>
-
-                      <div className="bg-secondary w-full px-2 py-2 rounded-full text-white capitalize font-manrope font-medium text-[11px] leading-[16px]">
-                        {`${item.personName} + ${item?.recommendationCount}  Others `}
                       </div>
                     </div>
 
@@ -261,22 +189,6 @@ const Card = () => {
                         </button>
                       </Link>
                     </div>
-
-                    <div className="w-full max-w-[378px] mx-auto mt-6">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          dispatch(openShare());
-                          // dispatch(
-                          //   setLink(`recomended-detail/${item.businessId}`),
-                          // );
-                        }}
-                        className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[12px] leading-[13.57px] font-outfit capitalize"
-                      >
-                        <p>Share</p>
-                        <IoShareSocial size={20} />
-                      </button>
-                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -295,160 +207,92 @@ const Card = () => {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  // onClick={() => {
-                  //   router.push(`/recomended-detail/${item.businessId}`);
-                  // }}
                   key={ind}
-                  className="hover:border-[1px] border cursor-pointer border-transparent hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] min-h-[783px] max-w-[410px]"
+                  className="hover:border-[1px] border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] md:min-h-[515px] max-w-[410px] bg-white "
                 >
-                  <div className="flex items-center gap-2 sm:gap-[6.41px]">
-                    <span>
-                      <MdVerified size={26} className="text-verified" />
-                    </span>
-                    <div className="flex flex-col w-[210px] gap-1">
-                      <span className="capitalize text-[15px] font-manrope font-medium leading-[16px] text-verified">
-                        verified
-                      </span>
-                      <span className="text-[11px] text-secondary font-medium font-manrope">
-                        {"By Neighbourly"}
-                      </span>
-                    </div>
-                  </div>
+                  <div className=" max-w-[764px] flex flex-col gap-[22px]">
+                    {/* B-T-Name */}
+                    <div className="flex flex-col sm:gap-[8px] gap-[6px] ">
+                      <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope  font-extrabold text-textdark">
+                        {item.personName}
+                      </p>
 
-                  <div className=" max-w-[764px]">
-                    <div
-                      className="relative w-full max-w-[378px] h-[135px] mx-auto rounded-[18px] bg-contain bg-center bg-no-repeat mt-4"
-                      style={{
-                        backgroundImage:
-                          item.serviceType == "Plumber"
-                            ? "url('/images/cardbg.png')"
-                            : item.serviceType == "Electrician"
-                              ? "url('/images/electricinabg.png')"
-                              : item.serviceType == "Handyman"
-                                ? "url('/images/handymanbg.png')"
-                                : "url('/images/cardbg.png')",
-                      }}
-                    >
-                      <div className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg cursor-pointer">
-                        <Image
-                          src="/images/location-pin.png"
-                          alt="Location Pin"
-                          width={100}
-                          height={100}
-                          className="w-[40px] h-[41px]"
-                          loading="lazy"
-                        />
-                      </div>
+                      <p className="text-para font-poppins sm:text-[16px] text-[14px]  text-center">
+                        {item?.businessName}
+                      </p>
 
-                      <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-                        <div className="w-[80px] h-[80px] rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
-                          <Image
-                            src={
-                              item?.serviceType == "Plumber"
-                                ? "/images/plumber.png"
-                                : item?.serviceType == "Electrician"
-                                  ? "/images/electrician.png"
-                                  : item?.serviceType == "Handyman"
-                                    ? "/images/handyman.png"
-                                    : "/images/suburb1.png"
-                            }
-                            alt="Avatar"
-                            width={100}
-                            height={100}
-                            className="w-[60px] h-[60px] object-contain"
-                            loading="lazy"
-                          />
-                        </div>
-                        <p className="text-center md:text-[16px] text-[14px]  font-semibold text-gray-900 mt-2">
-                          {item.personName}
-                        </p>
-                        <div className="md:text-[14px] text-[12px] font-manrope leading-[16px] capitalize bg-lightbg whitespace-nowrap rounded-full font-medium px-2 py-1 w-fit text-para">
-                          {item?.serviceType}
-                        </div>
-                      </div>
+                      <p
+                        className={`text-${colorFunctions(item?.serviceType)} sm:text-[16px] text-[14px] font-manrope font-bold text-center`}
+                      >
+                        {item?.serviceType}
+                      </p>
                     </div>
 
-                    <div className="w-full w-[378px] flex-col gap-2 mt-20">
-                      <div className="border-[1px] border-modal-line p-[12px] rounded-[12px] flex flex-col gap-[10px] ">
+                    {/* Rcommendations Count */}
+                    <div className="w-full w-[378px] flex-col gap-2 ">
+                      <div
+                        className={`border-[1px] text-white
+                        ${
+                          item.serviceType === "Plumber"
+                            ? "bg-primary"
+                            : item.serviceType === "Electrician"
+                              ? "bg-green"
+                              : "bg-secondary"
+                        } 
+                        border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px] `}
+                      >
                         <div className="flex items-center gap-2 sm:gap-[8px]">
-                          <span className="bg-secondary h-[32px] w-[32px] flex items-center justify-center rounded-[5px] ">
-                            <LuThumbsUp size={24} className="text-white" />
-                          </span>
-                          <span className="text-tabText capitalize font-poppins font-medium md:text-[18px] text-[14px] leading-[28px]">
-                            {`recommended by`}
-                          </span>
-                        </div>
-
-                        <div className="">
-                          <span className="text-green text-[32px] font-medium font-poppins">
+                          <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
                             {item?.recommendationCount}
                           </span>{" "}
-                          <span className="text-[13px] text-secondary font-medium font-poppins">
-                            Neighbours
-                          </span>
+                          <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">{`local recommendations`}</span>
                         </div>
                       </div>
+                    </div>
 
-                      <div className="text-textdark font-manrope text-[24px] leading-[30px] font-semibold capitalize mt-4">
-                        {item?.businessName}
+                    {/* Subrub Show */}
+                    <div className="w-full max-w-[378px] flex flex-col gap-1 ">
+                      <div>
+                        <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText  ">
+                          Also trusted in
+                        </p>
                       </div>
+                      <div className="flex items-center flex-wrap gap-[]">
+                        {item?.addresses?.map((items: any, indx: number) => (
+                          <p
+                            key={indx}
+                            className="font-poppins md:text-[16px] text-[14px] text-para"
+                          >
+                            <span> {items} - </span>
+                          </p>
+                        ))}
+                      </div>
+                    </div>
 
-                      <div className="grid grid-cols-3 gap-x-2 h-[32px] mt-3">
+                    {/* Local Recommendation */}
+                    <div className="flex flex-col space-y-[4px]">
+                      <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                        Locals mention
+                      </p>
+
+                      <div className="flex items-center flex-wrap ">
                         {[...new Set(item.reasonsOfRecommendation.flat())]
                           ?.slice(0, 3)
                           ?.map((resItem: any, index: number) => (
                             <div key={index}>
                               <p
-                                className={`font-manrope text-[14px] leading-[18px] md:w-[120px] line-clamp-1 font-medium border border-lightbg rounded-full px-2 py-1 ${getColorByIndex(index)}`}
+                                className={`font-poppins md:text-[16px] text-[14px] text-para`}
                               >
-                                {resItem}
+                                {resItem} -{" "}
                               </p>
                             </div>
                           ))}
                       </div>
                     </div>
 
-                    <div className="w-full max-w-[378px] flex flex-col gap-2 mt-4">
-                      <div className="flex items-center gap-2">
-                        <p>
-                          <CustomIcon variant="location" />
-                        </p>
-                        <p className="text-[18px] leading-[30px] font-manrope font-medium text-tabText">
-                          {"Most recommend in"}
-                        </p>
-                      </div>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {item?.addresses?.map((items: any, indx: number) => (
-                          <button
-                            key={indx}
-                            className="text-[14px] font-manrope text-tabText font-medium px-[12px] rounded-full bg-bgLight"
-                          >
-                            <span>{items}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="w-full max-w-[378px] h-[45px] flex items-center gap-2 sm:gap-[9.61px] mt-6">
-                      <div className="flex -space-x-2 overflow-hidden">
-                        <Image
-                          src={"/images/sayavatar.png"}
-                          alt="avatar"
-                          width={100}
-                          height={100}
-                          className="w-[26px] h-[26px] object-contain inline-block rounded-full"
-                          loading="lazy"
-                        />
-                      </div>
-
-                      <div className="bg-secondary w-full px-2 py-2 rounded-full text-white capitalize font-manrope font-medium text-[11px] leading-[16px]">
-                        {`${item.personName} + ${item?.recommendationCount}  Others `}
-                      </div>
-                    </div>
-
                     <div className="my-2 flex items-center gap-2 w-full">
                       <Link
-                        href={`tel:${item.businessContact}`}
+                        href={`tel:${item?.businessContact}`}
                         className="w-full"
                       >
                         <button className="w-full flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
@@ -458,7 +302,7 @@ const Card = () => {
                       </Link>
 
                       <Link
-                        href={`sms:${item.businessContact}?body=Hi ${item?.businessContact}`}
+                        href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
                         target="_blank"
                         className="w-full"
                       >
@@ -467,22 +311,6 @@ const Card = () => {
                           <MdOutlineChat size={20} />
                         </button>
                       </Link>
-                    </div>
-
-                    <div className="w-full max-w-[378px] mx-auto mt-6">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          dispatch(openShare());
-                          // dispatch(
-                          //   setLink(`recomended-detail/${item.businessId}`),
-                          // );
-                        }}
-                        className="bg-green cursor-pointer text-white rounded-full flex items-center justify-center gap-2 sm:gap-[6.41px] w-full md:py-3 py-2 text-[14px] leading-[13.57px] font-outfit capitalize"
-                      >
-                        <p>Share</p>
-                        <IoShareSocial size={20} />
-                      </button>
                     </div>
                   </div>
                 </motion.div>

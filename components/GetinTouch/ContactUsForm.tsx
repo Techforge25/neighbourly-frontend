@@ -88,7 +88,7 @@ const ContactUsForm = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Name */}
             <div>
-              <label className="text-[14px] text-[#202939]">Full Name</label>
+              <label className="text-[14px] text-tabText">Full Name</label>
               <input
                 type="text"
                 name="name"

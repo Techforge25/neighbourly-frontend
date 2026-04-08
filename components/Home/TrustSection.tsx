@@ -15,17 +15,8 @@ const TrustSection = () => {
           viewport={{ once: true }}
           className="flex flex-col md:gap-[32px] gap-[16px] md:max-w-[460px] mx-auto"
         >
-          <p className="md:text-[42px] text-[28px] font-bold font-manrope md:leading-[49px] leading-[38px] ">
-            <span className="text-[#303231]">
-              Find the local services your neighbours
-            </span>{" "}
-            <span className="text-[#F3B39D]">trust and recommend.</span>
-          </p>
-          <p className="text-[16px]  text-[#697586] font-medium leding-[28px]">
-            Neighbourly is a free service that helps you discover trusted local
-            businesses through recommendations from people who live in your
-            suburb — not through paid listings or whoever pays most for the
-            lead.
+          <p className="md:text-[40px] sm:text-[32px] text-[22px] font-bold text-tabText font-manrope md:leading-[49px] sm:leading-[38px] leading-[28px] ">
+            Neighbourly is a free, community led <span className="text-primary" >service built around real recommendations from people in your suburb</span> not anonymous reviews, paid listings or whoever pays to appear first.
           </p>
           <ButtonModal />
         </motion.div>

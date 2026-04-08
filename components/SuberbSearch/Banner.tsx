@@ -1,6 +1,6 @@
 "use client";
 import { RootState } from "@/store";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoArrowBack, IoLocationOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ const Banner = () => {
   const router = useRouter();
 
   const [suburb, setSuburb] = useState<string | null>(null);
+  const params = useSearchParams();
 
   const cardLength = useSelector(
     (state: RootState) => state.cardLength.cardLength,
@@ -19,7 +20,7 @@ const Banner = () => {
     const suburbValue = params.get("search");
     const suburbValueFilter = params.get("filter");
     setSuburb(suburbValue || suburbValueFilter);
-  }, []);
+  }, [params]);
 
   return (
     <div className="bg-gradient-to-r from-primary to-secondary h-[400px] w-full rounded-lg flex items-center justify-center relative">
