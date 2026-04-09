@@ -32,7 +32,7 @@ const Work = () => {
             >
               {item.icon}
             </div>
-            <p className="text-[20px] sm:text-[22px] text-white md:text-[24px]  font-manrope font-semibold leading-snug sm:leading-[28px] md:leading-[30px] lg:max-w-[258px]">
+            <p className="text-[20px] sm:text-[22px] text-white md:text-[24px]  font-manrope font-semibold leading-snug sm:leading-[28px] md:leading-[30px] lg:max-w-[300px]">
               {item.title}
             </p>
             <p className="text-[14px] sm:text-[15px] text-white md:text-[16px] font-poppins font-medium leading-[20px] sm:leading-[22px] md:leading-[24px] lg:max-w-[328px]">

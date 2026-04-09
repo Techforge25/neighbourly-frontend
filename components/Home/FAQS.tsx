@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { IoMdAddCircleOutline, IoMdRemoveCircleOutline } from "react-icons/io";
 
 const FAQS = () => {
-  const [openIndex, setOpenIndex] = useState<any>(0);
+  const [openIndex, setOpenIndex] = useState<any>();
 
   return (
     <section className="max-w-[844px] mx-auto my-20 md:p-4 p-2">
@@ -16,7 +16,7 @@ const FAQS = () => {
           <span className="text-share-modal-icon">asked question </span>
         </h3>
         <h4 className="font-bold font-manrope md:text-[42px] sm:text-[32px] text-[28px] text-tabText">
-          {"(FAQ,S)"}
+          {"(FAQ)"}
         </h4>
       </div>
 

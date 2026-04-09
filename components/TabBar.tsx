@@ -93,23 +93,23 @@ const TabBar: React.FC = () => {
   const handleChangeFilter = (item:any)=>{
     if (filter) {
       router.push('/suberb-search');
-      dispatch(setActiveTab(item.serviceType))
+      dispatch(setActiveTab(item))
     }else{
-      dispatch(setActiveTab(item.serviceType))
+      dispatch(setActiveTab(item))
     }
     
   }
 
-  console.log(selectSuburb, "filter");
+  const serviceTypes = ["Plumber", "Electrician", "Handyman"];
 
   return (
     <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto relative">
       {cardLength ? (
         <div className="flex items-center md:flex-row flex-col space-y-4 justify-between">
           {/* Tab Filters */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             {/* Left Button */}
-            <button
+            {/* <button
               onClick={scrollLeft}
               className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer md:hidden flex"
             >
@@ -117,34 +117,34 @@ const TabBar: React.FC = () => {
                 size={20}
                 className="text-tabText font-medium"
               />
-            </button>
+            </button> */}
 
             {/* Scrollable Tabs */}
             <div
               ref={scrollRef}
               className="flex items-center gap-[12px] overflow-x-auto scrollbar-hide scroll-smooth"
             >
-              {categoryData.map((item: any, ind: any) => (
+              {serviceTypes.map((item: any, ind: any) => (
                 <button
                   key={ind}
                   onClick={() => handleChangeFilter(item)}
                   className={`flex items-center gap-[8px] cursor-pointer px-[20px] py-[11px] rounded-full transition-all
                 ${
-                  activeTab?.toLowerCase() === item.serviceType?.toLowerCase() || item.serviceType === filter
+                  activeTab?.toLowerCase() === item?.toLowerCase() || item === filter
                     ? "bg-primary text-white border-[1px] border-border1"
                     : "border-[1px] border-border1 text-tabText"
                 }`}
                 >
                   {item.icon && <span>{item.icon}</span>}
                   <p className="capitalize md:text-[16px] font-manrope font-medium whitespace-nowrap">
-                    {item.serviceType}
+                    {item}
                   </p>
                 </button>
               ))}
             </div>
 
             {/* Right Button */}
-            <button
+            {/* <button
               onClick={scrollRight}
               className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer md:hidden flex"
             >
@@ -152,7 +152,7 @@ const TabBar: React.FC = () => {
                 size={20}
                 className="text-tabText font-medium"
               />
-            </button>
+            </button> */}
           </div>
 
           {/* Area Filter List */}

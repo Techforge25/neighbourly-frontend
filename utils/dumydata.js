@@ -39,14 +39,14 @@ export const work_Data = [
   },
   {
     icon: <PiThumbsUpBold size={35} />,
-    title: "discover who locals Trust",
-    text: "Browse the people and businesses most recommended in your area.",
+    title: "Discover who locals trust",
+    text: "Browse the people and businesses most recommended in your Suburb.",
     bg: "bg-green",
   },
   {
     icon: <RiHandHeartFill size={35} />,
     title: "Share a recommendation",
-    text: "Help others discover great local services in your location.",
+    text: "Help others discover great local services in your Suburb.",
     bg: "bg-secondary",
   },
 ];
@@ -968,7 +968,7 @@ export const colorFunctions = (key) => {
 export const accordianData = [
   {
     question:"Can I recommend myself?",
-    answer:"360GMP is a unified platform for buying, selling, hiring, applying to jobs, creating business profiles, listing products, and managing transactions."
+    answer:"Nice try. No — you can’t recommend your own business. But you can absolutely recommend a tradie you genuinely trust — including someone you regularly work with on jobs."
   },
   {
     question:"Why isn’t my recommendation showing up?",

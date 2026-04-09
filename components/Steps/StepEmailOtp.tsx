@@ -11,6 +11,7 @@ import { api } from "../../src/service/axios";
 import { usePathname, useRouter } from "next/navigation";
 import { setTriggerRecommendations } from "@/store/shareSlice";
 import { useDispatch } from "react-redux";
+import { setPage } from "@/store/paginationSlice";
 
 interface UserData {
   isProfileCompleted?: boolean;
@@ -197,6 +198,7 @@ export default function StepEmailOtp({
                     onClick={() => {
                       if (pathname === "/discover") {
                         dispatch(setTriggerRecommendations(true));
+                        setPage(9);
                         onClose();
                       } else {
                         (router.push("/discover"), onClose());

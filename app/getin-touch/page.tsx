@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div>
-      <Banner text="Get in Touch" banner="/images/getintouch.png" />
+      <Banner text="Get in Touch" banner="/images/getintouch.png" bgPosition="center" />
       <ContactUsForm />
       <UseFull color="#718496"/>
     </div>

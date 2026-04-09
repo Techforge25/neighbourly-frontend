@@ -22,8 +22,8 @@ export default function Home() {
       <Service />
       <Trusted />
       <FeelsDiffrent />
-      <Find />
       <FAQS />
+      <Find />
     </div>
   );
 }

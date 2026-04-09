@@ -1,8 +1,8 @@
 "use client";
 import { RootState } from "@/store";
 import Link from "next/link";
-import { useEffect,  useState } from "react";
-import { MdOutlineCall, MdOutlineChat, } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { MdOutlineCall, MdOutlineChat } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import ShareModal from "./ShareModal";
@@ -69,134 +69,154 @@ const Card = () => {
     };
 
     getCategotyData();
-  }, [page, limit, activeTab, dispatch, isListTrue, triggerRecommendations,params]);
+  }, [
+    page,
+    limit,
+    activeTab,
+    dispatch,
+    isListTrue,
+    triggerRecommendations,
+    params,
+  ]);
 
+  console.log(categoryData, "cat data");
 
   return (
     <div className="">
       {categoryData?.docs?.length > 0 ? (
         <>
-          <div className="md:my- max-w-[1396px] mx-auto md:p-0 p-4">
-            <div className="flex items-center gap-4 flex-wrap justify-center">
-              {categoryData?.docs?.slice(0, 3).map((item: any, ind: any) => (
-                <motion.div
-                  initial={{ y: 100, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  key={ind}
-                  className="hover:border-[1px] border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] sm:min-h-[540px] h-[440px] w-[410px] bg-white "
-                >
-                  <div className=" max-w-[764px] flex flex-col gap-[22px]">
-                    {/* B-T-Name */}
-                    <div className="flex flex-col sm:gap-[8px] gap-[6px] ">
-                      <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope  font-extrabold text-textdark">
-                        {item.personName}
-                      </p>
+          <div className="max-w-[1396px] mx-auto md:p-0 p-4">
+            <div className="flex items-center gap-4 flex-wrap mb-3 justify-center">
+              <div className="flex items-stretch gap-4 flex-wrap justify-center">
+                {categoryData?.docs?.slice(0, 3).map((item: any, ind: any) => (
+                  <motion.div
+                    key={ind}
+                    initial={{ y: 100, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] h-[540px] max-w-[410px] bg-white"
+                  >
+                    {/* CONTENT WRAPPER */}
+                    <div className="flex flex-col h-full justify-between">
+                      {/* TOP CONTENT */}
+                      <div className="flex flex-col gap-[18px]">
+                        {/* HEADER */}
+                        <div className="flex flex-col gap-[6px]">
+                          <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold text-textdark line-clamp-1">
+                            {item.personName}
+                          </p>
 
-                      <p className="text-para font-poppins sm:text-[16px] text-[14px]  text-center">
-                        {item?.businessName}
-                      </p>
+                          <p className="text-para font-poppins sm:text-[16px] text-[14px] text-center line-clamp-2">
+                            {item?.businessName}
+                          </p>
 
-                      <p
-                        className={`text-${colorFunctions(item?.serviceType)} sm:text-[16px] text-[14px] font-manrope font-bold text-center`}
-                      >
-                        {item?.serviceType}
-                      </p>
-                    </div>
+                          <p
+                            className={`text-${colorFunctions(
+                              item?.serviceType,
+                            )} sm:text-[16px] text-[14px] font-manrope font-bold text-center`}
+                          >
+                            {item?.serviceType}
+                          </p>
+                        </div>
 
-                    {/* Rcommendations Count */}
-                    <div className="w-full w-[378px] flex-col gap-2 ">
-                      <div
-                        className={`border-[1px] text-white
-                        ${
-                          item.serviceType === "Plumber"
-                            ? "bg-primary"
-                            : item.serviceType === "Electrician"
-                              ? "bg-green"
-                              : "bg-secondary"
-                        } 
-                        border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px] `}
-                      >
-                        <div className="flex items-center gap-2 sm:gap-[8px]">
-                          <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
-                            {item?.recommendationCount}
-                          </span>{" "}
-                          <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">{`local recommendations`}</span>
+                        {/* RECOMMENDATION BOX */}
+                        <div className="w-full flex flex-col">
+                          <div
+                            className={`border text-white ${
+                              item.serviceType === "Plumber"
+                                ? "bg-primary"
+                                : item.serviceType === "Electrician"
+                                  ? "bg-green"
+                                  : "bg-secondary"
+                            } border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px]`}
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
+                                {item?.recommendationCount}
+                              </span>
+                              <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">
+                                Local recommendations
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* ADDRESSES */}
+                        <div className="flex flex-col gap-1">
+                          <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                            Also trusted in
+                          </p>
+
+                          <div className="flex flex-wrap gap-1 line-clamp-2">
+                            {item?.addresses?.map((addr: any, i: number) => (
+                              <p
+                                key={i}
+                                className="font-poppins md:text-[16px] text-[14px] text-para"
+                              >
+                                {addr} -
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* REASONS */}
+                        <div className="flex flex-col gap-1">
+                          <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                            Locals mention
+                          </p>
+
+                          <div className="flex flex-wrap line-clamp-2">
+                            {[...new Set(item.reasonsOfRecommendation.flat())]
+                              ?.slice(0, 3)
+                              ?.map((resItem: any, index: number) => (
+                                <p
+                                  key={index}
+                                  className="font-poppins md:text-[16px] text-[14px] text-para"
+                                >
+                                  {resItem} -
+                                </p>
+                              ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Subrub Show */}
-                    <div className="w-full max-w-[378px] flex flex-col gap-1 ">
-                      <div>
-                        <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText  ">
-                          Also trusted in
-                        </p>
-                      </div>
-                      <div className="flex items-center flex-wrap gap-[]">
-                        {item?.addresses?.map((items: any, indx: number) => (
-                          <p
-                            key={indx}
-                            className="font-poppins md:text-[16px] text-[14px] text-para"
+                      {/* BUTTONS (ALWAYS BOTTOM) */}
+                      <div className="mt-4 flex items-center gap-2 w-full">
+                        <Link
+                          href={`tel:${item?.businessContact}`}
+                          className="w-full"
+                        >
+                          <button
+                            className={`w-full flex items-center justify-center gap-2 text-white text-[16px] font-medium font-outfit px-4 py-3 rounded-full ${
+                              item?.serviceType === "Electrician"
+                                ? "bg-green"
+                                : item?.serviceType === "Handyman"
+                                  ? "bg-secondary"
+                                  : "bg-primary"
+                            }`}
                           >
-                            <span> {items} - </span>
-                          </p>
-                        ))}
+                            Call
+                            <MdOutlineCall size={20} />
+                          </button>
+                        </Link>
+
+                        <Link
+                          href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
+                          target="_blank"
+                          className="w-full"
+                        >
+                          <button className="w-full flex items-center justify-center gap-2 text-black bg-white text-[16px] border border-[#D5E8FC] font-medium font-outfit px-4 py-3 rounded-full">
+                            Text
+                            <MdOutlineChat size={20} />
+                          </button>
+                        </Link>
                       </div>
                     </div>
-
-                    {/* Local Recommendation */}
-                    <div className="flex flex-col space-y-[4px]">
-                      <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
-                        Locals mention
-                      </p>
-
-                      <div className="flex items-center flex-wrap ">
-                        {[...new Set(item.reasonsOfRecommendation.flat())]
-                          ?.slice(0, 3)
-                          ?.map((resItem: any, index: number) => (
-                            <div key={index}>
-                              <p
-                                className={`font-poppins md:text-[16px] text-[14px] text-para`}
-                              >
-                                {resItem} -{" "}
-                              </p>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-
-                    <div className="my-2 flex items-center gap-2 w-full">
-                      <Link
-                        href={`tel:${item?.businessContact}`}
-                        className="w-full"
-                      >
-                        <button className="w-full flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
-                          <p className="text-[16px] font-outfit">Call</p>
-                          <MdOutlineCall size={20} />
-                        </button>
-                      </Link>
-
-                      <Link
-                        href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
-                        target="_blank"
-                        className="w-full"
-                      >
-                        <button className="w-full cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
-                          <p className="text-[16px] font-outfit">Text</p>
-                          <MdOutlineChat size={20} />
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="md:py-20 py-6">
-            <Across />
           </div>
 
           <div className=" max-w-[1396px] mx-auto md:p-0 p-4">
@@ -208,19 +228,17 @@ const Card = () => {
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   viewport={{ once: true }}
                   key={ind}
-                  className="hover:border-[1px] border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] md:min-h-[515px] max-w-[410px] bg-white "
+                  className="flex flex-col border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-6 shadow-lg rounded-[24px] min-h-[550px] w-full max-w-[410px] bg-white hover:border-[1px]"
                 >
-                  <div className=" max-w-[764px] flex flex-col gap-[22px]">
-                    {/* B-T-Name */}
-                    <div className="flex flex-col sm:gap-[8px] gap-[6px] ">
-                      <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope  font-extrabold text-textdark">
+                  {/* Wrapper for content - 'flex-1' pushes the buttons to the bottom */}
+                  <div className="flex flex-col gap-[22px] flex-1">
+                    <div className="flex flex-col sm:gap-[8px] gap-[6px]">
+                      <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold text-textdark truncate">
                         {item.personName}
                       </p>
-
-                      <p className="text-para font-poppins sm:text-[16px] text-[14px]  text-center">
-                        {item?.businessName}
+                      <p className="text-para font-poppins sm:text-[16px] text-[14px] text-center">
+                        at {item?.businessName}
                       </p>
-
                       <p
                         className={`text-${colorFunctions(item?.serviceType)} sm:text-[16px] text-[14px] font-manrope font-bold text-center`}
                       >
@@ -228,90 +246,94 @@ const Card = () => {
                       </p>
                     </div>
 
-                    {/* Rcommendations Count */}
-                    <div className="w-full w-[378px] flex-col gap-2 ">
+                    <div className="w-full">
                       <div
                         className={`border-[1px] text-white
-                        ${
-                          item.serviceType === "Plumber"
-                            ? "bg-primary"
-                            : item.serviceType === "Electrician"
-                              ? "bg-green"
-                              : "bg-secondary"
-                        } 
-                        border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px] `}
+            ${
+              item.serviceType === "Plumber"
+                ? "bg-primary"
+                : item.serviceType === "Electrician"
+                  ? "bg-green"
+                  : "bg-secondary"
+            } 
+            border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px]`}
                       >
                         <div className="flex items-center gap-2 sm:gap-[8px]">
                           <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
                             {item?.recommendationCount}
-                          </span>{" "}
-                          <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">{`local recommendations`}</span>
+                          </span>
+                          <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">
+                            local recommendations
+                          </span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Subrub Show */}
-                    <div className="w-full max-w-[378px] flex flex-col gap-1 ">
-                      <div>
-                        <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText  ">
-                          Also trusted in
-                        </p>
-                      </div>
-                      <div className="flex items-center flex-wrap gap-[]">
+                    {/* 'Trusted In' Section */}
+                    <div className="w-full flex flex-col gap-1">
+                      <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                        Also trusted in
+                      </p>
+                      <div className="flex items-center flex-wrap">
                         {item?.addresses?.map((items: any, indx: number) => (
                           <p
                             key={indx}
                             className="font-poppins md:text-[16px] text-[14px] text-para"
                           >
-                            <span> {items} - </span>
+                            <span>
+                              {" "}
+                              {items}{" "}
+                              {indx !== item.addresses.length - 1 && "- "}{" "}
+                            </span>
                           </p>
                         ))}
                       </div>
                     </div>
 
-                    {/* Local Recommendation */}
+                    {/* 'Locals Mention' Section */}
                     <div className="flex flex-col space-y-[4px]">
                       <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
                         Locals mention
                       </p>
-
-                      <div className="flex items-center flex-wrap ">
+                      <div className="flex items-center flex-wrap">
                         {[...new Set(item.reasonsOfRecommendation.flat())]
                           ?.slice(0, 3)
                           ?.map((resItem: any, index: number) => (
-                            <div key={index}>
-                              <p
-                                className={`font-poppins md:text-[16px] text-[14px] text-para`}
-                              >
-                                {resItem} -{" "}
-                              </p>
-                            </div>
+                            <p
+                              key={index}
+                              className="font-poppins md:text-[16px] text-[14px] text-para"
+                            >
+                              {resItem} {index !== 2 && "- "}
+                            </p>
                           ))}
                       </div>
                     </div>
+                  </div>
 
-                    <div className="my-2 flex items-center gap-2 w-full">
-                      <Link
-                        href={`tel:${item?.businessContact}`}
-                        className="w-full"
+                  {/* Action Buttons - These will now always be at the bottom */}
+                  <div className="mt-6 flex items-center gap-2 w-full">
+                    <Link
+                      href={`tel:${item?.businessContact}`}
+                      className="w-full"
+                    >
+                      <button
+                        className={`w-full flex items-center cursor-pointer justify-center gap-2 text-white text-[16px] font-medium font-outfit py-4 rounded-full ${item.serviceType === "Electrician" ? "bg-green" : item?.serviceType === "Handyman" ? "bg-secondary" : "bg-primary"}`}
                       >
-                        <button className="w-full flex items-center cursor-pointer justify-center gap-2 sm:gap-4 text-white bg-primary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
-                          <p className="text-[16px] font-outfit">Call</p>
-                          <MdOutlineCall size={20} />
-                        </button>
-                      </Link>
+                        <p>Call</p>
+                        <MdOutlineCall size={20} />
+                      </button>
+                    </Link>
 
-                      <Link
-                        href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
-                        target="_blank"
-                        className="w-full"
-                      >
-                        <button className="w-full cursor-pointer flex items-center justify-center gap-2 sm:gap-4 text-white bg-secondary text-[16px] leading-[16px] font-medium font-outfit md:px-4 px-2 md:py-4 py-2 rounded-full">
-                          <p className="text-[16px] font-outfit">Text</p>
-                          <MdOutlineChat size={20} />
-                        </button>
-                      </Link>
-                    </div>
+                    <Link
+                      href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
+                      target="_blank"
+                      className="w-full"
+                    >
+                      <button className="w-full cursor-pointer flex items-center justify-center gap-2 text-black bg-white text-[16px] border border-[#D5E8FC] font-medium font-outfit py-4 rounded-full">
+                        <p>Text</p>
+                        <MdOutlineChat size={20} />
+                      </button>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
