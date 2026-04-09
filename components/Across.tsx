@@ -18,17 +18,17 @@ const Across = () => {
               >
                 {/* Left line */}
                 {ind === 1 && (
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[40%] w-[4px] bg-white hidden md:block"></div>
+                  <div className="absolute left-[-33px] top-1/2 -translate-y-1/2 h-[40%] w-[4px] bg-white hidden md:block"></div>
                 )}
                 {/* Right line */}
                 {ind === 1 && (
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[40%] w-[4px] bg-white hidden md:block"></div>
+                  <div className="absolute right-[22px] top-1/2 -translate-y-1/2 h-[40%] w-[4px] bg-white hidden md:block"></div>
                 )}
 
                 <span className="flex items-center justify-center">
                   {item.icon}
                 </span>
-                <span className="font-manrope font-medium md:text-[32px] text-[20px] sm:w-[318px] leading-[32px] text-white">
+                <span className="font-manrope font-medium md:text-[36px] text-[20px] sm:w-[318px] leading-[32px] text-white">
                   {item.title}
                 </span>
               </div>
