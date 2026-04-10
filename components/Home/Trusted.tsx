@@ -41,7 +41,7 @@ const Trusted = () => {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="lg:text-[54px] text-[35px] font-bold text-[white] md:mt-10 mt-6 font-manrope "
+          className="lg:text-[54px] md:text-[42px] sm:text-[32px] text-[24px]  font-bold text-[white] md:mt-10 mt-6 font-manrope "
         >
           Trusted by neighbours <br />{" "}
           <span className="">across Sydney</span>{" "}
@@ -57,11 +57,11 @@ const Trusted = () => {
           {trusted_Data.map((item: any, ind: number) => (
             <motion.div key={ind}>
               <p
-                className={`${item.textColor} lg:text-[56px] md:text-[40px] text-[32px] font-bold text-center font-manrope`}
+                className={`${item.textColor} lg:text-[56px] md:text-[40px] text-[32px] font-bold sm:text-start text-center font-manrope`}
               >
                 {item.num}
               </p>
-              <p className="text-white lg:text-[32px] text-[20px] font-manrope">
+              <p className="text-white lg:text-[32px] text-[20px] text-center font-manrope">
                 {item.text}
               </p>
             </motion.div>

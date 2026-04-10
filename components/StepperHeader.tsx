@@ -5,7 +5,7 @@ interface StepperHeaderProps {
 
 export default function StepperHeader({
   step,
-  steps = ["Email", "AboutYou", "Recommendation"],
+  steps = ["Email", "About You", "Recommendation"],
 }: StepperHeaderProps) {
   return (
     <div className="flex items-center justify-center gap-0 py-4">

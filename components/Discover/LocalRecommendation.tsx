@@ -23,14 +23,18 @@ const LocalRecommendation = () => {
             <ButtonModal bg={"text-secondary"} />
           </div>
 
-          <div className="md:py-20 py-6">
-            <Across />
-          </div>
-
           <div className="mt-20 relative w-full overflow-hidden">
             <Card />
             <div className="absolute inset-0 z-50 backdrop-blur-md bg-gray-700/20"></div>
           </div>
+
+
+           <div className="md:py-20 py-6">
+            <Across />
+          </div>
+
+
+
         </div>
       )}
     </>

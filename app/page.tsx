@@ -2,6 +2,7 @@ import Banner from "@/components/Home/Banner";
 import FAQS from "@/components/Home/FAQS";
 import FeelsDiffrent from "@/components/Home/FeelsDiffrent";
 import Find from "@/components/Home/Find";
+import LocalsTrustMost from "@/components/Home/LocalsTrustMost";
 import Service from "@/components/Home/Service";
 import Trusted from "@/components/Home/Trusted";
 import TrustSection from "@/components/Home/TrustSection";
@@ -19,6 +20,7 @@ export default function Home() {
       <Banner />
       <TrustSection />
       <Work />
+      <LocalsTrustMost/>
       <Service />
       <Trusted />
       <FeelsDiffrent />

@@ -84,13 +84,15 @@ export default function StepEmailOtp({
 
       const data = res.data;
 
-      console.log("OTP verification response:", data);
+      if (data?.data?.isProfileCompleted || data?.success) {
+        setUserData(data?.data);
+        setOtpSent(false);
+        // console.log("User data after OTP verification:", data?.data);
+      }
 
-      if (data?.success) {
+      if (data?.success && !data?.data?.isProfileCompleted) {
         toast.success(data?.message);
         onVerified();
-      } else {
-        toast.error(data?.message);
       }
     } catch (error: any) {
       // console.log(error?.response?.data);

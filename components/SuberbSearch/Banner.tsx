@@ -30,7 +30,7 @@ const Banner = () => {
             <span>
               <IoLocationOutline size={20} />
             </span>
-            <span>{suburb}</span>
+            <span className="capitalize" >{suburb}</span>
           </button>
 
           <div
@@ -51,7 +51,7 @@ const Banner = () => {
           </button>
           <h1 className="font-bold font-manrope lg:text-[62px] text-[32px] text-white lg:leading-[68px] text-center flex flex-col whitespace-pre-wrap ">
             <span>Recommendations in</span>
-            <span>{suburb}</span>
+            <span className="capitalize" >{suburb}</span>
           </h1>
         </div>
       </div>
