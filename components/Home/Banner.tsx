@@ -177,7 +177,7 @@ const Banner = () => {
 
         {searchTerm.search && (
           <>
-            <div className={`w-[320px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto  left-0 right-0  rounded-b-[10px]  bg-white pb-2 absolute ${filteredLocations.length >= 4 || filteredServiceTypes.length >= 4 ? "h-[160] overflow-hidden overflow-y-scroll " : "h-[100px] overflow-hidden overflow-y-auto "}`}>
+            <div className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto  left-0 right-0  rounded-b-[10px]  bg-white pb-2 absolute ${filteredLocations.length >= 4 || filteredServiceTypes.length >= 4 ? "h-[160] overflow-hidden overflow-y-scroll " : "h-[100px] overflow-hidden overflow-y-auto "}`}>
               {loading ? (
                 <div className="px-4 py-2 text-gray-500"><Loader width="w-[50px]" height="h-[50px]"/></div>
               ) : (
