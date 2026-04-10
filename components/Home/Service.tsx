@@ -45,14 +45,14 @@ const Service = () => {
             plumber, cleaner, electrician or someone else locals rate highly.
           </p>
 
-          <div className="bg-light-bg md:p-6 p-2">
+          <div className="bg-light-bg md:p-6 p-2 mt-2">
             <p className="lg:max-w-[467px] mx-auto text-[16px] font-medium md:leading-[28px] leading-[20px] font-poppins text-[#3A5670]">
               We only ask for a few details to keep recommendations genuine and
               useful for nearby neighbours.
             </p>
           </div>
 
-          <div>
+          <div className="mt-2">
             <ButtonModal />
           </div>
         </motion.div>
