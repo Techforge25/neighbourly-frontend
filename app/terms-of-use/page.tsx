@@ -21,7 +21,7 @@ const page = () => {
           </p>
         </div>
 
-        <div className="p-[32px] bg-[#FFF1ED] md:my-[42px] my-[32px] border-[1px] border-modal-line rounded-[12px] ">
+        <div className="sm:p-[32px] bg-[#FFF1ED] md:my-[42px] md:my-[32px] my-[28px] border-[1px] border-modal-line rounded-[12px] ">
           <div>
             <h4 className="text-para font-medium font-poppins md:text-[16px] text-[14px]">
               Effective date: 3 April 2026

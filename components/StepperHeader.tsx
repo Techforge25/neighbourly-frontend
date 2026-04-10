@@ -27,7 +27,7 @@ export default function StepperHeader({
                 {stepNum}
               </div>
             </div>
-              <p className={`md:text-[14px] text-[11px] text-textdark text-wrap md:mt-14 text-start mt-10 absolute ${label =="Recommendation"&&("-ml-6")} `}>
+              <p className={`md:text-[14px] text-[11px] text-textdark text-wrap md:mt-14 text-start mt-11 absolute ${label =="Recommendation"&&("-ml-6")} ${label =="About You"&&("-ml-4")} `}>
                 {label}
               </p>
             {!isLast && (

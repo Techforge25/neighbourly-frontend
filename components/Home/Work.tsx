@@ -12,7 +12,7 @@ const Work = () => {
         viewport={{ once: true }}
         className="lg:text-[42px] text-[32px] text-center font-bold text-text-dark-secondary font-manrope md:py-10"
       >
-        How Neighbourly <span className="text-primary">Works</span>{" "}
+        How Neighbourly <span className="text-primary">works</span>{" "}
       </motion.h5>
 
       <motion.div
@@ -20,7 +20,7 @@ const Work = () => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="flex flex-col md:flex-row flex-1 justify-center gap-[8px] md:gap-[16px] lg:gap-[30px] w-[] mx-auto"
+        className="flex flex-col md:flex-row flex-1 justify-center gap-[8px] md:gap-[16px] lg:gap-[30px] mx-auto mt-4"
       >
         {work_Data.map((item, ind) => (
           <div

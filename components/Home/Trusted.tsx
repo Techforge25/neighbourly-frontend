@@ -41,7 +41,7 @@ const Trusted = () => {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="lg:text-[54px] md:text-[42px] sm:text-[32px] text-[24px]  font-bold text-[white] md:mt-10 mt-6 font-manrope "
+          className="lg:text-[54px] md:text-[42px] sm:text-[32px] text-[24px]  font-bold text-[white] md:text-start text-center md:mt-10 mt-6 font-manrope "
         >
           Trusted by neighbours <br />{" "}
           <span className="">across Sydney</span>{" "}

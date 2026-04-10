@@ -61,7 +61,6 @@ const TabBar: React.FC = () => {
 
   useEffect(() => {
     getCategotyData();
-
     dispatch(setActiveTab(""));
   }, [params]);
 
@@ -81,9 +80,6 @@ const TabBar: React.FC = () => {
         .flat(),
     ),
   ];
-
-  const addSelecSuburb = [...uniqueLocations];
-  const appendSelectSuburb = ["Select Suburb", ...addSelecSuburb];
 
   const handleSearchChange = (e: any) => {
     setSelectSuburb(e.target.value);
@@ -112,7 +108,7 @@ const TabBar: React.FC = () => {
 
   return (
     <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto relative">
-      {cardLength && isShowFullList ? (
+      {cardLength ? (
         <div className="flex items-center md:flex-row flex-col space-y-4 justify-between">
           {/* Tab Filters */}
           <div className="flex items-center gap-2 flex-wrap">
@@ -136,9 +132,10 @@ const TabBar: React.FC = () => {
             >
               {Tab_Data.map((item: any, ind: any) => (
                 <button
+                  disabled={!isShowFullList}
                   key={ind}
                   onClick={() => handleChangeFilter(item?.title)}
-                  className={`flex items-center gap-[8px] cursor-pointer px-[20px] py-[11px] rounded-full transition-all
+                  className={`flex items-center disabled:opacity-50 disabled:cursor-not-allowed gap-[8px] cursor-pointer px-[20px] py-[11px] rounded-full transition-all
                 ${
                   activeTab?.toLowerCase() === item?.title?.toLowerCase() ||
                   item.title === filter
@@ -175,11 +172,11 @@ const TabBar: React.FC = () => {
               >
                 Filter by Suburb
               </label>
-              {selectSuburb}
               <select
+                disabled={!isShowFullList}
                 id="filterBySuburb"
                 value={selectSuburb}
-                className="border-[1px] border-border-light text-textdark px-[20px] py-[10px] rounded-[12px] md:text-[16px] text-[14px] font-manrope font-medium cursor-pointer outline-none"
+                className="border-[1px] disabled:cursor-not-allowed border-border-light text-textdark px-[20px] py-[10px] rounded-[12px] md:text-[16px] text-[14px] font-manrope font-medium cursor-pointer outline-none"
                 onChange={(e) => {
                   // setSelectedSuburb(e.target.value);
                   handleSearchChange(e);
@@ -190,7 +187,7 @@ const TabBar: React.FC = () => {
                 {/* )} */}
                 {uniqueLocations.toSorted().map((item: any, ind: any) => (
                   <option key={ind} value={item}>
-                    {item.toLowerCase()}
+                    {item}
                   </option>
                 ))}
               </select>

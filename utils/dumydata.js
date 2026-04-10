@@ -963,43 +963,98 @@ export const colorFunctions = (key) => {
 
 export const accordianData = [
   {
-    question:"Can I recommend myself?",
-    answer:"Nice try. No — you can’t recommend your own business. But you can absolutely recommend a tradie you genuinely trust — including someone you regularly work with on jobs."
+    question: "Can I recommend myself?",
+    answer:
+      "Nice try. No — you can’t recommend your own business. But you can absolutely recommend a tradie you genuinely trust — including someone you regularly work with on jobs.",
   },
   {
-    question:"Why isn’t my recommendation showing up?",
-    answer:"We don’t publish instantly. We check things before posting them online, and we use our secret spidey senses help us make sure recommendations are genuine. It can take us a little time, but it’s in the interests of ensuring our content can be trusted."
+    question: "Why isn’t my recommendation showing up?",
+    answer:
+      "We don’t publish instantly. We check things before posting them online, and we use our secret spidey senses help us make sure recommendations are genuine. It can take us a little time, but it’s in the interests of ensuring our content can be trusted.",
   },
   {
-    question:"How do you know these recommendations are real?",
-    answer:"We take that seriously – more than anything. We use one-time passwords, AI to detect unusual patterns, and submission limits so people can’t recommend more than once in a 24-hour period."
+    question: "How do you know these recommendations are real?",
+    answer:
+      "We take that seriously – more than anything. We use one-time passwords, AI to detect unusual patterns, and submission limits so people can’t recommend more than once in a 24-hour period.",
   },
   {
-    question:"Why are only some businesses showing up?",
-    answer:"Because this is just the beginning. We’ve already spoken to more than 350 people across Manly, Curl Curl and Freshie, but we need the community’s help to keep building it out."
+    question: "Why are only some businesses showing up?",
+    answer:
+      "Because this is just the beginning. We’ve already spoken to more than 350 people across Manly, Curl Curl and Freshie, but we need the community’s help to keep building it out.",
   },
   {
-    question:"How do I get my suburb included?",
-    answer:"Easy — tell us who you trust and submit a recommendation. The more local recommendations we get, the faster we can grow coverage in your area."
+    question: "How do I get my suburb included?",
+    answer:
+      "Easy — tell us who you trust and submit a recommendation. The more local recommendations we get, the faster we can grow coverage in your area.",
   },
   {
-    question:"What makes Neighbourly different?",
-    answer:"We’re not built around anonymous reviews, paid listings or lead generation. We’re built to celebrate the local businesses people nearby genuinely trust."
+    question: "What makes Neighbourly different?",
+    answer:
+      "We’re not built around anonymous reviews, paid listings or lead generation. We’re built to celebrate the local businesses people nearby genuinely trust.",
   },
   {
-    question:"Why not just use Google, HiPages or Airtasker?",
-    answer:"They’re great for search and getting quotes from randoms. Neighbourly adds the trust layer real recommendations from people nearby."
+    question: "Why not just use Google, HiPages or Airtasker?",
+    answer:
+      "They’re great for search and getting quotes from randoms. Neighbourly adds the trust layer real recommendations from people nearby.",
   },
   {
-    question:"How do you know people actually want this?",
-    answer:"We surveyed more than 1,000 Australians and found the same thing we were hearing on the ground: when it comes to local services, people trust recommendations from those closest to them far more than anonymous reviews."
+    question: "How do you know people actually want this?",
+    answer:
+      "We surveyed more than 1,000 Australians and found the same thing we were hearing on the ground: when it comes to local services, people trust recommendations from those closest to them far more than anonymous reviews.",
   },
   {
-    question:"Do businesses pay to be featured?",
-    answer:"No. We don’t support whoever pays the most to be seen. We’d rather help people discover the tradies who might be better on the tools than they are at marketing."
+    question: "Do businesses pay to be featured?",
+    answer:
+      "No. We don’t support whoever pays the most to be seen. We’d rather help people discover the tradies who might be better on the tools than they are at marketing.",
   },
   {
-    question:"So what’s the point of Neighbourly?",
-    answer:"To make finding a good local service feel less like a gamble and more like getting a recommendation from someone just around the corner."
+    question: "So what’s the point of Neighbourly?",
+    answer:
+      "To make finding a good local service feel less like a gamble and more like getting a recommendation from someone just around the corner.",
   },
-]
+];
+export const cardData = [
+  {
+    businessId: "69ca652d0a5a64d8d9772e53",
+    personName: "The Team",
+    businessName: "Plumbers to U",
+    businessContact: "0414905303",
+    serviceType: "Plumber",
+  },
+  {
+    businessId: "69ca652d0a5a64d8d9772e53",
+    personName: "The Team",
+    businessName: "Plumbers to U",
+    businessContact: "0414905303",
+    serviceType: "Electrician",
+  },
+  {
+    businessId: "69ca652d0a5a64d8d9772e53",
+    personName: "The Team",
+    businessName: "Plumbers to U",
+    businessContact: "0414905303",
+    serviceType: "Handyman",
+  },
+  {
+    businessId: "69ca652d0a5a64d8d9772e53",
+    personName: "The Team",
+    businessName: "Plumbers to U",
+    businessContact: "0414905303",
+    serviceType: "Handyman",
+  },
+  {
+    businessId: "69ca652d0a5a64d8d9772e53",
+    personName: "The Team",
+    businessName: "Plumbers to U",
+    businessContact: "0414905303",
+    serviceType: "Plumber",
+  },
+  {
+    businessId: "69ca652d0a5a64d8d9772e53",
+    personName: "The Team",
+    businessName: "Plumbers to U",
+    businessContact: "0414905303",
+    serviceType: "Electrician",
+  },
+ 
+];

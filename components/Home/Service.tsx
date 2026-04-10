@@ -35,7 +35,7 @@ const Service = () => {
           viewport={{ once: true }}
           className="lg:max-w-[515px] mx-auto flex flex-col md:gap-[32px] gap-[10px] "
         >
-          <h5 className="md:text-[42px] text-[21px] font-bold font-manrope md:leading-[49px] ">
+          <h5 className="md:text-[42px] sm:text-[32px] text-[28px] font-bold font-manrope md:leading-[49px] ">
             <span className="text-text-dark-secondary">Recommend a </span>
             <span className="text-primary">local service</span>
           </h5>
