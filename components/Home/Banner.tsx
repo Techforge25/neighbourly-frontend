@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { video_Url } from "@/utils/dumydata";
 import { api } from "@/src/service/axios";
 import { TypeSearchTerm } from "@/types";
+import Loader from "../Loader";
 
 type RecommendationLocation = TypeSearchTerm & {
   addresses: string[];
@@ -19,7 +20,7 @@ type RecommendationLocation = TypeSearchTerm & {
 
 const Banner = () => {
   const [searchTerm, setSearchTerm] = useState({
-    Key: "",
+    key: "",
     search: "",
   });
   const [location, setLocation] = useState<RecommendationLocation[]>([]);
@@ -80,13 +81,15 @@ const Banner = () => {
   const handleSearch = () => {
     if (searchTerm.key === "location") {
       router.push(
-        `suberb-search?search=${encodeURIComponent(searchTerm.search.toLocaleLowerCase())}`,
+        `suberb-search?search=${encodeURIComponent(searchTerm.search)}`,
       );
     }
     if (searchTerm.key === "service") {
       router.push(
         `suberb-search?filter=${encodeURIComponent(searchTerm.search)}`,
       );
+    }else{
+      router.push(`/suberb-search?search=${searchTerm.search}`)
     }
   };
 
@@ -99,7 +102,7 @@ const Banner = () => {
     loc.toLowerCase().includes(searchTerm.search.toLowerCase()),
   );
 
-  const filteredServiceTypes = uniqueServiceTypes.filter((type) =>
+  const filteredServiceTypes = uniqueServiceTypes.filter((type:any) =>
     type.toLowerCase().includes(searchTerm.search.toLowerCase()),
   );
 
@@ -174,9 +177,9 @@ const Banner = () => {
 
         {searchTerm.search && (
           <>
-            <div className={`md:w-[560px] mx-auto md:ml-29 left-0 right-0 w-[78%]   bg-white pb-2 absolute ${filteredLocations.length > 6 || filteredServiceTypes.length > 6 ? "h-[120] overflow-hidden overflow-y-scroll " : ""}`}>
+            <div className={`md:max-w-[654px] sm:w-[560px] w-[380px] mx-auto  left-0 right-0  rounded-b-[10px]  bg-white pb-2 absolute ${filteredLocations.length > 6 || filteredServiceTypes.length > 6 ? "h-[160] overflow-hidden overflow-y-scroll " : "h-[140px] overflow-hidden overflow-y-auto "}`}>
               {loading ? (
-                <div className="px-4 py-2 text-gray-500">Loading...</div>
+                <div className="px-4 py-2 text-gray-500"><Loader width="w-[50px]" height="h-[50px]"/></div>
               ) : (
                 filteredLocations && (
 
@@ -185,7 +188,7 @@ const Banner = () => {
                       <div
                         key={index}
                         onClick={() => haldleSetTerm("location", loc)}
-                        className="text-para text-[16px] font-poppins font-medium cursor-pointer hover:text-blue-500"
+                        className="text-para text-start text-[16px] font-poppins font-medium cursor-pointer px-4 py-2 border-b-1 border-modal-line rounded-[12px] hover:bg-secondary w-full hover:text-white mt-1 font-manrope"
                       >
                         {loc}
                       </div>
@@ -195,11 +198,11 @@ const Banner = () => {
               )}
               {filteredServiceTypes && (
                 <div className="flex flex-wrap flex-col gap-2 justify-start items-start px-4">
-                  {filteredServiceTypes?.toSorted()?.map((service, index) => (
+                  {filteredServiceTypes?.toSorted()?.map((service:any, index) => (
                     <div
                       key={index}
                       onClick={() => haldleSetTerm("service", service)}
-                      className="text-para text-[16px] font-poppins font-medium cursor-pointer hover:text-blue-500"
+                      className="text-para text-start text-[16px] font-poppins font-medium cursor-pointer px-4 py-2 border-b-1 border-modal-line rounded-[12px] hover:bg-secondary w-full hover:text-white mt-1 font-manrope"
                     >
                       {service}
                     </div>

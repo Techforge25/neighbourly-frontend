@@ -118,15 +118,11 @@ export const Community_Sec_Data = [
 
 export const Tab_Data = [
   {
-    servicetype: "most recommended",
-    icon: "",
-  },
-  {
-    title: "Plumbers",
+    title: "Plumber",
     icon: <CustomIcon variant="fixer" />,
   },
   {
-    title: "Electricians",
+    title: "Electrician",
     icon: <CustomIcon variant="plugh" />,
   },
   {

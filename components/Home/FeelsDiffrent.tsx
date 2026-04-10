@@ -30,7 +30,7 @@ const FeelsDiffrent = () => {
                     {item.icon}
                   </p>
 
-                  <p className="text-[#303231] font-medium text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed">
+                  <p className="text-para font-medium text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed">
                     {item.text}
                   </p>
                 </div>

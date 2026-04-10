@@ -18,7 +18,7 @@ const Service = () => {
           className="w-full lg:w-auto flex justify-center"
         >
           <Image
-            src="/images/service.png"
+            src="/images/serviceSec.png"
             alt="Service"
             width={1000}
             height={1000}
@@ -36,8 +36,8 @@ const Service = () => {
           className="lg:max-w-[515px] mx-auto flex flex-col md:gap-[32px] gap-[10px] "
         >
           <h5 className="md:text-[42px] text-[21px] font-bold font-manrope md:leading-[49px] ">
-            <span className="text-[#303231]">Recommend a </span>
-            <span className="text-[#F3B39D]">local service</span>
+            <span className="text-text-dark-secondary">Recommend a </span>
+            <span className="text-primary">local service</span>
           </h5>
 
           <p className="md:text-[16px] text-[14px] font-medium md:leading-[28px] leading-[20px] text-secondary font-poppins">
@@ -45,7 +45,7 @@ const Service = () => {
             plumber, cleaner, electrician or someone else locals rate highly.
           </p>
 
-          <div className="bg-[#E0E7ED] md:p-6 p-2">
+          <div className="bg-light-bg md:p-6 p-2">
             <p className="lg:max-w-[467px] mx-auto text-[16px] font-medium md:leading-[28px] leading-[20px] font-poppins text-[#3A5670]">
               We only ask for a few details to keep recommendations genuine and
               useful for nearby neighbours.
