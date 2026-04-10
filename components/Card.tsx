@@ -97,7 +97,7 @@ const Card = () => {
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true }}
-                      className="flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] sm:h-[540px] sm:w-[410px] w-[350px] bg-white"
+                      className="flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] sm:h-[540px] sm:w-[410px] mw-[350px] bg-white"
                     >
                       {/* CONTENT WRAPPER */}
                       <div className="flex flex-col h-full justify-between">
@@ -204,7 +204,7 @@ const Card = () => {
                           </Link>
 
                           <Link
-                            href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
+                            href={`sms:${item?.businessContact}`}
                             target="_blank"
                             className="w-full"
                           >
