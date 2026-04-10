@@ -108,7 +108,7 @@ const Card = () => {
                           </p>
 
                           <p className="text-para font-poppins sm:text-[16px] text-[14px] text-center line-clamp-2">
-                            {item?.businessName}
+                            at {item?.businessName}
                           </p>
 
                           <p

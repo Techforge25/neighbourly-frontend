@@ -11,12 +11,12 @@ const FAQS = () => {
       {/* Faqd Header start */}
 
       <div className="text-center">
-        <h3 className="font-bold font-manrope md:text-[42px] sm:text-[32px] text-[28px] text-tabText ">
+        {/* <h3 className="font-bold font-manrope md:text-[42px] sm:text-[32px] text-[28px] text-tabText ">
           Frequently{" "}
           <span className="text-share-modal-icon">asked question </span>
-        </h3>
+        </h3> */}
         <h4 className="font-bold font-manrope md:text-[42px] sm:text-[32px] text-[28px] text-tabText">
-          {"(FAQ)"}
+          {"(FAQ’s)"}
         </h4>
       </div>
 

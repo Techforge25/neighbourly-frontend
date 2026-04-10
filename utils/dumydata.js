@@ -40,13 +40,13 @@ export const work_Data = [
   {
     icon: <PiThumbsUpBold size={35} />,
     title: "Discover who locals trust",
-    text: "Browse the people and businesses most recommended in your Suburb.",
+    text: "Browse the people and businesses most recommended in your suburb.",
     bg: "bg-green",
   },
   {
     icon: <RiHandHeartFill size={35} />,
     title: "Share a recommendation",
-    text: "Help others discover great local services in your Suburb.",
+    text: "Help others discover great local services in your suburb.",
     bg: "bg-secondary",
   },
 ];
