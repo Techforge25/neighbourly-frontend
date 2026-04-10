@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const page = () => {
   return (
     <main className="bg-white">
-      <div className="w-[90%] mx-auto py-20  ">
+      <div className="w-[90%] mx-auto md:py-20  ">
         <div className="flex flex-col md:gap-[10px] gap-[6px]">
           <h1 className="font-bold font-manrope md:text-[42px] text-[23px] md:leading-[49px] leading-[30px] max-w-[515px]">
             Neighbourly <span className="text-primary">Terms of Use</span> and{" "}

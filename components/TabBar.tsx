@@ -128,7 +128,7 @@ const TabBar: React.FC = () => {
 
             <div
               ref={scrollRef}
-              className="flex items-center gap-[12px] overflow-x-auto scrollbar-hide scroll-smooth"
+              className="flex items-center gap-[12px] flex-wrap overflow-x-auto scrollbar-hide scroll-smooth"
             >
               {Tab_Data.map((item: any, ind: any) => (
                 <button
