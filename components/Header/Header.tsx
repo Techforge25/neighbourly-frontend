@@ -37,7 +37,7 @@ const Header = () => {
             alt="Logo"
             width={500}
             height={500}
-            className="lg:w-[196px] w-[160px] object-contain"
+            className="lg:max-w-[196px] max-w-[160px] object-contain"
           />
         </Link>
         {/* Logo */}

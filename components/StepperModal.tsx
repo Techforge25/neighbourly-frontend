@@ -74,7 +74,7 @@ export default function StepperModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 -translate-y-20"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 sm:-translate-y-20 -translate-y-10"
       onClick={onClose} // 👈 outside click close
     >
       {/* Modal Box */}

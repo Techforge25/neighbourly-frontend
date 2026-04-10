@@ -202,6 +202,7 @@ export default function StepEmailOtp({
                         dispatch(setTriggerRecommendations(true));
                         setPage(9);
                         onClose();
+                        window.location.reload();
                       } else {
                         (router.push("/discover"), onClose());
                       }
