@@ -49,7 +49,7 @@ const Card = () => {
         );
         const cetData = res.data;
         setIsListTrue(cetData?.data?.showFullList);
-        dispatch(setCardLength(cetData?.data?.recommendations?.docs.length));
+        dispatch(setCardLength(cetData?.data?.recommendations?.totalDocs));
         dispatch(setIsShowFullList(cetData?.data?.showFullList));
 
         setCategoryData(cetData?.data?.recommendations);

@@ -66,7 +66,7 @@ const Banner = () => {
             <span>{`${cardLength ? cardLength : "0"} recommendations ${searchParams ? "of" : "in"} ${suburb}`}</span>
           </button>
           <h1 className="font-bold font-manrope lg:text-[42px] md:text-[32px] text-[28px] text-white lg:leading-[68px] leading-[32px] text-center whitespace-pre-wrap ">
-            {`from our total ${state?.recommendations ? state?.recommendations : "0"} recommendations`}
+            {`from our total ${state?.businesses ? state?.businesses : "0"} recommendations`}
           </h1>
         </div>
       </div>
