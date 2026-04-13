@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const Ourstory = () => {
   return (
     <div className="md:w-[80%] w-[90%] mx-auto md:my-20 my-10 p-4">
-      <div className="flex item-center justify-between flex-col lg:flex-row md:gap-20 gap-8">
+      <div className="flex item-center justify-between flex-col xl:flex-row md:gap-20 gap-8">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}

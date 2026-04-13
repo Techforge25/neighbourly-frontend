@@ -28,7 +28,7 @@ const LocalRecommendation = () => {
               <ButtonModal bg={"text-secondary"} />
             </div>
 
-            <div className="mt-20 relative w-full overflow-hidden flex items-center flex-wrap ">
+            <div className="mt-20 relative w-full overflow-hidden flex items-center flex-wrap justify-center ">
               {cardData.map((item, ind) => (
                 <motion.div
                   key={ind}
@@ -74,7 +74,7 @@ const LocalRecommendation = () => {
                         >
                           <div className="flex items-center gap-2">
                             <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
-                              {item?.recommendationCount}
+                              {10}
                             </span>
                             <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">
                               Local recommendations
@@ -143,7 +143,7 @@ const LocalRecommendation = () => {
                       </Link>
 
                       <Link
-                        href={`sms:${item?.businessContact}?body=Hi ${item?.contactPerson}`}
+                        href={`sms:${item?.businessContact}?body=Hi`}
                         target="_blank"
                         className="w-full"
                       >

@@ -48,7 +48,7 @@ const Header = () => {
             {navItems.map((item, index) => (
               <button
                 key={index}
-                className={`${pathName === item.href ? "text-primary border-b-2 border-geading" : "text-heading1"} font-medium md:text-[16px] text-[14px] font-manrope`}
+                className={`${pathName === item.href ? "text-primary border-b-2 border-geading" : "text-heading1"} font-medium lg:text-[16px] md:text-[14px] text-[12px] font-manrope`}
               >
                 <Link href={item.href}>{item.label}</Link>
               </button>

@@ -15,18 +15,17 @@ const SuburbSearchMain = ({ path }: SuburbSearchMainProps) => {
     <div>
       <Banner />
       <div>
-        <Image
+        {/* <Image
           src="/images/suburbmap.png"
           alt="Description of the image"
           width={1200}
           height={1200}
           className="w-full"
-        />
+        /> */}
       </div>
-      <div className="md:my-10 md:max-w-[1297px] text-center w-[90%] mx-auto p-4 rounded-[12px] p-4">
-        <span className="text-center md:text-[32px] text-[20px] md:leading-[40px] leading-[24px] font-medium font-poppins text-textdark">
-          These aren’t paid listings they’re the most recommended local services
-          based on submissions from nearby residents.
+      <div className="md:my-10 my-6 md:max-w-[880px] text-center w-[90%] mx-auto rounded-[12px] p-4">
+        <span className="text-center md:text-[32px] text-[20px] md:leading-[40px] leading-[24px] font-medium font-manrope text-para">
+          These aren’t paid listings — they’re the local services your neighbours recommend most.
         </span>
       </div>
 

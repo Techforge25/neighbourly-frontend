@@ -69,11 +69,14 @@ const Banner = () => {
   const haldleSetTerm = (key: string, value: string) => {
     if (key === "location") {
       setSearchTerm((prev) => ({ ...prev, search: value, key: key }));
+      router.push(`suberb-search?search=${encodeURIComponent(value)}`,
+      );
       console.log(key, value, "in Location");
     }
 
     if (key === "service") {
       setSearchTerm((prev) => ({ ...prev, search: value, key: key }));
+      router.push(`suberb-search?filter=${encodeURIComponent(value)}`)
       console.log(key, value, "in Service");
     }
   };
@@ -140,19 +143,7 @@ const Banner = () => {
             <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               neighbours trust
             </p>
-            {/* <div className="w-68">
-              <WordRotate
-                words={words}
-                className="font-bold font-manrope md:text-[30px] text-[24px] text-white font-monrope"
-                duration={1.5}
-              />
-            </div> */}
           </div>
-
-          {/* <p className="md:text-[18px] text-[14px] font-poppins font-medium md:leading-[24px] leading-[20px] text-white">
-            Search your suburb to discover plumbers, electricians, cleaners and
-            more — recommended by people nearby, not strangers online.
-          </p> */}
         </div>
 
         {/* Search bar */}
