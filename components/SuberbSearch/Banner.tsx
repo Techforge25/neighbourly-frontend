@@ -38,9 +38,15 @@ const Banner = () => {
   }, [params]);
 
   return (
-    <div className="bg-gradient-to-r from-primary to-secondary h-[400px] w-full rounded-lg flex items-center justify-center relative">
+    <div 
+    className="bg-gradient-to-r from-primary to-secondary h-[400px] w-full rounded-lg flex items-center justify-center relative h-[400px] md:h-[500px]  lg:h-[62.2vh] bg-no-repeat bg-cover"
+     style={{
+        backgroundImage: `url(${"/images/discover.png"})`,
+        backgroundPosition:"center 20%"
+      }}
+    >
       <div className="h-[164px] mx-auto">
-        <div className="flex items-center justify-center md:mb-0 mb-3 ">
+        <div className="flex items-center justify-center md:mb-0">
           <button className="flex items-center bg-primary-dark-bg px-4  py-1 text-white rounded-full font-manrope font-bold sm:text-[18px] text-[14px] leading-[16px] ">
             <span>
               <IoLocationOutline size={24} />
@@ -60,13 +66,13 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="flex items-center flex-col md:gap-4 gap-2 md:mt-4 mt-2 p-2">
+        <div className="flex items-center flex-col md:gap-4 gap-2 md:mt-4 mt-1.5 p-2">
           <button className="bg-white md:px-[41px] sm:px-[21px] px-[4px] md:py-[5px] py-[2.5px]  rounded-[100px] text-share-modal-icon md:text-[42px] sm:text-[32px] text-[20px] font-extrabold font-manrope flex items-center gap-1">
             <span></span>
-            <span>{`${cardLength ? cardLength : "0"} recommendations ${searchParams ? "of" : "in"} ${suburb}`}</span>
+            <span>{`${cardLength ? cardLength : "0"} recommendations`}</span>
           </button>
           <h1 className="font-bold font-manrope lg:text-[42px] md:text-[32px] sm:text-[28px] text-[22px] text-white lg:leading-[68px] leading-[32px] text-center whitespace-pre-wrap ">
-            {`from our total ${state?.businesses ? state?.businesses : "0"} recommendations`}
+            {`${state?.recommendations ? state?.recommendations : "0"} in total so far`}
           </h1>
         </div>
       </div>
