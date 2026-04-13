@@ -74,12 +74,12 @@ export default function StepperModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 sm:-translate-y-20 -translate-y-10"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
       onClick={onClose} // 👈 outside click close
     >
       {/* Modal Box */}
       <div
-        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px]"} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl`}
+        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px]"} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl sm:-translate-y-0 -translate-y-10`}
         onClick={(e) => e.stopPropagation()} // 👈 prevent close inside click
       >
         {/* ❌ Close Button */}

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { video_Url } from "@/utils/dumydata";
+import { sugestidSubrubData, video_Url } from "@/utils/dumydata";
 import { api } from "@/src/service/axios";
 import { TypeSearchTerm } from "@/types";
 import Loader from "../Loader";
@@ -69,14 +69,13 @@ const Banner = () => {
   const haldleSetTerm = (key: string, value: string) => {
     if (key === "location") {
       setSearchTerm((prev) => ({ ...prev, search: value, key: key }));
-      router.push(`suberb-search?search=${encodeURIComponent(value)}`,
-      );
+      router.push(`suberb-search?search=${encodeURIComponent(value)}`);
       console.log(key, value, "in Location");
     }
 
     if (key === "service") {
       setSearchTerm((prev) => ({ ...prev, search: value, key: key }));
-      router.push(`suberb-search?filter=${encodeURIComponent(value)}`)
+      router.push(`suberb-search?filter=${encodeURIComponent(value)}`);
       console.log(key, value, "in Service");
     }
   };
@@ -91,8 +90,8 @@ const Banner = () => {
       router.push(
         `suberb-search?filter=${encodeURIComponent(searchTerm.search)}`,
       );
-    }else{
-      router.push(`/suberb-search?search=${searchTerm.search}`)
+    } else {
+      router.push(`/suberb-search?search=${searchTerm.search}`);
     }
   };
 
@@ -105,9 +104,13 @@ const Banner = () => {
     loc.toLowerCase().includes(searchTerm.search.toLowerCase()),
   );
 
-  const filteredServiceTypes = uniqueServiceTypes.filter((type:any) =>
+  const filteredServiceTypes = uniqueServiceTypes.filter((type: any) =>
     type.toLowerCase().includes(searchTerm.search.toLowerCase()),
   );
+
+  const handleSuggestedSuburbClick = (suburb: string) => {
+    router.push(`suberb-search?search=${encodeURIComponent(suburb)}`);
+  };
 
   return (
     <div className="relative h-[62.2vh] w-full overflow-hidden">
@@ -125,11 +128,11 @@ const Banner = () => {
       </video>
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/16 "></div>
+      <div className="absolute inset-0 bg-black/30 "></div>
 
       {/* Content */}
       <div
-        className={`font-manrope absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-2/3 text-center px-4 sm:px-6 md:px-0 w-full max-w-[900px]`}
+        className={`font-manrope absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center px-4 sm:px-6 md:px-0 w-full max-w-[900px]`}
       >
         {/* Heading */}
         <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
@@ -165,15 +168,17 @@ const Banner = () => {
           </button>
         </div>
         {/* Search Results */}
-
         {searchTerm.search && (
           <>
-            <div className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto  left-0 right-0  rounded-b-[10px]  bg-white pb-2 absolute ${filteredLocations.length >= 4 || filteredServiceTypes.length >= 4 ? "h-[160] overflow-hidden overflow-y-scroll " : "h-[100px] overflow-hidden overflow-y-auto "}`}>
+            <div
+              className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto  left-0 right-0  rounded-b-[10px]  bg-white z-50 pb-2 absolute ${filteredLocations.length >= 4 || filteredServiceTypes.length >= 4 ? "h-[160] overflow-hidden overflow-y-scroll " : "h-[100px] overflow-hidden overflow-y-auto "}`}
+            >
               {loading ? (
-                <div className="px-4 py-2 text-gray-500"><Loader width="w-[50px]" height="h-[50px]"/></div>
+                <div className="px-4 py-2 text-gray-500">
+                  <Loader width="w-[50px]" height="h-[50px]" />
+                </div>
               ) : (
                 filteredLocations && (
-
                   <div className="flex flex-wrap flex-col gap-2 justify-start items-start px-4">
                     {filteredLocations?.toSorted()?.map((loc, index) => (
                       <div
@@ -189,20 +194,39 @@ const Banner = () => {
               )}
               {filteredServiceTypes && (
                 <div className="flex flex-wrap flex-col gap-2 justify-start items-start px-4">
-                  {filteredServiceTypes?.toSorted()?.map((service:any, index) => (
-                    <div
-                      key={index}
-                      onClick={() => haldleSetTerm("service", service)}
-                      className="text-para text-start text-[16px] font-poppins font-medium cursor-pointer px-4 py-2 border-b-1 border-modal-line rounded-[12px] hover:bg-secondary w-full hover:text-white mt-1 font-manrope"
-                    >
-                      {service}
-                    </div>
-                  ))}
+                  {filteredServiceTypes
+                    ?.toSorted()
+                    ?.map((service: any, index) => (
+                      <div
+                        key={index}
+                        onClick={() => haldleSetTerm("service", service)}
+                        className="text-para text-start text-[16px] font-poppins font-medium cursor-pointer px-4 py-2 border-b-1 border-modal-line rounded-[12px] hover:bg-secondary w-full hover:text-white mt-1 font-manrope"
+                      >
+                        {service}
+                      </div>
+                    ))}
                 </div>
               )}
             </div>
           </>
         )}
+        {/* Suggested Suburbs */}
+
+        <div className="flex items-center justify-center sm:flex-row flex-col sm:gap-3 gap-1.5 my-4">
+          <p className="text-white font-medium font-poppins md:text-[18px] text-[16px]">Suggested Suburbs</p>
+
+          <div className="flex sm:gap-[10px] gap-[5px]">
+            {sugestidSubrubData.map((suburb, index) => (
+              <button
+                onClick={() => handleSuggestedSuburbClick(suburb)}
+                key={index}
+                className="px-4 cursor-pointer sm:text-[16px] text-[14px] font-poppins py-1.5 rounded-full bg-white/30 text-white text-sm backdrop-blur-md hover:bg-white/40 transition"
+              >
+                {suburb}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

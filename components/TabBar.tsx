@@ -34,8 +34,6 @@ const TabBar: React.FC = () => {
   const [selectSuburb, setSelectSuburb] = useState<any>(search);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  console.log("filter", selectSuburb);
-
   const getCategotyData = async () => {
     try {
       const res = await api.get(`recommendation`);

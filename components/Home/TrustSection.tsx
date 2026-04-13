@@ -9,8 +9,8 @@ const TrustSection = () => {
       <div className="md:max-w-[1080px] mx-auto flex items-center justify-between md:gap-10 gap-6 flex-col lg:flex-row">
         {/* Text Section */}
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ y: -100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
           className="flex flex-col md:gap-[32px] gap-[16px] md:max-w-[460px] mx-auto"

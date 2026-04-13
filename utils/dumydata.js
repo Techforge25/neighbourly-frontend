@@ -1013,6 +1013,7 @@ export const accordianData = [
       "To make finding a good local service feel less like a gamble and more like getting a recommendation from someone just around the corner.",
   },
 ];
+
 export const cardData = [
   {
     businessId: "69ca652d0a5a64d8d9772e53",
@@ -1058,3 +1059,9 @@ export const cardData = [
   },
  
 ];
+
+export const sugestidSubrubData = [
+  "Curl Curl",
+  "Freshwater",
+  "Manly",
+]

@@ -29,8 +29,6 @@ const Banner = () => {
     getStats();
   }, []);
 
-  console.log("state", state);
-
   useEffect(() => {
     const param = new URLSearchParams(window.location.search);
     const suburbValue = param.get("search");
@@ -43,9 +41,9 @@ const Banner = () => {
     <div className="bg-gradient-to-r from-primary to-secondary h-[400px] w-full rounded-lg flex items-center justify-center relative">
       <div className="h-[164px] mx-auto">
         <div className="flex items-center justify-center md:mb-0 mb-3 ">
-          <button className="flex items-center bg-primary-dark-bg px-4  py-1 text-white rounded-full font-manrope font-bold text-[12px] leading-[16px] ">
+          <button className="flex items-center bg-primary-dark-bg px-4  py-1 text-white rounded-full font-manrope font-bold sm:text-[18px] text-[14px] leading-[16px] ">
             <span>
-              <IoLocationOutline size={20} />
+              <IoLocationOutline size={24} />
             </span>
             <span className="capitalize">{suburb}</span>
           </button>
