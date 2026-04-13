@@ -61,11 +61,11 @@ const Banner = () => {
         </div>
 
         <div className="flex items-center flex-col md:gap-4 gap-2 md:mt-4 mt-2 p-2">
-          <button className="bg-white md:px-[41px] sm:px-[21px] px-[4px] md:py-[5px] py-[2.5px]  rounded-[100px] text-share-modal-icon md:text-[42px] sm:text-[32px] text-[24px] font-extrabold font-manrope flex items-center gap-1">
+          <button className="bg-white md:px-[41px] sm:px-[21px] px-[4px] md:py-[5px] py-[2.5px]  rounded-[100px] text-share-modal-icon md:text-[42px] sm:text-[32px] text-[20px] font-extrabold font-manrope flex items-center gap-1">
             <span></span>
             <span>{`${cardLength ? cardLength : "0"} recommendations ${searchParams ? "of" : "in"} ${suburb}`}</span>
           </button>
-          <h1 className="font-bold font-manrope lg:text-[42px] md:text-[32px] text-[28px] text-white lg:leading-[68px] leading-[32px] text-center whitespace-pre-wrap ">
+          <h1 className="font-bold font-manrope lg:text-[42px] md:text-[32px] sm:text-[28px] text-[22px] text-white lg:leading-[68px] leading-[32px] text-center whitespace-pre-wrap ">
             {`from our total ${state?.businesses ? state?.businesses : "0"} recommendations`}
           </h1>
         </div>
