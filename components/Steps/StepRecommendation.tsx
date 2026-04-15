@@ -7,6 +7,8 @@ import { api } from "../../src/service/axios";
 import { toast } from "react-toastify";
 import { RecommendationSchema } from "@/validations/Recommendations";
 import { RECOMMEND_OPTIONS, SERVICE_OPTIONS } from "@/utils/dumydata";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import { useState } from "react";
 interface RecommendationData {
   firstName: string;
@@ -122,7 +124,7 @@ export default function StepRecommendation({
                 as={Input}
                 name="firstName"
                 placeholder="e.g. Shannon"
-                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope text-para ${
+                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
                   errors.firstName && touched.firstName
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -144,7 +146,7 @@ export default function StepRecommendation({
                 as={Input}
                 name="businessName"
                 placeholder="e.g. Sunny Day Plumbing"
-                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope text-para ${
+                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
                   errors.businessName && touched.businessName
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -158,7 +160,7 @@ export default function StepRecommendation({
             </div>
 
             {/* Phone Number */}
-            <div className="flex flex-col md:gap-[10px] gap-[px]">
+            {/* <div className="flex flex-col md:gap-[10px] gap-[px]">
               <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
                 Phone Number <span className="text-red-500">*</span>
               </Label>
@@ -166,7 +168,7 @@ export default function StepRecommendation({
                 as={Input}
                 name="theirNumber"
                 placeholder="e.g. 012385868664"
-                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope text-para ${
+                className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
                   errors.theirNumber && touched.theirNumber
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -177,6 +179,28 @@ export default function StepRecommendation({
                 component="div"
                 className="text-red-500 text-[12px]"
               />
+            </div> */}
+
+            <div className="flex flex-col md:gap-[10px] gap-[px]">
+              <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
+                Phone Number <span className="text-red-500">*</span>
+              </Label>
+
+              <PhoneInput
+                international
+                defaultCountry="AU"
+                value={values.theirNumber}
+                onChange={(value) => setFieldValue("theirNumber", value)}
+                className={`phone-input border-none  ${
+                  errors.theirNumber && touched.theirNumber ? "phone-error" : ""
+                }`}
+              />
+
+              {errors.theirNumber && touched.theirNumber && (
+                <div className="text-red-500 text-[12px]">
+                  {errors.theirNumber}
+                </div>
+              )}
             </div>
 
             {/* Service */}
@@ -188,7 +212,7 @@ export default function StepRecommendation({
               <Field
                 as="select"
                 name="service"
-                className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] text-para ${
+                className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px]  text-para ${
                   errors.service && touched.service
                     ? "border-red-500"
                     : "border-[#E4E4E4]"
@@ -275,7 +299,7 @@ export default function StepRecommendation({
               as="textarea"
               name="comment"
               placeholder="Tell us a little about your experience"
-              className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 md:text-[16px] text-[14px] h-auto font-manrope focus:outline-none text-para `}
+              className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope focus:outline-none text-para `}
             />
           </div>
 

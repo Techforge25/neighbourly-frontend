@@ -44,7 +44,7 @@ const Header = () => {
 
         {/* nav item */}
         <div className="flex items-center">
-          <div className="md:flex hidden items-center xl:gap-x-14 lg:gap-x-6.5 gap-x-2.5">
+          <div className="md:flex hidden items-center gap-4 md:gap-4 lg:gap-10 xl:gap-16">
             {navItems.map((item, index) => (
               <button
                 key={index}

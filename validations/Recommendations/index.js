@@ -6,9 +6,9 @@ export const RecommendationSchema = Yup.object().shape({
   theirNumber: Yup.string()
     .required("Number is required")
     .matches(
-      /^(\+61|0)4\d{8}$/,
-      "Contact number must be an Australian mobile number (e.g., 0412345678 or +61412345678)",
-    ),
+  /^[+]?[0-9]{10,15}$/,
+  "Enter a valid phone number"
+),
   service: Yup.string().required("Please select a service"),
   recommendationReason: Yup.array()
     .min(1, "Select at least one reason")

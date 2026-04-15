@@ -156,7 +156,7 @@ const Banner = () => {
             onChange={handleChange}
             type="text"
             placeholder="Enter your suburb or postcode"
-            className="w-full  py-2 px-3 text-para text-[14px] sm:text-[16px] outline-none rounded-full"
+            className="w-full py-2 px-3 text-para text-[16px] outline-none rounded-full"
           />
           <button
             disabled={!searchTerm.search}

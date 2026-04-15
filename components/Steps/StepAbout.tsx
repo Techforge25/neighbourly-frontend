@@ -73,7 +73,7 @@ export default function StepAbout({
             value={formik.values.firstName}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="border md:text-[14px] text-[12px]"
+            className="border text-[16px]"
           />
           {formik.touched.firstName && formik.errors.firstName && (
             <span className="text-red-500 md:text-[14px] text-[12px]">
@@ -93,7 +93,7 @@ export default function StepAbout({
             value={formik.values.mobile}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="border md:text-[14px] text-[12px]"
+            className="border text-[16px]"
           />
           {formik.touched.mobile && formik.errors.mobile && (
             <span className="text-red-500 md:text-[14px] text-[12px]">
@@ -114,7 +114,7 @@ export default function StepAbout({
           value={formik.values.suburb}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="border md:text-[14px] text-[12px]"
+          className="border text-[16px]"
         />
         {formik.touched.suburb && formik.errors.suburb && (
           <span className="text-red-500 md:text-[14px] text-[12px]">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Work = () => {
   return (
-    <div className="container mx-auto md:my-20 p-4">
+    <div className="max-w-[1296px] mx-auto md:my-20 p-4">
       <motion.h5
         initial={{ y: -100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -25,7 +25,7 @@ const Work = () => {
         {work_Data.map((item, ind) => (
           <div
             key={ind}
-            className={`${item.bg} p-4 sm:p-6 flex flex-col md:items-start items-center gap-3 sm:gap-4`}
+            className={`${item.bg} p-4 sm:p-6 flex flex-col md:items-start items-center gap-3 sm:gap-4 sm:w-[410.67px] w-full mx-auto`}
           >
             <div
               className={`w-fit text-white text-[18px] sm:text-[20px] p-2 sm:p-2.5 rounded-2xl`}

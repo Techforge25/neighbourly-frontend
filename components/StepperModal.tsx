@@ -79,7 +79,7 @@ export default function StepperModal({
     >
       {/* Modal Box */}
       <div
-        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px]"} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl sm:-translate-y-0 -translate-y-10`}
+        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px] h-[400px] "} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl sm:-translate-y-0 ${step===1?"-translate-y-4":step===2?"-translate-y-20":""} `}
         onClick={(e) => e.stopPropagation()} // 👈 prevent close inside click
       >
         {/* ❌ Close Button */}

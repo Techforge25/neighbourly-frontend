@@ -31,6 +31,7 @@ export default function StepEmailOtp({
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [errors,setErrors]=useState()
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -66,7 +67,8 @@ export default function StepEmailOtp({
           onVerified();
         }
       } catch (err: any) {
-        console.log("Otp is Not Send", err?.response?.data);
+        console.log("Otp is Not Send", err?.response?.data?.message);
+        setErrors(err?.response?.data?.message);
         // console.error(err?.message,);
         setLoading(false);
       }
@@ -145,6 +147,9 @@ export default function StepEmailOtp({
       <form onSubmit={formik.handleSubmit}>
         {!otpSent && (
           <div className="flex flex-col gap-[24px]">
+            <p className="text-red-500 text-sm">
+              {errors}
+            </p>
             <label className="font-medium font-manrope text-[14px] leading-[20px] capitalize">
               Your email <sup className="text-red-500">*</sup>
             </label>
@@ -155,7 +160,7 @@ export default function StepEmailOtp({
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className="border-[1px] px-[12px] py-[13px] border-border rounded-[12px] text-para"
+              className="border-[1px] px-[12px] py-[13px] border-border rounded-[12px] text-para text-[16px]"
             />
 
             {/* ✅ Error message */}
