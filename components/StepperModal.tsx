@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import StepperHeader from "./StepperHeader";
 import StepEmailOtp from "./Steps/StepEmailOtp";
@@ -70,16 +70,34 @@ export default function StepperModal({
     setStep(4);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      const scrollY = window.scrollY;
+
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+    } else {
+      const scrollY = document.body.style.top;
+
+      document.body.style.position = "";
+      document.body.style.top = "";
+
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 h-[100dvh]"
       onClick={onClose} // 👈 outside click close
     >
       {/* Modal Box */}
       <div
-        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px] h-[400px] "} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl sm:-translate-y-0 ${step===1?"-translate-y-4":step===2?"-translate-y-20":""} `}
+        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px] h-[400px] "} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl sm:-translate-y-0 ${step === 1 ? "-translate-y-4" : step === 2 ? "-translate-y-20" : ""} `}
         onClick={(e) => e.stopPropagation()} // 👈 prevent close inside click
       >
         {/* ❌ Close Button */}

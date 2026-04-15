@@ -191,7 +191,7 @@ export default function StepRecommendation({
                 defaultCountry="AU"
                 value={values.theirNumber}
                 onChange={(value) => setFieldValue("theirNumber", value)}
-                className={`phone-input border-none  ${
+                className={`phone-input ${
                   errors.theirNumber && touched.theirNumber ? "phone-error" : ""
                 }`}
               />
