@@ -112,6 +112,20 @@ const Banner = () => {
     router.push(`suberb-search?search=${encodeURIComponent(suburb)}`);
   };
 
+  const noResults =
+  searchTerm.search &&
+  filteredLocations?.length === 0 &&
+  filteredServiceTypes?.length === 0;
+
+  const hasLocations = filteredLocations?.length > 0;
+const hasServices = filteredServiceTypes?.length > 0;
+
+const totalItems =
+  (filteredLocations?.length || 0) +
+  (filteredServiceTypes?.length || 0);
+
+const enableScroll = totalItems > 1;
+
   return (
     <div className="relative h-[62.2vh] w-full overflow-hidden">
       {/* Video background */}
@@ -168,10 +182,14 @@ const Banner = () => {
           </button>
         </div>
         {/* Search Results */}
-        {searchTerm.search && (
+        {searchTerm.search && !noResults && (
           <>
             <div
-              className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto  left-0 right-0  rounded-b-[10px]  bg-white z-50 pb-2 absolute ${filteredLocations.length >= 4 || filteredServiceTypes.length >= 4 ? "h-[160] overflow-hidden overflow-y-scroll " : "h-[100px] overflow-hidden overflow-y-auto "}`}
+             className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto left-0 right-0 rounded-b-[10px] bg-white z-50 pb-2 absolute ${
+    enableScroll
+      ? "max-h-[200px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300"
+      : "h-auto overflow-visible"
+  }`}
             >
               {loading ? (
                 <div className="px-4 py-2 text-gray-500">
