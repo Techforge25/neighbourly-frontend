@@ -282,10 +282,10 @@ export default function StepRecommendation({
           {/* Optional Comment  */}
 
           {/* Buttons */}
-          <div className="grid grid-cols-2 items-center md:gap-4 gap-2 md:mt-8 mt-4">
+          <div className="grid sm:grid-cols-2  items-center md:gap-4 gap-2 md:mt-8 mt-4">
             <button
               type="button"
-              className="rounded-full border border-[#E4E4E4] md:py-4 md:px-7  px-4 py-2 flex items-center justify-center gap-2 md:text-[16px] text-[14px] text-black"
+              className="sm:order-1 cursor-pointer order-2 rounded-full border border-[#E4E4E4] md:py-4 md:px-7  px-4 py-2 flex items-center justify-center gap-2 md:text-[16px] text-[14px] text-black"
               onClick={handleBack}
             >
               <ArrowLeft size={20} />
@@ -302,7 +302,7 @@ export default function StepRecommendation({
                   values.recommendationReason.length > 0
                 )
               }
-              className="rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center justify-center gap-2 bg-primary md:text-[16px] text-[12px] text-[#fff]"
+              className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center justify-center gap-2 bg-primary md:text-[16px] text-[12px] text-[#fff]"
             >
               Submit Recommendation
               <ArrowRight size={20} className="md:flex hidden" />

@@ -48,12 +48,12 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
         </p>
 
         {/* Action buttons */}
-        <div className="flex gap-3">
+        <div className="flex sm:flex-row flex-col-reverse gap-3">
           <button
             onClick={() => {
               (router.push("/discover"), onClose());
             }}
-            className="flex-1 py-3.5 px-6 rounded-full bg-primary text-white text-[16px] leading-[16px] "
+            className="flex-1 py-3.5 cursor-pointer px-6 rounded-full bg-primary text-white text-[16px] leading-[16px] "
           >
             View Recommendations
           </button>
@@ -62,7 +62,7 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
             onClick={() => {
               (router.push("/"), onClose());
             }}
-            className="flex-1 py-3.5 px-6 rounded-full bg-secondary text-white text-[16px] leading-[16px] "
+            className="flex-1 py-3.5 cursor-pointer px-6 rounded-full bg-secondary text-white text-[16px] leading-[16px] "
           >
             Search Another Suburb
           </button>
@@ -71,7 +71,7 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
         <div>
           <button
             onClick={() => dispatch(openShare())}
-            className="px-4 py-4 rounded-full cursor-pointer bg-green w-full flex items-center justify-center gap-4"
+            className="px-4 py-4 cursor-pointer rounded-full cursor-pointer bg-green w-full flex items-center justify-center gap-4"
             aria-label="Share"
           >
             <span className="text-white">Share</span>
