@@ -113,18 +113,17 @@ const Banner = () => {
   };
 
   const noResults =
-  searchTerm.search &&
-  filteredLocations?.length === 0 &&
-  filteredServiceTypes?.length === 0;
+    searchTerm.search &&
+    filteredLocations?.length === 0 &&
+    filteredServiceTypes?.length === 0;
 
   const hasLocations = filteredLocations?.length > 0;
-const hasServices = filteredServiceTypes?.length > 0;
+  const hasServices = filteredServiceTypes?.length > 0;
 
-const totalItems =
-  (filteredLocations?.length || 0) +
-  (filteredServiceTypes?.length || 0);
+  const totalItems =
+    (filteredLocations?.length || 0) + (filteredServiceTypes?.length || 0);
 
-const enableScroll = totalItems > 1;
+  const enableScroll = totalItems > 1;
 
   return (
     <div className="relative h-[62.2vh] w-full overflow-hidden">
@@ -185,11 +184,11 @@ const enableScroll = totalItems > 1;
         {searchTerm.search && !noResults && (
           <>
             <div
-             className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto left-0 right-0 rounded-b-[10px] bg-white z-50 pb-2 absolute ${
-    enableScroll
-      ? "max-h-[200px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300"
-      : "h-auto overflow-visible"
-  }`}
+              className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto left-0 right-0 rounded-b-[10px] bg-white z-50 pb-2 absolute ${
+                enableScroll
+                  ? "max-h-[165px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300"
+                  : "h-auto overflow-visible"
+              }`}
             >
               {loading ? (
                 <div className="px-4 py-2 text-gray-500">
@@ -231,7 +230,9 @@ const enableScroll = totalItems > 1;
         {/* Suggested Suburbs */}
 
         <div className="flex items-center justify-center sm:flex-row flex-col sm:gap-3 gap-1.5 my-4">
-          <p className="text-white font-medium font-poppins md:text-[18px] text-[16px]">Suggested Suburbs</p>
+          <p className="text-white font-medium font-poppins md:text-[18px] text-[16px]">
+            Suggested Suburbs
+          </p>
 
           <div className="flex sm:gap-[10px] gap-[5px]">
             {sugestidSubrubData.map((suburb, index) => (
