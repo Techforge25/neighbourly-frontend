@@ -186,7 +186,7 @@ const Banner = () => {
             <div
               className={`w-[280px] sm:w-[540px] md:w-[580px] lg:w-[660px] mx-auto left-0 right-0 rounded-b-[10px] bg-white z-50 pb-2 absolute ${
                 enableScroll
-                  ? "max-h-[150px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300"
+                  ? "max-h-[140px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300"
                   : "h-auto overflow-visible"
               }`}
             >
