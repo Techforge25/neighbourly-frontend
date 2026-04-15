@@ -156,11 +156,12 @@ export default function StepEmailOtp({
 
             <input
               name="email"
+              disabled={userData?.isProfileCompleted}
               placeholder="olivia@example.com"
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className="border-[1px] px-[12px] py-[13px] border-border rounded-[12px] text-para text-[16px]"
+              className="border-[1px] px-[12px] disabled:opacity-50 disabled:cursor-not-allowed py-[13px] border-border rounded-[12px] text-para text-[16px]"
             />
 
             {/* ✅ Error message */}
