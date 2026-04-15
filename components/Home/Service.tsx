@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const Service = () => {
   return (
     <main className="lg:max-w-[1296px] mx-auto md:my-22 my- p-4">
-      <div className="lg:max-w-[1080px] mx-auto flex items-center md:flex-row flex-col md:gap-[40px] gap-10  ">
+      <div className="lg:max-w-[1080px] mx-auto flex items-center md:flex-row flex-col-reverse md:gap-[40px] gap-10  ">
         {/* Image Section */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}

@@ -107,7 +107,7 @@ const TabBar: React.FC = () => {
   return (
     <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto relative">
       {cardLength ? (
-        <div className="flex items-center md:flex-row flex-col space-y-4 justify-between">
+        <div className="flex sm:items-center items-start md:flex-row flex-col space-y-4 justify-between">
           {/* Tab Filters */}
           <div className="flex items-center gap-2 flex-wrap">
             {/* Left Button */}
