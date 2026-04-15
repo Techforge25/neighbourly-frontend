@@ -122,63 +122,71 @@ const Card = () => {
                             </p>
                           </div>
 
-                          {/* RECOMMENDATION BOX */}
-                          <div className="w-full flex flex-col">
-                            <div
-                              className={`border text-white ${
-                                item.serviceType === "Plumber"
-                                  ? "bg-primary"
-                                  : item.serviceType === "Electrician"
-                                    ? "bg-green"
-                                    : "bg-secondary"
-                              } border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px]`}
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
-                                  {item?.recommendationCount}
-                                </span>
-                                <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">
-                                  Local recommendations
-                                </span>
+                          <div className="flex flex-col gap-6 border border-modal-line rounded-[12px]">
+                            {/* RECOMMENDATION BOX */}
+                            <div className="w-full flex flex-col">
+                              <div
+                                className={`border text-white ${
+                                  item.serviceType === "Plumber"
+                                    ? "bg-primary"
+                                    : item.serviceType === "Electrician"
+                                      ? "bg-green"
+                                      : "bg-secondary"
+                                } border-modal-line p-[12px] rounded-t-[12px] flex flex-col gap-[10px]`}
+                              >
+                                <div className="flex items-center gap-2">
+                                  <span className="md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold">
+                                    {item?.recommendationCount}
+                                  </span>
+                                  <span className="font-poppins md:text-[22px] sm:text-[18px] text-[16px]">
+                                    Local recommendations
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          {/* ADDRESSES */}
-                          <div className="flex flex-col gap-1">
-                            <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
-                              Also trusted in
-                            </p>
+                            {/* ADDRESSES */}
+                            <div className="flex flex-col gap-1 px-[12px]">
+                              <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                                Also trusted in
+                              </p>
 
-                            <div className="flex flex-wrap gap-1 line-clamp-2">
-                              {item?.addresses?.map((addr: any, i: number) => (
-                                <p
-                                  key={i}
-                                  className="font-poppins md:text-[16px] text-[14px] text-para"
-                                >
-                                  {addr} -
-                                </p>
-                              ))}
+                              <div className="flex flex-wrap gap-1 line-clamp-2">
+                                {item?.addresses?.map(
+                                  (addr: any, i: number) => (
+                                    <p
+                                      key={i}
+                                      className="font-poppins md:text-[16px] text-[14px] text-para"
+                                    >
+                                      {addr} -
+                                    </p>
+                                  ),
+                                )}
+                              </div>
                             </div>
-                          </div>
 
-                          {/* REASONS */}
-                          <div className="flex flex-col gap-1">
-                            <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
-                              Locals mention
-                            </p>
+                            {/* REASONS */}
+                            <div className="flex flex-col gap-1 px-[12px] pb-3">
+                              <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
+                                Locals mention
+                              </p>
 
-                            <div className="flex flex-wrap line-clamp-2">
-                              {[...new Set(item.reasonsOfRecommendation.flat())]
-                                ?.slice(0, 3)
-                                ?.map((resItem: any, index: number) => (
-                                  <p
-                                    key={index}
-                                    className="font-poppins md:text-[16px] text-[14px] text-para"
-                                  >
-                                    {resItem} -
-                                  </p>
-                                ))}
+                              <div className="flex flex-wrap line-clamp-2">
+                                {[
+                                  ...new Set(
+                                    item.reasonsOfRecommendation.flat(),
+                                  ),
+                                ]
+                                  ?.slice(0, 3)
+                                  ?.map((resItem: any, index: number) => (
+                                    <p
+                                      key={index}
+                                      className="font-poppins md:text-[16px] text-[14px] text-para"
+                                    >
+                                      {resItem} -
+                                    </p>
+                                  ))}
+                              </div>
                             </div>
                           </div>
                         </div>
