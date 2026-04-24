@@ -72,7 +72,7 @@ const Banner = () => {
             <span>{`${cardLength ? cardLength : "0"} recommendations`}</span>
           </button>
           <h1 className="font-bold font-manrope lg:text-[42px] md:text-[32px] sm:text-[28px] text-[22px] text-white lg:leading-[68px] leading-[32px] text-center whitespace-pre-wrap ">
-            {`${state?.recommendations ? state?.recommendations : "0"} in total so far`}
+            {`from our total ${state?.recommendations ? state?.recommendations : "0"} recommendations`}
           </h1>
         </div>
       </div>

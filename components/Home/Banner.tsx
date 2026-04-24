@@ -145,15 +145,15 @@ const Banner = () => {
 
       {/* Content */}
       <div
-        className={`font-manrope absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center px-4 sm:px-6 md:px-0 w-full max-w-[900px]`}
+        className={`font-manrope absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center px-4 sm:px-6 md:px-0 w-full `}
       >
         {/* Heading */}
-        <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
+        <div className="font-manrope md:w-[1200px] mx-auto flex flex-col items-center justify-center">
           <div className="flex items-center flex-row justify-center md:gap-3">
             <h1 className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-              <span>Discover services your</span>
+              <span>Discover the most recommended local</span>
               <br />
-              <span>neighbours trust</span>
+              <span>tradies in your suburb</span>
             </h1>
           </div>
 
