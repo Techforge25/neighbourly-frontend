@@ -5,6 +5,7 @@ import StepEmailOtp from "./Steps/StepEmailOtp";
 import StepAbout from "./Steps/StepAbout";
 import StepRecommendation from "./Steps/StepRecommendation";
 import StepSuccess from "./Steps/StepSuccess";
+import { RxCross2 } from "react-icons/rx";
 
 interface RecommendationData {
   firstName: string;
@@ -25,6 +26,9 @@ export default function StepperModal({
 }) {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [headerTitle, setHeaderTitle] = useState("Recommend a local legend");
+  const [stepOtp, setStepOtp] = useState(false);
+  const [stepAbout, setStepAbout] = useState(false);
   const [formData, setFormData] = useState<RecommendationData>({
     firstName: "",
     businessName: "",
@@ -35,8 +39,15 @@ export default function StepperModal({
     comment: "",
   });
 
-  const nextStep = () => setStep((s) => s + 1);
-  const nextStepThree = () => setStep((s) => s + 2);
+  const nextStep = () => {
+    setStep((s) => s + 1);
+    setStepAbout(false)
+    setHeaderTitle("Who are you recommending?");
+  };
+  const nextStepThree = () => {
+    setStep((s) => s + 2);
+    setHeaderTitle("Who are you recommending?");
+  };
   const nextStepOne = () => setStep((s) => s - 2);
   const prevStep = () => setStep((s) => s - 1);
 
@@ -55,10 +66,12 @@ export default function StepperModal({
 
   const handleOtpVerified = () => {
     setLoading(true);
-
+    setStepAbout(true);
     setTimeout(() => {
-      resetAll(); // clear all fields
+      resetAll();
       setLoading(false);
+      setHeaderTitle("About you");
+      setStepOtp(false);
       setStep(2);
     }, 1500);
   };
@@ -92,28 +105,39 @@ export default function StepperModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 h-[100dvh]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 sm:px-4 h-[100dvh]"
       onClick={onClose} // 👈 outside click close
     >
       {/* Modal Box */}
       <div
-        className={` ${step === 4 ? "bg-[#F1EAE5]" : step === 3 ? "h-[500px] bg-white" : "bg-white md:max-h-[732px] h-[400px] "} overflow-hidden overflow-y-auto w-full max-w-2xl rounded-2xl p-6  relative shadow-xl sm:-translate-y-0 ${step === 1 ? "-translate-y-4" : step === 2 ? "-translate-y-20" : ""} `}
+        className={`bg-white overflow-hidden overflow-y-auto  sm:h-auto sm:p-auto  pb-20 sm:max-h-screen h-[100dvh] w-full sm:max-w-[530px] sm:rounded-2xl px-[32px] py-[32px] relative shadow-xl`}
         onClick={(e) => e.stopPropagation()} // 👈 prevent close inside click
       >
         {/* ❌ Close Button */}
 
         {step !== 4 && (
           <>
-            <div className="flex items-center justify-between py-3">
-              <h4 className="md:text-[24px] text-[18px] md:leading-[30px] leading-[15px] font-semibold text-[#12141D]">
-                Recommend a Business
-              </h4>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[1rem] font-medium font-manrope text-secondary">Step {stepOtp ? "2" : stepAbout ? "3" : step === 3 ?"4" :step} of 4</p>
+                <h4 className={`font-manrope ${headerTitle == "Who are you recommending?"?"sm:w-[269px] leading-relaxed":""}  font-semibold md:text-[24px] sm:text-[20px] text-[18px]`}>
+                  {headerTitle}
+                </h4>
+              </div>
 
-              <button onClick={onClose} className="cursor-pointer">
-                ✕
+              <button
+                onClick={onClose}
+                className="cursor-pointer sm:flex hidden bg-secondary-close-btn-bg sm:p-[6px] p-[3px] rounded-full "
+              >
+                <RxCross2
+                  size={22}
+                  className="sm:w-[20] h-[20] w-[18] h-[18]"
+                />
               </button>
             </div>
-            <div className="bg-[#E4E4E4] h-[1px]" />
+            <div className="md:py-[32px] sm:py-[28px] py-[22px]">
+              <div className="bg-[#E4E4E4] h-[1px]" />
+            </div>
           </>
         )}
 
@@ -125,15 +149,17 @@ export default function StepperModal({
         )}
 
         {/* Stepper Header */}
-        {step !== 4 && <StepperHeader step={step} />}
+        {/* {step !== 4 && <StepperHeader step={step} />} */}
 
         {/* Steps */}
-        <div className="mt-6">
+        <div className="">
           {step === 1 && (
             <StepEmailOtp
               onVerified={handleOtpVerified}
               nextStepThree={nextStepThree}
               onClose={onClose}
+              setHeaderTitle={setHeaderTitle}
+              setStepOtp={setStepOtp}
             />
           )}
 
@@ -143,6 +169,7 @@ export default function StepperModal({
               setData={setFormData}
               onNext={nextStep}
               onBack={prevStep}
+              setHeaderTitle={setHeaderTitle}
             />
           )}
 
@@ -153,6 +180,7 @@ export default function StepperModal({
               onBack={prevStep}
               onSubmit={handleSubmit}
               nextStepOne={nextStepOne}
+              setHeaderTitle={setHeaderTitle}
             />
           )}
 

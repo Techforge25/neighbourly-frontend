@@ -3,34 +3,28 @@ import React from "react";
 
 const LocalsTrustMost = () => {
   return (
-    <div className="max-w-[1296px] mx-auto">
-      <div className="md:mb-4">
-        <p className="font-manrope font-bold md:text-[42px] sm:text-[40px] text-[28px] md:p-4 pl-6 md:text-start text-center ">See who locals <span className="text-primary">trust most</span></p>
-      </div>
-      <div className="flex flex-col flex-1 md:flex-row items-center justify-center gap-[8px] md:gap-[16px] lg:gap-[30px] flex-wrap lg:p-0 p-4">
-        <Image
-          src="/images/trustMostPman.png"
-          alt="Locals Trust Most"
-          width={411}
-          height={437}
-          className="lg:w-[411px] w-full  w-full md:min-h-[437px]"
-        />
-        <Image
-          src="/images/trustMostEman.png"
-          alt="Locals Trust Most"
-          width={411}
-          height={437}
-          className="lg:w-[411px] w-full w-full md:min-h-[437px]"
-        />
-        <Image
-          src="/images/trustMostHman.png"
-          alt="Locals Trust Most"
-          width={411}
-          height={437}
-          className="lg:w-[411px] w-full  md:min-h-[437px]"
-        />
-      </div>
-    </div>
+    <div className="max-w-[1296px] sm:h-[541px] h-[340px] mx-auto rounded-[22px] overflow-hidden relative bg-share-modal-icon bg-[url('/images/findSectionBg.png')] bg-cover bg-center mb-12">
+  
+  {/* Text */}
+  <div className="absolute left-10 sm:top-16 top-10">
+    <h2 className="font-manrope font-bold text-[28px] leading-[32px] sm:text-[36px] sm:leading-[40px] md:text-[44px] md:leading-[48px] lg:text-[52px] lg:leading-[53px]">
+      <span className="block text-text-dark-secondary ">See who locals</span>
+      <span className="block text-white">trust most</span>
+    </h2>
+  </div>
+
+  {/* Image (bottom aligned) */}
+  <div className="absolute bottom-0 sm:right-0">
+    <Image
+      src="/images/mockImages.png"
+      alt="Locals Trust Most"
+      width={1000}
+      height={1000}
+      className="w-[1050px] object-contain"
+    />
+  </div>
+
+</div>
   );
 };
 

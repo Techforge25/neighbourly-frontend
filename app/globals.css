@@ -35,6 +35,12 @@
   --color-border-light: #E2E8F0;
   --color-text-dark-secondary: #303231;
   --color-primary-dark-bg: #FFFFFF42;
+  --color-secondary-close-btn-bg: #E8E8E8;
+  --color-secondary-OTP-btn-bg: #ECEFF6;
+  --color-resnd-OTP-btn-txt: #374151;
+  --color-profile-bg-txt: #F4FAFF;
+  --color-success-modal-txt-dark: #0F172A;
+  --color-success-modal-txt-secondary-contrast: #3A5670;
 
 
   /* Color End */

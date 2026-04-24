@@ -5,6 +5,7 @@ import authReducer from './authSlice';
 import errorReducer from './errorSlice';
 import paginationReducer from "./paginationSlice";
 import cardLengthReducer from "@/store/searchCountSlice"
+import modalReducer from "./modalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     error: errorReducer,
     pagination: paginationReducer,
     cardLength: cardLengthReducer,
+    modal: modalReducer,
   },
 });
 

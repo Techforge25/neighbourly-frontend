@@ -150,16 +150,18 @@ const Banner = () => {
         {/* Heading */}
         <div className="font-manrope md:w-[820px] mx-auto flex flex-col items-center justify-center">
           <div className="flex items-center flex-row justify-center md:gap-3">
-            <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-              Discover services your
-            </p>
+            <h1 className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+              <span>Discover services your</span>
+              <br />
+              <span>neighbours trust</span>
+            </h1>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center">
-            <p className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
-              neighbours trust
-            </p>
-          </div>
+          {/* <div className="flex flex-col sm:flex-row items-center justify-center">
+            <h1 className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
+              
+            </h1>
+          </div> */}
         </div>
 
         {/* Search bar */}

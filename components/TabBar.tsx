@@ -174,7 +174,7 @@ const TabBar: React.FC = () => {
                 disabled={!isShowFullList}
                 id="filterBySuburb"
                 value={selectSuburb}
-                className="border-[1px] disabled:cursor-not-allowed border-border-light text-textdark px-[20px] py-[10px] rounded-[12px] md:text-[16px] text-[14px] font-manrope font-medium cursor-pointer outline-none"
+                className="border-[1px] disabled:opacity-50 disabled:cursor-not-allowed border-border-light text-textdark px-[20px] py-[10px] rounded-[12px] md:text-[16px] text-[14px] font-manrope font-medium cursor-pointer outline-none"
                 onChange={(e) => {
                   // setSelectedSuburb(e.target.value);
                   handleSearchChange(e);

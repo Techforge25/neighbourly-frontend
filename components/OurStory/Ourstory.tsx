@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const Ourstory = () => {
   return (
     <div className="md:w-[80%] w-[90%] mx-auto md:my-20 my-10 p-4">
-      <div className="flex item-center justify-between flex-col xl:flex-row md:gap-20 gap-8">
+      <div className="flex items-center justify-between flex-col xl:flex-row md:gap-20 gap-8">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
@@ -17,14 +17,10 @@ const Ourstory = () => {
               <span>Our </span>
               <span className="text-primary">story</span>
             </p>
-            <p className="text-[16px] text-tabText md:mt-10 mt-4 font-poppins leading-[24px]">
-              Neighbourly started with a frustration we knew well: how hard it
-              can be to find local service providers you can genuinely trust.
-            </p>
           </div>
 
           {
-            <div className="mt-10 flex flex-col mdd:gap-5 gap-2.5">
+            <div className="sm:mt-10 mt-4 flex flex-col md:gap-5 gap-2.5 max-w-[487px]">
               {our_story_data.map((item, ind) => (
                 <div key={ind}>
                   <p className="text-[16px] text-para font-poppins leading-[24px] text-justify">
@@ -58,7 +54,7 @@ const Ourstory = () => {
             alt="image"
             width={1000}
             height={1000}
-            className="w-full h-auto max-w-full lg:min-w-[500px] object-contain"
+            className="w-full h-auto max-w-[586px] lg:min-w-[500px] object-contain"
             loading="lazy"
           />
         </motion.div>

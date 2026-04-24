@@ -7,7 +7,7 @@ import {
 import { HiOutlineSearch } from "react-icons/hi";
 import { PiThumbsUpBold } from "react-icons/pi";
 import { RiHandHeartFill, RiShakeHandsLine } from "react-icons/ri";
-import { TbCurrencyDollarOff, TbMap } from "react-icons/tb";
+import { TbMap } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import CustomIcon from "@/components/CustomIcon";
 import { MdCreditCardOff } from "react-icons/md";
@@ -25,7 +25,7 @@ export const navItems = [
     label: "Discover",
   },
   {
-    href: "/getin-touch",
+    href: "/get-in-touch",
     label: "Get in Touch",
   },
 ];
@@ -34,19 +34,16 @@ export const work_Data = [
   {
     icon: <HiOutlineSearch size={35} />,
     title: "Search your suburb",
-    text: "Discover local services recommended by people nearby.",
-    bg: "bg-primary",
+    bg: "bg-share-modal-icon",
   },
   {
     icon: <PiThumbsUpBold size={35} />,
     title: "Discover who locals trust",
-    text: "Browse the people and businesses most recommended in your suburbs.",
     bg: "bg-green",
   },
   {
     icon: <RiHandHeartFill size={35} />,
     title: "Share a recommendation",
-    text: "Help others discover great local services in your suburbs.",
     bg: "bg-secondary",
   },
 ];
@@ -91,8 +88,9 @@ export const feel_Diff = [
 ];
 
 export const our_story_data = [
-  "We kept going through the same cycle — searching online, comparing options, second-guessing reviews, and hoping we were making the right call. While we had some disappointing experiences, we also found some brilliant local businesses we still trust and see around the community today.",
-  "That made us realise something important: the most valuable recommendations rarely come from anonymous ratings sites. They come from people nearby. Neighbourly was created to bring that kind of local trust online — a free, community-led service that helps people discover trusted local businesses through genuine recommendations from neighbours and nearby households, not paid listings or lead generation.",
+  "BeNeighbourly started with a simple frustration: finding a local service provider you can genuinely trust.",
+  "We realised the best recommendations come from people nearby not anonymous reviews.",
+  "So we built BeNeighbourly to help people discover trusted local businesses through genuine recommendations from neighbours."
 ];
 
 export const Community_Sec_Data = [
@@ -134,7 +132,7 @@ export const Tab_Data = [
 export const address_Data = [
   {
     isVerified: true,
-    verifiedBy: "by Neighbourly",
+    verifiedBy: "by BeNeighbourly",
     name: "Shannon",
     image: "/images/address1.png",
     category: "Plumberss",
@@ -172,7 +170,7 @@ export const address_Data = [
   },
   {
     isVerified: true,
-    verifiedBy: "by Neighbourly",
+    verifiedBy: "by BeNeighbourly",
     name: "Shannon",
     image: "/images/address1.png",
     category: "Electricianss",
@@ -210,7 +208,7 @@ export const address_Data = [
   },
   {
     isVerified: true,
-    verifiedBy: "by Neighbourly",
+    verifiedBy: "by BeNeighbourly",
     name: "Shannon",
     image: "/images/address1.png",
     category: "handyman",
@@ -987,31 +985,7 @@ export const accordianData = [
     answer:
       "Easy — tell us who you trust and submit a recommendation. The more local recommendations we get, the faster we can grow coverage in your area.",
   },
-  {
-    question: "What makes Neighbourly different?",
-    answer:
-      "We’re not built around anonymous reviews, paid listings or lead generation. We’re built to celebrate the local businesses people nearby genuinely trust.",
-  },
-  {
-    question: "Why not just use Google, HiPages or Airtasker?",
-    answer:
-      "They’re great for search and getting quotes from randoms. Neighbourly adds the trust layer real recommendations from people nearby.",
-  },
-  {
-    question: "How do you know people actually want this?",
-    answer:
-      "We surveyed more than 1,000 Australians and found the same thing we were hearing on the ground: when it comes to local services, people trust recommendations from those closest to them far more than anonymous reviews.",
-  },
-  {
-    question: "Do businesses pay to be featured?",
-    answer:
-      "No. We don’t support whoever pays the most to be seen. We’d rather help people discover the tradies who might be better on the tools than they are at marketing.",
-  },
-  {
-    question: "So what’s the point of Neighbourly?",
-    answer:
-      "To make finding a good local service feel less like a gamble and more like getting a recommendation from someone just around the corner.",
-  },
+  
 ];
 
 export const cardData = [

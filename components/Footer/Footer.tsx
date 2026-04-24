@@ -41,7 +41,7 @@ const Footer = () => {
       {/* Bottom */}
       <div className="mt-4 md:mt-6 text-center">
         <p className="text-[#202939] text-xs sm:text-sm md:text-base">
-          © 2026 Neighbourly. All rights reserved.
+          © 2026 BeNeighbourly. All rights reserved.
         </p>
       </div>
     </div>

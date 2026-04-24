@@ -28,7 +28,7 @@ const LocalRecommendation = () => {
               <ButtonModal bg={"text-secondary"} />
             </div>
 
-            <div className="mt-20 relative w-full overflow-hidden flex items-center flex-wrap justify-center ">
+            {/* <div className="mt-20 relative w-full overflow-hidden flex items-center flex-wrap justify-center ">
               {cardData.map((item, ind) => (
                 <motion.div
                   key={ind}
@@ -38,11 +38,11 @@ const LocalRecommendation = () => {
                   viewport={{ once: true }}
                   className="flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] sm:h-[540px] sm:w-[410px] w-[350px] bg-white"
                 >
-                  {/* CONTENT WRAPPER */}
+                  CONTENT WRAPPER
                   <div className="flex flex-col h-full justify-between">
-                    {/* TOP CONTENT */}
+                    TOP CONTENT
                     <div className="flex flex-col gap-[18px]">
-                      {/* HEADER */}
+                      HEADER
                       <div className="flex flex-col gap-[6px]">
                         <p className="text-center md:text-[42px] sm:text-[32px] text-[24px] font-manrope font-extrabold text-textdark line-clamp-1">
                           {item.personName}
@@ -61,7 +61,7 @@ const LocalRecommendation = () => {
                         </p>
                       </div>
 
-                      {/* RECOMMENDATION BOX */}
+                      RECOMMENDATION BOX
                       <div className="w-full flex flex-col">
                         <div
                           className={`border text-white ${
@@ -83,7 +83,7 @@ const LocalRecommendation = () => {
                         </div>
                       </div>
 
-                      {/* ADDRESSES */}
+                      ADDRESSES
                       <div className="flex flex-col gap-1">
                         <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
                           Also trusted in
@@ -101,7 +101,7 @@ const LocalRecommendation = () => {
                         </div>
                       </div>
 
-                      {/* REASONS */}
+                      REASONS
                       <div className="flex flex-col gap-1">
                         <p className="font-manrope font-semibold md:text-[18px] sm:text-[16px] text-[14px] text-tabText">
                           Locals mention
@@ -122,7 +122,7 @@ const LocalRecommendation = () => {
                       </div>
                     </div>
 
-                    {/* BUTTONS (ALWAYS BOTTOM) */}
+                    BUTTONS (ALWAYS BOTTOM)
                     <div className="mt-4 flex items-center gap-2 w-full">
                       <Link
                         href={`tel:${item?.businessContact}`}
@@ -158,11 +158,11 @@ const LocalRecommendation = () => {
               ))}
 
               <div className="absolute inset-0 z-50 backdrop-blur-md bg-white/0"></div>
-            </div>
+            </div> */}
           </div>
-          <div className=" mt-18">
+          {/* <div className=" mt-18">
             <Across />
-          </div>
+          </div> */}
         </>
       )}
     </>

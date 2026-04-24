@@ -7,9 +7,12 @@ import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import ButtonModal from "../ButtomModal";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "@/store/modalSlice";
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const dispatch = useDispatch();
   const pathName = usePathname();
 
   useEffect(() => {
@@ -23,6 +26,11 @@ const Header = () => {
     document.body.style.overflow = "auto";
   };
 }, [isOpenMenu]);
+
+const handleOpenMenu = ()=>{
+  setIsOpenMenu(!isOpenMenu);
+  dispatch(closeModal())
+}
 
 
 
@@ -68,7 +76,7 @@ const Header = () => {
         <div className="md:hidden flex">
           <button
             className=" flex items-center cursor-pointer gap-2 border lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-primary text-white lg:text-[16px] text-sm"
-            onClick={() => setIsOpenMenu(!isOpenMenu)}
+            onClick={() => handleOpenMenu()}
           >
             {!isOpenMenu ? <IoMdMenu size={24} /> : <FaXmark size={24} />}
           </button>

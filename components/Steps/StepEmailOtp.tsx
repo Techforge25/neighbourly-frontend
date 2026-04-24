@@ -23,20 +23,23 @@ export default function StepEmailOtp({
   onVerified,
   nextStepThree,
   onClose,
+  setHeaderTitle,
+  setStepOtp,
 }: {
   onVerified: () => void;
   nextStepThree: () => void;
   onClose: () => void;
+  setHeaderTitle: (title: string) => void;
+  setStepOtp: (value: boolean) => void;
 }) {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [errors,setErrors]=useState()
+  const [errors, setErrors] = useState();
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
 
-  // ✅ Formik setup
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -59,6 +62,8 @@ export default function StepEmailOtp({
         if (data?.data?.OTPRequired) {
           setOtpSent(true);
           toast.success("OTP sent successfully!");
+          setHeaderTitle("Verify it’s really you");
+          setStepOtp(true);
           setLoading(false);
         } else if (data?.data?.isProfileCompleted) {
           setOtpSent(false);
@@ -69,7 +74,6 @@ export default function StepEmailOtp({
       } catch (err: any) {
         console.log("Otp is Not Send", err?.response?.data?.message);
         setErrors(err?.response?.data?.message);
-        // console.error(err?.message,);
         setLoading(false);
       }
     },
@@ -89,26 +93,17 @@ export default function StepEmailOtp({
       if (data?.data?.isProfileCompleted || data?.success) {
         setUserData(data?.data);
         setOtpSent(false);
-        // console.log("User data after OTP verification:", data?.data);
       }
 
       if (data?.success && !data?.data?.isProfileCompleted) {
         toast.success(data?.message);
         onVerified();
+        setStepOtp(false)
       }
     } catch (error: any) {
-      // console.log(error?.response?.data);
       toast.error(error?.response?.data?.message);
     }
   };
-
-  // console.log("User data after OTP request:", userData);
-
-  // if (success) {
-  //   onVerified();
-  // } else {
-  //   alert("Invalid OTP");
-  // }
 
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
@@ -146,43 +141,55 @@ export default function StepEmailOtp({
     <div>
       <form onSubmit={formik.handleSubmit}>
         {!otpSent && (
-          <div className="flex flex-col gap-[24px]">
-            <p className="text-red-500 text-sm">
-              {errors}
-            </p>
-            <label className="font-medium font-manrope text-[14px] leading-[20px] capitalize">
-              Your email <sup className="text-red-500">*</sup>
-            </label>
+          <div className="">
+            <p className="text-red-500 text-sm">{errors}</p>
 
-            <input
-              name="email"
-              disabled={userData?.isProfileCompleted}
-              placeholder="olivia@example.com"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className="border-[1px] px-[12px] disabled:opacity-50 disabled:cursor-not-allowed py-[13px] border-border rounded-[12px] text-para text-[16px]"
-            />
+            <div className="md:pb-[32px] sm:pb-[28px] pb-[22px]">
+              <p className="font-manrope font-medium text-[1rem] text-secondary">
+                Start with your email so we can verify it’s really you
+              </p>
+            </div>
 
-            {/* ✅ Error message */}
+            <div className="flex flex-col space-y-[32px]">
+              <label className="font-medium font-manrope text-[14px] leading-[20px] capitalize">
+                Your email <sup className="text-red-500">*</sup>
+              </label>
+
+              <input
+                name="email"
+                disabled={userData?.isProfileCompleted}
+                placeholder="olivia@example.com"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className="border-[1px] px-[12px] outline-none disabled:opacity-50 disabled:cursor-not-allowed py-[13px] border-border rounded-[62px] text-para text-[16px]"
+              />
+              {/* ✅ Error message */}
+            </div>
             {formik.touched.email && formik.errors.email && (
               <span className="text-red-500 text-sm">
                 {formik.errors.email}
               </span>
             )}
+
             {!userData?.isProfileCompleted && (
               <button
                 disabled={!formik.values.email}
                 type="submit"
-                className={`bg-primary disabled:opacity-50 disabled:cursor-not-allowed w-full mx-auto cursor-pointer md:mt-6 text-[14px] md:text-[16px] font-poppins px-[1px] py-[8px] rounded-full text-white flex items-center justify-center gap-4`}
+                className={`flex items-center disabled:opacity-50 disabled:cursor-not-allowed justify-center gap-[8px] w-full bg-primary mt-4 md:py-[17px] sm:py-[14px] py-[12px] rounded-full cursor-pointer`}
               >
                 {!loading ? (
                   <>
-                    <span>Next</span>
-                    <IoArrowForward size={24} className="size-[20px]" />
+                    <span className="text-white text-[16px] font-poppins ">
+                      Continue
+                    </span>
+                    <IoArrowForward
+                      size={24}
+                      className="size-[20px] text-white"
+                    />
                   </>
                 ) : (
-                  <p className="">Loading...</p>
+                  <p className="text-white text-[16px] font-poppins ">Loading...</p>
                 )}
               </button>
             )}
@@ -190,17 +197,13 @@ export default function StepEmailOtp({
             {/* Is Profile Is Completed  */}
             {userData?.isProfileCompleted && (
               <>
-                <div className="bg-[#F4FAFF] rounded-[18px] md:p-[32px] p-[16px] flex items-start gap-[12px] ">
-                  <AiOutlineExclamationCircle size={40} className="text-para" />
-
-                  <p className="text-para font-poppins md:text-[16px] text-[12px] leading-[23px]">
-                    It seems you have already submitted atleast 1 recommendation
-                    you can either watch the full recommendations list or submit
-                    another recommendation.
+                <div className="md:py-[32px] sm:py-[28px] py-[18px]">
+                  <p className="text-para px-[18px] py-[18px] bg-profile-bg-txt   font-poppins md:text-[16px] text-[12px] leading-[23px]">
+                    You’ve already shared someone you trust. Now discover a legend or share another recommendation
                   </p>
                 </div>
 
-                <div className="flex items-center md:flex-row flex-col flex-col-reverse justify-center md:gap-6 sm:gap-4 gap-2">
+                <div className="flex items-center flex-col sm:gap-[12px] gap-[8px] flex-col-reverse justify-center">
                   {/* Left Button */}
                   <button
                     onClick={() => {
@@ -214,7 +217,7 @@ export default function StepEmailOtp({
                       }
                     }}
                     type="button"
-                    className="bg-primary cursor-pointer w-[320px] md:h-[56px] py-3 md:text-[16px] text-[11px] font-medium rounded-full text-white flex items-center justify-center"
+                    className="bg-primary cursor-pointer w-full md:h-[56px] py-3 md:text-[16px] text-[11px] font-medium rounded-full text-white flex items-center justify-center"
                   >
                     View Full Recommendations
                   </button>
@@ -223,7 +226,7 @@ export default function StepEmailOtp({
                   <button
                     onClick={nextStepThree}
                     type="button"
-                    className="bg-secondary cursor-pointer w-[320px] md:h-[56px] py-3 md:text-[16px] text-[12px] font-medium rounded-full text-white flex items-center justify-center gap-3"
+                    className="bg-secondary cursor-pointer w-full md:h-[56px] py-3 md:text-[16px] text-[12px] font-medium rounded-full text-white flex items-center justify-center gap-3"
                   >
                     Share Another Recommendation
                     <IoArrowForward size={20} className="" />
@@ -235,50 +238,57 @@ export default function StepEmailOtp({
         )}
 
         {otpSent && (
-          <div className="flex  items-center justify-center bg-background px-4">
-            <div className="w-full max-w-lg text-center">
-              <h1 className="md:text-[24px] text-[20px] font-bold font-manrope tracking-tight text-textdark">
-                Verify OTP
-              </h1>
-              <p className="mt-2 text-textdark md:text-[16px] text-[14px] ">
-                Enter The 6 Digit Code Sent To Your Email
+          <div className="">
+            <div className="">
+              {/* Header */}
+              <p className="text-[16px] font-medium font-manrope text-gray-500">
+                Enter the code we sent to your email. It helps us keep the weird
+                stuff out.
               </p>
 
-              <div className="md:mt-10 mt-4 text-left">
-                <label className="text-sm font-medium text-textdark ml-9">
-                  Enter Verification Code
-                </label>
-                <div className="mt-3 ">
+              {/* OTP */}
+              <div className="py-[32px]">
+                <div className="flex items-center justify-center gap-[20px]">
                   <OtpInput value={otp} onChange={setOtp} />
                 </div>
               </div>
 
+              {/* Button */}
               <button
                 type="button"
                 onClick={verifyOtp}
                 disabled={otp.length < 6}
-                className={`md:mt-8 mt-4 flex w-full ${otp.length < 6 ? "" : "bg-primary text-white"}  items-center justify-center gap-2 rounded-xl bg-verify-btn md:py-4 py-2 text-base font-medium text-verify-btn-foreground transition-opacity hover:opacity-80 disabled:opacity-40`}
+                className={`flex items-center cursor-pointer justify-center gap-[8px] w-full  mt-4 md:py-[17px] sm:py-[14px] py-[12px] rounded-full
+                  ${
+                    otp.length < 6
+                      ? "bg-secondary-OTP-btn-bg text-para cursor-not-allowed"
+                      : "bg-primary text-white"
+                  }`}
               >
-                Verify OTP <FaArrowRight className="h-5 w-5" />
+                <span>Continue</span>
+                <span>
+                  {" "}
+                  <IoArrowForward size={24} className="size-[20px] text-white" />
+                </span>
               </button>
 
-              <div className="md:mt-5 mt-2 space-y-1">
-                {!canResend && (
-                  <p className="text-sm text-muted-foreground">
-                    Resend OTP in{" "}
-                    <span className="font-medium text-resend">
-                      {formatTime(timer)}
-                    </span>
-                  </p>
-                )}
-                <button
-                  type="button"
-                  onClick={handleResend}
-                  disabled={!canResend}
-                  className="text-sm cursor-pointer font-medium text-muted-foreground underline transition-colors hover:text-resend disabled:opacity-40 disabled:no-underline"
-                >
-                  Resend OTP{" "}
-                </button>
+              {/* Resend */}
+              <div className="md:py-[32px] sm:py-[28px] py-[22px] flex items-center justify-start">
+                  <div className="flex items-center gap-2">
+                    <p className="font-poppins text-[16px] text-resnd-OTP-btn-txt">
+                      Didn’t get it?
+                    </p>
+                    {!canResend ? (
+                      <span className="text-green font-poppins font-medium text-[16px] ">{formatTime(timer)}</span>
+                    ) : (
+                      <button
+                        onClick={handleResend}
+                        className="underline font-poppins font-medium text-[16px] text-green"
+                      >
+                        Resend code
+                      </button>
+                    )}
+                  </div>
               </div>
             </div>
           </div>

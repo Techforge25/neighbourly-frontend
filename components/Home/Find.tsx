@@ -10,7 +10,7 @@ const Find = () => {
   const dispatch = useDispatch();
   return (
     <div
-      className={`bg-share-modal-icon sm:bg-[url('/images/find.png')] bg-cover bg-center min-h-[400px] sm:min-h-[450px] lg:h-[500px] flex items-center`}
+      className={`bg-share-modal-icon md:bg-[url('/images/findSectionBg.png')] bg-cover bg-no-repeat bg-center min-h-[400px] sm:min-h-[450px] lg:h-[500px] flex items-center`}
     >
       <div className="container mx-auto px-4 py-12 sm:py-14 lg:py-16">
         <div className="w-full">
@@ -27,7 +27,7 @@ const Find = () => {
           </motion.p>
 
           {/* Description */}
-          <motion.p
+          {/* <motion.p
             initial={{ y: -100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "linear" }}
@@ -36,7 +36,7 @@ const Find = () => {
           >
             Send Neighbourly to a friend, neighbour or group and help grow
             trusted recommendations in your suburb.
-          </motion.p>
+          </motion.p> */}
 
           {/* Button */}
           <motion.div
@@ -49,7 +49,7 @@ const Find = () => {
               onClick={() => dispatch(openShare())}
               className="flex items-center gap-3 cursor-pointer sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white hover:bg-[#ebe8e8] text-[14px] sm:text-[16px] font-outfit"
             >
-              <span>Share Neighbourly</span>
+              <span>Share BeNeighbourly</span>
               <FiShare2 size={20} />
             </button>
           </motion.div>

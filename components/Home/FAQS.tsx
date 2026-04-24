@@ -25,7 +25,7 @@ const FAQS = () => {
       {/* Faqs */}
 
       {/* className={`${openIndex === index ? "rotate-180" : ""} transition-all duration-500 ease-in-out`} */}
-      <div className=" mt-6 flex flex-col gap-4 items-start text-left">
+      <div className="sm:mt-20 mt-10 flex flex-col gap-4 items-start text-left">
         {accordianData.map((faq, index) => (
           <div
             key={index}
