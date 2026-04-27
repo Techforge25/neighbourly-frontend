@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 interface StepAboutData {
   firstName: string;
@@ -35,8 +37,8 @@ export default function StepAbout({
     validationSchema: Yup.object({
       firstName: Yup.string().required("First name is required"),
 
-     mobile: Yup.string()
-  .required("Number is required")
+      mobile: Yup.string()
+        .required("Number is required")
   .matches(/^\+?[0-9]{10,15}$/, "Enter a valid phone number")
   .max(15, "Business contact must be less than or equal to 15 characters long"),
 
@@ -63,7 +65,10 @@ export default function StepAbout({
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className="w-full rounded-2xl space-y-[20px]">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="w-full rounded-2xl space-y-[20px]"
+    >
       <div className="">
         {/* First Name */}
         <div className="pb-[2rem]">
@@ -74,7 +79,7 @@ export default function StepAbout({
         <div className="flex flex-col gap-[12px]">
           <Label>
             <span className="font-manrope font-medium  text-[14px]  ">
-              First Name{" "}
+              Your First Name{" "}
             </span>
             <span className="text-red-500">*</span>{" "}
           </Label>
@@ -94,28 +99,32 @@ export default function StepAbout({
         </div>
       </div>
 
-        {/* Mobile */}
-        <div className="flex flex-col gap-[12px]">
-          <Label>
-            <span className="font-manrope font-medium  text-[14px]  ">
-              Mobile Number
-            </span>
-            <span className="text-red-500">*</span>{" "}
-          </Label>
-          <Input
-            name="mobile"
-            placeholder="e.g. 012385868664"
-            value={formik.values.mobile}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="border rounded-[12px] text-[16px]"
-          />
-          {formik.touched.mobile && formik.errors.mobile && (
-            <span className="text-red-500 md:text-[14px] text-[12px]">
-              {formik.errors.mobile}
-            </span>
-          )}
-        </div>
+      {/* Mobile */}
+      <div className="flex flex-col gap-[12px]">
+        <Label>
+          <span className="font-manrope font-medium text-[14px]">
+            Mobile Number
+          </span>
+          <span className="text-red-500">*</span>
+        </Label>
+
+        <PhoneInput
+          defaultCountry="AU"
+          international
+          name="mobile"
+          placeholder="e.g. 012385868664"
+          value={formik.values.mobile}
+          onChange={(value) => formik.setFieldValue("mobile", value)}
+          onBlur={() => formik.setFieldTouched("mobile", true)}
+          className="phone-input"
+        />
+
+        {formik.touched.mobile && formik.errors.mobile && (
+          <span className="text-red-500 md:text-[14px] text-[12px]">
+            {formik.errors.mobile}
+          </span>
+        )}
+      </div>
 
       {/* Suburb */}
       <div className="flex flex-col gap-[12px]">

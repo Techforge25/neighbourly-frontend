@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 const Ourstory = () => {
   return (
-    <div className="md:w-[80%] w-[90%] mx-auto md:my-20 my-10 p-4">
+    <div className="md:w-[1158px] w-[90%] mx-auto md:my-20 my-10 p-4">
       <div className="flex items-center justify-between flex-col xl:flex-row md:gap-20 gap-8">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
@@ -23,7 +23,7 @@ const Ourstory = () => {
             <div className="sm:mt-10 mt-4 flex flex-col md:gap-5 gap-2.5 max-w-[487px]">
               {our_story_data.map((item, ind) => (
                 <div key={ind}>
-                  <p className="text-[16px] text-para font-poppins leading-[24px] text-justify">
+                  <p className="text-[16px] text-para font-poppins leading-[24px]">
                     {item}
                   </p>
                 </div>

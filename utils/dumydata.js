@@ -859,16 +859,12 @@ export const recommendations = [
 ];
 
 export const SERVICE_OPTIONS = [
-  "Accountant",
   "Plumber",
   "Electrician",
-  "Builder",
+  "Gardener",
   "Handyman",
-  "Painter",
-  "Landscaper",
   "Cleaner",
-  "Mechanic",
-  "Other",
+  "Other"
 ];
 
 export const RECOMMEND_OPTIONS = [

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Work = () => {
   return (
-    <div className="max-w-[1296px] mx-auto md:my-20 p-4">
+    <div className="max-w-[1296px] mx-auto md:my-10 p-4">
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

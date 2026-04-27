@@ -151,9 +151,9 @@ export default function StepEmailOtp({
             </div>
 
             <div className="flex flex-col space-y-[32px]">
-              <label className="font-medium font-manrope text-[14px] leading-[20px] capitalize">
+              {/* <label className="font-medium font-manrope text-[14px] leading-[20px] capitalize">
                 Your email <sup className="text-red-500">*</sup>
-              </label>
+              </label> */}
 
               <input
                 name="email"

@@ -43,8 +43,8 @@ const Trusted = () => {
           viewport={{ once: true }}
           className="lg:text-[54px] md:text-[42px] sm:text-[32px] text-[24px]  font-bold text-[white] md:text-start text-center md:mt-10 mt-6 font-manrope "
         >
-          Trusted by neighbours <br />{" "}
-          <span className="">across Sydney</span>{" "}
+          Trusted by neighbours across <br />{" "}
+          <span className="">the Northern Beaches</span>{" "}
         </motion.h6>
 
         <motion.div

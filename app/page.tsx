@@ -51,7 +51,9 @@ export default function Home() {
       <Banner />
       <TrustSection />
       <Work />
-      <LocalsTrustMost />
+      <div className="p-4">
+        <LocalsTrustMost />
+      </div>
       {/* <Service /> */}
       <Trusted />
       {/* <FeelsDiffrent /> */}
