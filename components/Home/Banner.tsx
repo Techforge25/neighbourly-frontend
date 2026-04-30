@@ -153,7 +153,7 @@ const Banner = () => {
             <h1 className="font-bold font-manrope text-[24px] sm:text-[40px] md:text-[52px] lg:text-[62px] text-white">
               <span>Discover the most recommended local</span>
               <br />
-              <span>tradies in your suburb</span>
+              <span>tradies in the Northern Beaches</span>
             </h1>
           </div>
 

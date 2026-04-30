@@ -20,8 +20,8 @@ const Footer = () => {
             <span className="border p-2 rounded-full bg-[#71849633]">
               <FaRegEnvelope size={18} />
             </span>
-            <Link href={"mailto:team@beNeighbourly.com.au"}>
-              team@beneighbourly.com.au
+            <Link href={"mailto:andrew@suburbsays.com.au"}>
+              andrew@suburbsays.com.au
             </Link>
           </p>
 
@@ -41,7 +41,7 @@ const Footer = () => {
       {/* Bottom */}
       <div className="mt-4 md:mt-6 text-center">
         <p className="text-[#202939] text-xs sm:text-sm md:text-base">
-          © 2026 BeNeighbourly. All rights reserved.
+          © 2026 Subrub says. All rights reserved.
         </p>
       </div>
     </div>

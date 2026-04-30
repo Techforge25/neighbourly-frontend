@@ -100,7 +100,7 @@ const Banner = ({ recomendedDetail }: Props) => {
               <div className="text-start">
                 <p className="capitalize text-[16px] text-verified">verified</p>
                 <p className="capitalize text-[11px] text-secondary">
-                  by BeNeighbourly
+                  by suburb says
                 </p>
               </div>
             </button>

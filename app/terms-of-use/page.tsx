@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Metadata } from "next";
 
  export const metadata: Metadata = {
-  title: "BeNeighbourly - Terms of Use",
+  title: "subrub says - Terms of Use",
   description:
-    "Read the Terms of Use for BeNeighbourly to understand the rules, guidelines, and conditions for using our platform and services.",
+    "Read the Terms of Use for subrub says to understand the rules, guidelines, and conditions for using our platform and services.",
 
   alternates: {
     canonical: "https://www.beneighbourly.com.au/terms-of-use",
@@ -15,25 +15,25 @@ import { Metadata } from "next";
     "terms and conditions",
     "user agreement",
     "website terms",
-    "BeNeighbourly terms",
+    "subrub says terms",
     "platform rules",
     "legal terms",
     "service conditions",
   ],
 
   openGraph: {
-    title: "BeNeighbourly - Terms of Use",
+    title: "subrub says - Terms of Use",
     description:
-      "Review the terms and conditions for using BeNeighbourly and understand your rights and responsibilities.",
+      "Review the terms and conditions for using subrub says and understand your rights and responsibilities.",
     url: "https://www.beneighbourly.com.au/terms-of-use",
-    siteName: "BeNeighbourly",
+    siteName: "subrub says",
     type: "website",
     images: [
       {
         url: "https://www.beneighbourly.com.au/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "BeNeighbourly Suburb Search",
+        alt: "subrub says Suburb Search",
       },
     ],
   },
@@ -44,12 +44,12 @@ const page = () => {
       <div className="w-[90%] mx-auto md:py-20  ">
         <div className="flex flex-col md:gap-[10px] gap-[6px]">
           <h1 className="font-bold font-manrope md:text-[42px] text-[23px] md:leading-[49px] leading-[30px] max-w-[515px]">
-            BeNeighbourly <span className="text-primary">Terms of Use</span> and{" "}
+            Subrub says <span className="text-primary">Terms of Use</span> and{" "}
             <span className="text-primary">Privacy Notice</span>
           </h1>
           <p className="md:text-[16px] text-[14px] md:leading-[28px] leading-[20px] font-medium font-poppins text-para md:max-w-[1274]">
             We collect your details to verify submissions, prevent misuse, and
-            keep BeNeighbourly trustworthy. We may contact you about your
+            keep subrub says trustworthy. We may contact you about your
             submission or share relevant updates. Your information is never
             sold.
           </p>
@@ -64,20 +64,20 @@ const page = () => {
               <span className="text-para font-semibold">Contact:</span>{" "}
               <span className="text-verified font-semibold">
                 <Link
-                  href={`mailto:team@beBeNeighbourly.com.au`}
+                  href={`mailto:andrew@suburbsays.com.au`}
                   className="visited:underline"
                 >
-                  team@beBeNeighbourly.com.au
+                  andrew@suburbsays.com.au
                 </Link>
               </span>
             </p>
 
             <div className="max-w-[1047px] md:mt-3 mt-2 flex flex-col md:gap-[5px] gap-[3px]">
               <h3 className="font-manrope font-semibold md:text-[24px] text-[20px] text-textdark">
-                Welcome to BeNeighbourly.
+                Welcome to Subrub says.
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                BeNeighbourly is a free, community-led service that celebrates and
+                Subrub says is a free, community-led service that celebrates and
                 publishes the local businesses people nearby know and trust. Our
                 role is to help surface and share community trust. We do not
                 make recommendations ourselves.
@@ -93,10 +93,10 @@ const page = () => {
 
             <div className="max-w-[1214px] md:mt-3 mt-2 flex flex-col md:gap-[5px] gap-[3px]">
               <h3 className="font-manrope font-semibold md:text-[24px] text-[20px] text-textdark">
-                1. Using BeNeighbourly
+                1. Using Subrub says
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                Please use BeNeighbourly in a respectful, honest and lawful way.
+                Please use Subrub says in a respectful, honest and lawful way.
               </p>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 You must not misuse the website, interfere with how it works,
@@ -115,12 +115,12 @@ const page = () => {
                 2. Community submissions
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                BeNeighbourly is built on genuine input from local residents about
+                Subrub says is built on genuine input from local residents about
                 the businesses and people they trust.
               </p>
               <div className="md:mt-4 mt-2">
                 <span className="md:text-[16px] text-[14px] font-poppins font-medium">
-                  By submitting information to BeNeighbourly, you confirm that:
+                  By submitting information to Subrub says, you confirm that:
                 </span>
 
                 <ul className="list-disc font-poppins font-medium md:text-[16px] text-[14px] text-para md:px-8 px-5">
@@ -156,15 +156,15 @@ const page = () => {
 
             <div className="max-w-[1214px] md:mt-3 mt-2 flex flex-col md:gap-[5px] gap-[3px]">
               <h3 className="font-manrope font-semibold md:text-[24px] text-[20px] text-textdark">
-                3. What BeNeighbourly does
+                3. What Subrub says does
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                BeNeighbourly celebrates and publishes the businesses, trades and
+                Subrub says celebrates and publishes the businesses, trades and
                 local service providers that members of the community say they
-                trust.BeNeighbourly does not independently recommend, endorse,
+                trust.Subrub says does not independently recommend, endorse,
                 guarantee or certify any business or provider. Any business
                 shown on the site reflects community input, not a recommendation
-                made by BeNeighbourly.
+                made by Subrub says.
               </p>
             </div>
 
@@ -192,7 +192,7 @@ const page = () => {
                   </li>
                   <li>
                     occasionally let you know about relevant updates,
-                    improvements or new functionality on BeNeighbourly
+                    improvements or new functionality on Subrub says
                   </li>
                 </ul>
               </div>
@@ -212,7 +212,7 @@ const page = () => {
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 We collect and use personal information only where it is
-                reasonably needed to operate and improve BeNeighbourly.
+                reasonably needed to operate and improve Subrub says.
               </p>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 This may include using your information to verify submissions,

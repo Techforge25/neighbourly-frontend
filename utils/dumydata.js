@@ -10,7 +10,7 @@ import { RiHandHeartFill, RiShakeHandsLine } from "react-icons/ri";
 import { TbMap } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import CustomIcon from "@/components/CustomIcon";
-import { MdCreditCardOff } from "react-icons/md";
+import { MdCreditCardOff, MdOutlineHandyman } from "react-icons/md";
 export const navItems = [
   {
     href: "/",
@@ -50,17 +50,17 @@ export const work_Data = [
 
 export const trusted_Data = [
   {
-    num: `+ 334`,
+    num: `+ 623`,
     text: "Recommendations",
     textColor: "text-[#FFFFFF]",
   },
   {
-    num: `+ 3`,
+    num: `24`,
     text: "Suburbs",
     textColor: "text-[#FFFFFF]",
   },
   {
-    num: `+ 3`,
+    num: `5`,
     text: "Services",
     textColor: "text-[#FFFFFF]",
   },
@@ -88,9 +88,9 @@ export const feel_Diff = [
 ];
 
 export const our_story_data = [
-  "BeNeighbourly started with a simple frustration: finding a local service provider you can genuinely trust.",
+  "Subrub says started with a simple frustration: finding a local service provider you can genuinely trust.",
   "We realised the best recommendations come from people nearby not anonymous reviews.",
-  "So we built BeNeighbourly to help people discover trusted local businesses through genuine recommendations from neighbours."
+  "So we built Subrub says to help people discover trusted local businesses through genuine recommendations from neighbours."
 ];
 
 export const Community_Sec_Data = [
@@ -125,14 +125,14 @@ export const Tab_Data = [
   },
   {
     title: "Handyman",
-    icon: <CustomIcon variant="handyman" />,
+    icon: <MdOutlineHandyman />
   },
 ];
 
 export const address_Data = [
   {
     isVerified: true,
-    verifiedBy: "by BeNeighbourly",
+    verifiedBy: "by Suburb says",
     name: "Shannon",
     image: "/images/address1.png",
     category: "Plumberss",
@@ -170,7 +170,7 @@ export const address_Data = [
   },
   {
     isVerified: true,
-    verifiedBy: "by BeNeighbourly",
+    verifiedBy: "by Suburb says",
     name: "Shannon",
     image: "/images/address1.png",
     category: "Electricianss",
@@ -208,7 +208,7 @@ export const address_Data = [
   },
   {
     isVerified: true,
-    verifiedBy: "by BeNeighbourly",
+    verifiedBy: "by Suburb says",
     name: "Shannon",
     image: "/images/address1.png",
     category: "handyman",

@@ -69,7 +69,7 @@ const ContactUsForm = () => {
           We&apos;d love to <span className="text-primary">hear from you</span>
         </h2>
         <p className="text-[#262729] mt-3 text-[18px] md:w-[710px] mx-auto">
-          Whether you have a question about how BeNeighbourly works, want to
+          Whether you have a question about how subrub says works, want to
           recommend a service, or would like to see us in your suburb, reach out
           below.
         </p>

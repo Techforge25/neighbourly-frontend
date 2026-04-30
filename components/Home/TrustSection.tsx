@@ -16,7 +16,7 @@ const TrustSection = () => {
           className="flex flex-col lg:gap-[32px] gap-[16px] "
         >
           <p className="font-manrope font-bold text-[1.5rem] sm:text-[2rem] md:text-[2.25rem] lg:text-[2.625rem] text-center leading-[2rem] sm:leading-[2.5rem] md:leading-[3rem] lg:leading-[3.25rem]">
-           <span className="text-primary" >Be</span>Neighbourly is a free way to find local trades and services based on 
+           <span className="text-primary" >Suburb</span> Says is a free way to find local trades and services based on 
            {" "}
            <span className="text-primary">genuine recommendations from people in your suburb.</span>
             We’re not a directory businesses earn their place by being trusted, not by paying to be here.

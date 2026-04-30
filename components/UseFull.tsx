@@ -51,7 +51,7 @@ const UseFull = ({ color }: { color?: string }) => {
               onClick={() => dispatch(openShare())}
               className="flex cursor-pointer items-center gap-3 sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-[14px] sm:text-[16px] font-outfit"
             >
-              <span>Share BeNeighbourly</span>
+              <span>Share Subrub says</span>
               <FiShare2 size={20} className="sm:size-[24px]" />
             </button>
           </motion.div>

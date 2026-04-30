@@ -8,7 +8,7 @@ import Work from "@/components/Home/Work";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BeNeighbourly - Trusted Local Services Near You",
+  title: "subrub says - Trusted Local Services Near You",
   description:
     "Discover trusted local services recommended by your neighbors. Find reliable businesses, read real community reviews, and connect with the best services near you.",
 
@@ -24,22 +24,22 @@ export const metadata: Metadata = {
     "find local services",
     "best services near me",
     "local business directory",
-    "BeNeighbourly",
+    "subrub says",
   ],
 
   openGraph: {
-    title: "BeNeighbourly - Trusted Local Services Near You",
+    title: "subrub says - Trusted Local Services Near You",
     description:
       "Find the best local services through real recommendations from your neighbors. Trusted, reliable, and community-driven.",
     url: "https://www.beneighbourly.com.au/",
-    siteName: "BeNeighbourly",
+    siteName: "subrub says",
     type: "website",
     images: [
       {
         url: "https://www.beneighbourly.com.au/images/video/banner.mp4",
         width: 1200,
         height: 630,
-        alt: "BeNeighbourly Home",
+        alt: "subrub says Home",
       },
     ],
   },

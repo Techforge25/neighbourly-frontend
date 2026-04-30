@@ -49,7 +49,7 @@ const Find = () => {
               onClick={() => dispatch(openShare())}
               className="flex items-center gap-3 cursor-pointer sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white hover:bg-[#ebe8e8] text-[14px] sm:text-[16px] font-outfit"
             >
-              <span>Share BeNeighbourly</span>
+              <span>Share suburb says</span>
               <FiShare2 size={20} />
             </button>
           </motion.div>

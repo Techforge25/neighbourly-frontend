@@ -3,16 +3,16 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata:Metadata = {
-  title: "Discover Places - BeNeighbourly",
+  title: "Discover Places - subrub says",
   description: "Find the best local recommendations near you.",
    alternates: {
     canonical: "https://www.beneighbourly.com.au/discover",
   },
   openGraph: {
     title: "Discover Places",
-    description: "Explore top الأماكن around you",
+    description: "Explore top Place around you",
     url: "https://www.beneighbourly.com.au/discover",
-    siteName: "BeNeighbourly",
+    siteName: "subrub says",
     images: [
       {
         url: "https://www.beneighbourly.com.au/images/logo.png",
@@ -31,7 +31,7 @@ export const metadata:Metadata = {
   "neighbor reviews",
   "best local places",
   "service discovery platform",
-  "BeNeighbourly discover",
+  "subrub says discover",
 ]
 };
 

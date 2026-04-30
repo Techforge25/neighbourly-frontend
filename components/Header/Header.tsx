@@ -41,7 +41,7 @@ const handleOpenMenu = ()=>{
         {/* Logo */}
         <Link href={'/'}>
           <Image
-            src="/images/main-logo.png"
+            src="/images/logo.png"
             alt="Logo"
             width={500}
             height={500}
