@@ -11,6 +11,8 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useState } from "react";
 import { GrFormNextLink } from "react-icons/gr";
+import { ApiErrorResponse, TypeRecommendationOption } from "@/types";
+import { AxiosError } from "axios";
 interface RecommendationData {
   firstName: string;
   businessName: string;
@@ -38,7 +40,7 @@ export default function StepRecommendation({
 }) {
   const getAboutData = localStorage.getItem("stepAboutData");
   const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
-  const [isError, setIsError] = useState<any>("");
+  const [isError, setIsError] = useState<string>("");
   const [nextStep, setNextStep] = useState(false);
 
   const handleGetFormData = async (values: RecommendationData) => {
@@ -77,13 +79,14 @@ export default function StepRecommendation({
       console.log("Recommendation submitted successfully:", res);
       localStorage.removeItem("stepAboutData");
       onSubmit();
-    } catch (error: any) {
-      if (error.response) {
+    } catch (error: unknown) {
+      const err = error as AxiosError<ApiErrorResponse>;
+      if (err.response) {
         console.log(
           "Server responded with an error:",
-          error.response.data.message,
+          err.response.data.message,
         );
-        setIsError(error.response.data.message);
+        setIsError(err.response.data.message);
       }
 
       console.log("Failed to create recommendation:", error);
@@ -109,7 +112,14 @@ export default function StepRecommendation({
         handleGetFormData(values);
       }}
     >
-      {({ values, errors, touched, setFieldValue, setFieldTouched,isValid }) => (
+      {({
+        values,
+        errors,
+        touched,
+        setFieldValue,
+        setFieldTouched,
+        isValid,
+      }) => (
         <Form className="w-full rounded-2xl">
           {isError && (
             <p
@@ -185,11 +195,13 @@ export default function StepRecommendation({
                     <option value="" disabled>
                       Select a service
                     </option>
-                    {SERVICE_OPTIONS.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
+                    {SERVICE_OPTIONS.map(
+                      (s: { value: string }, ind: number) => (
+                        <option key={ind} value={s.value}>
+                          {s.value}
+                        </option>
+                      ),
+                    )}
                   </Field>
                   <ErrorMessage
                     name="service"
@@ -234,10 +246,11 @@ export default function StepRecommendation({
                     !values.firstName ||
                     !values.businessName ||
                     !values.theirNumber ||
-                    !values.service||errors.theirNumber
+                    !values.service ||
+                    !!errors.theirNumber
                   }
                   type="button"
-                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-white text-[16px] font-poppins  gap-2 w-full bg-primary py-[14px] rounded-full  "
+                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-white text-[16px] font-poppins  gap-2 w-full bg-share-modal-icon py-[14px] rounded-full  "
                 >
                   <span>Continue</span>
                   <span>
@@ -251,7 +264,7 @@ export default function StepRecommendation({
           {nextStep && (
             <>
               <div className="grid grid-cols-2 gap-3 mt-2">
-                {RECOMMEND_OPTIONS.map((option: any) => {
+                {RECOMMEND_OPTIONS.map((option: TypeRecommendationOption) => {
                   const isSelected = values.recommendationReason?.includes(
                     option.value,
                   );
@@ -267,7 +280,7 @@ export default function StepRecommendation({
                           setFieldValue(
                             "recommendationReason",
                             current.filter(
-                              (item: any) => item !== option.value,
+                              (item: string) => item !== option.value,
                             ),
                           );
                         } else {
@@ -280,7 +293,7 @@ export default function StepRecommendation({
                       className={`flex items-center justify-between cursor-pointer w-full px-4 py-3 rounded-xl border transition-all
                         ${
                           isSelected
-                            ? "bg-primary border-primary text-white "
+                            ? "bg-share-modal-icon border-share-modal-icon text-white "
                             : "bg-bgLight border-border-light"
                         }
                         `}
@@ -292,12 +305,12 @@ export default function StepRecommendation({
                       {/* Circle indicator */}
                       <span
                         className={`w-5 h-5 flex items-center justify-center rounded-full border
-            ${
-              isSelected
-                ? "bg-[#f3b39d] border-border-light text-white"
-                : "border-gray-300 text-white border-dashed"
-            }
-          `}
+                        ${
+                          isSelected
+                            ? "bg-share-modal-icon border-border-light text-white"
+                            : "border-gray-300 text-white border-dashed"
+                        }
+                      `}
                       >
                         {isSelected && "✓"}
                       </span>
@@ -327,7 +340,7 @@ export default function StepRecommendation({
               <div className="pt-[32px]">
                 <button
                   type="submit"
-                  className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-primary md:text-[16px] text-[12px] text-[#fff]"
+                  className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-share-modal-icon md:text-[16px] text-[12px] text-[#fff]"
                 >
                   Submit Recommendation
                   <ArrowRight size={20} className="md:flex hidden" />
@@ -340,98 +353,3 @@ export default function StepRecommendation({
     </Formik>
   );
 }
-
-{
-  /* <button
-              type="button"
-              className="sm:order-1 cursor-pointer order-2 rounded-full border border-[#E4E4E4] md:py-4 md:px-7  px-4 py-2 flex items-center justify-center gap-2 md:text-[16px] text-[14px] text-black"
-              onClick={handleBack}
-            >
-              <ArrowLeft size={20} />
-              Back
-            </button> */
-}
-
-//   <div className="flex flex-col gap-2 mt-4">
-//   <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
-//     why you recommend them <span className="text-red-500">*</span>
-//   </Label>
-
-//   <Select
-//     options={RECOMMEND_OPTIONS}
-//     isMulti
-
-//     value={(values.recommendationReason || []).map((val) => ({
-//       value: val,
-//       label: val,
-//     }))}
-//     onChange={(selectedOptions: any) => {
-
-//       setFieldValue(
-//         "recommendationReason",
-//         selectedOptions
-//           ? selectedOptions.map((opt: any) => opt.value)
-//           : [],
-//       );
-//     }}
-//     className="react-select-container"
-//     classNamePrefix="react-select"
-//     placeholder="Select reasons"
-//     styles={{
-//       multiValue: (base) => ({
-//         ...base,
-//         backgroundColor: "#f3b39d",
-//         color: "white",
-//       }),
-//       multiValueLabel: (base) => ({
-//         ...base,
-//         color: "white",
-//       }),
-//       multiValueRemove: (base) => ({
-//         ...base,
-//         color: "white",
-//         ":hover": { backgroundColor: "#f3b39d", color: "black" },
-//       }),
-//     }}
-//   />
-
-//   {errors.recommendationReason && touched.recommendationReason && (
-//     <div className="text-red-500 text-[12px] mt-1">
-//       {Array.isArray(errors.recommendationReason)
-//         ? errors.recommendationReason.join(", ")
-//         : errors.recommendationReason}
-//     </div>
-//   )}
-// </div>
-
-// <div className="flex flex-col md:gap-2 gap-1 md:mt-4 mt-1">
-//   <Label className="md:text-[14px] text-[12px] leading-[20px] font-medium text-#202939">
-//     {`Comment (Optional)`}
-//   </Label>
-//   <Field
-//     as="textarea"
-//     name="comment"
-//     placeholder="Tell us a little about your experience"
-//     className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope focus:outline-none text-para `}
-//   />
-// </div>
-
-// <div className="pt-[32px]">
-
-//   <button
-//     type="submit"
-//     disabled={
-//       !(
-//         values.firstName &&
-//         values.businessName &&
-//         values.theirNumber &&
-//         values.service &&
-//         values.recommendationReason.length > 0
-//       )
-//     }
-//     className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-primary md:text-[16px] text-[12px] text-[#fff]"
-//   >
-//     Submit Recommendation
-//     <ArrowRight size={20} className="md:flex hidden" />
-//   </button>
-// </div>

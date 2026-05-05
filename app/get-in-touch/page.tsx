@@ -7,18 +7,18 @@ export const metadata: Metadata = {
   title: "subrub says - Get In Touch",
   description:"Contact subrub says for support, questions, partnerships, or general inquiries.",
  alternates: {
-    canonical: "https://www.beneighbourly.com.au/get-in-touch",
+    canonical: "https://www.suburbsays.com.au/get-in-touch",
   },
   openGraph: {
     title: "subrub says - Get In Touch",
     description:
       "Reach out to subrub says for support, feedback, or partnership opportunities. We’re here to help you connect with trusted local services.",
-    url: "https://www.beneighbourly.com.au/get-in-touch",
+    url: "https://www.suburbsays.com.au/get-in-touch",
     siteName: "subrub says",
     type: "website",
     images: [
       {
-        url: "https://www.beneighbourly.com.au/images/getintouch.png",
+        url: "https://www.suburbsays.com.au/images/getintouch.png",
         width: 1200,
         height: 630,
         alt: "subrub says Contact Page",

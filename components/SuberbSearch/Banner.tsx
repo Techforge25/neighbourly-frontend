@@ -1,6 +1,7 @@
 "use client";
 import { api } from "@/src/service/axios";
 import { RootState } from "@/store";
+import { TypeStatesData } from "@/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoArrowBack, IoLocationOutline } from "react-icons/io5";
@@ -17,7 +18,7 @@ const Banner = () => {
     (state: RootState) => state.cardLength.cardLength,
   );
 
-  const [state, setState] = useState<any>([]);
+  const [state, setState] = useState<TypeStatesData>();
   const getStats = async () => {
     try {
       const res = await api.get("stats");
@@ -36,6 +37,8 @@ const Banner = () => {
     setSearchParams(suburbValueFilter);
     setSuburb(suburbValue || suburbValueFilter);
   }, [params]);
+
+  console.log(state, "Search Params in Banner");
 
   return (
     <div 

@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { IoArrowForward } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa6";
 import OtpInput from "../OtpInput";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { api } from "../../src/service/axios";
@@ -12,6 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { setTriggerRecommendations } from "@/store/shareSlice";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/store/paginationSlice";
+import { ApiErrorResponse } from "@/types";
 
 interface UserData {
   isProfileCompleted?: boolean;
@@ -35,7 +36,7 @@ export default function StepEmailOtp({
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState<string | null>(null);
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -71,9 +72,10 @@ export default function StepEmailOtp({
         } else {
           onVerified();
         }
-      } catch (err: any) {
-        console.log("Otp is Not Send", err?.response?.data?.message);
-        setErrors(err?.response?.data?.message);
+      } catch (err: unknown) {
+        const error = err as AxiosError<ApiErrorResponse>;
+        console.log("Otp is Not Send", error?.response?.data?.message);
+        toast.error(error?.response?.data?.message || "An error occurred");
         setLoading(false);
       }
     },
@@ -100,8 +102,10 @@ export default function StepEmailOtp({
         onVerified();
         setStepOtp(false)
       }
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message);
+    } catch (error: unknown) {
+      const err = error as AxiosError<ApiErrorResponse>;
+      toast.error(err?.response?.data?.message || "An error occurred");
+      console.log("OTP Verification Failed", err?.response?.data?.message);
     }
   };
 
@@ -142,8 +146,6 @@ export default function StepEmailOtp({
       <form onSubmit={formik.handleSubmit}>
         {!otpSent && (
           <div className="">
-            <p className="text-red-500 text-sm">{errors}</p>
-
             <div className="md:pb-[32px] sm:pb-[28px] pb-[22px]">
               <p className="font-manrope font-medium text-[1rem] text-secondary">
                 Start with your email so we can verify it’s really you
@@ -176,7 +178,7 @@ export default function StepEmailOtp({
               <button
                 disabled={!formik.values.email}
                 type="submit"
-                className={`flex items-center disabled:opacity-50 disabled:cursor-not-allowed justify-center gap-[8px] w-full bg-primary mt-4 md:py-[17px] sm:py-[14px] py-[12px] rounded-full cursor-pointer`}
+                className={`flex items-center disabled:opacity-50 disabled:cursor-not-allowed justify-center gap-[8px] w-full bg-share-modal-icon mt-4 md:py-[17px] sm:py-[14px] py-[12px] rounded-full cursor-pointer`}
               >
                 {!loading ? (
                   <>
@@ -217,7 +219,7 @@ export default function StepEmailOtp({
                       }
                     }}
                     type="button"
-                    className="bg-primary cursor-pointer w-full md:h-[56px] py-3 md:text-[16px] text-[11px] font-medium rounded-full text-white flex items-center justify-center"
+                    className="bg-share-modal-icon cursor-pointer w-full md:h-[56px] py-3 md:text-[16px] text-[11px] font-medium rounded-full text-white flex items-center justify-center"
                   >
                     View Full Recommendations
                   </button>
@@ -262,7 +264,7 @@ export default function StepEmailOtp({
                   ${
                     otp.length < 6
                       ? "bg-secondary-OTP-btn-bg text-para cursor-not-allowed"
-                      : "bg-primary text-white"
+                      : "bg-share-modal-icon text-white"
                   }`}
               >
                 <span>Continue</span>

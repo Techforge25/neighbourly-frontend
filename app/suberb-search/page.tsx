@@ -7,18 +7,18 @@ export const metadata: Metadata = {
   description:
     "Search and discover trusted local services in your suburb recommended by neighbors. Find reliable businesses and community-approved services near you.",
  alternates: {
-    canonical: "https://www.beneighbourly.com.au/suburb-search?search=Curl%20Curl",
+    canonical: "https://www.suburbsays.com.au/suburb-search?search=Curl%20Curl",
   },
   openGraph: {
     title: "subrub says - Suburb Search",
     description:
       "Search your suburb for trusted local services and discover community-recommended businesses near you.",
-    url: "https://www.beneighbourly.com.au/suburb-search?search=Curl%20Curl",
+    url: "https://www.suburbsays.com.au/suburb-search?search=Curl%20Curl",
     siteName: "subrub says",
     type: "website",
     images: [
       {
-        url: "https://www.beneighbourly.com.au/images/discover.png",
+        url: "https://www.suburbsays.com.au/images/discover.png",
         width: 1200,
         height: 630,
         alt: "subrub says Suburb Search",

@@ -6,16 +6,16 @@ export const metadata:Metadata = {
   title: "Discover Places - subrub says",
   description: "Find the best local recommendations near you.",
    alternates: {
-    canonical: "https://www.beneighbourly.com.au/discover",
+    canonical: "https://www.suburbsays.com.au/discover",
   },
   openGraph: {
     title: "Discover Places",
     description: "Explore top Place around you",
-    url: "https://www.beneighbourly.com.au/discover",
+    url: "https://www.suburbsays.com.au/discover",
     siteName: "subrub says",
     images: [
       {
-        url: "https://www.beneighbourly.com.au/images/logo.png",
+        url: "https://www.suburbsays.com.au/images/logo.png",
         width: 1200,
         height: 630,
       },

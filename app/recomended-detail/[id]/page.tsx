@@ -2,7 +2,7 @@ import Banner from "@/components/RecommendedeDetail/Banner";
 import NeighburSay from "@/components/RecommendedeDetail/NeighburSay";
 import UseFull from "@/components/UseFull";
 
-const page = async ({ params }: any) => {
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}recommendation/${id}`,

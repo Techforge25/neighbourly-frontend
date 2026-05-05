@@ -39,8 +39,11 @@ export default function StepAbout({
 
       mobile: Yup.string()
         .required("Number is required")
-  .matches(/^\+?[0-9]{10,15}$/, "Enter a valid phone number")
-  .max(15, "Business contact must be less than or equal to 15 characters long"),
+        .matches(/^\+?[0-9]{10,15}$/, "Enter a valid phone number")
+        .max(
+          15,
+          "Business contact must be less than or equal to 15 characters long",
+        ),
 
       suburb: Yup.string().required("Suburb is required"),
     }),
@@ -154,7 +157,7 @@ export default function StepAbout({
         <button
           disabled={!formik.isValid}
           type="submit"
-          className=" disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed rounded-full w-full flex items-center justify-center gap-2 py-2 md:py-[16px] px-4 md:px-[27px] text-[11px] md:text-[16px] font-poppins bg-primary text-white"
+          className=" disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed rounded-full w-full flex items-center justify-center gap-2 py-2 md:py-[16px] px-4 md:px-[27px] text-[11px] md:text-[16px] font-poppins bg-share-modal-icon text-white"
         >
           Continue
           <ArrowRight size={20} className="ml-2" />
@@ -163,10 +166,3 @@ export default function StepAbout({
     </form>
   );
 }
-
-//  <button
-//           className="rounded-full border-[1px] border-border w-full flex items-center justify-center py-2 md:py-[16px] px-4 md:px-[27px] text-[12px] md:text-[16px] font-poppins cursor-pointer"
-//           onClick={handleOnBack}
-//         >
-//           <ArrowLeft size={20} className="mr-2" /> Back
-//         </button>

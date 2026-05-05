@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://www.beneighbourly.com.au/sitemap.xml",
+    sitemap: "https://www.suburbsays.com.au/sitemap.xml",
   };
 }

@@ -11,6 +11,7 @@
 
   /* Color Start */
   --color-heading: #D98C74;
+  --color-cyn: #7FB3B0;
   --color-para: #697586;
   --color-secondary: #718496;
   --color-primary: #F3B39D;
@@ -27,6 +28,7 @@
   --color-success: #64A256;
   --color-success_light: #EAF9E7;
   --color-text-dark: #4D6D8C;
+  --color-text-dark-gardener: #7FB3B0;
   --color-light-bg: #E0E7ED;
   --color-modal-line: #D5E8FC;
   --color-share-modal-icon: #FE9A86;

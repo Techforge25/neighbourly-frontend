@@ -5,7 +5,9 @@ import LocalsTrustMost from "@/components/Home/LocalsTrustMost";
 import Trusted from "@/components/Home/Trusted";
 import TrustSection from "@/components/Home/TrustSection";
 import Work from "@/components/Home/Work";
+import TabBar from "@/components/TabBar";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "subrub says - Trusted Local Services Near You",
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     "Discover trusted local services recommended by your neighbors. Find reliable businesses, read real community reviews, and connect with the best services near you.",
 
   alternates: {
-    canonical: "https://www.beneighbourly.com.au/",
+    canonical: "https://www.suburbsays.com.au/",
   },
 
   keywords: [
@@ -31,12 +33,12 @@ export const metadata: Metadata = {
     title: "subrub says - Trusted Local Services Near You",
     description:
       "Find the best local services through real recommendations from your neighbors. Trusted, reliable, and community-driven.",
-    url: "https://www.beneighbourly.com.au/",
+    url: "https://www.suburbsays.com.au/",
     siteName: "subrub says",
     type: "website",
     images: [
       {
-        url: "https://www.beneighbourly.com.au/images/video/banner.mp4",
+        url: "https://www.suburbsays.com.au/images/video/banner.mp4",
         width: 1200,
         height: 630,
         alt: "subrub says Home",
@@ -45,11 +47,13 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function Home() {
   return (
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
       <Banner />
       <TrustSection />
+      <TabBar tabarActive={true} />
       <Work />
       <div className="p-4">
         <LocalsTrustMost />
@@ -59,6 +63,6 @@ export default function Home() {
       {/* <FeelsDiffrent /> */}
       <FAQS />
       <Find />
-    </div>
+    </Suspense>
   );
 }

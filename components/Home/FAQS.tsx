@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { IoMdAddCircleOutline, IoMdRemoveCircleOutline } from "react-icons/io";
 
 const FAQS = () => {
-  const [openIndex, setOpenIndex] = useState<any>();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="max-w-[844px] mx-auto my-20 md:p-4 p-2">

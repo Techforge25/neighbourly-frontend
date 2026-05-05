@@ -10,7 +10,11 @@ import { RiHandHeartFill, RiShakeHandsLine } from "react-icons/ri";
 import { TbMap } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import CustomIcon from "@/components/CustomIcon";
-import { MdCreditCardOff, MdOutlineHandyman } from "react-icons/md";
+import {
+  MdCleaningServices,
+  MdCreditCardOff,
+  MdOutlineHandyman,
+} from "react-icons/md";
 export const navItems = [
   {
     href: "/",
@@ -90,7 +94,7 @@ export const feel_Diff = [
 export const our_story_data = [
   "Subrub says started with a simple frustration: finding a local service provider you can genuinely trust.",
   "We realised the best recommendations come from people nearby not anonymous reviews.",
-  "So we built Subrub says to help people discover trusted local businesses through genuine recommendations from neighbours."
+  "So we built Subrub says to help people discover trusted local businesses through genuine recommendations from neighbours.",
 ];
 
 export const Community_Sec_Data = [
@@ -125,7 +129,15 @@ export const Tab_Data = [
   },
   {
     title: "Handyman",
-    icon: <MdOutlineHandyman />
+    icon: <MdOutlineHandyman />,
+  },
+  {
+    title: "Gardener",
+    icon: <CustomIcon variant="gardners" />,
+  },
+  {
+    title: "Cleaner",
+    icon: <MdCleaningServices />,
   },
 ];
 
@@ -859,26 +871,36 @@ export const recommendations = [
 ];
 
 export const SERVICE_OPTIONS = [
-  "Plumber",
-  "Electrician",
-  "Gardener",
-  "Handyman",
-  "Cleaner",
-  "Other"
+  {
+    value: "Plumber",
+    icon: "/images/plumber.svg",
+  },
+  {
+    value: "Electrician",
+    icon: "/images/electrician.svg",
+  },
+  {
+    value: "Gardener",
+    icon: "/images/gardners.svg",
+  },
+  {
+    value: "Handymen",
+    icon: "/images/handymen.svg",
+  },
+  {
+    value: "Cleaner",
+    icon: "/images/cleaner.svg",
+  },
 ];
 
 export const RECOMMEND_OPTIONS = [
-  { value: "Fast Response", label: "Fast Response" },
   { value: "Reliable", label: "Reliable" },
   { value: "Fair pricing", label: "Fair pricing" },
-  { value: "Good Quality Work", label: "Good quality work" },
+  { value: "Quality Work", label: "quality work" },
   { value: "Responsive", label: "Responsive" },
   { value: "Local reputation", label: "Local reputation" },
   { value: "Easy to deal with", label: "Easy to deal with" },
-  {
-    value: "Helpful / went the extra mile",
-    label: "Helpful / went the extra mile",
-  },
+  { value: "Helpful", label: "Helpful" },
   { value: "Tidy and respectful", label: "Tidy and respectful" },
   { value: "Problem solved properly", label: "Problem solved properly" },
   { value: "Trustworthy", label: "Trustworthy" },
@@ -940,18 +962,25 @@ export const video_Url = [
 ];
 
 export const colorFunctions = (key) => {
+  console.log("key", key);
   switch (key) {
     case "Plumber":
-      return "share-modal-icon";
+      return "text-share-modal-icon";
 
     case "Electrician":
-      return "green";
+      return "text-green";
 
     case "Handyman":
-      return "secondary";
+      return "text-secondary";
+
+    case "Gardener":
+      return "text-[#7FB3B0]";
+
+    case "Cleaner":
+      return "text-[#E8C088]";
 
     default:
-      return "black";
+      return "text-red-500";
   }
 };
 
@@ -981,7 +1010,6 @@ export const accordianData = [
     answer:
       "Easy — tell us who you trust and submit a recommendation. The more local recommendations we get, the faster we can grow coverage in your area.",
   },
-  
 ];
 
 export const cardData = [
@@ -1027,11 +1055,81 @@ export const cardData = [
     businessContact: "0414905303",
     serviceType: "Electrician",
   },
- 
 ];
 
-export const sugestidSubrubData = [
-  "Curl Curl",
-  "Freshwater",
-  "Manly",
-]
+export const sugestidSubrubData = ["Curl Curl", "Freshwater", "Manly"];
+
+const SERVICE_COLORS = {
+  Plumber: "bg-primary",
+  Electrician: "bg-green",
+  Handyman: "bg-secondary",
+  Gardener: "bg-[#93B3B1]",
+  Cleaner: "bg-[#E8C088]",
+};
+
+export const getServiceColor = (type) => SERVICE_COLORS[type] ?? "bg-red-500";
+
+export const sponsors = [
+  {
+    personName: "Sally",
+    businessName: "Sandcastle Financ",
+    serviceType: "Mortgage Broker",
+    businessContact: "+0422 242 661",
+    profileImage: "/images/sallyAvatar.svg",
+    isNotDisabled: true,
+  },
+  {
+    personName: "Michael Lee",
+    businessName: "Modern Estate Surry Hills",
+    serviceType: "Real Estate Agent",
+    businessContact: "+61400000001",
+    profileImage: "/images/dummyAvatar.svg",
+    isNotDisabled: false,
+  },
+  {
+    personName: "Julian Thorne",
+    businessName: "Thorne Legal Services Partners",
+    serviceType: "Conveyancer",
+    businessContact: "+61400000002",
+    profileImage: "/images/dummyAvatar.svg",
+    isNotDisabled: false,
+  },
+];
+
+ const SPONSOR_THEMES = {
+  "Mortgage Broker": {
+    banner: "bg-primary",
+    bannerText: "text-white",
+    serviceText: "text-primary",
+    button: "bg-primary hover:bg-primary/90",
+    ring: "ring-primary",
+    cardBg: "bg-white border-primary/30",
+  },
+  "Real Estate Agent": {
+    banner: "bg-secondary",
+    bannerText: "text-white",
+    serviceText: "text-secondary",
+    button: "bg-secondary hover:bg-secondary/90",
+    ring: "ring-secondary",
+    cardBg: "bg-white border-secondary/30",
+  },
+  Conveyancer: {
+    banner: "bg-[#8FAF8A]",
+    bannerText: "text-white",
+    serviceText: "text-[#6e9168]",
+    button: "bg-[#8FAF8A] hover:bg-[#7a9e75]",
+    ring: "ring-[#8FAF8A]",
+    cardBg: "bg-white border-[#8FAF8A]/30",
+  },
+  default: {
+    banner: "bg-primary",
+    bannerText: "text-white",
+    serviceText: "text-primary",
+    button: "bg-primary hover:bg-primary/90",
+    ring: "ring-primary",
+    cardBg: "bg-white border-primary/30",
+  },
+};
+
+export const getTheme = (serviceType) =>
+  SPONSOR_THEMES[serviceType] ?? SPONSOR_THEMES.default;

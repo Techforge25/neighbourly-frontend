@@ -12,12 +12,18 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
+import { StringDecoder } from "string_decoder";
+import { AxiosError } from "axios";
+import { RecommendationItem, TabItem } from "@/types";
 
-const TabBar: React.FC = () => {
+type TabBarProps = {
+  tabarActive?: Boolean;
+  cardLength?: number;
+};
+
+const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
-  const cardLength = useSelector(
-    (state: RootState) => state.cardLength.cardLength,
-  );
+
   const isShowFullList = useSelector(
     (state: RootState) => state.cardLength.isShowFullList,
   );
@@ -28,32 +34,18 @@ const TabBar: React.FC = () => {
   const search = searchParams.get("search");
   const filter = searchParams.get("filter");
   const dispatch = useDispatch<AppDispatch>();
-
-  const [categoryData, setCategoryData] = useState<any>([]);
-  const [locationData, SetLocationData] = useState<any>([]);
-  const [selectSuburb, setSelectSuburb] = useState<any>(search);
+  const [locationData, SetLocationData] = useState([]);
+  const [selectSuburb, setSelectSuburb] = useState<string | null>(search);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const getCategotyData = async () => {
     try {
       const res = await api.get(`recommendation`);
       const cetData = res.data;
-
-      const uniqueData = [
-        ...Array.from(
-          new Map(
-            cetData?.data?.recommendations?.docs?.map((item: any) => [
-              item.serviceType,
-              item,
-            ]),
-          ).values(),
-        ),
-      ];
-
-      setCategoryData(uniqueData);
       SetLocationData(cetData?.data?.recommendations?.docs);
-    } catch (error: any) {
-      console.log(error?.response?.data);
+    } catch (error: unknown) {
+      const err = error as AxiosError;
+      console.log(err.response?.data, "Error fetching category data");
     }
   };
 
@@ -71,130 +63,102 @@ const TabBar: React.FC = () => {
     scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
   };
 
+  const isDisabled = !tabarActive && !isShowFullList;
+
   const uniqueLocations = [
     ...new Set(
-      locationData
-        .map((item: any) => item.addresses.map((address: any) => address))
-        .flat(),
+      locationData.flatMap((item: RecommendationItem) => item.addresses),
     ),
   ];
 
-  const handleSearchChange = (e: any) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectSuburb(e.target.value);
-    if (params === "/suberb-search") {
+    const selectedSuburb = e.target.value.toLocaleLowerCase();
+    if (filter) {
       router.push(
-        `/suberb-search?search=${e.target.value.toLocaleLowerCase()}`,
+        `/discover?search=${selectedSuburb}&filter=${filter.toLocaleLowerCase()}`,
       );
-      router.refresh();
-    } else if (params === "/discover") {
-      router.push(`/discover?search=${e.target.value.toLocaleLowerCase()}`);
-      router.refresh();
+    } else {
+      router.push(`/discover?search=${selectedSuburb}`);
     }
-    return;
   };
 
-  const handleChangeFilter = (item: any) => {
-    if (filter) {
-      router.push("/suberb-search");
+  const handleChangeFilter = (item: string) => {
+    if (search) {
+      router.push(
+        `/discover?search=${selectSuburb}&filter=${item.toLocaleLowerCase()}`,
+      );
       dispatch(setActiveTab(item));
     } else {
+      router.push(`/discover?filter=${item.toLocaleLowerCase()}`);
       dispatch(setActiveTab(item));
+      console.log("filter Item", item);
     }
   };
 
-  const serviceTypes = ["Plumber", "Electrician", "Handyman"];
-
   return (
-    <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto relative">
-      {cardLength ? (
-        <div className="flex sm:items-center items-start md:flex-row flex-col space-y-4 justify-between">
-          {/* Tab Filters */}
-          <div className="flex items-center gap-2 flex-wrap">
-            {/* Left Button */}
+    <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        {/* LEFT: Tabs Section */}
+        <div className="flex items-center gap-2 w-full lg:w-auto">
+          {/* Left Arrow (only on lg+) */}
+          <button
+            onClick={scrollLeft}
+            className="flex lg:hidden p-2 rounded-full bg-light-bg hover:bg-lightbg"
+          >
+            <MdKeyboardArrowLeft size={20} />
+          </button>
 
-            {/* <button
-              onClick={scrollLeft}
-              className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer md:hidden flex"
-            >
-              <MdKeyboardArrowLeft
-                size={20}
-                className="text-tabText font-medium"
-              />
-            </button> */}
-
-            {/* Scrollable Tabs */}
-
-            <div
-              ref={scrollRef}
-              className="flex items-center gap-[12px] flex-wrap overflow-x-auto scrollbar-hide scroll-smooth"
-            >
-              {Tab_Data.map((item: any, ind: any) => (
-                <button
-                  disabled={!isShowFullList}
-                  key={ind}
-                  onClick={() => handleChangeFilter(item?.title)}
-                  className={`flex items-center disabled:opacity-50 disabled:cursor-not-allowed gap-[8px] cursor-pointer px-[20px] py-[11px] rounded-full transition-all
-                ${
-                  activeTab?.toLowerCase() === item?.title?.toLowerCase() ||
-                  item.title === filter
-                    ? "bg-primary text-white border-[1px] border-border1"
-                    : "border-[1px] border-border1 text-tabText"
-                }`}
-                >
-                  {item.icon && <span>{item.icon}</span>}
-                  <p className="capitalize md:text-[16px] font-manrope font-medium whitespace-nowrap">
-                    {item.title}
-                  </p>
-                </button>
-              ))}
-            </div>
-
-            {/* Right Button */}
-            {/* <button
-              onClick={scrollRight}
-              className="p-2 rounded-full bg-light-bg hover:bg-lightbg cursor-pointer md:hidden flex"
-            >
-              <MdKeyboardArrowRight
-                size={20}
-                className="text-tabText font-medium"
-              />
-            </button> */}
+          {/* Tabs */}
+          <div
+            ref={scrollRef}
+            className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth w-full lg:max-w-[750px]"
+          >
+            {Tab_Data.map((item: TabItem, ind: number) => (
+              <button
+                key={ind}
+                disabled={isDisabled}
+                onClick={() => handleChangeFilter(item?.title)}
+                className={`flex items-center gap-2 px-5 py-3 cursor-pointer rounded-full transition-all whitespace-nowrap
+              ${
+                activeTab?.toLowerCase() === item?.title?.toLowerCase() ||
+                item.title.toLowerCase() === filter
+                  ? "bg-share-modal-icon text-white"
+                  : "border border-border1 text-tabText"
+              }`}
+              >
+                {item.icon && <span>{item.icon}</span>}
+                <span className="font-medium capitalize">{item.title}</span>
+              </button>
+            ))}
           </div>
 
-          {/* Area Filter List */}
-          <div>
-            <div className="flex items-center md:gap-[12px] gap-[10px]">
-              <label
-                htmlFor="filterBySuburb"
-                className="sm:text-[16px] font-manrope font-medium text-textdark"
-              >
-                Filter by Suburb
-              </label>
-              <select
-                disabled={!isShowFullList}
-                id="filterBySuburb"
-                value={selectSuburb}
-                className="border-[1px] disabled:opacity-50 disabled:cursor-not-allowed border-border-light text-textdark px-[20px] py-[10px] rounded-[12px] md:text-[16px] text-[14px] font-manrope font-medium cursor-pointer outline-none"
-                onChange={(e) => {
-                  // setSelectedSuburb(e.target.value);
-                  handleSearchChange(e);
-                }}
-              >
-                {/* {selectSuburb !== "Select Suburb" && ( */}
-                <option value="">Select Suburb</option>
-                {/* )} */}
-                {uniqueLocations.toSorted().map((item: any, ind: any) => (
-                  <option key={ind} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+          {/* Right Arrow (only on lg+) */}
+          <button
+            onClick={scrollRight}
+            className="flex lg:hidden p-2 rounded-full bg-light-bg hover:bg-lightbg"
+          >
+            <MdKeyboardArrowRight size={20} />
+          </button>
         </div>
-      ) : (
-        ""
-      )}
+
+        {/* RIGHT: Select */}
+        <div className="w-full lg:w-auto">
+          <select
+            disabled={isDisabled}
+            value={selectSuburb ?? ""}
+            onChange={handleSearchChange}
+            className="w-full lg:w-auto border cursor-pointer border-border-light px-5 py-3 rounded-xl"
+          >
+            <option value="">Select Suburb</option>
+            {uniqueLocations.toSorted().map((item: string, ind: number) => (
+              <option key={ind} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </div>
   );
 };

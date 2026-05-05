@@ -22,12 +22,10 @@ const Banner = ({ recomendedDetail }: Props) => {
   const isLoading = !recomendedDetail;
 
   const filterLocation = (detail: TypeFilterRecommendations) => {
-    const data = detail.map((item: any) => item.user.address);
+    const data = detail.map((item) => item.user.address);
     const uniqueData = [...new Set(data)];
     return uniqueData;
   };
-
-  console.log(recomendedDetail, "recomendedDetailrecomendedDetail");
 
   return (
     <main className="shadow-md ">
@@ -128,7 +126,7 @@ const Banner = ({ recomendedDetail }: Props) => {
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
             {filterLocation(recomendedDetail?.recommendations).map(
-              (item: any, ind: number) => (
+              (item: string, ind: number) => (
                 <button
                   key={ind}
                   className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] capitalize"

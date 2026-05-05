@@ -3,36 +3,9 @@ import { api } from "@/src/service/axios";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { trusted_Data } from "@/utils/dumydata";
+import { TrustedData } from "@/types";
 
 const Trusted = () => {
-  // const [state, setState] = useState<any>([]);
-  // const getStats = async () => {
-  //   try {
-  //     const res = await api.get("stats");
-  //     setState([
-  //       {
-  //         num: `+ 334`,
-  //         text: "Recommendations",
-  //         textColor: "text-[#FFFFFF]",
-  //       },
-  //       {
-  //         num: `+ 3`,
-  //         text: "Suburbs",
-  //         textColor: "text-[#FFFFFF]",
-  //       },
-  //       {
-  //         num: `+ 3`,
-  //         text: "Services",
-  //         textColor: "text-[#FFFFFF]",
-  //       },
-  //     ]);
-  //   } catch (error) {}
-  // };
-
-  // useEffect(() => {
-  //   getStats();
-  // }, []);
-
   return (
     <div className="bg-green">
       <div className="container mx-auto p-4">
@@ -54,7 +27,7 @@ const Trusted = () => {
           viewport={{ once: true }}
           className="flex lg:items-center justify-between items-center sm:flex-row flex-col md:gap-10 gap-6 md:py-16 py-8"
         >
-          {trusted_Data.map((item: any, ind: number) => (
+          {trusted_Data.map((item: TrustedData, ind: number) => (
             <motion.div key={ind}>
               <p
                 className={`${item.textColor} lg:text-[56px] md:text-[40px] text-[32px] font-bold sm:text-start text-center font-manrope`}

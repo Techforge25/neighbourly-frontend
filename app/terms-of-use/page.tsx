@@ -7,7 +7,7 @@ import { Metadata } from "next";
     "Read the Terms of Use for subrub says to understand the rules, guidelines, and conditions for using our platform and services.",
 
   alternates: {
-    canonical: "https://www.beneighbourly.com.au/terms-of-use",
+    canonical: "https://www.suburbsays.com.au/terms-of-use",
   },
 
   keywords: [
@@ -25,12 +25,12 @@ import { Metadata } from "next";
     title: "subrub says - Terms of Use",
     description:
       "Review the terms and conditions for using subrub says and understand your rights and responsibilities.",
-    url: "https://www.beneighbourly.com.au/terms-of-use",
+    url: "https://www.suburbsays.com.au/terms-of-use",
     siteName: "subrub says",
     type: "website",
     images: [
       {
-        url: "https://www.beneighbourly.com.au/images/logo.png",
+        url: "https://www.suburbsays.com.au/images/logo.png",
         width: 1200,
         height: 630,
         alt: "subrub says Suburb Search",

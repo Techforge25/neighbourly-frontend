@@ -6,6 +6,8 @@ import { GoShieldCheck } from "react-icons/go";
 import { api } from "@/src/service/axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { AxiosError } from "axios";
+import { ApiErrorResponse } from "@/types";
 
 const ContactUsForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,17 +41,22 @@ const ContactUsForm = () => {
     onSubmit: async (values, { resetForm }) => {
       setIsLoading(true);
       try {
-        const res: any = await api.post("getInTouch/send-feedback", {
+        const res = await api.post("getInTouch/send-feedback", {
           fullName: values.name,
           email: values.email,
-          message: values.message,
+          message: values?.message,
         });
         setIsLoading(false);
         toast.success(res.data?.data);
         resetForm();
         console.log(res?.data?.data, "Response From Get In Touch Form");
-      } catch (error: any) {
-        console.log(error.response.data.message);
+      } catch (error: unknown) {
+        const err = error as AxiosError<ApiErrorResponse>;
+        toast.error(err?.response?.data?.message || "An error occurred");
+        console.log(
+          err?.response?.data?.message,
+          "Error From Get In Touch Form",
+        );
         setIsLoading(false);
       }
     },
@@ -148,7 +155,11 @@ const ContactUsForm = () => {
 
           {/* Button */}
           <button
-          disabled={!formik.values.message || !formik.values.email || !formik.values.name }
+            disabled={
+              !formik.values.message ||
+              !formik.values.email ||
+              !formik.values.name
+            }
             type="submit"
             className="mt-6 w-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-primary hover:bg-heading text-white py-3 rounded-full font-medium transition-all duration-300"
           >

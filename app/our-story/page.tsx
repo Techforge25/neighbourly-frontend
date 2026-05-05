@@ -7,17 +7,17 @@ export const metadata: Metadata = {
   title: "subrub says - Our Story",
   description:"Learn the story behind subrub says and how we connect you with trusted local services recommended by your neighbors.",
    alternates: {
-    canonical: "https://www.beneighbourly.com.au/our-story",
+    canonical: "https://www.suburbsays.com.au/our-story",
   },
   openGraph: {
     title: "subrub says - Our Story",
     description:"Discover how subrub says helps you find reliable local services through real neighbor recommendations.",
-    url: "https://www.beneighbourly.com.au/our-story",
+    url: "https://www.suburbsays.com.au/our-story",
     siteName: "subrub says",
     
     images: [
       {
-        url: "https://www.beneighbourly.com.au/images/ourstory.png",
+        url: "https://www.suburbsays.com.au/images/ourstory.png",
         width: 1200,
         height: 630,
         alt: "subrub says - Our Story",

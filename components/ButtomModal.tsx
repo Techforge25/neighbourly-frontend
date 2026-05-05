@@ -4,9 +4,9 @@ import StepperModal from "./StepperModal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openModal } from "@/store/modalSlice";
 
-export default function ButtonModal({ bg }: any) {
+export default function ButtonModal({ bg }: { bg: string }) {
    const dispatch = useDispatch();
-  const openModalState = useSelector((state) => state.modal.openModal);
+  const openModalState = useSelector((state: { modal: { openModal: boolean } }) => state.modal.openModal);
   useEffect(() => {
     if (openModalState) {
       document.body.style.overflow = "hidden";
