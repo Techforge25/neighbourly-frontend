@@ -4,36 +4,37 @@ import UseFull from "@/components/UseFull";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "subrub says - Get In Touch",
-  description:"Contact subrub says for support, questions, partnerships, or general inquiries.",
- alternates: {
+  title: "Suburb says - Get In Touch",
+  description:
+    "Contact Suburb says for support, questions, partnerships, or general inquiries.",
+  alternates: {
     canonical: "https://www.suburbsays.com.au/get-in-touch",
   },
   openGraph: {
-    title: "subrub says - Get In Touch",
+    title: "Suburb says - Get In Touch",
     description:
-      "Reach out to subrub says for support, feedback, or partnership opportunities. We’re here to help you connect with trusted local services.",
+      "Reach out to Suburb says for support, feedback, or partnership opportunities. We’re here to help you connect with trusted local services.",
     url: "https://www.suburbsays.com.au/get-in-touch",
-    siteName: "subrub says",
+    siteName: "Suburb says",
     type: "website",
     images: [
       {
         url: "https://www.suburbsays.com.au/images/getintouch.png",
         width: 1200,
         height: 630,
-        alt: "subrub says Contact Page",
+        alt: "Suburb says Contact Page",
       },
     ],
   },
   keywords: [
-    "contact subrub says",
-    "customer support subrub says",
+    "contact Suburb says",
+    "customer support Suburb says",
     "get in touch",
-    "help center subrub says",
+    "help center Suburb says",
     "community support",
     "local services platform support",
     "partnership inquiries",
-    "subrub says contact",
+    "Suburb says contact",
   ],
 };
 const page = () => {

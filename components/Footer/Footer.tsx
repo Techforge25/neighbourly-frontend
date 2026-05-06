@@ -5,12 +5,12 @@ import { MdLocalPhone } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
+    <footer className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
       {/* Top Section */}
       <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left">
         {/* Left */}
         <Link href={"/terms-of-use"} className="flex items-center gap-3">
-          <p className="text-sm md:text-base">Terms Of Use</p>
+          <p className="text-sm md:text-base">Terms of use</p>
         </Link>
 
         {/* Right */}
@@ -41,10 +41,10 @@ const Footer = () => {
       {/* Bottom */}
       <div className="mt-4 md:mt-6 text-center">
         <p className="text-[#202939] text-xs sm:text-sm md:text-base">
-          © 2026 Subrub says. All rights reserved.
+          © 2026 Suburb says. All rights reserved.
         </p>
       </div>
-    </div>
+    </footer>
   );
 };
 

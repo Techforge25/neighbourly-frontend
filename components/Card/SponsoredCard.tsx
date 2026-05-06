@@ -27,7 +27,7 @@ const SponsoredCard = ({
     <div
       className={`relative flex flex-col items-center sm:w-[410px] w-[310px] rounded-[20px] border ${theme.cardBg} shadow-md overflow-hidden`}
     >
-      {/* ── Pink tinted top arch (background layer) ───────────────────────── */}
+      {/* ── Pink tinted top arch (background layer) ── */}
       <div
         className={`absolute top-0 left-0 w-full h-[200px] ${theme.banner} opacity-20 pointer-events-none`}
       />
@@ -47,9 +47,14 @@ const SponsoredCard = ({
               "polygon(0% 0%, 100% 0%, 96% 50%, 100% 100%, 0% 100%, 4% 50%)",
           }}
         >
-          <PiMedalFill size={18} className={theme.bannerText} />
+          <Image
+            src={"/images/starShine.svg"}
+            width={28}
+            height={28}
+            alt="starIcon"
+          />
           <span
-            className={`text-[14px] font-manrope font-semibold ${theme.bannerText}`}
+            className={`text-[16px] font-manrope font-semibold ${theme.bannerText}`}
           >
             Trusted suburb sponsor
           </span>
@@ -84,12 +89,12 @@ const SponsoredCard = ({
           {personName}
         </h3>
 
-        <p className="font-poppins text-[16px] sm:text-[18px] text-para text-center">
+        <p className="font-poppins text-[14px] sm:text-[16px] text-para text-center">
           {businessName}
         </p>
 
         <p
-          className={`font-manrope font-bold text-[16px] sm:text-[18px] text-center mt-1 ${theme.serviceText}`}
+          className={`font-manrope font-bold ${(serviceType === "Conveyancer" || serviceType === "Real Estate Agent") && "mt-22"} text-[14px] sm:text-[16px] text-center mt-1 ${theme.serviceText}`}
         >
           {serviceType}
         </p>
@@ -97,23 +102,20 @@ const SponsoredCard = ({
 
       {/* ── Call button ───────────────────────────────────────────────────── */}
       <div className="relative w-full px-4 py-5 mt-4 z-10">
-        {
-          isNotDisabled?(
-        <Link href={`tel:${businessContact}`} className="w-full">
-          <button
-            className={`w-full flex items-center justify-center gap-3 text-white font-outfit font-medium text-[18px] py-4 rounded-full transition-all duration-200 cursor-pointer ${theme.button}`}
-          >
-            Call
-            <MdOutlineCall size={22} />
-          </button>
-        </Link>
-          ):
-          (
-            <div className={`${theme.serviceText} text-center text-[1.5rem] `}>
-              "sponsorship available"
-            </div> 
-          )
-        }
+        {isNotDisabled ? (
+          <Link href={`tel:${businessContact}`} className="w-full">
+            <button
+              className={`w-full flex items-center justify-center gap-3 text-white font-outfit font-medium text-[18px] py-4 rounded-full transition-all duration-200 cursor-pointer ${theme.button}`}
+            >
+              Call
+              <MdOutlineCall size={22} />
+            </button>
+          </Link>
+        ) : (
+          <div className={`${theme.serviceText} text-center text-[1.5rem] mt `}>
+            Sponsorship available
+          </div>
+        )}
       </div>
     </div>
   );

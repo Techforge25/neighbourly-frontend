@@ -67,12 +67,10 @@ const Card = () => {
     return <CardEmpty isLoading={isLoading} />;
   }
 
-  console.log("Recommendations in Card component:", docs);
-
   return (
     <div>
-      <div className="max-w-[1396px] w-[90%] mx-auto md:p-0 p-4">
-        <div className="flex items-center gap-4 flex-wrap mb-3 justify-center">
+      <div className="max-w-[1396px] mx-auto md:p-0 p-4">
+        <div className="">
           <div className="flex items-stretch gap-4 flex-wrap justify-center">
             {docs.map((item: RecommendationItem, ind: number) => (
               <RecommendationCard
@@ -90,7 +88,7 @@ const Card = () => {
 
       <ShareModal />
 
-      {isListTrue && recommendations && (
+      {recommendations && (
         <CardPagination
           page={page}
           totalPages={totalPages}

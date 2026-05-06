@@ -38,7 +38,6 @@ const Banner = () => {
     setSuburb(suburbValue || suburbValueFilter);
   }, [params]);
 
-  console.log(state, "Search Params in Banner");
 
   return (
     <div 

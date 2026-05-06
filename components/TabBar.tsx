@@ -92,7 +92,6 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
     } else {
       router.push(`/discover?filter=${item.toLocaleLowerCase()}`);
       dispatch(setActiveTab(item));
-      console.log("filter Item", item);
     }
   };
 

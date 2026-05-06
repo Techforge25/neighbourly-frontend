@@ -26,18 +26,6 @@ const Find = () => {
             <span className="text-white">find this useful?</span>
           </motion.p>
 
-          {/* Description */}
-          {/* <motion.p
-            initial={{ y: -100, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "linear" }}
-            viewport={{ once: true }}
-            className="mt-4 text-[14px] sm:text-[15px] md:text-[16px] text-center text-white leading-relaxed sm:w-[80%] md:w-[60%] lg:w-[40%] font-poppins mx-auto"
-          >
-            Send Neighbourly to a friend, neighbour or group and help grow
-            trusted recommendations in your suburb.
-          </motion.p> */}
-
           {/* Button */}
           <motion.div
             initial={{ y: 100, opacity: 0 }}
@@ -49,7 +37,7 @@ const Find = () => {
               onClick={() => dispatch(openShare())}
               className="flex items-center gap-3 cursor-pointer sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white hover:bg-[#ebe8e8] text-[14px] sm:text-[16px] font-outfit"
             >
-              <span>Share suburb says</span>
+              <span>Share Suburb says</span>
               <FiShare2 size={20} />
             </button>
           </motion.div>

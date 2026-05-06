@@ -3,6 +3,7 @@ import {
   FaClockRotateLeft,
   FaUserGroup,
   FaUsers,
+  FaWhatsapp,
 } from "react-icons/fa6";
 import { HiOutlineSearch } from "react-icons/hi";
 import { PiThumbsUpBold } from "react-icons/pi";
@@ -13,8 +14,11 @@ import CustomIcon from "@/components/CustomIcon";
 import {
   MdCleaningServices,
   MdCreditCardOff,
+  MdOutlineEmail,
   MdOutlineHandyman,
 } from "react-icons/md";
+import { FiLink, FiUsers } from "react-icons/fi";
+import { CiFacebook } from "react-icons/ci";
 export const navItems = [
   {
     href: "/",
@@ -92,9 +96,9 @@ export const feel_Diff = [
 ];
 
 export const our_story_data = [
-  "Subrub says started with a simple frustration: finding a local service provider you can genuinely trust.",
+  "Suburb says started with a simple frustration: finding a local service provider you can genuinely trust.",
   "We realised the best recommendations come from people nearby not anonymous reviews.",
-  "So we built Subrub says to help people discover trusted local businesses through genuine recommendations from neighbours.",
+  "So we built Suburb says to help people discover trusted local businesses through genuine recommendations from neighbours.",
 ];
 
 export const Community_Sec_Data = [
@@ -962,7 +966,6 @@ export const video_Url = [
 ];
 
 export const colorFunctions = (key) => {
-  console.log("key", key);
   switch (key) {
     case "Plumber":
       return "text-share-modal-icon";
@@ -1057,7 +1060,7 @@ export const cardData = [
   },
 ];
 
-export const sugestidSubrubData = ["Curl Curl", "Freshwater", "Manly"];
+export const sugestidSuburbData = ["Curl Curl", "Freshwater", "Manly"];
 
 const SERVICE_COLORS = {
   Plumber: "bg-primary",
@@ -1072,23 +1075,23 @@ export const getServiceColor = (type) => SERVICE_COLORS[type] ?? "bg-red-500";
 export const sponsors = [
   {
     personName: "Sally",
-    businessName: "Sandcastle Financ",
+    businessName: "Sandcastle Finance",
     serviceType: "Mortgage Broker",
-    businessContact: "+0422 242 661",
+    businessContact: "+0422242661",
     profileImage: "/images/sallyAvatar.svg",
     isNotDisabled: true,
   },
   {
-    personName: "Michael Lee",
-    businessName: "Modern Estate Surry Hills",
+    personName: "",
+    businessName: " ",
     serviceType: "Real Estate Agent",
     businessContact: "+61400000001",
     profileImage: "/images/dummyAvatar.svg",
     isNotDisabled: false,
   },
   {
-    personName: "Julian Thorne",
-    businessName: "Thorne Legal Services Partners",
+    personName: " ",
+    businessName: " ",
     serviceType: "Conveyancer",
     businessContact: "+61400000002",
     profileImage: "/images/dummyAvatar.svg",
@@ -1096,7 +1099,7 @@ export const sponsors = [
   },
 ];
 
- const SPONSOR_THEMES = {
+const SPONSOR_THEMES = {
   "Mortgage Broker": {
     banner: "bg-primary",
     bannerText: "text-white",
@@ -1133,3 +1136,4 @@ export const sponsors = [
 
 export const getTheme = (serviceType) =>
   SPONSOR_THEMES[serviceType] ?? SPONSOR_THEMES.default;
+

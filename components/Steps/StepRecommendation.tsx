@@ -44,11 +44,6 @@ export default function StepRecommendation({
   const [nextStep, setNextStep] = useState(false);
 
   const handleGetFormData = async (values: RecommendationData) => {
-    console.log(
-      "Form data received in StepRecommendation:",
-      values,
-      parsedAboutData,
-    );
     try {
       const isStep2 = parsedAboutData?.step === 2;
 
@@ -76,7 +71,6 @@ export default function StepRecommendation({
       });
 
       toast.success(res.data.message);
-      console.log("Recommendation submitted successfully:", res);
       localStorage.removeItem("stepAboutData");
       onSubmit();
     } catch (error: unknown) {

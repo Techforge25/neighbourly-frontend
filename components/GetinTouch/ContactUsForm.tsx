@@ -8,9 +8,11 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types";
+import { ContactUsFormSchema } from "@/validations/Recommendations";
+import { useContactMutation } from "@/hooks/useContactMutation";
 
 const ContactUsForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { mutate: sendFeedback, isPending } = useContactMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -18,50 +20,18 @@ const ContactUsForm = () => {
       email: "",
       message: "",
     },
-
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .matches(/^[A-Za-z\s]+$/, "Name can contain alphabets only")
-        .min(3, "Name must be at least 3 characters")
-        .max(40, "Name cannot exceed 40 characters")
-        .required("Full name is required"),
-
-      email: Yup.string()
-        .trim()
-        .lowercase()
-        .email("Invalid email address")
-        .required("Email is required"),
-
-      message: Yup.string()
-        .min(10, "Message must be at least 10 characters")
-        .max(2000, "Message cannot exceed 2000 characters")
-        .required("Message is required"),
-    }),
-
-    onSubmit: async (values, { resetForm }) => {
-      setIsLoading(true);
-      try {
-        const res = await api.post("getInTouch/send-feedback", {
+    validationSchema: ContactUsFormSchema,
+    onSubmit: (values, { resetForm }) => {
+      sendFeedback(
+        {
           fullName: values.name,
           email: values.email,
-          message: values?.message,
-        });
-        setIsLoading(false);
-        toast.success(res.data?.data);
-        resetForm();
-        console.log(res?.data?.data, "Response From Get In Touch Form");
-      } catch (error: unknown) {
-        const err = error as AxiosError<ApiErrorResponse>;
-        toast.error(err?.response?.data?.message || "An error occurred");
-        console.log(
-          err?.response?.data?.message,
-          "Error From Get In Touch Form",
-        );
-        setIsLoading(false);
-      }
+          message: values.message,
+        },
+        { onSuccess: () => resetForm() },
+      );
     },
   });
-
   return (
     <div className="bg-[#f7f7f7] py-16 px-4">
       {/* Heading */}
@@ -76,7 +46,7 @@ const ContactUsForm = () => {
           We&apos;d love to <span className="text-primary">hear from you</span>
         </h2>
         <p className="text-[#262729] mt-3 text-[18px] md:w-[710px] mx-auto">
-          Whether you have a question about how subrub says works, want to
+          Whether you have a question about how Suburb says works, want to
           recommend a service, or would like to see us in your suburb, reach out
           below.
         </p>
@@ -95,7 +65,10 @@ const ContactUsForm = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Name */}
             <div>
-              <label className="text-[14px] text-tabText">Full Name</label>
+              <label className="text-[14px] text-tabText">
+                <span>Full Name</span>
+                <span className="text-red-500">*</span>
+              </label>
               <input
                 type="text"
                 name="name"
@@ -115,7 +88,8 @@ const ContactUsForm = () => {
             {/* Email */}
             <div>
               <label className="text-[14px] text-[#202939]">
-                Email Address
+                <span>Email Address</span>
+                <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -136,7 +110,10 @@ const ContactUsForm = () => {
 
           {/* Message */}
           <div className="mt-4">
-            <label className="text-[14px] text-[#202939]">Message</label>
+            <label className="text-[14px] text-[#202939]">
+              <span>Message</span>
+              <span className="text-red-500">*</span>
+            </label>
             <textarea
               name="message"
               onChange={formik.handleChange}
@@ -156,14 +133,13 @@ const ContactUsForm = () => {
           {/* Button */}
           <button
             disabled={
-              !formik.values.message ||
-              !formik.values.email ||
-              !formik.values.name
+              !(formik.isValid && formik.dirty)||
+              isPending
             }
             type="submit"
             className="mt-6 w-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-primary hover:bg-heading text-white py-3 rounded-full font-medium transition-all duration-300"
           >
-            {isLoading ? "Loading..." : "Submit →"}
+            {isPending ? "Loading..." : "Submit →"}
           </button>
 
           {/* Footer note */}
@@ -175,7 +151,7 @@ const ContactUsForm = () => {
               <span>
                 Your details are safe with us. We only use this information to
                 respond to your enquiry.
-              </span>
+              </span>{" "}
               <span>
                 We’re starting on the Northern Beaches and would love to hear
                 from residents, local businesses and community groups.

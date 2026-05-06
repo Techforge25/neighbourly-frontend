@@ -21,7 +21,7 @@ const RecommendationCard = ({ item, isActive, onToggle }: Props) => {
       viewport={{ once: true }}
       className={`flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] ${
         isActive ? "h-auto" : "sm:h-[580px]"
-      } sm:w-[410px] w-[310px] bg-white`}
+      } sm:w-[410px] w-[330px] bg-white`}
     >
       <div className="flex flex-col h-full justify-between">
         {/* Header */}

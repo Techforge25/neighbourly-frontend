@@ -31,7 +31,7 @@ const Banner = ({
       <div>
         <h1
           className={`relative z-10 ${textColor ? textColor : `text-white`} font-semibold text-center px-4
-        text-2xl ${textSize ? textSize : "sm:text-[36px] md:text-[42px] lg:text-[52px] xl:text-[62px] md:leading-[67px] leadibng-[37px]"} font-manrope xl:w-[950px] `}
+        text-2xl ${textSize ? textSize : "sm:text-[36px] md:text-[42px] lg:text-[52px] xl:text-[62px] md:leading-[67px] leadibng-[37px]"} font-manrope xl:w-[1200px] `}
         >
           {text}
         </h1>

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata:Metadata = {
-  title: "Discover Places - subrub says",
+  title: "Discover Places - Suburb says",
   description: "Find the best local recommendations near you.",
    alternates: {
     canonical: "https://www.suburbsays.com.au/discover",
@@ -12,7 +12,7 @@ export const metadata:Metadata = {
     title: "Discover Places",
     description: "Explore top Place around you",
     url: "https://www.suburbsays.com.au/discover",
-    siteName: "subrub says",
+    siteName: "Suburb says",
     images: [
       {
         url: "https://www.suburbsays.com.au/images/logo.png",
@@ -31,7 +31,7 @@ export const metadata:Metadata = {
   "neighbor reviews",
   "best local places",
   "service discovery platform",
-  "subrub says discover",
+  "Suburb says discover",
 ]
 };
 

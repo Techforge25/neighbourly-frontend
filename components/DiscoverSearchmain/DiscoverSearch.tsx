@@ -28,8 +28,6 @@ const DiscoverSearch = () => {
         banner="/images/discover.png"
         text="Discover the trades and services Northern Beaches locals recommend most."
         bgPosition="center 20%"
-        // para="These aren’t paid listings. They’re the most trusted local services, based on recommendations from
-        // your neighbours."
       />
 
       <div className="md:my-10 my-4 md:max-w-[1118px] text-center w-[90%] mx-auto rounded-[12px] p-4">
@@ -56,7 +54,7 @@ const DiscoverSearch = () => {
       </div>
 
       <Card />
-      <LocalRecommendation />
+      {/* <LocalRecommendation /> */}
       <UseFull color="#718496" />
     </div>
   );

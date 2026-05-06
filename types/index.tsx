@@ -62,3 +62,9 @@ export type TypeStatesData = {
   businesses: number;
   recommendations: number;
 };
+
+export interface SendFeedbackPayload {
+  fullName: string;
+  email: string;
+  message: string;
+}

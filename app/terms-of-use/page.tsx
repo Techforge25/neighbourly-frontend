@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Metadata } from "next";
 
  export const metadata: Metadata = {
-  title: "subrub says - Terms of Use",
+  title: "Suburb says - Terms of Use",
   description:
-    "Read the Terms of Use for subrub says to understand the rules, guidelines, and conditions for using our platform and services.",
+    "Read the Terms of Use for Suburb says to understand the rules, guidelines, and conditions for using our platform and services.",
 
   alternates: {
     canonical: "https://www.suburbsays.com.au/terms-of-use",
@@ -15,25 +15,25 @@ import { Metadata } from "next";
     "terms and conditions",
     "user agreement",
     "website terms",
-    "subrub says terms",
+    "Suburb says terms",
     "platform rules",
     "legal terms",
     "service conditions",
   ],
 
   openGraph: {
-    title: "subrub says - Terms of Use",
+    title: "Suburb says - Terms of Use",
     description:
-      "Review the terms and conditions for using subrub says and understand your rights and responsibilities.",
+      "Review the terms and conditions for using Suburb says and understand your rights and responsibilities.",
     url: "https://www.suburbsays.com.au/terms-of-use",
-    siteName: "subrub says",
+    siteName: "Suburb says",
     type: "website",
     images: [
       {
         url: "https://www.suburbsays.com.au/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "subrub says Suburb Search",
+        alt: "Suburb says Suburb Search",
       },
     ],
   },
@@ -44,12 +44,12 @@ const page = () => {
       <div className="w-[90%] mx-auto md:py-20  ">
         <div className="flex flex-col md:gap-[10px] gap-[6px]">
           <h1 className="font-bold font-manrope md:text-[42px] text-[23px] md:leading-[49px] leading-[30px] max-w-[515px]">
-            Subrub says <span className="text-primary">Terms of Use</span> and{" "}
+            Suburb says <span className="text-primary">Terms of Use</span> and{" "}
             <span className="text-primary">Privacy Notice</span>
           </h1>
           <p className="md:text-[16px] text-[14px] md:leading-[28px] leading-[20px] font-medium font-poppins text-para md:max-w-[1274]">
             We collect your details to verify submissions, prevent misuse, and
-            keep subrub says trustworthy. We may contact you about your
+            keep Suburb says trustworthy. We may contact you about your
             submission or share relevant updates. Your information is never
             sold.
           </p>
@@ -74,10 +74,10 @@ const page = () => {
 
             <div className="max-w-[1047px] md:mt-3 mt-2 flex flex-col md:gap-[5px] gap-[3px]">
               <h3 className="font-manrope font-semibold md:text-[24px] text-[20px] text-textdark">
-                Welcome to Subrub says.
+                Welcome to Suburb says.
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                Subrub says is a free, community-led service that celebrates and
+                Suburb says is a free, community-led service that celebrates and
                 publishes the local businesses people nearby know and trust. Our
                 role is to help surface and share community trust. We do not
                 make recommendations ourselves.
@@ -93,10 +93,10 @@ const page = () => {
 
             <div className="max-w-[1214px] md:mt-3 mt-2 flex flex-col md:gap-[5px] gap-[3px]">
               <h3 className="font-manrope font-semibold md:text-[24px] text-[20px] text-textdark">
-                1. Using Subrub says
+                1. Using Suburb says
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                Please use Subrub says in a respectful, honest and lawful way.
+                Please use Suburb says in a respectful, honest and lawful way.
               </p>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 You must not misuse the website, interfere with how it works,
@@ -115,12 +115,12 @@ const page = () => {
                 2. Community submissions
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                Subrub says is built on genuine input from local residents about
+                Suburb says is built on genuine input from local residents about
                 the businesses and people they trust.
               </p>
               <div className="md:mt-4 mt-2">
                 <span className="md:text-[16px] text-[14px] font-poppins font-medium">
-                  By submitting information to Subrub says, you confirm that:
+                  By submitting information to Suburb says, you confirm that:
                 </span>
 
                 <ul className="list-disc font-poppins font-medium md:text-[16px] text-[14px] text-para md:px-8 px-5">
@@ -156,15 +156,15 @@ const page = () => {
 
             <div className="max-w-[1214px] md:mt-3 mt-2 flex flex-col md:gap-[5px] gap-[3px]">
               <h3 className="font-manrope font-semibold md:text-[24px] text-[20px] text-textdark">
-                3. What Subrub says does
+                3. What Suburb says does
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
-                Subrub says celebrates and publishes the businesses, trades and
+                Suburb says celebrates and publishes the businesses, trades and
                 local service providers that members of the community say they
-                trust.Subrub says does not independently recommend, endorse,
+                trust. Suburb says does not independently recommend, endorse,
                 guarantee or certify any business or provider. Any business
                 shown on the site reflects community input, not a recommendation
-                made by Subrub says.
+                made by Suburb says.
               </p>
             </div>
 
@@ -192,7 +192,7 @@ const page = () => {
                   </li>
                   <li>
                     occasionally let you know about relevant updates,
-                    improvements or new functionality on Subrub says
+                    improvements or new functionality on Suburb says
                   </li>
                 </ul>
               </div>
@@ -212,7 +212,7 @@ const page = () => {
               </h3>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 We collect and use personal information only where it is
-                reasonably needed to operate and improve Subrub says.
+                reasonably needed to operate and improve Suburb says.
               </p>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 This may include using your information to verify submissions,
