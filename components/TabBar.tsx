@@ -118,12 +118,12 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
                 key={ind}
                 disabled={isDisabled}
                 onClick={() => handleChangeFilter(item?.title)}
-                className={`flex items-center gap-2 px-5 py-3 cursor-pointer rounded-full transition-all whitespace-nowrap
+                className={`flex  items-center gap-2 px-5 py-3 cursor-pointer rounded-full transition-all whitespace-nowrap
               ${
                 activeTab?.toLowerCase() === item?.title?.toLowerCase() ||
                 item.title.toLowerCase() === filter
-                  ? "bg-share-modal-icon text-white"
-                  : "border border-border1 text-tabText"
+                  ? "bg-share-modal-icon text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  : "border border-border1 text-tabText disabled:opacity-50 disabled:cursor-not-allowed"
               }`}
               >
                 {item.icon && <span>{item.icon}</span>}
@@ -147,7 +147,7 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
             disabled={isDisabled}
             value={selectSuburb ?? ""}
             onChange={handleSearchChange}
-            className="w-full lg:w-auto border cursor-pointer border-border-light px-5 py-3 rounded-xl"
+            className="w-full disabled:opacity-50 outline-none disabled:cursor-not-allowed lg:w-auto border cursor-pointer border-border-light px-5 py-3 rounded-xl"
           >
             <option value="">Select Suburb</option>
             {uniqueLocations.toSorted().map((item: string, ind: number) => (

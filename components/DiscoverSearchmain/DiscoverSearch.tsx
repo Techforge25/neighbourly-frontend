@@ -44,10 +44,12 @@ const DiscoverSearch = () => {
         ))}
       </div>
 
-      <div className="text-center mt-6 md:mt-8 lg:mt-10 mb-10 md:mb-14 lg:mb-16">
+      <div className="text-center mt-6 md:mt-8 lg:mt-10 mb-10 md:mb-14 lg:mb-16 px-4">
         <p className="font-bold font-manrope text-tabText md:text-[42px] sm:text-[32px] text-[28px]">
-          <span className="capitalize">{`Most recommended ${filter ? filter : "tradies"}`}</span>{" "}
-          <span className="text-primary">in the</span>
+          <span className="capitalize">{`Most recommended ${filter ? filter : "tradies"}`}</span>
+          {" "}
+          <span className="text-primary"> {" "} in the</span>
+          {" "}
           <br />
           <span className="text-primary capitalize ">{`${search ? search : "Northern Beaches"}`}</span>
         </p>

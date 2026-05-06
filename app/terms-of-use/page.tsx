@@ -145,7 +145,7 @@ const page = () => {
                 verify, moderate, delay, reject or remove any submission where
                 we believe that is necessary, including where we detect
                 duplication, suspicious activity, unusual behaviour, conflicts
-                of interest, or content that does not meet our standards
+                of interest, or content that does not meet our standards.
               </p>
               <p className="font-poppins font-medium md:text-[16px] text-[14px] text-para ">
                 We may also limit the number of submissions made by a person
