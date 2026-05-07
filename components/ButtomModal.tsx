@@ -1,40 +1,40 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useCallback, useEffect } from "react";
 import { IoMdAdd } from "react-icons/io";
-import StepperModal from "./StepperModal";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openModal } from "@/store/modalSlice";
+import StepperModal from "./StepperModal";
 
-export default function ButtonModal({ bg }: { bg: string }) {
-   const dispatch = useDispatch();
-  const openModalState = useSelector((state: { modal: { openModal: boolean } }) => state.modal.openModal);
+export default function ButtonModal({ bg }: { bg?: string }) {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector(
+    (state: { modal: { openModal: boolean } }) => state.modal.openModal,
+  );
+
   useEffect(() => {
-    if (openModalState) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
+    document.body.style.overflow = isModalOpen ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [openModalState]);
+  }, [isModalOpen]);
+
+  const handleOpen = useCallback(() => dispatch(openModal()), [dispatch]);
+  const handleClose = useCallback(() => dispatch(closeModal()), [dispatch]);
 
   return (
     <>
-      {/* 🔘 Your Button */}
-      <div>
-        <button
-          onClick={() => dispatch(openModal())}
-          className={`flex  items-center gap-2 lg:px-6 px-3 lg:py-4 py-3 rounded-full cursor-pointer ${bg ? "bg-secondary" : "bg-share-modal-icon hover:bg-share-modal-icon/80"}   text-white lg:text-[18px] ms:text-[16px] text-[14px] font-outfit text-sm`}
-        >
-          <span>Share your recommendation</span>
-          <IoMdAdd size={20} />
-        </button>
-      </div>
+      <button
+        onClick={handleOpen}
+        className={`flex items-center gap-2 lg:px-6 px-3 lg:py-4 py-3 rounded-full cursor-pointer text-white lg:text-lg sm:text-base text-sm font-outfit transition-colors
+          ${bg ? "bg-secondary" : "bg-share-modal-icon hover:bg-share-modal-icon/80"}`}
+      >
+        <span>Share your recommendation</span>
+        <IoMdAdd size={20} />
+      </button>
 
-      {/* 🧩 Modal */}
-      <div className="z-1000">
-        <StepperModal isOpen={openModalState} onClose={() => dispatch(closeModal())} />
+      <div className="z-[1000]">
+        <StepperModal isOpen={isModalOpen} onClose={handleClose} />
       </div>
     </>
   );

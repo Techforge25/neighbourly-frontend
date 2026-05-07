@@ -112,7 +112,7 @@ export default function StepRecommendation({
         touched,
         setFieldValue,
         setFieldTouched,
-        isValid,
+        validateOnChange,
       }) => (
         <Form className="w-full rounded-2xl">
           {isError && (
@@ -132,14 +132,14 @@ export default function StepRecommendation({
                 {/* First Name */}
                 <div className="flex flex-col gap-[12px]">
                   <Label className="md:text-[14px] text-[12px] leading-[20px] font-manrope font-medium">
-                    Their first name
+                    Their first name <span className="text-red-500">*</span>
                   </Label>
                   <Field
                     as={Input}
                     name="firstName"
                     placeholder="e.g. Shannon"
                     className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
-                      errors.firstName && touched.firstName
+                      errors.firstName && touched.firstName && validateOnChange?.valueOf()
                         ? "border-red-500"
                         : "border-[#E4E4E4]"
                     }`}

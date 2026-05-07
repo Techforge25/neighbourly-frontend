@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types";
-import { ContactUsFormSchema } from "@/validations/Recommendations";
+import { ContactUsFormSchema } from "@/validations/ContactusFromValidation";
 import { useContactMutation } from "@/hooks/useContactMutation";
 
 const ContactUsForm = () => {

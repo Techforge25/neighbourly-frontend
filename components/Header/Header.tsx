@@ -1,14 +1,15 @@
 "use client";
+
 import Image from "next/image";
-import { navItems } from "@/utils/dumydata";
 import Link from "next/link";
-import { IoMdAdd, IoMdMenu } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { IoMdMenu } from "react-icons/io";
 import { FaXmark } from "react-icons/fa6";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import ButtonModal from "../ButtomModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { closeModal } from "@/store/modalSlice";
+import { navItems } from "@/utils/dumydata";
+import ButtonModal from "../ButtomModal";
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -16,92 +17,90 @@ const Header = () => {
   const pathName = usePathname();
 
   useEffect(() => {
-  if (isOpenMenu) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+    document.body.style.overflow = isOpenMenu ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpenMenu]);
 
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [isOpenMenu]);
+  const toggleMenu = useCallback(() => {
+    setIsOpenMenu((prev) => !prev);
+    dispatch(closeModal());
+  }, [dispatch]);
 
-const handleOpenMenu = ()=>{
-  setIsOpenMenu(!isOpenMenu);
-  dispatch(closeModal())
-}
+  const closeMenu = useCallback(() => {
+    setIsOpenMenu(false);
+  }, []);
 
-
-
+  const navLinkClass = (href: string) =>
+    pathName === href
+      ? "text-primary border-b-2 border-heading"
+      : "text-heading1";
 
   return (
-    <section className="w-[90%] max-h-[72px] py-2 mx-auto">
-      <div className="flex items-center justify-between ">
+    <header className="w-[90%] max-h-[72px] py-2 mx-auto">
+      <div className="flex items-center justify-between">
         {/* Logo */}
-        <Link href={'/'}>
+        <Link href="/">
           <Image
             src="/images/logo.png"
             alt="Logo"
-            width={500}
-            height={500}
+            width={196}
+            height={72}
             className="lg:max-w-[196px] max-w-[160px] object-contain"
+            priority
           />
         </Link>
-        {/* Logo */}
 
-        {/* nav item */}
-        <div className="flex items-center">
-          <div className="md:flex hidden items-center gap-4 md:gap-4 lg:gap-10 xl:gap-16">
-            {navItems.map((item, index) => (
-              <button
-                key={index}
-                className={`${pathName === item.href ? "text-primary border-b-2 border-geading" : "text-heading1"} font-medium lg:text-[16px] md:text-[14px] text-[12px] font-manrope`}
-              >
-                <Link href={item.href}>{item.label}</Link>
-              </button>
-            ))}
-          </div>
-        </div>
-        {/* nav item */}
+        {/* Desktop Nav */}
+        <nav className="md:flex hidden items-center gap-4 md:gap-4 lg:gap-10 xl:gap-16">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${navLinkClass(item.href)} font-medium lg:text-base md:text-sm text-xs font-manrope`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Button */}
+        {/* Desktop CTA */}
         <div className="md:flex hidden">
           <ButtonModal />
         </div>
 
-        {/* Button */}
-
-        {/* Button */}
-        <div className="md:hidden flex">
-          <button
-            className=" flex items-center cursor-pointer gap-2 border lg:px-4 px-2 lg:py-3 py-2 rounded-full bg-primary text-white lg:text-[16px] text-sm"
-            onClick={() => handleOpenMenu()}
-          >
-            {!isOpenMenu ? <IoMdMenu size={24} /> : <FaXmark size={24} />}
-          </button>
-        </div>
-        {/* Button */}
-
-        {/* Mobile Responsive */}
-        <div
-          className={`absolute top-14 right-0 bg-[#f0eae9f8] w-full h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out
-          ${isOpenMenu ? "translate-y-0 opacity-100 z-1000" : "-translate-y-full opacity-0 pointer-events-none z-1000"}`}
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden flex items-center cursor-pointer gap-2 border px-2 lg:px-4 py-2 lg:py-3 rounded-full bg-primary text-white text-sm lg:text-base"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+          aria-expanded={isOpenMenu}
         >
-          {navItems.map((item, index) => (
-            <ul key={index} onClick={() => setIsOpenMenu(false)} className={`${pathName === item.href ? "text-primary border-b-2 border-geading" : "text-heading1"}`} >
-              <Link href={item.href}>{item.label}</Link>
-            </ul>
-          ))}
-          {/* Button */}
-          <div >
-            <ButtonModal />
-          </div>
-          {/* Button */}
-        </div>
-        {/* Mobile Responsive */}
+          {isOpenMenu ? <FaXmark size={24} /> : <IoMdMenu size={24} />}
+        </button>
       </div>
-    </section>
+
+      {/* Mobile Dropdown */}
+      <div
+        className={`fixed top-14 left-0 right-0 bg-[#f0eae9f8] h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out z-[1000]
+          ${isOpenMenu ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
+      >
+        <nav className="flex flex-col items-center gap-8">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className={`${navLinkClass(item.href)} font-medium text-base font-manrope`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <ButtonModal />
+      </div>
+    </header>
   );
 };
 

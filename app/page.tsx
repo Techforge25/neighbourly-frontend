@@ -5,6 +5,7 @@ import LocalsTrustMost from "@/components/Home/LocalsTrustMost";
 import Trusted from "@/components/Home/Trusted";
 import TrustSection from "@/components/Home/TrustSection";
 import Work from "@/components/Home/Work";
+import Loader from "@/components/Loader";
 import TabBar from "@/components/TabBar";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -51,7 +52,7 @@ export default function Home() {
     <>
       <Banner />
       <TrustSection />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div><Loader /></div>}>
         <TabBar tabarActive={true} />
       </Suspense>
       <Work />

@@ -1,66 +1,63 @@
 "use client";
-import { accordianData } from "@/utils/dumydata";
-import React, { useState } from "react";
+
+import { useCallback, useState } from "react";
 import { IoMdAddCircleOutline, IoMdRemoveCircleOutline } from "react-icons/io";
+import { accordianData } from "@/utils/dumydata";
 
 const FAQS = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  return (
-    <section className="max-w-[844px] mx-auto my-20 md:p-4 p-2">
-      {/* Faqd Header start */}
+  const handleToggle = useCallback((index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  }, []);
 
+  return (
+    <section className="max-w-[844px] mx-auto my-20 p-2 md:p-4">
       <div className="text-center">
-        <h3 className="font-bold font-manrope md:text-[42px] sm:text-[32px] text-[28px] text-tabText ">
+        <h2 className="font-manrope font-bold text-tabText text-[28px] sm:text-[32px] md:text-[42px]">
           Frequently{" "}
           <span className="text-share-modal-icon">asked questions</span>
-        </h3>
-        {/* <h4 className="font-bold font-manrope md:text-[42px] sm:text-[32px] text-[28px] text-tabText">
-          {"(FAQ)"}
-        </h4> */}
+        </h2>
       </div>
 
-      {/* Faqd Header end */}
-
-      {/* Faqs */}
-
-      {/* className={`${openIndex === index ? "rotate-180" : ""} transition-all duration-500 ease-in-out`} */}
-      <div className="sm:mt-20 mt-10 flex flex-col gap-4 items-start text-left">
-        {accordianData.map((faq, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-start w-full border-[1px] border-modal-line p-[24px] rounded-[12px]"
-          >
+      <div className="mt-10 sm:mt-20 flex flex-col gap-4">
+        {accordianData.map((faq, index) => {
+          const isOpen = openIndex === index;
+          return (
             <div
-              className="flex items-center justify-between w-full cursor-pointer  "
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              key={index}
+              className="w-full border border-modal-line rounded-xl p-6"
             >
-              <h2 className="font-manrope font-semibold sm:text-[20px] text-[16px] text-tabText">
-                {faq.question}
-              </h2>
-              <div
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              <button
+                className="flex items-center justify-between w-full text-left cursor-pointer"
+                onClick={() => handleToggle(index)}
+                aria-expanded={isOpen}
               >
-                {openIndex === index ? (
+                <h3 className="font-manrope font-semibold text-tabText text-base sm:text-[20px] pr-4">
+                  {faq.question}
+                </h3>
+                {isOpen ? (
                   <IoMdRemoveCircleOutline
                     size={24}
-                    className="transition-all duration-500 ease-in-out"
+                    className="shrink-0 transition-all duration-500 ease-in-out"
                   />
                 ) : (
                   <IoMdAddCircleOutline
                     size={24}
-                    className="transition-all duration-500 ease-in-out"
+                    className="shrink-0 transition-all duration-500 ease-in-out"
                   />
                 )}
-              </div>
+              </button>
+
+              <p
+                className={`font-poppins text-para leading-6 text-sm sm:text-base transition-all duration-500 ease-in-out
+                ${isOpen ? "opacity-100 max-h-[300px] translate-y-0 pt-4" : "opacity-0 max-h-0 -translate-y-2 overflow-hidden"}`}
+              >
+                {faq.answer}
+              </p>
             </div>
-            <p
-              className={`sm:text-[16px] text-[14px] font-poppins leading-[24px] text-para  transition-all duration-500 ease-in-out ${openIndex === index ? "opacity-100 max-h-[300px] translate-y-0 pt-4" : "opacity-0 max-h-0 -translate-y-2"}`}
-            >
-              {faq.answer}
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

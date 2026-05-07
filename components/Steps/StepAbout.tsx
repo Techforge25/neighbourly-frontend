@@ -6,6 +6,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
 
 interface StepAboutData {
   firstName: string;
@@ -34,19 +35,7 @@ export default function StepAbout({
   const formik = useFormik<StepAboutData>({
     initialValues: savedData,
 
-    validationSchema: Yup.object({
-      firstName: Yup.string().required("First name is required"),
-
-      mobile: Yup.string()
-        .required("Number is required")
-        .matches(/^\+?[0-9]{10,15}$/, "Enter a valid phone number")
-        .max(
-          15,
-          "Business contact must be less than or equal to 15 characters long",
-        ),
-
-      suburb: Yup.string().required("Suburb is required"),
-    }),
+    validationSchema: RecommendationAboutValidationSchema,
 
     onSubmit: (values) => {
       // ✅ Save data
