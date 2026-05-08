@@ -1399,3 +1399,5 @@ export const termsSections = [
     ],
   },
 ];
+
+

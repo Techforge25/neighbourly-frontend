@@ -1,3 +1,5 @@
+import { FormikProps } from "formik";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { ReactNode } from "react";
 
 export type typeRecommendedeDetail = {
@@ -68,3 +70,40 @@ export interface SendFeedbackPayload {
   email: string;
   message: string;
 }
+
+export interface otpProps {
+  otp: string;
+  setOtp: React.Dispatch<React.SetStateAction<string>>;
+  verifyOtp: () => void;
+  canResend: boolean;
+  timer: number;
+  handleResend: () => void;
+  formatTime: (seconds: number) => string;
+}
+
+export interface EmailStepProps {
+  formik: FormikProps<{
+    email: string;
+  }>;
+  pathname: string;
+  onClose: () => void;
+  router: AppRouterInstance;
+  nextStepThree: () => void;
+  loading: boolean;
+  userData: {
+    OTPRequired: boolean;
+    email: string;
+    isProfileCompleted: boolean;
+  };
+}
+
+export type TypeUserData = EmailStepProps["userData"] | null;
+
+export type TypeEamilOtpProps = {
+  onVerified: () => void;
+  nextStepThree: () => void;
+  onClose: () => void;
+  setHeaderTitle: (title: string) => void;
+  setStepOtp: (value: boolean) => void;
+};
+

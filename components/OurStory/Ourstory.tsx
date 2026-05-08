@@ -7,7 +7,6 @@ const Ourstory = () => {
   return (
     <section className="w-[90%] max-w-[1158px] mx-auto my-10 md:my-20 px-4">
       <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-16">
-        
         {/* Left: Text Content */}
         <motion.div
           className="w-full xl:max-w-[487px]"
@@ -34,8 +33,7 @@ const Ourstory = () => {
           <div className="border-l-4 border-primary mt-6 md:mt-10 pl-3">
             <span className="block text-tabText text-[16px] lg:text-[22px] font-semibold font-poppins">
               Kate and Andrew Gordon
-            </span>
-            {" "}
+            </span>{" "}
             <span className="block text-para text-[14px] font-poppins mt-0.5">
               Founders
             </span>
@@ -59,7 +57,6 @@ const Ourstory = () => {
             loading="lazy"
           />
         </motion.div>
-
       </div>
     </section>
   );

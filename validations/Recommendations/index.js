@@ -2,8 +2,9 @@ import * as Yup from "yup";
 
 const namePattern = /^[a-zA-Z\s'-.]+$/;
 const businessPattern = /^[a-zA-Z0-9\s'&.,\-()/]+$/;
+const emailPattren = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const RecommendationSchema = Yup.object().shape({
+export const RecommendationSchema = Yup.object({
   firstName: Yup.string()
     .required("Their First Name is required")
     .matches(
@@ -57,4 +58,9 @@ export const ContactUsFormSchema = Yup.object({
     .required("Message is required"),
 });
 
-
+export const authEmailSchema = Yup.object({
+  email: Yup.string()
+    .required("Email is required")
+    .matches(emailPattren, "Invalid email address")
+    .email("Invalid email address"),
+});

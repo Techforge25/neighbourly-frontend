@@ -7,7 +7,6 @@ const Banner = () => {
         src="/images/HomeBanner.svg"
         alt="Northern Beaches banner"
         fill
-        priority
         sizes="100vw"
         className="object-cover object-center"
       />

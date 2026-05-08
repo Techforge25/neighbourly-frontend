@@ -41,7 +41,7 @@ export default function StepperModal({
 
   const nextStep = () => {
     setStep((s) => s + 1);
-    setStepAbout(false)
+    setStepAbout(false);
     setHeaderTitle("Who are you recommending?");
   };
   const nextStepThree = () => {
@@ -119,14 +119,18 @@ export default function StepperModal({
           <>
             <div className="flex items-center justify-between">
               <div>
-                {
-                  stepOtp  || stepAbout ?(
-
-                    <p className="text-[1rem] font-medium font-manrope text-secondary">Step {stepOtp ? "2" : stepAbout ? "3" : step === 3 ?"4" :""} of 4</p>
-                  ):
+                {stepOtp || stepAbout ? (
+                  <p className="text-[1rem] font-medium font-manrope text-secondary">
+                    Step{" "}
+                    {stepOtp ? "2" : stepAbout ? "3" : step === 3 ? "4" : ""} of
+                    4
+                  </p>
+                ) : (
                   ""
-                }
-                <h4 className={`font-manrope ${headerTitle == "Who are you recommending?"?"sm:w-[269px] leading-relaxed":""}  font-semibold md:text-[24px] sm:text-[20px] text-[18px]`}>
+                )}
+                <h4
+                  className={`font-manrope ${headerTitle == "Who are you recommending?" ? "sm:w-[269px] leading-relaxed" : ""}  font-semibold md:text-[24px] sm:text-[20px] text-[18px]`}
+                >
                   {headerTitle}
                 </h4>
               </div>
@@ -171,8 +175,8 @@ export default function StepperModal({
 
           {step === 2 && (
             <StepAbout
-              data={formData}
-              setData={setFormData}
+              // data={formData}
+              // setData={setFormData}
               onNext={nextStep}
               onBack={prevStep}
               setHeaderTitle={setHeaderTitle}
