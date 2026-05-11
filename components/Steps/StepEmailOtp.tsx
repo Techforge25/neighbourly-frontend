@@ -1,11 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { api } from "../../src/service/axios";
 import { usePathname, useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 import { ApiErrorResponse, TypeEamilOtpProps, TypeUserData } from "@/types";
 import OtpStep from "./OtpStep";
 import EmailStep from "./EmailStep";

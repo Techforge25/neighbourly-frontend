@@ -78,7 +78,6 @@ export default function StepperModal({
 
   const handleSubmit = async () => {
     setLoading(true);
-    await fakeSubmitAPI();
     setLoading(false);
     setStep(4);
   };
@@ -200,5 +199,3 @@ export default function StepperModal({
     </div>
   );
 }
-
-const fakeSubmitAPI = () => new Promise((res) => setTimeout(res, 1500));
