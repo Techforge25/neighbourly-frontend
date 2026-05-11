@@ -888,7 +888,7 @@ export const SERVICE_OPTIONS = [
     icon: "/images/gardners.svg",
   },
   {
-    value: "Handymen",
+    value: "Handyman",
     icon: "/images/handymen.svg",
   },
   {
@@ -900,7 +900,7 @@ export const SERVICE_OPTIONS = [
 export const RECOMMEND_OPTIONS = [
   { value: "Reliable", label: "Reliable" },
   { value: "Fair pricing", label: "Fair pricing" },
-  { value: "Quality Work", label: "quality work" },
+  { value: "Quality Work", label: "Quality work" },
   { value: "Responsive", label: "Responsive" },
   { value: "Local reputation", label: "Local reputation" },
   { value: "Easy to deal with", label: "Easy to deal with" },
