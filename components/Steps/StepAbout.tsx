@@ -7,6 +7,7 @@ import { Input } from "../ui/input";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
+import { suburbData } from "@/utils/dumydata";
 
 interface StepAboutData {
   firstName: string;
@@ -121,19 +122,26 @@ export default function StepAbout({
       {/* Suburb */}
       <div className="flex flex-col gap-[12px]">
         <Label>
-          <span className="font-manrope font-medium  text-[14px]  ">
-            Suburb
-          </span>
-          <span className="text-red-500">*</span>{" "}
+          <span className="font-manrope font-medium text-[14px]">Suburb</span>
+          <span className="text-red-500">*</span>
         </Label>
-        <Input
+
+        <select
           name="suburb"
-          placeholder="e.g. Collingwood"
           value={formik.values.suburb}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="border rounded-[12px] text-[16px]"
-        />
+          className="border rounded-[12px] text-[16px] h-[48px] px-3"
+        >
+          <option value="">Select Suburb</option>
+
+          {suburbData.map((suburb) => (
+            <option key={suburb} value={suburb}>
+              {suburb}
+            </option>
+          ))}
+        </select>
+
         {formik.touched.suburb && formik.errors.suburb && (
           <span className="text-red-500 md:text-[14px] text-[12px]">
             {formik.errors.suburb}

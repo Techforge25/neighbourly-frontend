@@ -1400,4 +1400,29 @@ export const termsSections = [
   },
 ];
 
-
+export const suburbData = [
+  "Balgowlah",
+  "Fairlight",
+  "Manly",
+  "Curl Curl",
+  "Freshwater",
+  "Queenscliff",
+  "Dee Why",
+  "North Curl Curl",
+  "North Manly",
+  "Allambie Heights",
+  "Beacon Hill",
+  "Brookvale",
+  "Collaroy",
+  "Narrabeen",
+  "North Narrabeen",
+  "Collaroy Plateau",
+  "Cromer",
+  "Wheeler Heights",
+  "Newport",
+  "Bayview",
+  "Church Point",
+  "Mona Vale",
+  "Bilgola Plateau",
+  "Avalon Beach",
+];
