@@ -20,8 +20,6 @@ const DiscoverSearch = () => {
   const search = searchParams.get("search");
   const filter = searchParams.get("filter");
 
-  console.log("Search Params:", { search, filter });
-
   return (
     <div>
       <Banner
@@ -38,7 +36,7 @@ const DiscoverSearch = () => {
       </div>
       <TabBar cardLength={cardLength} />
 
-      <div className="flex flex-wrap justify-center gap-6 py-10">
+      <div className="flex flex-wrap justify-center gap-4 py-10 md:p-0 p-4">
         {sponsors.map((sponsor, i) => (
           <SponsoredCard key={i} {...sponsor} />
         ))}
@@ -46,18 +44,17 @@ const DiscoverSearch = () => {
 
       <div className="text-center mt-6 md:mt-8 lg:mt-10 mb-10 md:mb-14 lg:mb-16 px-4">
         <p className="font-bold font-manrope text-tabText md:text-[42px] sm:text-[32px] text-[28px]">
-          <span className="capitalize">{`Most recommended ${filter ? filter : "tradies"}`}</span>
-          {" "}
-          <span className="text-primary"> {" "} in the</span>
-          {" "}
-          <br />
+          <span className="capitalize">{`Most recommended ${filter ? filter : "tradies"}`}</span>{" "}
+          <span className="text-primary"> in {search ? "" : "the"}</span> <br />
           <span className="text-primary capitalize ">{`${search ? search : "Northern Beaches"}`}</span>
         </p>
       </div>
 
       <Card />
       {/* <LocalRecommendation /> */}
-      <UseFull color="#718496" />
+      <div className="mt-6">
+        <UseFull color="#718496" />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { GoShieldCheck } from "react-icons/go";
@@ -13,6 +13,16 @@ import { useContactMutation } from "@/hooks/useContactMutation";
 
 const ContactUsForm = () => {
   const { mutate: sendFeedback, isPending } = useContactMutation();
+  
+  const playBell = () => {
+  const audio = new Audio("/audio/feedback.mp3");
+
+  audio.volume = 0.5;
+
+  audio.play().catch((err) => {
+    console.log("Audio play blocked:", err);
+  });
+};
 
   const formik = useFormik({
     initialValues: {
@@ -28,10 +38,17 @@ const ContactUsForm = () => {
           email: values.email,
           message: values.message,
         },
-        { onSuccess: () => resetForm() },
+        {
+          onSuccess: () => {
+            resetForm();
+
+            playBell();
+          },
+        },
       );
     },
   });
+
   return (
     <div className="bg-[#f7f7f7] py-16 px-4">
       {/* Heading */}
@@ -132,10 +149,7 @@ const ContactUsForm = () => {
 
           {/* Button */}
           <button
-            disabled={
-              !(formik.isValid && formik.dirty)||
-              isPending
-            }
+            disabled={!(formik.isValid && formik.dirty) || isPending}
             type="submit"
             className="mt-6 w-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-primary hover:bg-heading text-white py-3 rounded-full font-medium transition-all duration-300"
           >
