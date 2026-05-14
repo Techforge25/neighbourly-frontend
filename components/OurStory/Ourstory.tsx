@@ -49,11 +49,12 @@ const Ourstory = () => {
           viewport={{ once: true }}
         >
           <Image
-            src="/images/our-story.png"
+            src="/images/our-story.webp"
             alt="Kate and Andrew Gordon"
             width={586}
             height={520}
-            className="w-full max-w-[586px] xl:min-w-[460px] h-auto object-cover rounded-lg"
+            sizes="(max-width: 768px) 100vw, 600px"
+            className="w-full max-w-[586px] xl:min-w-[460px]..."
             loading="lazy"
           />
         </motion.div>

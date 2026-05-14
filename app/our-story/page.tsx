@@ -11,7 +11,7 @@ const page = () => {
     <div className="">
       <Banner
         text="Built on genuine recommendations from Northern Beaches locals."
-        banner="/images/ourstory.png"
+        banner="/images/ourstory.webp"
         textSize="md:text-[62px] text-[32px] mt-32 md:leading-[62px] leading-[30px]"
       />
       <Ourstory />
