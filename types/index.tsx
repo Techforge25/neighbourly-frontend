@@ -68,3 +68,12 @@ export interface SendFeedbackPayload {
   email: string;
   message: string;
 }
+
+export type Sponsor = {
+  _id: string;
+  personName: string;
+  logo: string;
+  suburb: string;
+  businessName: string;
+  serviceType: string
+}

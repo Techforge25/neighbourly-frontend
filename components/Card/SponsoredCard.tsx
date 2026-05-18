@@ -1,28 +1,17 @@
+import { Sponsor } from "@/types";
 import { getTheme } from "@/utils/dumydata";
 import Image from "next/image";
-import Link from "next/link";
-import { MdOutlineCall } from "react-icons/md";
-import { PiMedalFill } from "react-icons/pi";
-
-interface SponsoredCardProps {
-  personName: string;
-  businessName: string;
-  serviceType: string;
-  businessContact: string;
-  profileImage?: string;
-  isNotDisabled: boolean;
-}
 
 const SponsoredCard = ({
+  _id,
   personName,
+  suburb,
+  logo,
   businessName,
-  serviceType,
-  businessContact,
-  profileImage,
-  isNotDisabled,
-}: SponsoredCardProps) => {
+  serviceType
+}: Sponsor) => {
   const theme = getTheme(serviceType);
-
+  console.log(logo, 'logo')
   return (
     <div
       className={`relative flex flex-col items-center sm:w-[410px] w-[310px] rounded-[20px] border ${theme.cardBg} shadow-md overflow-hidden`}
@@ -66,12 +55,11 @@ const SponsoredCard = ({
         <div
           className={`relative w-[100px] h-[100px] rounded-full ring-[3px] ring-[#D6E2EC] ring-offset-2 ring-offset-white overflow-hidden bg-gray-100`}
         >
-          {profileImage ? (
-            <Image
-              src={profileImage}
+          {logo ? (
+            <img
+              src={logo}
               alt={personName}
-              fill
-              className="object-cover"
+              className="object-cover w-35 h-35"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
@@ -102,7 +90,7 @@ const SponsoredCard = ({
 
       {/* ── Call button ───────────────────────────────────────────────────── */}
       <div className="relative w-full px-4 py-5 mt-4 z-10">
-        {isNotDisabled ? (
+        {/* {isNotDisabled ? (
           <Link href={`tel:${businessContact}`} className="w-full">
             <button
               className={`w-full flex items-center justify-center gap-3 text-white font-outfit font-medium text-[18px] py-4 rounded-full transition-all duration-200 cursor-pointer ${theme.button}`}
@@ -115,7 +103,7 @@ const SponsoredCard = ({
           <div className={`${theme.serviceText} text-center text-[1.5rem] mt `}>
             Sponsorship available
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

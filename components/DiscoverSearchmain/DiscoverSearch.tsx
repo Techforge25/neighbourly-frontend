@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Banner from "../Banner";
 import TabBar from "../TabBar";
 import Card from "../Card";
@@ -11,14 +11,32 @@ import { RootState } from "@/store";
 import { useSearchParams } from "next/navigation";
 import { sponsors } from "@/utils/dumydata";
 import SponsoredCard from "../Card/SponsoredCard";
+import { api } from "@/src/service/axios";
+import { Sponsor } from "@/types";
 
 const DiscoverSearch = () => {
   const cardLength = useSelector(
     (state: RootState) => state.cardLength.cardLength,
   );
+  const [sponsors, setSponsors] = useState<null | any>(null)
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const filter = searchParams.get("filter");
+
+  useEffect(() => {
+    const getSponsors = async () => {
+      try {
+        const res = await api.get(search ? `sponsor?suburb=${search?.charAt(0).toUpperCase() + search?.slice(1)}` : 'sponsor');
+        console.log(res, 'resss')
+        setSponsors(res?.data?.data?.docs)
+      } catch (error) {
+        console.error(error)
+      }
+    };
+    getSponsors()
+  }, [search])
+
+  console.log(sponsors, 'sponsorss')
 
   console.log("Search Params:", { search, filter });
 
@@ -39,9 +57,16 @@ const DiscoverSearch = () => {
       <TabBar cardLength={cardLength} />
 
       <div className="flex flex-wrap justify-center gap-6 py-10">
-        {sponsors.map((sponsor, i) => (
-          <SponsoredCard key={i} {...sponsor} />
-        ))}
+        {sponsors?.length === 0 ? (
+          <h2 className="text-red-500 text-4xl">No Sponsor Found</h2>
+        ) : (
+          <>
+            {sponsors?.map((sponsor: Sponsor, i: number) => (
+              <SponsoredCard key={i} {...sponsor} />
+            ))}
+          </>
+        )}
+
       </div>
 
       <div className="text-center mt-6 md:mt-8 lg:mt-10 mb-10 md:mb-14 lg:mb-16 px-4">
@@ -58,7 +83,7 @@ const DiscoverSearch = () => {
       <Card />
       {/* <LocalRecommendation /> */}
       <UseFull color="#718496" />
-    </div>
+    </div >
   );
 };
 

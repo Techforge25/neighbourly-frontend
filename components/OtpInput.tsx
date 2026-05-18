@@ -84,11 +84,10 @@ const OtpInput = ({ length = 6, value, onChange }: OtpInputProps) => {
           text-center font-semibold rounded-lg border-2
           bg-otp-bg outline-none transition-colors
           
-          ${
-            focusedIndex === i || digits[i]
+          ${focusedIndex === i || digits[i]
               ? "border-primary"
               : "border-[#D5E8FC]"
-          }
+            }
         `}
           aria-label={`Digit ${i + 1}`}
         />
