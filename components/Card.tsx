@@ -88,7 +88,7 @@ const Card = () => {
 
       <ShareModal />
 
-      {recommendations && (
+      {isListTrue&&recommendations && (
         <CardPagination
           page={page}
           totalPages={totalPages}

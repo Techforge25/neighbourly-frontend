@@ -1,6 +1,8 @@
 @import "tailwindcss";
 /* @import "tw-animate-css"; */
 @import "shadcn/tailwind.css";
+@source "../components/**/*.{js,ts,jsx,tsx}";
+@source "../node_modules/some-package/dist/**/*.js";
 
 @theme {
   /* fonts Start */
@@ -51,12 +53,15 @@
 
 /* Hide scrollbar but allow scroll */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari */
+  display: none;
+  /* Chrome, Safari */
 }
 
 .phone-input input {
@@ -66,4 +71,27 @@
   border-radius: 12px;
   font-size: 16px;
   outline: none;
+}
+
+.otp-input {
+  width: clamp(2.2rem, 10vw, 3.813rem) !important;
+  height: clamp(2.8rem, 12vw, 4.563rem) !important;
+  font-size: clamp(1.1rem, 4vw, 1.75rem) !important;
+  border-radius: clamp(0.75rem, 3vw, 1.375rem) !important;
+  border: 1px solid #D5E8FC !important;
+  color: #202939 !important;
+  font-weight: 500 !important;
+  outline: none !important;
+}
+
+.otp-input:focus {
+  border: 1px solid #FE9A86 !important;
+  box-shadow: 0 0 0 2px #FE9A86 !important;
+
+
+}
+
+.otp-input::placeholder {
+  color: #9CA3AF;
+  opacity: 1;
 }

@@ -7,17 +7,17 @@ interface PaginationState {
   totalDocs: number;
   hasNextPage: boolean;
   hasPrevPage: boolean;
-  pagingCounter:number
+  pagingCounter: number;
 }
 
 const initialState: PaginationState = {
   page: 1,
-  limit: 3,
+  limit: 9,
   totalPages: 1,
   totalDocs: 0,
   hasNextPage: false,
   hasPrevPage: false,
-  pagingCounter:1
+  pagingCounter: 1,
 };
 
 const paginationSlice = createSlice({
@@ -27,7 +27,10 @@ const paginationSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
-    setPaginationData: (state, action: PayloadAction<Partial<PaginationState>>) => {
+    setPaginationData: (
+      state,
+      action: PayloadAction<Partial<PaginationState>>,
+    ) => {
       return { ...state, ...action.payload };
     },
   },

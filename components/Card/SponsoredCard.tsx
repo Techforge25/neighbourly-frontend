@@ -14,7 +14,7 @@ const SponsoredCard = ({
   console.log(logo, 'logo')
   return (
     <div
-      className={`relative flex flex-col items-center sm:w-[410px] w-[310px] rounded-[20px] border ${theme.cardBg} shadow-md overflow-hidden`}
+      className={`relative flex flex-col items-center sm:w-[410px] w-[300px] rounded-[20px] border ${theme.cardBg} shadow-md overflow-hidden`}
     >
       {/* ── Pink tinted top arch (background layer) ── */}
       <div

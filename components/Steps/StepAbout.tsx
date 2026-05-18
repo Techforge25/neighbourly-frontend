@@ -6,6 +6,8 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
+import { suburbData } from "@/utils/dumydata";
 
 interface StepAboutData {
   firstName: string;
@@ -34,19 +36,7 @@ export default function StepAbout({
   const formik = useFormik<StepAboutData>({
     initialValues: savedData,
 
-    validationSchema: Yup.object({
-      firstName: Yup.string().required("First name is required"),
-
-      mobile: Yup.string()
-        .required("Number is required")
-        .matches(/^\+?[0-9]{10,15}$/, "Enter a valid phone number")
-        .max(
-          15,
-          "Business contact must be less than or equal to 15 characters long",
-        ),
-
-      suburb: Yup.string().required("Suburb is required"),
-    }),
+    validationSchema: RecommendationAboutValidationSchema,
 
     onSubmit: (values) => {
       // ✅ Save data
@@ -132,19 +122,26 @@ export default function StepAbout({
       {/* Suburb */}
       <div className="flex flex-col gap-[12px]">
         <Label>
-          <span className="font-manrope font-medium  text-[14px]  ">
-            Suburb
-          </span>
-          <span className="text-red-500">*</span>{" "}
+          <span className="font-manrope font-medium text-[14px]">Suburb</span>
+          <span className="text-red-500">*</span>
         </Label>
-        <Input
+
+        <select
           name="suburb"
-          placeholder="e.g. Collingwood"
           value={formik.values.suburb}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="border rounded-[12px] text-[16px]"
-        />
+          className="border rounded-[12px] text-[16px] h-[48px] px-3"
+        >
+          <option value="">Select Suburb</option>
+
+          {suburbData.map((suburb) => (
+            <option key={suburb} value={suburb}>
+              {suburb}
+            </option>
+          ))}
+        </select>
+
         {formik.touched.suburb && formik.errors.suburb && (
           <span className="text-red-500 md:text-[14px] text-[12px]">
             {formik.errors.suburb}

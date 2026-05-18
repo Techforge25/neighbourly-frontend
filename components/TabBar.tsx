@@ -1,114 +1,109 @@
 "use client";
-import { Tab_Data } from "@/utils/dumydata";
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { AxiosError } from "axios";
+
+import { Tab_Data } from "@/utils/dumydata";
 import { RootState, AppDispatch } from "@/store";
 import { setActiveTab } from "@/store/tabSlice";
 import { api } from "@/src/service/axios";
-import { useEffect, useState, useRef, use } from "react";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
-import { StringDecoder } from "string_decoder";
-import { AxiosError } from "axios";
 import { RecommendationItem, TabItem } from "@/types";
 
 type TabBarProps = {
-  tabarActive?: Boolean;
+  tabarActive?: boolean;
   cardLength?: number;
 };
 
 const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const activeTab = useSelector((state: RootState) => state.tab.activeTab);
+  const isShowFullList = useSelector((state: RootState) => state.cardLength.isShowFullList);
 
-  const isShowFullList = useSelector(
-    (state: RootState) => state.cardLength.isShowFullList,
-  );
-  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
-  const params = usePathname();
-  const param = useSearchParams();
+  const searchParams = useSearchParams();
+
   const search = searchParams.get("search");
   const filter = searchParams.get("filter");
-  const dispatch = useDispatch<AppDispatch>();
-  const [locationData, SetLocationData] = useState([]);
+
+  const [locationData, setLocationData] = useState<RecommendationItem[]>([]);
   const [selectSuburb, setSelectSuburb] = useState<string | null>(search);
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const getCategotyData = async () => {
+  const fetchRecommendations = useCallback(async () => {
     try {
-      const res = await api.get(`recommendation`);
-      const cetData = res.data;
-      SetLocationData(cetData?.data?.recommendations?.docs);
-    } catch (error: unknown) {
+      const res = await api.get("recommendation");
+      setLocationData(res.data?.data?.recommendations?.docs ?? []);
+    } catch (error) {
       const err = error as AxiosError;
-      console.log(err.response?.data, "Error fetching category data");
+      console.error("Error fetching recommendations:", err.response?.data);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    getCategotyData();
+    fetchRecommendations();
     dispatch(setActiveTab(""));
-  }, [params]);
+  }, [pathname, fetchRecommendations, dispatch]);
 
-  //  Scroll Functions
-  const scrollLeft = () => {
-    scrollRef.current?.scrollBy({ left: -200, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
-    scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
-  };
+  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -200, behavior: "smooth" });
+  const scrollRight = () => scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
 
   const isDisabled = !tabarActive && !isShowFullList;
 
-  const uniqueLocations = [
-    ...new Set(
-      locationData.flatMap((item: RecommendationItem) => item.addresses),
-    ),
-  ];
+  const uniqueLocations = useMemo(() => {
+    const all = locationData.flatMap((item) => item.addresses);
+    return [...new Set(all)].sort();
+  }, [locationData]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectSuburb(e.target.value);
-    const selectedSuburb = e.target.value.toLocaleLowerCase();
-    if (filter) {
-      router.push(
-        `/discover?search=${selectedSuburb}&filter=${filter.toLocaleLowerCase()}`,
-      );
-    } else {
-      router.push(`/discover?search=${selectedSuburb}`);
-    }
+  const handleSuburbChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setSelectSuburb(value);
+    const suburb = value.toLowerCase();
+    const url = filter
+      ? `/discover?search=${suburb}&filter=${filter.toLowerCase()}`
+      : `/discover?search=${suburb}`;
+    router.push(url);
   };
 
-  const handleChangeFilter = (item: string) => {
-    if (search) {
-      router.push(
-        `/discover?search=${selectSuburb}&filter=${item.toLocaleLowerCase()}`,
-      );
-      dispatch(setActiveTab(item));
-    } else {
-      router.push(`/discover?filter=${item.toLocaleLowerCase()}`);
-      dispatch(setActiveTab(item));
+  const handleTabChange = (title: string) => {
+     const isAlreadyActive = isTabActive(title);
+
+    if (isAlreadyActive) {
+      dispatch(setActiveTab(""));
+      const url = search ? `/discover?search=${selectSuburb}` : `/discover`;
+      router.push(url);
+      return;
     }
+    const tab = title.toLowerCase();
+    const url = search
+      ? `/discover?search=${selectSuburb}&filter=${tab}`
+      : `/discover?filter=${tab}`;
+    router.push(url);
+    dispatch(setActiveTab(title));
   };
+
+  const isTabActive = (title: string) =>
+    activeTab?.toLowerCase() === title.toLowerCase() ||
+    title.toLowerCase() === filter;
 
   return (
     <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        {/* LEFT: Tabs Section */}
+
+        {/* Tabs with scroll arrows (mobile only) */}
         <div className="flex items-center gap-2 w-full lg:w-auto">
-          {/* Left Arrow (only on lg+) */}
           <button
             onClick={scrollLeft}
             className="flex lg:hidden p-2 rounded-full bg-light-bg hover:bg-lightbg"
+            aria-label="Scroll left"
           >
             <MdKeyboardArrowLeft size={20} />
           </button>
 
-          {/* Tabs */}
           <div
             ref={scrollRef}
             className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth w-full lg:max-w-[750px]"
@@ -117,14 +112,13 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
               <button
                 key={ind}
                 disabled={isDisabled}
-                onClick={() => handleChangeFilter(item?.title)}
-                className={`flex  items-center gap-2 px-5 py-3 cursor-pointer rounded-full transition-all whitespace-nowrap
-              ${
-                activeTab?.toLowerCase() === item?.title?.toLowerCase() ||
-                item.title.toLowerCase() === filter
-                  ? "bg-share-modal-icon text-white disabled:opacity-50 disabled:cursor-not-allowed"
-                  : "border border-border1 text-tabText disabled:opacity-50 disabled:cursor-not-allowed"
-              }`}
+                onClick={() => handleTabChange(item.title)}
+                className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all whitespace-nowrap
+                  disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
+                  ${isTabActive(item.title)
+                    ? "bg-share-modal-icon text-white"
+                    : "border border-border1 text-tabText"
+                  }`}
               >
                 {item.icon && <span>{item.icon}</span>}
                 <span className="font-medium capitalize">{item.title}</span>
@@ -132,25 +126,25 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
             ))}
           </div>
 
-          {/* Right Arrow (only on lg+) */}
           <button
             onClick={scrollRight}
             className="flex lg:hidden p-2 rounded-full bg-light-bg hover:bg-lightbg"
+            aria-label="Scroll right"
           >
             <MdKeyboardArrowRight size={20} />
           </button>
         </div>
 
-        {/* RIGHT: Select */}
+        {/* Suburb Select */}
         <div className="w-full lg:w-auto">
           <select
             disabled={isDisabled}
             value={selectSuburb ?? ""}
-            onChange={handleSearchChange}
-            className="w-full disabled:opacity-50 outline-none disabled:cursor-not-allowed lg:w-auto border cursor-pointer border-border-light px-5 py-3 rounded-xl"
+            onChange={handleSuburbChange}
+            className="w-full lg:w-auto border border-border-light px-5 py-3 rounded-xl outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">Select Suburb</option>
-            {uniqueLocations.toSorted().map((item: string, ind: number) => (
+            {uniqueLocations.map((item, ind) => (
               <option key={ind} value={item}>
                 {item}
               </option>

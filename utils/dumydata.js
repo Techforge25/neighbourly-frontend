@@ -888,7 +888,7 @@ export const SERVICE_OPTIONS = [
     icon: "/images/gardners.svg",
   },
   {
-    value: "Handymen",
+    value: "Handyman",
     icon: "/images/handymen.svg",
   },
   {
@@ -900,7 +900,7 @@ export const SERVICE_OPTIONS = [
 export const RECOMMEND_OPTIONS = [
   { value: "Reliable", label: "Reliable" },
   { value: "Fair pricing", label: "Fair pricing" },
-  { value: "Quality Work", label: "quality work" },
+  { value: "Quality Work", label: "Quality work" },
   { value: "Responsive", label: "Responsive" },
   { value: "Local reputation", label: "Local reputation" },
   { value: "Easy to deal with", label: "Easy to deal with" },
@@ -1077,7 +1077,7 @@ export const sponsors = [
     personName: "Sally",
     businessName: "Sandcastle Finance",
     serviceType: "Mortgage Broker",
-    businessContact: "+0422242661",
+    businessContact: "+61422242661",
     profileImage: "/images/sallyAvatar.svg",
     isNotDisabled: true,
   },
@@ -1117,12 +1117,12 @@ const SPONSOR_THEMES = {
     cardBg: "bg-white border-secondary/30",
   },
   Conveyancer: {
-    banner: "bg-[#8FAF8A]",
+    banner: "bg-green",
     bannerText: "text-white",
-    serviceText: "text-[#6e9168]",
-    button: "bg-[#8FAF8A] hover:bg-[#7a9e75]",
-    ring: "ring-[#8FAF8A]",
-    cardBg: "bg-white border-[#8FAF8A]/30",
+    serviceText: "text-green",
+    button: "bg-green hover:bg-green/90",
+    ring: "ring-green",
+    cardBg: "bg-white border-green/30",
   },
   default: {
     banner: "bg-primary",
@@ -1137,3 +1137,292 @@ const SPONSOR_THEMES = {
 export const getTheme = (serviceType) =>
   SPONSOR_THEMES[serviceType] ?? SPONSOR_THEMES.default;
 
+const META_DATA = [
+  {
+    title: "Suburb Says - Trusted Local Services Near You",
+    description:
+      "Discover trusted local services recommended by your neighbors. Find reliable businesses, read real community reviews, and connect with the best services near you.",
+
+    alternates: {
+      canonical: "https://www.suburbsays.com.au/",
+    },
+    keywords: [
+      "local services near me",
+      "trusted local businesses",
+      "neighbor recommendations",
+      "community reviews",
+      "find local services",
+      "best services near me",
+      "local business directory",
+      "Suburb says",
+    ],
+
+    openGraph: {
+      title: "Suburb Says - Trusted Local Services Near You",
+      description:
+        "Find the best local services through real recommendations from your neighbors. Trusted, reliable, and community-driven.",
+      url: "https://www.suburbsays.com.au/",
+      siteName: "Suburb Says",
+      type: "website",
+      images: [
+        {
+          url: "https://www.suburbsays.com.au/images/video/banner.mp4",
+          width: 1200,
+          height: 630,
+          alt: "Suburb Says Home",
+        },
+      ],
+    },
+  },
+  {
+    title: "Suburb says - Our Story",
+    description:
+      "Learn the story behind Suburb says and how we connect you with trusted local services recommended by your neighbors.",
+    alternates: {
+      canonical: "https://www.suburbsays.com.au/our-story",
+    },
+    openGraph: {
+      title: "Suburb says - Our Story",
+      description:
+        "Discover how Suburb says helps you find reliable local services through real neighbor recommendations.",
+      url: "https://www.suburbsays.com.au/our-story",
+      siteName: "Suburb says",
+
+      images: [
+        {
+          url: "https://www.suburbsays.com.au/images/ourstory.png",
+          width: 1200,
+          height: 630,
+          alt: "Suburb says - Our Story",
+        },
+      ],
+      type: "website",
+    },
+
+    keywords: [
+      "local services",
+      "neighbor recommendations",
+      "trusted services",
+      "community platform",
+      "Suburb says",
+    ],
+  },
+  {
+    title: "Discover Places - Suburb says",
+    description: "Find the best local recommendations near you.",
+    alternates: {
+      canonical: "https://www.suburbsays.com.au/discover",
+    },
+    openGraph: {
+      title: "Discover Places",
+      description: "Explore top Place around you",
+      url: "https://www.suburbsays.com.au/discover",
+      siteName: "Suburb says",
+      images: [
+        {
+          url: "https://www.suburbsays.com.au/images/logo.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "website",
+    },
+    keywords: [
+      "discover local services",
+      "local recommendations near me",
+      "find nearby services",
+      "trusted local businesses",
+      "community recommendations",
+      "neighbor reviews",
+      "best local places",
+      "service discovery platform",
+      "Suburb says discover",
+    ],
+  },
+  {
+    title: "Suburb says - Get In Touch",
+    description:
+      "Contact Suburb says for support, questions, partnerships, or general inquiries.",
+    alternates: {
+      canonical: "https://www.suburbsays.com.au/get-in-touch",
+    },
+    openGraph: {
+      title: "Suburb says - Get In Touch",
+      description:
+        "Reach out to Suburb says for support, feedback, or partnership opportunities. We’re here to help you connect with trusted local services.",
+      url: "https://www.suburbsays.com.au/get-in-touch",
+      siteName: "Suburb says",
+      type: "website",
+      images: [
+        {
+          url: "https://www.suburbsays.com.au/images/getintouch.png",
+          width: 1200,
+          height: 630,
+          alt: "Suburb says Contact Page",
+        },
+      ],
+    },
+    keywords: [
+      "contact Suburb says",
+      "customer support Suburb says",
+      "get in touch",
+      "help center Suburb says",
+      "community support",
+      "local services platform support",
+      "partnership inquiries",
+      "Suburb says contact",
+    ],
+  },
+  {
+    title: "Suburb says - Terms of Use",
+    description:
+      "Read the Terms of Use for Suburb says to understand the rules, guidelines, and conditions for using our platform and services.",
+
+    alternates: {
+      canonical: "https://www.suburbsays.com.au/terms-of-use",
+    },
+
+    keywords: [
+      "terms of use",
+      "terms and conditions",
+      "user agreement",
+      "website terms",
+      "Suburb says terms",
+      "platform rules",
+      "legal terms",
+      "service conditions",
+    ],
+
+    openGraph: {
+      title: "Suburb says - Terms of Use",
+      description:
+        "Review the terms and conditions for using Suburb says and understand your rights and responsibilities.",
+      url: "https://www.suburbsays.com.au/terms-of-use",
+      siteName: "Suburb says",
+      type: "website",
+      images: [
+        {
+          url: "https://www.suburbsays.com.au/images/logo.png",
+          width: 1200,
+          height: 630,
+          alt: "Suburb says Suburb Search",
+        },
+      ],
+    },
+  },
+];
+
+export const getMataData = (title) => {
+  const data = META_DATA.find((item) => item.title === title);
+  return data;
+};
+
+export const termsMetadata = {
+  effectiveDate: "3 April 2026",
+  contact: {
+    label: "andrew@suburbsays.com.au",
+    href: "mailto:andrew@suburbsays.com.au",
+  },
+};
+
+export const termsIntro = {
+  heading: "Welcome to Suburb says.",
+  description:
+    "Suburb says is a free, community-led service that celebrates and publishes the local businesses people nearby know and trust. Our role is to help surface and share community trust. We do not make recommendations ourselves.",
+  subHeading:
+    "By using this website or submitting information to it, you agree to the terms below.",
+};
+
+export const termsSections = [
+  {
+    id: 1,
+    title: "1. Using Suburb says",
+    paragraphs: [
+      "Please use Suburb says in a respectful, honest and lawful way.",
+      "You must not misuse the website, interfere with how it works, submit false or misleading information, impersonate another person, or attempt to manipulate what appears on the site.",
+      "We may restrict access, remove content, or decline submissions where needed to protect the integrity, safety or proper operation of the service.",
+    ],
+  },
+  {
+    id: 2,
+    title: "2. Community submissions",
+    paragraphs: [
+      "Suburb says is built on genuine input from local residents about the businesses and people they trust.",
+    ],
+    listIntro: "By submitting information to Suburb says, you confirm that:",
+    listItems: [
+      "it is based on your own real experience",
+      "it is honest and genuine",
+      "it is not false, misleading, abusive, defamatory or promotional",
+      "you are not submitting your own business, service or commercial interest",
+      "you have the right to provide the information you submit",
+    ],
+    afterListParagraphs: [
+      "Submissions are not published automatically. We may review, verify, moderate, delay, reject or remove any submission where we believe that is necessary, including where we detect duplication, suspicious activity, unusual behaviour, conflicts of interest, or content that does not meet our standards.",
+      "We may also limit the number of submissions made by a person within a certain period to help protect the quality and trustworthiness of the platform.",
+    ],
+  },
+  {
+    id: 3,
+    title: "3. What Suburb says does",
+    paragraphs: [
+      "Suburb says celebrates and publishes the businesses, trades and local service providers that members of the community say they trust. Suburb says does not independently recommend, endorse, guarantee or certify any business or provider. Any business shown on the site reflects community input, not a recommendation made by Suburb says.",
+    ],
+  },
+  {
+    id: 4,
+    title: "4. Why we ask for your details",
+    paragraphs: [
+      "We may ask for details such as your name, email address, phone number, suburb or other contact information when you submit information to the site.",
+    ],
+    listIntro: "We ask for this information so we can:",
+    listItems: [
+      "validate submissions",
+      "confirm authenticity",
+      "reduce spam, fraud and misuse",
+      "maintain the integrity of what appears on the site",
+      "communicate with you about something you have submitted",
+      "occasionally let you know about relevant updates, improvements or new functionality on Suburb says",
+    ],
+    afterListParagraphs: [
+      "We do not sell your personal information.",
+      "We do not knowingly share your personal information with third parties for their own marketing purposes.",
+    ],
+  },
+  {
+    id: 5,
+    title: "5. How we handle personal information",
+    paragraphs: [
+      "We collect and use personal information only where it is reasonably needed to operate and improve Suburb says.",
+      "This may include using your information to verify submissions, respond to enquiries, maintain the quality of the platform, communicate with users, and support the ongoing operation of the website.",
+      "We take reasonable steps to protect the personal information we hold from misuse, loss, unauthorised access, modification or disclosure.",
+    ],
+  },
+];
+
+export const suburbData = [
+  "Balgowlah",
+  "Fairlight",
+  "Manly",
+  "Curl Curl",
+  "Freshwater",
+  "Queenscliff",
+  "Dee Why",
+  "North Curl Curl",
+  "North Manly",
+  "Allambie Heights",
+  "Beacon Hill",
+  "Brookvale",
+  "Collaroy",
+  "Narrabeen",
+  "North Narrabeen",
+  "Collaroy Plateau",
+  "Cromer",
+  "Wheeler Heights",
+  "Newport",
+  "Bayview",
+  "Church Point",
+  "Mona Vale",
+  "Bilgola Plateau",
+  "Avalon Beach",
+];

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import ShareModal from "../ShareModal";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 interface StepSuccessProps {
   onClose: () => void;
@@ -13,6 +14,18 @@ interface StepSuccessProps {
 export default function StepSuccess({ onClose }: StepSuccessProps) {
   const router = useRouter();
   const dispatch = useDispatch();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/audio/Success.mp3");
+
+    audioRef.current.play();
+
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
 
   return (
     <div className="">
@@ -34,10 +47,10 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
         {/* Heart icon */}
         <div className="mx-auto mb-6 rounded-full bg-white flex items-center justify-center">
           <Image
-          src={'/images/successModal.gif'}
-          alt="svg"
-          width={200}
-          height={200}          
+            src={"/images/successModal.gif"}
+            alt="svg"
+            width={200}
+            height={200}
           />
         </div>
 
@@ -48,10 +61,13 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
 
         {/* Subtext */}
         <p className="text-[18px] font-manrope font-medium leading-[28px]  text-center w-[342px] mx-auto text-para">
-          Your recommendation is in and it’s going to help more local find someone worth trusting.
+          Your recommendation is in and it’s going to help more local find
+          someone worth trusting.
         </p>
 
-        <p className="text-center text-text-dark-secondary font-manrope text-[20px]">Local gossip, put to good use.</p>
+        <p className="text-center text-text-dark-secondary font-manrope text-[20px]">
+          Local gossip, put to good use.
+        </p>
 
         {/* Action buttons */}
         <div className="flex sm:flex-row flex-col-reverse gap-3">
@@ -68,8 +84,12 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
             onClick={() => dispatch(openShare())}
             className="flex items-center gap-2 py-[17.5px] border border-border justify-center w-full cursor-pointer rounded-full bg-white text-[16px] leading-[16px] "
           >
-            <span><Share2 className="w-5 h-5 text-success-modal-txt-secondary-contrast" /></span>
-             <span className="text-success-modal-txt-secondary-contrast">Spread the word</span>
+            <span>
+              <Share2 className="w-5 h-5 text-success-modal-txt-secondary-contrast" />
+            </span>
+            <span className="text-success-modal-txt-secondary-contrast">
+              Spread the word
+            </span>
           </button>
         </div>
       </div>

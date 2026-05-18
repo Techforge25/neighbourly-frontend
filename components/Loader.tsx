@@ -1,5 +1,5 @@
 // Loader.jsx
-type LoaderProps = {
+type LoaderProps= {
   height?: string,
   width?: string
 };
