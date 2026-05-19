@@ -1072,30 +1072,30 @@ const SERVICE_COLORS = {
 
 export const getServiceColor = (type) => SERVICE_COLORS[type] ?? "bg-red-500";
 
-export const sponsors = [
+export const sponsorsStaticData = [
   {
-    personName: "Sally",
-    businessName: "Sandcastle Finance",
+    personName: "",
+    businessName: "",
     serviceType: "Mortgage Broker",
-    businessContact: "+61422242661",
-    profileImage: "/images/sallyAvatar.svg",
-    isNotDisabled: true,
+    logo: "/images/dummyAvatar.svg",
+    contact: '',
+    isEnabled: false,
   },
   {
     personName: "",
     businessName: " ",
     serviceType: "Real Estate Agent",
-    businessContact: "+61400000001",
-    profileImage: "/images/dummyAvatar.svg",
-    isNotDisabled: false,
+    logo: "/images/dummyAvatar.svg",
+    contact: '',
+    isEnabled: false,
   },
   {
-    personName: " ",
+    personName: "",
     businessName: " ",
-    serviceType: "Conveyancer",
-    businessContact: "+61400000002",
-    profileImage: "/images/dummyAvatar.svg",
-    isNotDisabled: false,
+    serviceType: "Advisor",
+    logo: "/images/dummyAvatar.svg",
+    contact: '',
+    isEnabled: false,
   },
 ];
 
@@ -1116,7 +1116,7 @@ const SPONSOR_THEMES = {
     ring: "ring-secondary",
     cardBg: "bg-white border-secondary/30",
   },
-  Conveyancer: {
+  Advisor: {
     banner: "bg-green",
     bannerText: "text-white",
     serviceText: "text-green",

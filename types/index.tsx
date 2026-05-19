@@ -76,6 +76,8 @@ export type Sponsor = {
   personName: string;
   logo: string;
   suburb: string;
+  isEnabled: boolean;
   businessName: string;
-  serviceType: string
+  serviceType: string;
+  contact: string;
 }

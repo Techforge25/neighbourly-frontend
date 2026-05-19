@@ -9,7 +9,7 @@ import Across from "../Across";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useSearchParams } from "next/navigation";
-import { sponsors } from "@/utils/dumydata";
+import { sponsorsStaticData } from "@/utils/dumydata";
 import SponsoredCard from "../Card/SponsoredCard";
 import { api } from "@/src/service/axios";
 import { Sponsor } from "@/types";
@@ -36,8 +36,27 @@ const DiscoverSearch = () => {
     getSponsors()
   }, [search])
 
-  console.log(sponsors, 'sponsorss')
+  const mergedSponsors = sponsorsStaticData
+    ?.map((staticSponsor) => {
+      const apiSponsor = sponsors?.find(
+        (sponsor: Sponsor) =>
+          sponsor.serviceType === staticSponsor.serviceType
+      );
 
+      return apiSponsor || staticSponsor;
+    })
+    ?.sort((a, b) => {
+      const aMatched = sponsors?.some(
+        (s: Sponsor) => s.serviceType === a.serviceType
+      );
+      const bMatched = sponsors?.some(
+        (s: Sponsor) => s.serviceType === b.serviceType
+      );
+
+      return Number(bMatched) - Number(aMatched);
+    });
+
+  console.log(mergedSponsors, 'merged sponsorrr');
   console.log("Search Params:", { search, filter });
 
   return (
@@ -56,12 +75,12 @@ const DiscoverSearch = () => {
       </div>
       <TabBar cardLength={cardLength} />
 
-      <div className="flex flex-wrap justify-center gap-6 py-10">
+      <div className={`flex flex-wrap justify-center gap-6 ${sponsors?.length > 0 && 'py-10'}`}>
         {sponsors?.length === 0 ? (
-          <h2 className="text-red-500 text-4xl">No Sponsor Found</h2>
+          null
         ) : (
           <>
-            {sponsors?.map((sponsor: Sponsor, i: number) => (
+            {mergedSponsors?.map((sponsor: Sponsor, i: number) => (
               <SponsoredCard key={i} {...sponsor} />
             ))}
           </>

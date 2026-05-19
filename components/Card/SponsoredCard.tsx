@@ -1,14 +1,17 @@
 import { Sponsor } from "@/types";
 import { getTheme } from "@/utils/dumydata";
 import Image from "next/image";
+import Link from "next/link";
+import { MdOutlineCall } from "react-icons/md";
 
 const SponsoredCard = ({
   _id,
   personName,
-  suburb,
   logo,
   businessName,
-  serviceType
+  serviceType,
+  contact,
+  isEnabled
 }: Sponsor) => {
   const theme = getTheme(serviceType);
   console.log(logo, 'logo')
@@ -72,7 +75,7 @@ const SponsoredCard = ({
       </div>
 
       {/* ── Info ─────────────────────────────────────────────────────────── */}
-      <div className="relative flex flex-col items-center gap-1 px-4 mt-3 w-full z-10">
+      <div className="relative flex flex-col items-center gap-1 px-4 w-full z-10">
         <h3 className="font-manrope font-extrabold text-textdark text-[40px] sm:text-[42px] text-center leading-tight">
           {personName}
         </h3>
@@ -82,7 +85,7 @@ const SponsoredCard = ({
         </p>
 
         <p
-          className={`font-manrope font-bold ${(serviceType === "Conveyancer" || serviceType === "Real Estate Agent") && "mt-22"} text-[14px] sm:text-[16px] text-center mt-1 ${theme.serviceText}`}
+          className={`font-manrope font-bold mt-22 text-[14px] sm:text-[16px] text-center mt-1 ${theme.serviceText}`}
         >
           {serviceType}
         </p>
@@ -90,8 +93,8 @@ const SponsoredCard = ({
 
       {/* ── Call button ───────────────────────────────────────────────────── */}
       <div className="relative w-full px-4 py-5 mt-4 z-10">
-        {/* {isNotDisabled ? (
-          <Link href={`tel:${businessContact}`} className="w-full">
+        {isEnabled ? (
+          <Link href={`tel:${contact}`} className="w-full">
             <button
               className={`w-full flex items-center justify-center gap-3 text-white font-outfit font-medium text-[18px] py-4 rounded-full transition-all duration-200 cursor-pointer ${theme.button}`}
             >
@@ -103,7 +106,7 @@ const SponsoredCard = ({
           <div className={`${theme.serviceText} text-center text-[1.5rem] mt `}>
             Sponsorship available
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );
