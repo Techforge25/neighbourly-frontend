@@ -15,19 +15,19 @@ const page = () => {
         {/* Page heading */}
         <div className="flex flex-col md:gap-[10px] gap-[6px]">
           <h1 className="font-bold font-manrope md:text-[42px] text-[23px] md:leading-[49px] leading-[30px] max-w-[515px]">
-            Suburb says <span className="text-primary">Terms of Use</span> and{" "}
+            Suburb Says <span className="text-primary">Terms of Use</span> and{" "}
             <span className="text-primary">Privacy Notice</span>
           </h1>
           <p className="md:text-[16px] text-[14px] md:leading-[28px] leading-[20px] font-medium font-poppins text-para md:max-w-[1274]">
             We collect your details to verify submissions, prevent misuse, and
-            keep Suburb says trustworthy. We may contact you about your
+            keep Suburb Says trustworthy. We may contact you about your
             submission or share relevant updates. Your information is never
             sold.
           </p>
         </div>
 
         {/* Content card */}
-        <div className="sm:p-[32px] p-[22px] bg-[#FFF1ED] md:my-[42px] my-[28px] border-[1px] border-modal-line rounded-[12px]">
+        <div className="sm:p-[32px] p-[22px] bg-light_beige md:my-[42px] my-[28px] border-[1px] border-modal-line rounded-[12px]">
           {/* Effective date & contact */}
           <h4 className="text-para font-medium font-poppins md:text-[16px] text-[14px]">
             Effective date: {termsMetadata.effectiveDate}

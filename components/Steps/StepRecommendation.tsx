@@ -141,7 +141,7 @@ export default function StepRecommendation({
                     className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
                       errors.firstName && touched.firstName && validateOnChange?.valueOf()
                         ? "border-red-500"
-                        : "border-[#E4E4E4]"
+                        : "border-border"
                     }`}
                   />
                   <ErrorMessage
@@ -163,7 +163,7 @@ export default function StepRecommendation({
                     className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
                       errors.businessName && touched.businessName
                         ? "border-red-500"
-                        : "border-[#E4E4E4]"
+                        : "border-border"
                     }`}
                   />
                   <ErrorMessage
@@ -183,7 +183,7 @@ export default function StepRecommendation({
                     className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px]  text-para ${
                       errors.service && touched.service
                         ? "border-red-500"
-                        : "border-[#E4E4E4]"
+                        : "border-border"
                     }`}
                   >
                     <option value="" disabled>
@@ -320,7 +320,7 @@ export default function StepRecommendation({
               />
 
               <div className="flex flex-col md:gap-2 gap-1 md:mt-4 mt-1">
-                <Label className="md:text-[14px] text-[12px] leading-[20px] font-medium text-#202939">
+                <Label className="md:text-[14px] text-[12px] leading-[20px] font-medium text-tabText">
                   {`Comment (Optional)`}
                 </Label>
                 <Field
@@ -334,7 +334,7 @@ export default function StepRecommendation({
               <div className="pt-[32px]">
                 <button
                   type="submit"
-                  className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-share-modal-icon md:text-[16px] text-[12px] text-[#fff]"
+                  className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-share-modal-icon md:text-[16px] text-[12px] text-white"
                 >
                   Submit Recommendation
                   <ArrowRight size={20} className="md:flex hidden" />

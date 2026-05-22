@@ -25,7 +25,7 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
               (item: any, ind: number) => (
                 <div
                   key={ind}
-                  className="bg-[#F3F6F966] rounded-[18px] p-4 md:p-4 mb-4 max-w-full"
+                  className="bg-graylish_blue rounded-[18px] p-4 md:p-4 mb-4 max-w-full"
                 >
                   <div className="flex flex-col md:flex-row justify-between items-start">
                     <div className="flex items-start gap-3 md:gap-4">
@@ -99,7 +99,7 @@ const NeighburSay = ({ recomendedDetail }: Props) => {
           </div>
 
           {/* Right Panel */}
-          <div className="flex-1 max-w-full md:max-w-[426px] border border-[#D5E8FC] rounded-[22px] md:p-4 p-2">
+          <div className="flex-1 max-w-full md:max-w-[426px] border border-modal-line rounded-[22px] md:p-4 p-2">
             <div className="flex items-center md:gap-4 gap-2 md:mb-2 mb-1">
               <IoLocationOutline size={24} />
               <h6 className="capitalize text-[22px] md:text-[32px] font-manrope font-bold leading-[50px] text-textdark">

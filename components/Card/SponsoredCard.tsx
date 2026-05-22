@@ -56,7 +56,7 @@ const SponsoredCard = ({
       {/* ── Profile image ── */}
       <div className="relative w-full flex flex-col items-center pt-14 pb-2 z-10">
         <div
-          className={`relative w-[100px] h-[100px] rounded-full ring-[3px] ring-[#D6E2EC] ring-offset-2 ring-offset-white overflow-hidden bg-gray-100`}
+          className={`relative w-[100px] h-[100px] rounded-full ring-[3px] ring-muted ring-offset-2 ring-offset-white overflow-hidden bg-gray-100`}
         >
           {logo ? (
             <img

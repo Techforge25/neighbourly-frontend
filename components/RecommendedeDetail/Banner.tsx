@@ -88,17 +88,17 @@ const Banner = ({ recomendedDetail }: Props) => {
               onClick={() => router.back()}
               className="md:px-4 md:py-4 px-2 py-2 rounded-full bg-primary cursor-pointer"
             >
-              <IoMdArrowBack size={24} color="#ffff" />
+              <IoMdArrowBack size={24} className="text-white" />
             </button>
 
-            <button className="border-[0.8px] border-[#D5E8FC] flex items-center md:gap-[6.41px] gap-[3.21px] md:w-[210.61px] w-[160px] md:px-[13px] px-[6px] md:py-[8px] py-[4px] rounded-full bg-white">
+            <button className="border-[0.8px] border-modal-line flex items-center md:gap-[6.41px] gap-[3.21px] md:w-[210.61px] w-[160px] md:px-[13px] px-[6px] md:py-[8px] py-[4px] rounded-full bg-white">
               <span>
-                <MdVerified size={24} color="#1D69E1" />
+                <MdVerified size={24} className="text-verified" />
               </span>
               <div className="text-start">
                 <p className="capitalize text-[16px] text-verified">verified</p>
                 <p className="capitalize text-[11px] text-secondary">
-                  by suburb says
+                  by Suburb Says
                 </p>
               </div>
             </button>
@@ -129,7 +129,7 @@ const Banner = ({ recomendedDetail }: Props) => {
               (item: string, ind: number) => (
                 <button
                   key={ind}
-                  className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-[#F4F8FF] capitalize"
+                  className="text-[14px] font-manrope text-tabText font-medium px-2 rounded-full bg-bgLight capitalize"
                 >
                   {isLoading ? (
                     <span className="block w-[80px] h-[14px] bg-lightbg rounded animate-pulse"></span>
@@ -148,7 +148,7 @@ const Banner = ({ recomendedDetail }: Props) => {
               onClick={(e) => {
                 dispatch(openShare(), e.stopPropagation());
               }}
-              className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-[#3A5670] border-[#D5E8FC] text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full"
+              className="w-full sm:flex-1 cursor-pointer sm:w-[256px] flex items-center justify-center gap-2 sm:gap-8 text-success-modal-txt-secondary-contrast border-modal-line text-[14px] sm:text-[16px] leading-[16px] font-medium font-outfit px-4 py-3 sm:py-4 border rounded-full"
             >
               <p>Share</p>
               <IoShareSocial size={20} />

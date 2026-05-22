@@ -21,7 +21,7 @@ const UseFull = ({ color }: { color?: string }) => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "linear" }}
             viewport={{ once: true }}
-            className=" text-[22px] sm:text-[28px] md:text-[34px] lg:text-[42px] text-center text-[#303231] font-bold leading-snug font-manrope"
+            className=" text-[22px] sm:text-[28px] md:text-[34px] lg:text-[42px] text-center text-text-dark-secondary font-bold leading-snug font-manrope"
           >
             <span>Know someone who’d</span>{" "}
             <span className="text-white">find this useful?</span>
@@ -39,7 +39,7 @@ const UseFull = ({ color }: { color?: string }) => {
               onClick={() => dispatch(openShare())}
               className="flex cursor-pointer items-center gap-3 sm:gap-4 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-[14px] sm:text-[16px] font-outfit"
             >
-              <span>Share Suburb says</span>
+              <span>Share Suburb Says</span>
               <FiShare2 size={20} className="sm:size-[24px]" />
             </button>
           </motion.div>
