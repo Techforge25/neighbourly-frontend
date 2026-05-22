@@ -78,7 +78,7 @@ const ShareModal = () => {
       <div className="bg-white w-[90%] max-w-md rounded-2xl p-5 relative">
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-3">
-          <h2 className="text-xl font-semibold">Share Suburb says</h2>
+          <h2 className="text-xl font-semibold">Share Suburb Says</h2>
           <button
             className="cursor-pointer"
             onClick={() => dispatch(closeShare())}
@@ -114,7 +114,7 @@ const ShareModal = () => {
         </div>
 
         <p className="text-center text-para text-sm mt-6">
-          Suburb says helps communities grow together
+          Suburb Says helps communities grow together
         </p>
       </div>
     </div>

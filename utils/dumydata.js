@@ -96,9 +96,9 @@ export const feel_Diff = [
 ];
 
 export const our_story_data = [
-  "Suburb says started with a simple frustration: finding a local service provider you can genuinely trust.",
+  "Suburb Says started with a simple frustration: finding a local service provider you can genuinely trust.",
   "We realised the best recommendations come from people nearby not anonymous reviews.",
-  "So we built Suburb says to help people discover trusted local businesses through genuine recommendations from neighbours.",
+  "So we built Suburb Says to help people discover trusted local businesses through genuine recommendations from neighbours.",
 ];
 
 export const Community_Sec_Data = [
@@ -148,7 +148,7 @@ export const Tab_Data = [
 export const address_Data = [
   {
     isVerified: true,
-    verifiedBy: "by Suburb says",
+    verifiedBy: "by Suburb Says",
     name: "Shannon",
     image: "/images/address1.png",
     category: "Plumberss",
@@ -186,7 +186,7 @@ export const address_Data = [
   },
   {
     isVerified: true,
-    verifiedBy: "by Suburb says",
+    verifiedBy: "by Suburb Says",
     name: "Shannon",
     image: "/images/address1.png",
     category: "Electricianss",
@@ -224,7 +224,7 @@ export const address_Data = [
   },
   {
     isVerified: true,
-    verifiedBy: "by Suburb says",
+    verifiedBy: "by Suburb Says",
     name: "Shannon",
     image: "/images/address1.png",
     category: "handyman",
@@ -1154,7 +1154,7 @@ const META_DATA = [
       "find local services",
       "best services near me",
       "local business directory",
-      "Suburb says",
+      "Suburb Says",
     ],
 
     openGraph: {
@@ -1175,25 +1175,25 @@ const META_DATA = [
     },
   },
   {
-    title: "Suburb says - Our Story",
+    title: "Suburb Says - Our Story",
     description:
-      "Learn the story behind Suburb says and how we connect you with trusted local services recommended by your neighbors.",
+      "Learn the story behind Suburb Says and how we connect you with trusted local services recommended by your neighbors.",
     alternates: {
       canonical: "https://www.suburbsays.com.au/our-story",
     },
     openGraph: {
-      title: "Suburb says - Our Story",
+      title: "Suburb Says - Our Story",
       description:
-        "Discover how Suburb says helps you find reliable local services through real neighbor recommendations.",
+        "Discover how Suburb Says helps you find reliable local services through real neighbor recommendations.",
       url: "https://www.suburbsays.com.au/our-story",
-      siteName: "Suburb says",
+      siteName: "Suburb Says",
 
       images: [
         {
           url: "https://www.suburbsays.com.au/images/ourstory.png",
           width: 1200,
           height: 630,
-          alt: "Suburb says - Our Story",
+          alt: "Suburb Says - Our Story",
         },
       ],
       type: "website",
@@ -1204,11 +1204,11 @@ const META_DATA = [
       "neighbor recommendations",
       "trusted services",
       "community platform",
-      "Suburb says",
+      "Suburb Says",
     ],
   },
   {
-    title: "Discover Places - Suburb says",
+    title: "Discover Places - Suburb Says",
     description: "Find the best local recommendations near you.",
     alternates: {
       canonical: "https://www.suburbsays.com.au/discover",
@@ -1217,7 +1217,7 @@ const META_DATA = [
       title: "Discover Places",
       description: "Explore top Place around you",
       url: "https://www.suburbsays.com.au/discover",
-      siteName: "Suburb says",
+      siteName: "Suburb Says",
       images: [
         {
           url: "https://www.suburbsays.com.au/images/logo.png",
@@ -1236,47 +1236,47 @@ const META_DATA = [
       "neighbor reviews",
       "best local places",
       "service discovery platform",
-      "Suburb says discover",
+      "Suburb Says discover",
     ],
   },
   {
-    title: "Suburb says - Get In Touch",
+    title: "Suburb Says - Get In Touch",
     description:
-      "Contact Suburb says for support, questions, partnerships, or general inquiries.",
+      "Contact Suburb Says for support, questions, partnerships, or general inquiries.",
     alternates: {
       canonical: "https://www.suburbsays.com.au/get-in-touch",
     },
     openGraph: {
-      title: "Suburb says - Get In Touch",
+      title: "Suburb Says - Get In Touch",
       description:
-        "Reach out to Suburb says for support, feedback, or partnership opportunities. We’re here to help you connect with trusted local services.",
+        "Reach out to Suburb Says for support, feedback, or partnership opportunities. We’re here to help you connect with trusted local services.",
       url: "https://www.suburbsays.com.au/get-in-touch",
-      siteName: "Suburb says",
+      siteName: "Suburb Says",
       type: "website",
       images: [
         {
           url: "https://www.suburbsays.com.au/images/getintouch.png",
           width: 1200,
           height: 630,
-          alt: "Suburb says Contact Page",
+          alt: "Suburb Says Contact Page",
         },
       ],
     },
     keywords: [
-      "contact Suburb says",
-      "customer support Suburb says",
+      "contact Suburb Says",
+      "customer support Suburb Says",
       "get in touch",
-      "help center Suburb says",
+      "help center Suburb Says",
       "community support",
       "local services platform support",
       "partnership inquiries",
-      "Suburb says contact",
+      "Suburb Says contact",
     ],
   },
   {
-    title: "Suburb says - Terms of Use",
+    title: "Suburb Says - Terms of Use",
     description:
-      "Read the Terms of Use for Suburb says to understand the rules, guidelines, and conditions for using our platform and services.",
+      "Read the Terms of Use for Suburb Says to understand the rules, guidelines, and conditions for using our platform and services.",
 
     alternates: {
       canonical: "https://www.suburbsays.com.au/terms-of-use",
@@ -1287,25 +1287,25 @@ const META_DATA = [
       "terms and conditions",
       "user agreement",
       "website terms",
-      "Suburb says terms",
+      "Suburb Says terms",
       "platform rules",
       "legal terms",
       "service conditions",
     ],
 
     openGraph: {
-      title: "Suburb says - Terms of Use",
+      title: "Suburb Says - Terms of Use",
       description:
-        "Review the terms and conditions for using Suburb says and understand your rights and responsibilities.",
+        "Review the terms and conditions for using Suburb Says and understand your rights and responsibilities.",
       url: "https://www.suburbsays.com.au/terms-of-use",
-      siteName: "Suburb says",
+      siteName: "Suburb Says",
       type: "website",
       images: [
         {
           url: "https://www.suburbsays.com.au/images/logo.png",
           width: 1200,
           height: 630,
-          alt: "Suburb says Suburb Search",
+          alt: "Suburb Says Suburb Search",
         },
       ],
     },
@@ -1326,9 +1326,9 @@ export const termsMetadata = {
 };
 
 export const termsIntro = {
-  heading: "Welcome to Suburb says.",
+  heading: "Welcome to Suburb Says.",
   description:
-    "Suburb says is a free, community-led service that celebrates and publishes the local businesses people nearby know and trust. Our role is to help surface and share community trust. We do not make recommendations ourselves.",
+    "Suburb Says is a free, community-led service that celebrates and publishes the local businesses people nearby know and trust. Our role is to help surface and share community trust. We do not make recommendations ourselves.",
   subHeading:
     "By using this website or submitting information to it, you agree to the terms below.",
 };
@@ -1336,9 +1336,9 @@ export const termsIntro = {
 export const termsSections = [
   {
     id: 1,
-    title: "1. Using Suburb says",
+    title: "1. Using Suburb Says",
     paragraphs: [
-      "Please use Suburb says in a respectful, honest and lawful way.",
+      "Please use Suburb Says in a respectful, honest and lawful way.",
       "You must not misuse the website, interfere with how it works, submit false or misleading information, impersonate another person, or attempt to manipulate what appears on the site.",
       "We may restrict access, remove content, or decline submissions where needed to protect the integrity, safety or proper operation of the service.",
     ],
@@ -1347,9 +1347,9 @@ export const termsSections = [
     id: 2,
     title: "2. Community submissions",
     paragraphs: [
-      "Suburb says is built on genuine input from local residents about the businesses and people they trust.",
+      "Suburb Says is built on genuine input from local residents about the businesses and people they trust.",
     ],
-    listIntro: "By submitting information to Suburb says, you confirm that:",
+    listIntro: "By submitting information to Suburb Says, you confirm that:",
     listItems: [
       "it is based on your own real experience",
       "it is honest and genuine",
@@ -1364,9 +1364,9 @@ export const termsSections = [
   },
   {
     id: 3,
-    title: "3. What Suburb says does",
+    title: "3. What Suburb Says does",
     paragraphs: [
-      "Suburb says celebrates and publishes the businesses, trades and local service providers that members of the community say they trust. Suburb says does not independently recommend, endorse, guarantee or certify any business or provider. Any business shown on the site reflects community input, not a recommendation made by Suburb says.",
+      "Suburb Says celebrates and publishes the businesses, trades and local service providers that members of the community say they trust. Suburb Says does not independently recommend, endorse, guarantee or certify any business or provider. Any business shown on the site reflects community input, not a recommendation made by Suburb Says.",
     ],
   },
   {
@@ -1382,7 +1382,7 @@ export const termsSections = [
       "reduce spam, fraud and misuse",
       "maintain the integrity of what appears on the site",
       "communicate with you about something you have submitted",
-      "occasionally let you know about relevant updates, improvements or new functionality on Suburb says",
+      "occasionally let you know about relevant updates, improvements or new functionality on Suburb Says",
     ],
     afterListParagraphs: [
       "We do not sell your personal information.",
@@ -1393,7 +1393,7 @@ export const termsSections = [
     id: 5,
     title: "5. How we handle personal information",
     paragraphs: [
-      "We collect and use personal information only where it is reasonably needed to operate and improve Suburb says.",
+      "We collect and use personal information only where it is reasonably needed to operate and improve Suburb Says.",
       "This may include using your information to verify submissions, respond to enquiries, maintain the quality of the platform, communicate with users, and support the ongoing operation of the website.",
       "We take reasonable steps to protect the personal information we hold from misuse, loss, unauthorised access, modification or disclosure.",
     ],

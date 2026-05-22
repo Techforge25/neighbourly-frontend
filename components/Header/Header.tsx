@@ -83,7 +83,7 @@ const Header = () => {
 
       {/* Mobile Dropdown */}
       <div
-        className={`fixed top-14 left-0 right-0 bg-[#f0eae9f8] h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out z-[1000]
+        className={`fixed top-14 left-0 right-0 bg-soapstone h-screen flex flex-col items-center gap-10 py-10 transition-all duration-500 ease-in-out z-[1000]
           ${isOpenMenu ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
       >
         <nav className="flex flex-col items-center gap-8">

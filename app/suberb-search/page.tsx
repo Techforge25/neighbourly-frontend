@@ -3,25 +3,25 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Suburb says - Suburb Search",
+  title: "Suburb Says - Suburb Search",
   description:
     "Search and discover trusted local services in your suburb recommended by neighbors. Find reliable businesses and community-approved services near you.",
  alternates: {
     canonical: "https://www.suburbsays.com.au/suburb-search?search=Curl%20Curl",
   },
   openGraph: {
-    title: "Suburb says - Suburb Search",
+    title: "Suburb Says - Suburb Search",
     description:
       "Search your suburb for trusted local services and discover community-recommended businesses near you.",
     url: "https://www.suburbsays.com.au/suburb-search?search=Curl%20Curl",
-    siteName: "Suburb says",
+    siteName: "Suburb Says",
     type: "website",
     images: [
       {
         url: "https://www.suburbsays.com.au/images/discover.png",
         width: 1200,
         height: 630,
-        alt: "Suburb says Suburb Search",
+        alt: "Suburb Says Suburb Search",
       },
     ],
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "trusted local businesses",
     "community recommendations",
     "suburb service finder",
-    "Suburb says search",
+    "Suburb Says search",
   ],
 };
 

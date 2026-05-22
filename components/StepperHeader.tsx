@@ -20,7 +20,7 @@ export default function StepperHeader({
               <div
                 className={`md:w-[40px] w-[25px] md:h-[40px] mx-auto h-[25px] rounded-full flex items-center justify-center text-[14px]  font-medium transition-colors ${
                   isActive
-                    ? "bg-[#8FA58A] text-white"
+                    ? "bg-green text-white"
                     : "border-[1px] border-para text-para font-bold font-poppins md:text-[16px] text-[14px]"
                 }`}
               >

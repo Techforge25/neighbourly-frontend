@@ -32,7 +32,7 @@ const OtpStep = ({
             focusStyle="otp-input:focus"
             inputStyle="otp-input"
             disabledStyle={{
-              background: "#F3F4F6",
+              background: "var(--color-flash_white)",
               cursor: "not-allowed",
               opacity: "50%",
             }}
