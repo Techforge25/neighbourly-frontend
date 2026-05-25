@@ -62,9 +62,9 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
   const handleSuburbChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectSuburb(value);
-    const suburb = value.toLowerCase();
+    const suburb = value
     const url = filter
-      ? `/discover?search=${suburb}&filter=${filter.toLowerCase()}`
+      ? `/discover?search=${suburb}&filter=${filter}`
       : `/discover?search=${suburb}`;
     router.push(url);
   };

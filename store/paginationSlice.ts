@@ -12,7 +12,7 @@ interface PaginationState {
 
 const initialState: PaginationState = {
   page: 1,
-  limit: 9,
+  limit: 6,
   totalPages: 1,
   totalDocs: 0,
   hasNextPage: false,

@@ -59,11 +59,8 @@ const Card = () => {
   }, [data, dispatch]);
 
   const recommendations = data?.recommendations;
-  const docs = isListTrue
-    ? recommendations?.docs?.slice(0, 6)
-    : recommendations?.docs?.slice(0, 3);
 
-  if (!docs?.length) {
+  if (!recommendations?.docs?.length) {
     return <CardEmpty isLoading={isLoading} />;
   }
 
@@ -72,7 +69,7 @@ const Card = () => {
       <div className="max-w-[1396px] mx-auto md:p-0 p-4">
         <div className="">
           <div className="flex items-stretch gap-4 flex-wrap justify-center">
-            {docs.map((item: RecommendationItem, ind: number) => (
+            {recommendations?.docs.map((item: RecommendationItem, ind: number) => (
               <RecommendationCard
                 key={ind}
                 item={item}
