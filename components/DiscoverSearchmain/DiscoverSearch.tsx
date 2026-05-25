@@ -23,12 +23,29 @@ const DiscoverSearch = () => {
   const search = searchParams.get("search");
   const filter = searchParams.get("filter");
 
+  console.log(search, 'searched')
+
   useEffect(() => {
     const getSponsors = async () => {
       try {
-        const res = await api.get(search ? `sponsor?suburb=${search?.charAt(0).toUpperCase() + search?.slice(1)}` : 'sponsor');
-        console.log(res, 'resss')
-        setSponsors(res?.data?.data?.docs)
+        const formattedSuburb =
+          search?.trim()
+            ? search
+              .trim()
+              .split(" ")
+              .filter(Boolean)
+              .map(
+                (word) =>
+                  word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+              )
+              .join(" ")
+            : "";
+
+        const res = await api.get(
+          search
+            ? `sponsor?suburb=${formattedSuburb}`
+            : "sponsor?suburb=not searched"
+        ); setSponsors(res?.data?.data?.docs)
       } catch (error) {
         console.error(error)
       }
