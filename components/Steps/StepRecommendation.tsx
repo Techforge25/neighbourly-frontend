@@ -10,7 +10,7 @@ import { RECOMMEND_OPTIONS, SERVICE_OPTIONS } from "@/utils/dumydata";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useState } from "react";
-import { GrFormNextLink } from "react-icons/gr";
+import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 import { ApiErrorResponse, TypeRecommendationOption } from "@/types";
 import { AxiosError } from "axios";
 interface RecommendationData {
@@ -117,11 +117,10 @@ export default function StepRecommendation({
         <Form className="w-full rounded-2xl">
           {isError && (
             <p
-              className={`text-red-500 text-[12px] transition-all duration-300 ease-out transform ${
-                isError
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-2"
-              }`}
+              className={`text-red-500 text-[12px] transition-all duration-300 ease-out transform ${isError
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-2"
+                }`}
             >
               {isError}
             </p>
@@ -138,11 +137,10 @@ export default function StepRecommendation({
                     as={Input}
                     name="firstName"
                     placeholder="e.g. Shannon"
-                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
-                      errors.firstName && touched.firstName && validateOnChange?.valueOf()
-                        ? "border-red-500"
-                        : "border-border"
-                    }`}
+                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${errors.firstName && touched.firstName && validateOnChange?.valueOf()
+                      ? "border-red-500"
+                      : "border-border"
+                      }`}
                   />
                   <ErrorMessage
                     name="firstName"
@@ -160,11 +158,10 @@ export default function StepRecommendation({
                     as={Input}
                     name="businessName"
                     placeholder="e.g. Sunny Day Plumbing"
-                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${
-                      errors.businessName && touched.businessName
-                        ? "border-red-500"
-                        : "border-border"
-                    }`}
+                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${errors.businessName && touched.businessName
+                      ? "border-red-500"
+                      : "border-border"
+                      }`}
                   />
                   <ErrorMessage
                     name="businessName"
@@ -180,11 +177,10 @@ export default function StepRecommendation({
                   <Field
                     as="select"
                     name="service"
-                    className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px]  text-para ${
-                      errors.service && touched.service
-                        ? "border-red-500"
-                        : "border-border"
-                    }`}
+                    className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px]  text-para ${errors.service && touched.service
+                      ? "border-red-500"
+                      : "border-border"
+                      }`}
                   >
                     <option value="" disabled>
                       Select a service
@@ -216,11 +212,10 @@ export default function StepRecommendation({
                     value={values.theirNumber}
                     onChange={(value) => setFieldValue("theirNumber", value)}
                     onBlur={() => setFieldTouched("theirNumber", true)} // 👈 add this
-                    className={`phone-input ${
-                      errors.theirNumber && touched.theirNumber
-                        ? "border-red-500"
-                        : ""
-                    }`}
+                    className={`phone-input ${errors.theirNumber && touched.theirNumber
+                      ? "border-red-500"
+                      : ""
+                      }`}
                   />
 
                   <ErrorMessage
@@ -231,6 +226,18 @@ export default function StepRecommendation({
                 </div>
               </div>
               <div className="pt-[32px]">
+                {/* <button
+                  onClick={() => {
+                    onBack()
+                  }}
+                  type="button"
+                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-share-modal-icon mb-2 text-[16px] font-poppins border border-share-modal-icon gap-2 w-full bg-white py-[14px] rounded-full  "
+                >
+                  <span>Back</span>
+                  <span>
+                    <GrFormPreviousLink size={24} />
+                  </span>
+                </button> */}
                 <button
                   onClick={() => {
                     setNextStep(true);
@@ -285,10 +292,9 @@ export default function StepRecommendation({
                         }
                       }}
                       className={`flex items-center justify-between cursor-pointer w-full px-4 py-3 rounded-xl border transition-all
-                        ${
-                          isSelected
-                            ? "bg-share-modal-icon border-share-modal-icon text-white "
-                            : "bg-bgLight border-border-light"
+                        ${isSelected
+                          ? "bg-share-modal-icon border-share-modal-icon text-white "
+                          : "bg-bgLight border-border-light"
                         }
                         `}
                     >
@@ -299,11 +305,10 @@ export default function StepRecommendation({
                       {/* Circle indicator */}
                       <span
                         className={`w-5 h-5 flex items-center justify-center rounded-full border
-                        ${
-                          isSelected
+                        ${isSelected
                             ? "bg-share-modal-icon border-border-light text-white"
                             : "border-gray-300 text-white border-dashed"
-                        }
+                          }
                       `}
                       >
                         {isSelected && "✓"}
@@ -332,6 +337,14 @@ export default function StepRecommendation({
               </div>
 
               <div className="pt-[32px]">
+                {/* <button
+                  type="submit"
+                  onClick={() => onBack()}
+                  className="sm:order-2 mb-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 border border-share-modal-icon bg-white md:text-[16px] text-[12px] text-share-modal-icon"
+                >
+                  Back
+                  <ArrowLeft size={20} className="md:flex hidden" />
+                </button> */}
                 <button
                   type="submit"
                   className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-share-modal-icon md:text-[16px] text-[12px] text-white"

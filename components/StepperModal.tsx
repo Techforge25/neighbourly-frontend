@@ -176,6 +176,7 @@ export default function StepperModal({
             <StepAbout
               // data={formData}
               // setData={setFormData}
+              setStep={setStep}
               onNext={nextStep}
               onBack={prevStep}
               setHeaderTitle={setHeaderTitle}
@@ -193,7 +194,7 @@ export default function StepperModal({
             />
           )}
 
-          {step === 4 && <StepSuccess onClose={onClose} />}
+          {step === 4 && <StepSuccess resetAll={resetAll} onClose={onClose} />}
         </div>
       </div>
     </div>

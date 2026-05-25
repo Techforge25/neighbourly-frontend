@@ -9,9 +9,10 @@ import { useEffect, useRef } from "react";
 
 interface StepSuccessProps {
   onClose: () => void;
+  resetAll: () => void;
 }
 
-export default function StepSuccess({ onClose }: StepSuccessProps) {
+export default function StepSuccess({ onClose, resetAll }: StepSuccessProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -34,7 +35,7 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
         {/* Close button */}
         <button
           onClick={() => {
-            (onClose(), window.location.reload());
+            (onClose(), window.location.reload(), setStep(1), resetAll());
           }}
           className="cursor-pointer sm:flex hidden"
           aria-label="Close"
@@ -73,7 +74,7 @@ export default function StepSuccess({ onClose }: StepSuccessProps) {
         <div className="flex sm:flex-row flex-col-reverse gap-3">
           <button
             onClick={() => {
-              (router.push("/discover"), onClose());
+              (router.push("/discover"), onClose(), setStep(1), resetAll());
             }}
             className="w-full border py-[17.5px] border-border cursor-pointer rounded-full bg-primary text-white text-[16px] leading-[16px] "
           >

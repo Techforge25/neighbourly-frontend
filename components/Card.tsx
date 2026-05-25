@@ -89,8 +89,7 @@ const Card = ({search}: Props) => {
       </div>
 
       <ShareModal />
-
-      {isListTrue&&recommendations && (
+      {isListTrue && recommendations && (
         <CardPagination
           page={page}
           totalPages={totalPages}

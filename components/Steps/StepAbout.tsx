@@ -13,16 +13,19 @@ interface StepAboutData {
   firstName: string;
   mobile: string;
   suburb: string;
-}
+  setStep: any;
+} 
 
 export default function StepAbout({
   onNext,
   onBack,
   setHeaderTitle,
+  setStep
 }: {
   onNext: () => void;
   onBack: () => void;
   setHeaderTitle: (title: string) => void;
+  setStep
 }) {
   // ✅ Load from localStorage
   const savedData: StepAboutData = JSON.parse(
@@ -151,6 +154,14 @@ export default function StepAbout({
 
       {/* Buttons */}
       <div className="">
+        {/* <button
+          onClick={() => setStep(1)}
+          type="submit"
+          className="mb-2 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed rounded-full w-full flex border border-share-modal-icon items-center justify-center gap-2 py-2 md:py-[16px] px-4 md:px-[27px] text-[11px] md:text-[16px] font-poppins bg-white text-share-modal-icon"
+        >
+          Back
+          <ArrowLeft size={20} className="ml-2" />
+        </button> */}
         <button
           disabled={!formik.isValid}
           type="submit"
