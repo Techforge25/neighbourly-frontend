@@ -13,7 +13,11 @@ import ShareModal from "./ShareModal";
 import CardPagination from "./Card/CardPagination";
 import { RecommendationItem } from "@/types";
 
-const Card = () => {
+type Props = {
+  search: string | null;
+}
+
+const Card = ({search}: Props) => {
   const dispatch = useDispatch();
   const params = useSearchParams();
 
@@ -74,6 +78,7 @@ const Card = () => {
                 key={ind}
                 item={item}
                 isActive={activeIndex === ind}
+                search={search}
                 onToggle={() =>
                   setActiveIndex(activeIndex === ind ? null : ind)
                 }

@@ -8,9 +8,10 @@ interface Props {
   item: RecommendationItem;
   isActive: boolean;
   onToggle: () => void;
+  search: string | null;
 }
 
-const RecommendationCard = ({ item, isActive, onToggle }: Props) => {
+const RecommendationCard = ({ item, isActive, onToggle, search }: Props) => {
   const color = getServiceColor(item.serviceType);
 
   return (
@@ -19,9 +20,8 @@ const RecommendationCard = ({ item, isActive, onToggle }: Props) => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
-      className={`flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] ${
-        isActive ? "h-auto" : "sm:h-[580px]"
-      } sm:w-[410px] w-[330px] bg-white`}
+      className={`flex flex-col justify-between hover:border border cursor-pointer border-modal-line hover:border-secondary transition duration-300 ease-linear p-4 shadow-lg rounded-[24px] ${isActive ? "h-auto" : "sm:h-[580px]"
+        } sm:w-[410px] w-[330px] bg-white`}
     >
       <div className="flex flex-col h-full justify-between">
         {/* Header */}
@@ -65,6 +65,7 @@ const RecommendationCard = ({ item, isActive, onToggle }: Props) => {
               <div className="flex flex-wrap gap-1 line-clamp-2">
                 {item.addresses
                   ?.slice(0, isActive ? undefined : 5)
+                  ?.filter((item) => item !== search)
                   ?.map((addr: string, i: number) => (
                     <p key={i} className="font-poppins md:text-[16px] text-[14px] text-para">
                       {addr} -

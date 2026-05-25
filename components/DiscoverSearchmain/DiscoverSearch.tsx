@@ -113,7 +113,7 @@ const DiscoverSearch = () => {
         </p>
       </div>
 
-      <Card />
+      <Card search={search}/>
       {/* <LocalRecommendation /> */}
       <UseFull color="#718496" />
     </div >
