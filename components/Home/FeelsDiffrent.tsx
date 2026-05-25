@@ -16,8 +16,8 @@ const FeelsDiffrent = () => {
           className="md:max-w-[515px] mx-auto flex flex-col gap-[52px]"
         >
           <h5 className="text-[42px] leading-[49px] font-bold font-manrope">
-            <span className="text-[#303231]">Why suburb says</span>{" "}
-            <span className="text-[#F3B39D]">feels different</span>
+            <span className="text-text-dark-secondary">Why Suburb Says</span>{" "}
+            <span className="text-primary">feels different</span>
           </h5>
 
           <div className="flex flex-col gap-[42px]">

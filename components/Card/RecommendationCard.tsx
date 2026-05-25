@@ -102,7 +102,7 @@ const RecommendationCard = ({ item, isActive, onToggle }: Props) => {
             <button
               className={`w-full flex items-center cursor-pointer justify-center gap-2 text-white sm:text-[18px] text-[14px] font-medium font-outfit px-4 py-3 rounded-full ${color}`}
             >
-              Call <MdOutlineCall size={20} />
+              Calls <MdOutlineCall size={20} />
             </button>
           </Link>
           <Link href={`sms:${item.businessContact}`} target="_blank" className="w-full">

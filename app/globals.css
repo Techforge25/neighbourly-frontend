@@ -45,7 +45,17 @@
   --color-profile-bg-txt: #F4FAFF;
   --color-success-modal-txt-dark: #0F172A;
   --color-success-modal-txt-secondary-contrast: #3A5670;
-
+  --color-gray: #f7f7f7;
+  --color-vivid: #010101;
+  --color-dark_gray: #262729;
+  --color-black: #000000;
+  --color-light_beige: #FFF1ED;
+  --color-muted: #D6E2EC;
+  --color-soapstone: #f0eae9;
+  --color-bright_gray: #ebe8e8
+  --color-white: #ffffff;
+  --color-graylish_blue: #F3F6F966;
+  --color-flash_white: #F3F4F6
 
   /* Color End */
 

@@ -50,7 +50,7 @@ const ContactUsForm = () => {
   });
 
   return (
-    <div className="bg-[#f7f7f7] py-16 px-4">
+    <div className="bg-gray py-16 px-4">
       {/* Heading */}
       <motion.div
         initial={{ y: -100, opacity: 0 }}
@@ -59,11 +59,11 @@ const ContactUsForm = () => {
         viewport={{ once: true }}
         className="text-center mb-10"
       >
-        <h2 className="md:text-[42px] text-[28px]  font-bold text-[#010101] font-manrope">
+        <h2 className="md:text-[42px] text-[28px]  font-bold text-vivid font-manrope">
           We&apos;d love to <span className="text-primary">hear from you</span>
         </h2>
-        <p className="text-[#262729] mt-3 text-[18px] md:w-[710px] mx-auto">
-          Whether you have a question about how Suburb says works, want to
+        <p className="text-dark_gray mt-3 text-[18px] md:w-[710px] mx-auto">
+          Whether you have a question about how Suburb Says works, want to
           recommend a service, or would like to see us in your suburb, reach out
           below.
         </p>
@@ -75,7 +75,7 @@ const ContactUsForm = () => {
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="bg-white rounded-2xl shadow-md shadow-[#000000]/20 p-6 sm:p-8 max-w-[1074px] mx-auto"
+        className="bg-white rounded-2xl shadow-md shadow-black/20 p-6 sm:p-8 max-w-[1074px] mx-auto"
       >
         <form onSubmit={formik.handleSubmit}>
           {/* Row 1 */}
@@ -93,7 +93,7 @@ const ContactUsForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
                 placeholder="e.g. John"
-                className="mt-1 w-full shadow shadow-[#000000]/20 text-[#697586] text-[16px] rounded-lg px-3 py-3 outline-none "
+                className="mt-1 w-full shadow shadow-black/20 text-para text-[16px] rounded-lg px-3 py-3 outline-none "
               />
               {formik.touched.name && formik.errors.name && (
                 <p className="text-red-500 text-xs mt-1">
@@ -104,7 +104,7 @@ const ContactUsForm = () => {
 
             {/* Email */}
             <div>
-              <label className="text-[14px] text-[#202939]">
+              <label className="text-[14px] text-tabText">
                 <span>Email Address</span>
                 <span className="text-red-500">*</span>
               </label>
@@ -115,7 +115,7 @@ const ContactUsForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
                 placeholder="hello@example.com"
-                className="mt-1 w-full shadow shadow-[#000000]/20 text-[#697586] text-[16px] rounded-lg px-3 py-3 outline-none "
+                className="mt-1 w-full shadow shadow-black/20 text-para text-[16px] rounded-lg px-3 py-3 outline-none "
               />
               {formik.touched.email && formik.errors.email && (
                 <p className="text-red-500 text-xs mt-1">
@@ -127,7 +127,7 @@ const ContactUsForm = () => {
 
           {/* Message */}
           <div className="mt-4">
-            <label className="text-[14px] text-[#202939]">
+            <label className="text-[14px] text-tabText">
               <span>Message</span>
               <span className="text-red-500">*</span>
             </label>
@@ -138,7 +138,7 @@ const ContactUsForm = () => {
               value={formik.values.message}
               rows={5}
               placeholder="How can we help?"
-              className="mt-1 w-full shadow shadow-[#000000]/20 text-[#697586] text-[16px] rounded-lg px-3 py-3 outline-none "
+              className="mt-1 w-full shadow shadow-black/20 text-para text-[16px] rounded-lg px-3 py-3 outline-none "
             />
             {formik.touched.message && formik.errors.message && (
               <p className="text-red-500 text-xs mt-1">
@@ -157,7 +157,7 @@ const ContactUsForm = () => {
           </button>
 
           {/* Footer note */}
-          <div className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-[#697586] font-manrope">
+          <div className="flex items-start justify-center md:gap-4 gap-4 md:mt-10 mt-6 md:text-[16px] text-[14px] text-para font-manrope">
             <span>
               <GoShieldCheck size={24} />
             </span>

@@ -14,8 +14,8 @@ const Community = () => {
           viewport={{ once: true }}
           className="md:text-[42px] text-[28px] font-bold font-manrope text-center md:w-[532px] mx-auto leading-[49px]"
         >
-          <span className="text-[#202939]">A hyper-local</span>{" "}
-          <span className="text-[#F3B39D]">community service</span>
+          <span className="text-tabText">A hyper-local</span>{" "}
+          <span className="text-primary">community service</span>
         </motion.h4>
 
         <motion.div
@@ -29,10 +29,10 @@ const Community = () => {
               <div className={`${item.iconBg} w-fit mx-auto p-4 rounded-[8px]`}>
                 {item.icon}
               </div>
-              <p className="text-[24px]  text-[#12141D] font-manrope font-bold mt-[20px]">
+              <p className="text-[24px]  text-textdark font-manrope font-bold mt-[20px]">
                 {item.title}
               </p>
-              <p className="text-[16px] text-[#697586]  mt-[10px]">
+              <p className="text-[16px] text-para  mt-[10px]">
                 {item.text}
               </p>
             </div>

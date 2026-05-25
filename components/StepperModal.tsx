@@ -145,7 +145,7 @@ export default function StepperModal({
               </button>
             </div>
             <div className="md:py-[32px] sm:py-[28px] py-[22px]">
-              <div className="bg-[#E4E4E4] h-[1px]" />
+              <div className="bg-border h-[1px]" />
             </div>
           </>
         )}

@@ -46,7 +46,7 @@ const Service = () => {
           </p>
 
           <div className="bg-light-bg md:p-6 p-2 mt-2">
-            <p className="lg:max-w-[467px] mx-auto text-[16px] font-medium md:leading-[28px] leading-[20px] font-poppins text-[#3A5670]">
+            <p className="lg:max-w-[467px] mx-auto text-[16px] font-medium md:leading-[28px] leading-[20px] font-poppins text-success-modal-txt-secondary-contrast">
               We only ask for a few details to keep recommendations genuine and
               useful for nearby neighbours.
             </p>
