@@ -74,7 +74,7 @@ export default function StepSuccess({ onClose, resetAll }: StepSuccessProps) {
         <div className="flex sm:flex-row flex-col-reverse gap-3">
           <button
             onClick={() => {
-              (router.push("/discover"), onClose(), setStep(1), resetAll());
+              (onClose(), window.location.reload(), setStep(1), resetAll());
             }}
             className="w-full border py-[17.5px] border-border cursor-pointer rounded-full bg-primary text-white text-[16px] leading-[16px] "
           >
