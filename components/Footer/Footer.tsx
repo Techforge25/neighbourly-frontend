@@ -11,29 +11,26 @@ const Footer = () => {
     <footer className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
       {/* Top Section */}
       <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left">
-        <div className="flex flex-col items-center md:items-start gap-3">
-          
+        {/* Left */}
+        <div className="flex items-center gap-3 ">
           {/* Follow Us text */}
           <h3 className="text-lg font-semibold text-textdark">Follow Us</h3>
 
-          {/* Left */}
-          <div className="flex items-center gap-3 ">
-            {/* Facebook icon */}
-            <Link
-              href={"https://www.facebook.com/suburbsaysnorthernbeaches"}
-              className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-            >
-              <FaFacebookF size={18} className="text-tabText" />
-            </Link>
+          {/* Facebook icon */}
+          <Link
+            href={"https://www.facebook.com/suburbsaysnorthernbeaches"}
+            className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+          >
+            <FaFacebookF size={18} className="text-tabText" />
+          </Link>
 
-            {/* Instagram icon */}
-            <Link
-              href={"https://www.instagram.com/suburbsays/"}
-              className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-            >
-              <SiInstagram size={18} className="text-tabText" />
-            </Link>
-          </div>
+          {/* Instagram icon */}
+          <Link
+            href={"https://www.instagram.com/suburbsays/"}
+            className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+          >
+            <SiInstagram size={18} className="text-tabText" />
+          </Link>
         </div>
 
         {/* Right */}
@@ -66,6 +63,8 @@ const Footer = () => {
         {/* Left Side: Copyright Text */}
         <p className="text-tabText text-xs sm:text-sm md:text-base text-center sm:text-left">
           © 2026 Suburb Says. All rights reserved.
+          <span className="text-tabtext"> | </span>
+          <span className="font-bold">ABN 85 982 765 005</span>
         </p>
 
         {/* Right Side: Terms of Use Link */}
