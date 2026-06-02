@@ -50,7 +50,7 @@ const Footer = () => {
             <span className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center">
               <MdLocalPhone size={18} className="text-tabText" />
             </span>
-            <Link href={"tel:0408845101"}>0408845101</Link>
+            <Link href={"tel:85982765005"}>85 982 765 005</Link>
           </p>
         </div>
       </div>
