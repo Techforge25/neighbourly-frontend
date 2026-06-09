@@ -72,8 +72,8 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
   };
 
   const handleTabChange = (title: string) => {
-     const isAlreadyActive = isTabActive(title);
-
+    dispatch(setPage(1));
+    const isAlreadyActive = isTabActive(title);
     if (isAlreadyActive) {
       dispatch(setActiveTab(""));
       const url = search ? `/discover?search=${selectSuburb}` : `/discover`;
