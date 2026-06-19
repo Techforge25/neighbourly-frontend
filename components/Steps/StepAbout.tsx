@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -8,6 +8,8 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
 import { suburbData } from "@/utils/dumydata";
+import { getSuburbs } from "@/src/discover";
+import { useQuery } from "@tanstack/react-query";
 
 interface StepAboutData {
   firstName: string;
@@ -35,6 +37,17 @@ export default function StepAbout({
     mobile: "",
     suburb: "",
   };
+const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
+    const {
+    data: clusterResponse,
+    isPending: isClusterPending,
+    isLoading,
+  } = useQuery({
+    queryKey: ["clusters-dropdown"],
+    enabled: isClusterDropdownOpened,
+    queryFn: () => getSuburbs(),
+  });
+ const clusters = clusterResponse?.data|| [];
 
   const formik = useFormik<StepAboutData>({
     initialValues: savedData,
@@ -130,19 +143,27 @@ export default function StepAbout({
         </Label>
 
         <select
+          onFocus={() => setIsClusterDropdownOpened(true)}
+                onClick={() => setIsClusterDropdownOpened(true)}
           name="suburb"
           value={formik.values.suburb}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           className="border rounded-[12px] text-[16px] h-[48px] px-3"
         >
-          <option value="">Select Suburb</option>
+         
 
-          {suburbData.map((suburb) => (
+            <option value="">Select Suburb</option>
+            {clusters?.map((item: any, ind: number) => (
+              <option key={ind} value={item.name}>
+                {item.name}
+              </option>
+            ))}
+          {/* {clusters.map((suburb) => (
             <option key={suburb} value={suburb}>
               {suburb}
             </option>
-          ))}
+          ))} */}
         </select>
 
         {formik.touched.suburb && formik.errors.suburb && (

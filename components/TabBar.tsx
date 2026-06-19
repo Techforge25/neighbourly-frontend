@@ -12,6 +12,8 @@ import { setActiveTab } from "@/store/tabSlice";
 import { api } from "@/src/service/axios";
 import { RecommendationItem, TabItem } from "@/types";
 import { setPage } from "@/store/paginationSlice";
+import { useQuery } from "@tanstack/react-query";
+import { getSuburbs } from "@/src/discover";
 
 type TabBarProps = {
   tabarActive?: boolean;
@@ -32,7 +34,7 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
 
   const [locationData, setLocationData] = useState<RecommendationItem[]>([]);
   const [selectSuburb, setSelectSuburb] = useState<string | null>(search);
-
+const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const fetchRecommendations = useCallback(async () => {
@@ -55,11 +57,23 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
 
   const isDisabled = !tabarActive && !isShowFullList;
 
-  const uniqueLocations = useMemo(() => {
-    const all = locationData.flatMap((item) => item.addresses);
-    return [...new Set(all)].sort();
-  }, [locationData]);
+  // const uniqueLocations = useMemo(() => {
+  //   const all = locationData.flatMap((item) => item.addresses);
+  //   return [...new Set(all)].sort();
+  // }, [locationData]);
 
+
+   const {
+    data: clusterResponse,
+    isPending: isClusterPending,
+    isLoading,
+  } = useQuery({
+    queryKey: ["clusters-dropdown"],
+    enabled: isClusterDropdownOpened,
+    queryFn: () => getSuburbs(),
+  });
+ const clusters = clusterResponse?.data|| [];
+  console.log("Cluster Response:", clusterResponse);
   const handleSuburbChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectSuburb(value);
@@ -95,7 +109,6 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
   return (
     <div className="md:max-w-[1296px] md:my-4 p-4 mx-auto">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-
         {/* Tabs with scroll arrows (mobile only) */}
         <div className="flex items-center gap-2 w-full lg:w-auto">
           <button
@@ -117,9 +130,10 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
                 onClick={() => handleTabChange(item.title)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all whitespace-nowrap
                   disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-                  ${isTabActive(item.title)
-                    ? "bg-share-modal-icon text-white"
-                    : "border border-border1 text-tabText"
+                  ${
+                    isTabActive(item.title)
+                      ? "bg-share-modal-icon text-white"
+                      : "border border-border1 text-tabText"
                   }`}
               >
                 {item.icon && <span>{item.icon}</span>}
@@ -140,15 +154,17 @@ const TabBar: React.FC<TabBarProps> = ({ tabarActive, cardLength }) => {
         {/* Suburb Select */}
         <div className="w-full lg:w-auto">
           <select
+              onFocus={() => setIsClusterDropdownOpened(true)}
+                onClick={() => setIsClusterDropdownOpened(true)}
             disabled={isDisabled}
             value={selectSuburb ?? ""}
             onChange={handleSuburbChange}
             className="w-full lg:w-auto border border-border-light px-5 py-3 rounded-xl outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option value="">Select Suburb</option>
-            {uniqueLocations.map((item, ind) => (
-              <option key={ind} value={item}>
-                {item}
+            {clusters?.map((item: any, ind: number) => (
+              <option key={ind} value={item.name}>
+                {item.name}
               </option>
             ))}
           </select>
