@@ -10,24 +10,25 @@ import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommen
 import { suburbData } from "@/utils/dumydata";
 import { getSuburbs } from "@/src/discover";
 import { useQuery } from "@tanstack/react-query";
+import AsyncSuburbFormikSelect from "../SuburbSelect/AsyncSuburbFormikSelect";
 
 interface StepAboutData {
   firstName: string;
   mobile: string;
   suburb: string;
-  setStep: any;
+  // setStep: any;
 } 
 
 export default function StepAbout({
   onNext,
   onBack,
   setHeaderTitle,
-  setStep
+  // setStep
 }: {
   onNext: () => void;
   onBack: () => void;
   setHeaderTitle: (title: string) => void;
-  setStep
+  // setStep
 }) {
   // ✅ Load from localStorage
   const savedData: StepAboutData = JSON.parse(
@@ -40,7 +41,7 @@ export default function StepAbout({
 const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
     const {
     data: clusterResponse,
-    isPending: isClusterPending,
+    // isPending: isClusterPending,
     isLoading,
   } = useQuery({
     queryKey: ["clusters-dropdown"],
@@ -142,29 +143,13 @@ const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
           <span className="text-red-500">*</span>
         </Label>
 
-        <select
-          onFocus={() => setIsClusterDropdownOpened(true)}
-                onClick={() => setIsClusterDropdownOpened(true)}
-          name="suburb"
-          value={formik.values.suburb}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className="border rounded-[12px] text-[16px] h-[48px] px-3"
-        >
-         
-
-            <option value="">Select Suburb</option>
-            {clusters?.map((item: any, ind: number) => (
-              <option key={ind} value={item.name}>
-                {item.name}
-              </option>
-            ))}
-          {/* {clusters.map((suburb) => (
-            <option key={suburb} value={suburb}>
-              {suburb}
-            </option>
-          ))} */}
-        </select>
+      <AsyncSuburbFormikSelect
+  value={formik.values.suburb}
+  setFieldValue={formik.setFieldValue}
+  setFieldTouched={formik.setFieldTouched}
+  error={formik.errors.suburb}
+  touched={formik.touched.suburb}
+/>
 
         {formik.touched.suburb && formik.errors.suburb && (
           <span className="text-red-500 md:text-[14px] text-[12px]">

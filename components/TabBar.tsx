@@ -14,6 +14,7 @@ import { RecommendationItem, TabItem } from "@/types";
 import { setPage } from "@/store/paginationSlice";
 import { useQuery } from "@tanstack/react-query";
 import { getSuburbs } from "@/src/discover";
+import AsyncSuburbSelect from "./SuburbSelect/AsyncSuburbSelect";
 
 type TabBarProps = {
   tabarActive?: boolean;
@@ -63,28 +64,9 @@ const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
   // }, [locationData]);
 
 
-   const {
-    data: clusterResponse,
-    isPending: isClusterPending,
-    isLoading,
-  } = useQuery({
-    queryKey: ["clusters-dropdown"],
-    enabled: isClusterDropdownOpened,
-    queryFn: () => getSuburbs(),
-  });
- const clusters = clusterResponse?.data|| [];
-  console.log("Cluster Response:", clusterResponse);
-  const handleSuburbChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectSuburb(value);
-    dispatch(setPage(1))
-    const suburb = value
-    const url = filter
-      ? `/discover?search=${suburb}&filter=${filter}`
-      : `/discover?search=${suburb}`;
-    router.push(url);
-  };
 
+ 
+  
   const handleTabChange = (title: string) => {
     dispatch(setPage(1));
     const isAlreadyActive = isTabActive(title);
@@ -152,22 +134,14 @@ const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
         </div>
 
         {/* Suburb Select */}
-        <div className="w-full lg:w-auto">
-          <select
-              onFocus={() => setIsClusterDropdownOpened(true)}
-                onClick={() => setIsClusterDropdownOpened(true)}
-            disabled={isDisabled}
-            value={selectSuburb ?? ""}
-            onChange={handleSuburbChange}
-            className="w-full lg:w-auto border border-border-light px-5 py-3 rounded-xl outline-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <option value="">Select Suburb</option>
-            {clusters?.map((item: any, ind: number) => (
-              <option key={ind} value={item.name}>
-                {item.name}
-              </option>
-            ))}
-          </select>
+        <div className="w-full lg:w-auto position-relative z-50">
+         <AsyncSuburbSelect
+  value={selectSuburb}
+  disabled={isDisabled}
+  onChangeValue={(val) => {
+    setSelectSuburb(val);
+  }}
+/>
         </div>
       </div>
     </div>
