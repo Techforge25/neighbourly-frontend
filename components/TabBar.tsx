@@ -73,14 +73,14 @@ const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
     if (isAlreadyActive) {
       dispatch(setActiveTab(""));
       const url = search ? `/discover?search=${selectSuburb}` : `/discover`;
-      router.push(url);
+   router.push(url, { scroll: false });
       return;
     }
     const tab = title.toLowerCase();
     const url = search
       ? `/discover?search=${selectSuburb}&filter=${tab}`
       : `/discover?filter=${tab}`;
-    router.push(url);
+router.push(url, { scroll: false });
     dispatch(setActiveTab(title));
   };
 

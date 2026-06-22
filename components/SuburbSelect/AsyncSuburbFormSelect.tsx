@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import { getSuburbs } from "@/src/discover";
 import { useQuery } from "@tanstack/react-query";
 
@@ -27,7 +27,6 @@ const AsyncSuburbFormSelect: React.FC<Props> = ({
 }) => {
   const [hasOpened, setHasOpened] = useState(false);
 
- 
   const { data } = useQuery({
     queryKey: ["clusters-dropdown"],
     queryFn: getSuburbs,
@@ -40,7 +39,6 @@ const AsyncSuburbFormSelect: React.FC<Props> = ({
     if (!hasOpened) setHasOpened(true);
   };
 
- 
   const suburbs = data?.data || [];
 
   const options: Option[] = suburbs.map((item: any) => ({
@@ -48,52 +46,38 @@ const AsyncSuburbFormSelect: React.FC<Props> = ({
     label: item.name,
   }));
 
-  
-  const loadOptions = async (inputValue: string): Promise<Option[]> => {
-    if (!inputValue) return options;
-
-    return options.filter((option) =>
-      option.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
-
   return (
-    <div className="flex flex-col gap-[6px] ">
-      <AsyncSelect
-  cacheOptions
-  defaultOptions={options}
-  isClearable
-  placeholder="Select Suburb"
-  loadOptions={loadOptions}
-  value={value ? { value, label: value } : null}
-  onMenuOpen={handleOpen}
-  onFocus={handleOpen}
-  menuPortalTarget={
-    typeof window !== "undefined" ? document.body : null
-  }
-  menuPosition="fixed"
-  styles={{
-    control: (base) => ({
-      ...base,
-      minHeight: "48px",
-      borderRadius: "12px",
-      borderColor: error && touched ? "#ef4444" : "#e5e7eb",
-      boxShadow: "none",
-    }),
-    menuPortal: (base) => ({
-      ...base,
-      zIndex: 99999,
-    }),
-    menu: (base) => ({
-      ...base,
-      zIndex: 99999,
-    }),
-  }}
-  onChange={(option: any) => {
-    setFieldValue("suburb", option?.value || "");
-  }}
-  onBlur={() => setFieldTouched("suburb", true)}
-/>
+    <div className="flex flex-col gap-[6px]">
+      <Select
+        options={options}
+        isClearable
+        placeholder="Select Suburb"
+        value={value ? { value, label: value } : null}
+        onMenuOpen={handleOpen}
+        onFocus={handleOpen}
+        isSearchable={false}
+        onChange={(option: any) => {
+          setFieldValue("suburb", option?.value || "");
+        }}
+        onBlur={() => setFieldTouched("suburb", true)}
+        styles={{
+          control: (base) => ({
+            ...base,
+            minHeight: "48px",
+            borderRadius: "12px",
+            borderColor: error && touched ? "#ef4444" : "#e5e7eb",
+            boxShadow: "none",
+          }),
+          valueContainer: (base) => ({
+            ...base,
+            padding: "0 10px",
+          }),
+          menu: (base) => ({
+            ...base,
+            zIndex: 9999,
+          }),
+        }}
+      />
     </div>
   );
 };

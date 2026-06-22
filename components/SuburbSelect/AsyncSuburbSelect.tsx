@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
-import AsyncSelect from "react-select/async";
+import React, { useState } from "react";
+import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/store/paginationSlice";
 import { getSuburbs } from "@/src/discover";
@@ -27,7 +27,6 @@ const AsyncSuburbSelect: React.FC<Props> = ({
   const [optionsCache, setOptionsCache] = useState<any[]>([]);
   const [hasLoaded, setHasLoaded] = useState(false);
 
-
   const handleMenuOpen = async () => {
     if (hasLoaded) return;
 
@@ -47,16 +46,6 @@ const AsyncSuburbSelect: React.FC<Props> = ({
     }
   };
 
-
-  const loadOptions = useCallback(
-    async (inputValue: string) => {
-      return optionsCache.filter((item) =>
-        item.label.toLowerCase().includes(inputValue.toLowerCase())
-      );
-    },
-    [optionsCache]
-  );
-
   const handleChange = (option: any) => {
     const val = option?.value || "";
 
@@ -67,19 +56,18 @@ const AsyncSuburbSelect: React.FC<Props> = ({
       ? `/discover?search=${val}&filter=${filter}`
       : `/discover?search=${val}`;
 
-    router.push(url);
+   router.push(url, { scroll: false });
   };
 
   return (
     <div className="w-full lg:w-auto relative z-50">
-      <AsyncSelect
-        cacheOptions
-        defaultOptions={optionsCache}
+      <Select
+        options={optionsCache}
         isClearable
         isDisabled={disabled}
         placeholder="Select Suburb"
-        loadOptions={loadOptions}
-        onMenuOpen={handleMenuOpen}   
+        isSearchable={false}
+        onMenuOpen={handleMenuOpen}
         value={value ? { value, label: value } : null}
         onChange={handleChange}
         styles={{
@@ -98,6 +86,10 @@ const AsyncSuburbSelect: React.FC<Props> = ({
           indicatorsContainer: (base) => ({
             ...base,
             padding: "0 6px",
+          }),
+          menu: (base) => ({
+            ...base,
+            zIndex: 9999,
           }),
         }}
       />
