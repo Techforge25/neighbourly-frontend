@@ -1,13 +1,23 @@
-"use client";
 import axios from "axios";
 
-// Axios config
-const api = axios.create({
-    baseURL:process.env.NEXT_PUBLIC_BASE_URL,
-    withCredentials:true,
-    timeout:0,
-    auth: true,
-    withXSRFToken:true
+export const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-export { api };
+
+api.interceptors.request.use((config) => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    } else {
+      console.log("No token found in localStorage");
+    }
+  }
+
+  return config;
+});
