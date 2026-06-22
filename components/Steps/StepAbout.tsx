@@ -7,7 +7,7 @@ import { Input } from "../ui/input";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
-import AsyncSuburbFormikSelect from "../SuburbSelect/AsyncSuburbFormikSelect";
+import AsyncSuburbFormSelect from "../SuburbSelect/AsyncSuburbFormSelect";
 
 interface StepAboutData {
   firstName: string;
@@ -124,13 +124,13 @@ export default function StepAbout({
       </div>
 
       {/* Suburb */}
-      <div className="flex flex-col gap-[12px]">
+      <div className="flex flex-col gap-[12px] ">
         <Label>
           <span className="font-manrope font-medium text-[14px]">Suburb</span>
           <span className="text-red-500">*</span>
         </Label>
 
-      <AsyncSuburbFormikSelect
+      <AsyncSuburbFormSelect
   value={formik.values.suburb}
   setFieldValue={formik.setFieldValue}
   setFieldTouched={formik.setFieldTouched}
