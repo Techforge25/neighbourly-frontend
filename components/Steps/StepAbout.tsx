@@ -7,9 +7,6 @@ import { Input } from "../ui/input";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
-import { suburbData } from "@/utils/dumydata";
-import { getSuburbs } from "@/src/discover";
-import { useQuery } from "@tanstack/react-query";
 import AsyncSuburbFormikSelect from "../SuburbSelect/AsyncSuburbFormikSelect";
 
 interface StepAboutData {
@@ -38,17 +35,7 @@ export default function StepAbout({
     mobile: "",
     suburb: "",
   };
-const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
-    const {
-    data: clusterResponse,
-    // isPending: isClusterPending,
-    isLoading,
-  } = useQuery({
-    queryKey: ["clusters-dropdown"],
-    enabled: isClusterDropdownOpened,
-    queryFn: () => getSuburbs(),
-  });
- const clusters = clusterResponse?.data|| [];
+ 
 
   const formik = useFormik<StepAboutData>({
     initialValues: savedData,
