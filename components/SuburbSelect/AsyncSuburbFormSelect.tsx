@@ -18,7 +18,7 @@ type Props = {
   touched?: boolean;
 };
 
-const AsyncSuburbFormikSelect: React.FC<Props> = ({
+const AsyncSuburbFormSelect: React.FC<Props> = ({
   value,
   setFieldValue,
   setFieldTouched,
@@ -91,4 +91,4 @@ const AsyncSuburbFormikSelect: React.FC<Props> = ({
   );
 };
 
-export default AsyncSuburbFormikSelect;
+export default AsyncSuburbFormSelect;
