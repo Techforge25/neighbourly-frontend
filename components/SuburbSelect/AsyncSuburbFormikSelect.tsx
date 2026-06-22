@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
-import { useQuery } from "@tanstack/react-query";
 import { getSuburbs } from "@/src/discover";
+import { useQuery } from "@tanstack/react-query";
 
 type Option = {
   value: string;
@@ -25,27 +25,35 @@ const AsyncSuburbFormikSelect: React.FC<Props> = ({
   error,
   touched,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
 
-
+ 
   const { data } = useQuery({
     queryKey: ["clusters-dropdown"],
     queryFn: getSuburbs,
-    enabled: isOpen,
+    enabled: hasOpened,
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 
-  const loadOptions = async (inputValue: string): Promise<Option[]> => {
-    const res = data || (await getSuburbs());
+  const handleOpen = () => {
+    if (!hasOpened) setHasOpened(true);
+  };
 
-    return (
-      res?.data
-        ?.filter((item: any) =>
-          item.name.toLowerCase().includes(inputValue.toLowerCase())
-        )
-        ?.map((item: any) => ({
-          value: item.name,
-          label: item.name,
-        })) || []
+ 
+  const suburbs = data?.data || [];
+
+  const options: Option[] = suburbs.map((item: any) => ({
+    value: item.name,
+    label: item.name,
+  }));
+
+  
+  const loadOptions = async (inputValue: string): Promise<Option[]> => {
+    if (!inputValue) return options;
+
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
 
@@ -53,16 +61,15 @@ const AsyncSuburbFormikSelect: React.FC<Props> = ({
     <div className="flex flex-col gap-[6px]">
       <AsyncSelect
         cacheOptions
-        defaultOptions
+        defaultOptions={options}  
         isClearable
         placeholder="Select Suburb"
         loadOptions={loadOptions}
         value={value ? { value, label: value } : null}
-        onFocus={() => setIsOpen(true)}
-        onMenuOpen={() => setIsOpen(true)}
+        onMenuOpen={handleOpen}
+        onFocus={handleOpen}
         onChange={(option: any) => {
-          const val = option?.value || "";
-          setFieldValue("suburb", val);
+          setFieldValue("suburb", option?.value || "");
         }}
         onBlur={() => setFieldTouched("suburb", true)}
         styles={{
@@ -70,7 +77,8 @@ const AsyncSuburbFormikSelect: React.FC<Props> = ({
             ...base,
             minHeight: "48px",
             borderRadius: "12px",
-            borderColor: error && touched ? "#ef4444" : "#e5e7eb",
+            borderColor:
+              error && touched ? "#ef4444" : "#e5e7eb",
             boxShadow: "none",
           }),
           valueContainer: (base) => ({
@@ -79,12 +87,6 @@ const AsyncSuburbFormikSelect: React.FC<Props> = ({
           }),
         }}
       />
-
-      {touched && error && (
-        <span className="text-red-500 md:text-[14px] text-[12px]">
-          {error}
-        </span>
-      )}
     </div>
   );
 };
