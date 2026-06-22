@@ -65,12 +65,16 @@ const RecommendationCard = ({ item, isActive, onToggle, search }: Props) => {
               <div className="flex flex-wrap gap-1 line-clamp-2">
                 {item.addresses
                   ?.slice(0, isActive ? undefined : 5)
-                  ?.filter((item) => item !== search)
                   ?.map((addr: string, i: number) => (
-                    <p key={i} className="font-poppins md:text-[16px] text-[14px] text-para">
+                    <p
+                      key={i}
+                      className={`font-poppins md:text-[16px] text-[14px] text-para ${addr === search ? "font-bold text-black" : ""
+                        }`}
+                    >
                       {addr} -
                     </p>
                   ))}
+
                 {item.addresses?.length > 5 && (
                   <button className="cursor-pointer" onClick={onToggle}>
                     {isActive ? "Show less" : "Show more"}
