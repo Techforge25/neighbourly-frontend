@@ -124,7 +124,7 @@ export default function StepAbout({
       </div>
 
       {/* Suburb */}
-      <div className="flex flex-col gap-[12px]">
+      <div className="flex flex-col gap-[12px] ">
         <Label>
           <span className="font-manrope font-medium text-[14px]">Suburb</span>
           <span className="text-red-500">*</span>
