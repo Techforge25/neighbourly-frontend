@@ -7,7 +7,7 @@ import { Input } from "../ui/input";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { RecommendationAboutValidationSchema } from "@/validations/AboutRecommendation";
-import AsyncSuburbFormikSelect from "../SuburbSelect/AsyncSuburbFormikSelect";
+import AsyncSuburbFormSelect from "../SuburbSelect/AsyncSuburbFormSelect";
 
 interface StepAboutData {
   firstName: string;
@@ -130,7 +130,7 @@ export default function StepAbout({
           <span className="text-red-500">*</span>
         </Label>
 
-      <AsyncSuburbFormikSelect
+      <AsyncSuburbFormSelect
   value={formik.values.suburb}
   setFieldValue={formik.setFieldValue}
   setFieldTouched={formik.setFieldTouched}
