@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
       {/* Top Section */}
-      <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left">
+      <div className="flex flex-col-reverse flex-col md:flex-row text-left lg:items-center md:items-center justify-between gap-6 md:gap-4 py-6 text-center md:text-left ">
         {/* Left */}
         <div className="flex items-center gap-3 ">
           {/* Follow Us text */}
@@ -19,26 +19,27 @@ const Footer = () => {
           {/* Facebook icon */}
           <Link
             href={"https://www.facebook.com/suburbsaysnorthernbeaches"}
-            className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+            className="w-11 h-11 bg-[#fe9a86] rounded-full flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <FaFacebookF size={18} className="text-tabText" />
+            <FaFacebookF size={18} className="text-white" />
           </Link>
 
           {/* Instagram icon */}
           <Link
             href={"https://www.instagram.com/suburbsays/"}
-            className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+            className="w-11 h-11 bg-[#fe9a86] rounded-full flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <SiInstagram size={18} className="text-tabText" />
+            <SiInstagram size={18} className="text-white" />
           </Link>
         </div>
 
         {/* Right */}
         <div className="flex flex-col sm:flex-row md:items-center gap-4 sm:gap-6">
           {/* Email */}
+           <h3 className="text-lg font-semibold text-textdark">Contact Us</h3>
           <p className="flex items-center gap-3 text-sm md:text-base break-all sm:break-normal">
-            <span className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center">
-              <FaRegEnvelope size={18} className="text-tabText" />
+            <span className="w-11 h-11 bg-[#fe9a86] rounded-full flex items-center justify-center">
+              <FaRegEnvelope size={18} className="text-white" />
             </span>
             <Link href={"mailto:andrew@suburbsays.com.au"}>
               andrew@suburbsays.com.au
@@ -47,8 +48,8 @@ const Footer = () => {
 
           {/* Phone */}
           <p className="flex items-center gap-3 text-sm md:text-base">
-            <span className="w-11 h-11 bg-secondary/20 rounded-full flex items-center justify-center">
-              <MdLocalPhone size={18} className="text-tabText" />
+            <span className="w-11 h-11 bg-[#fe9a86] rounded-full flex items-center justify-center">
+              <MdLocalPhone size={18} className="text-white" />
             </span>
             <Link href={"tel:0408845101"}>0408845101</Link>
           </p>
@@ -73,7 +74,7 @@ const Footer = () => {
           className="flex items-center gap-3 text-tabText hover:text-black transition-colors"
         >
           <p className="text-xs sm:text-sm md:text-base hover:underline">
-            Terms of use
+            Terms of Use
           </p>
         </Link>
       </div>

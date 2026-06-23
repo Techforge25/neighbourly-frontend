@@ -34,10 +34,13 @@ const AsyncSuburbSelect: React.FC<Props> = ({
       const res = await getSuburbs();
       const list = res?.data || [];
 
-      const formatted = list.map((item: any) => ({
-        value: item.name,
-        label: item.name,
-      }));
+      const formatted = [
+        { value: "all", label: "All" },
+        ...list.map((item: any) => ({
+          value: item.name,
+          label: item.name,
+        })),
+      ];
 
       setOptionsCache(formatted);
       setHasLoaded(true);
@@ -52,47 +55,61 @@ const AsyncSuburbSelect: React.FC<Props> = ({
     onChangeValue(val);
     dispatch(setPage(1));
 
-    const url = filter
-      ? `/discover?search=${val}&filter=${filter}`
-      : `/discover?search=${val}`;
+    const url =
+      val === "all" || !val
+        ? filter
+          ? `/discover?filter=${filter}`
+          : `/discover`
+        : filter
+        ? `/discover?search=${val}&filter=${filter}`
+        : `/discover?search=${val}`;
 
-   router.push(url, { scroll: false });
+    router.push(url, { scroll: false });
   };
 
   return (
     <div className="w-full lg:w-auto relative z-50">
-      <Select
-        options={optionsCache}
-        isClearable
-        isDisabled={disabled}
-        placeholder="Select Suburb"
-        isSearchable={false}
-        onMenuOpen={handleMenuOpen}
-        value={value ? { value, label: value } : null}
-        onChange={handleChange}
-        styles={{
-          control: (base) => ({
-            ...base,
-            minHeight: "42px",
-            borderRadius: "12px",
-            borderColor: "#e5e7eb",
-            boxShadow: "none",
-            cursor: "pointer",
-          }),
-          valueContainer: (base) => ({
-            ...base,
-            padding: "0 10px",
-          }),
-          indicatorsContainer: (base) => ({
-            ...base,
-            padding: "0 6px",
-          }),
-          menu: (base) => ({
-            ...base,
-            zIndex: 9999,
-          }),
-        }}
-      />
+    <Select
+  options={optionsCache}
+  isDisabled={disabled}
+  placeholder="Select Suburb"
+  isSearchable={false}
+  onMenuOpen={handleMenuOpen}
+  value={
+    value
+      ? { value, label: value === "all" ? "All" : value }
+      : { value: "all", label: "All" }
+  }
+  onChange={handleChange}
+  styles={{
+    control: (base) => ({
+      ...base,
+      width: "100%",          
+      minWidth: "180px",     
+      minHeight: "42px",
+      borderRadius: "12px",
+      borderColor: "#e5e7eb",
+      boxShadow: "none",
+      cursor: "pointer",
+    }),
+    container: (base) => ({
+      ...base,
+      width: "100%",          
+    }),
+    valueContainer: (base) => ({
+      ...base,
+      padding: "0 10px",
+    }),
+    indicatorsContainer: (base) => ({
+      ...base,
+      padding: "0 6px",
+    }),
+    menu: (base) => ({
+      ...base,
+      zIndex: 9999,
+    }),
+  }}
+/>
     </div>
   );
 };

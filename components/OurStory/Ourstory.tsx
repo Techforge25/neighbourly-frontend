@@ -16,7 +16,7 @@ const Ourstory = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-[32px] md:text-[42px] font-bold font-manrope text-tabText">
-            Our <span className="text-primary">story</span>
+            Our <span className="text-primary">Story</span>
           </h2>
 
           <div className="mt-4 sm:mt-8 flex flex-col gap-4">

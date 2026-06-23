@@ -16,7 +16,7 @@ const FAQS = () => {
       <div className="text-center">
         <h2 className="font-manrope font-bold text-tabText text-[28px] sm:text-[32px] md:text-[42px]">
           Frequently{" "}
-          <span className="text-share-modal-icon">asked questions</span>
+          <span className="text-share-modal-icon">Asked Questions</span>
         </h2>
       </div>
 

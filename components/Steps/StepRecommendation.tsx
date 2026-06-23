@@ -89,14 +89,19 @@ export default function StepRecommendation({
 
   // handel Back
 
-  const handleBack = () => {
-    if (parsedAboutData?.step !== 2) {
-      nextStepOne();
-    } else {
-      onBack();
-    }
-  };
+const handleBack = () => {
+  if (nextStep) {
+    setNextStep(false);
+    setHeaderTitle("Who Are You Recommending?");
+    return;
+  }
 
+  if (parsedAboutData?.step !== 2) {
+    nextStepOne();
+  } else {
+    onBack();
+  }
+};
   return (
     <Formik
       initialValues={data}
@@ -137,7 +142,7 @@ export default function StepRecommendation({
                     as={Input}
                     name="firstName"
                     placeholder="e.g. Shannon"
-                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${errors.firstName && touched.firstName && validateOnChange?.valueOf()
+                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-blac ${errors.firstName && touched.firstName && validateOnChange?.valueOf()
                       ? "border-red-500"
                       : "border-border"
                       }`}
@@ -158,7 +163,7 @@ export default function StepRecommendation({
                     as={Input}
                     name="businessName"
                     placeholder="e.g. Sunny Day Plumbing"
-                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-para ${errors.businessName && touched.businessName
+                    className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope text-blac ${errors.businessName && touched.businessName
                       ? "border-red-500"
                       : "border-border"
                       }`}
@@ -177,7 +182,7 @@ export default function StepRecommendation({
                   <Field
                     as="select"
                     name="service"
-                    className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px]  text-para ${errors.service && touched.service
+                    className={`flex w-full border rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px]  text-blac ${errors.service && touched.service
                       ? "border-red-500"
                       : "border-border"
                       }`}
@@ -226,10 +231,11 @@ export default function StepRecommendation({
                 </div>
               </div>
               <div className="pt-[32px]">
-                {/* <button
+                <button
                   onClick={() => {
-                    onBack()
-                  }}
+  setHeaderTitle("About You");
+  onBack();
+}}
                   type="button"
                   className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-share-modal-icon mb-2 text-[16px] font-poppins border border-share-modal-icon gap-2 w-full bg-white py-[14px] rounded-full  "
                 >
@@ -237,11 +243,11 @@ export default function StepRecommendation({
                   <span>
                     <GrFormPreviousLink size={24} />
                   </span>
-                </button> */}
+                </button>
                 <button
                   onClick={() => {
                     setNextStep(true);
-                    setHeaderTitle("Why you recommend them (choose up to 3) ");
+                    setHeaderTitle("Why Do You Recommend Them (Choose Up To 3)? ");
                   }}
                   disabled={
                     !values.firstName ||
@@ -298,21 +304,22 @@ export default function StepRecommendation({
                         }
                         `}
                     >
-                      <span className="text-[0.8rem] font-manrope text-start  ">
-                        {option.label || option.value}
-                      </span>
+                      <span className="text-[11px] sm:text-xs md:text-sm font-manrope text-start flex-1 pr-2">
+  {option.label || option.value}
+</span>
 
                       {/* Circle indicator */}
                       <span
-                        className={`w-5 h-5 flex items-center justify-center rounded-full border
-                        ${isSelected
-                            ? "bg-share-modal-icon border-border-light text-white"
-                            : "border-gray-300 text-white border-dashed"
-                          }
-                      `}
-                      >
-                        {isSelected && "✓"}
-                      </span>
+  className={`w-5 h-5 flex-shrink-0 flex items-center justify-center rounded-full border
+    ${
+      isSelected
+        ? "bg-share-modal-icon border-border-light text-white"
+        : "border-gray-300 text-white border-dashed"
+    }
+  `}
+>
+  {isSelected && "✓"}
+</span>
                     </button>
                   );
                 })}
@@ -332,22 +339,22 @@ export default function StepRecommendation({
                   as="textarea"
                   name="comment"
                   placeholder="Tell us a little about your experience"
-                  className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope focus:outline-none text-para `}
+                  className={`border border-input rounded-[12px] md:px-3 px-3 md:py-3 py-2 text-[16px] h-auto font-manrope focus:outline-none text-blac `}
                 />
               </div>
 
               <div className="pt-[32px]">
-                {/* <button
-                  type="submit"
-                  onClick={() => onBack()}
-                  className="sm:order-2 mb-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 border border-share-modal-icon bg-white md:text-[16px] text-[12px] text-share-modal-icon"
+                <button
+                 type="button"
+                  onClick={handleBack}
+                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-share-modal-icon mb-2 text-[16px] font-poppins border border-share-modal-icon gap-2 w-full bg-white py-[14px] rounded-full  "
                 >
                   Back
                   <ArrowLeft size={20} className="md:flex hidden" />
-                </button> */}
+                </button>
                 <button
                   type="submit"
-                  className="sm:order-2 order-1 rounded-full disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer md:py-4 md:px-7 px-2 py-2 flex items-center w-full justify-center gap-2 bg-share-modal-icon md:text-[16px] text-[12px] text-white"
+                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-white text-[16px] font-poppins  gap-2 w-full bg-share-modal-icon py-[14px] rounded-full  "
                 >
                   Submit Recommendation
                   <ArrowRight size={20} className="md:flex hidden" />

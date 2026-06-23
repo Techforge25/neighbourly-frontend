@@ -26,7 +26,7 @@ export default function StepperModal({
 }) {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [headerTitle, setHeaderTitle] = useState("Recommend a local legend");
+  const [headerTitle, setHeaderTitle] = useState("Recommend A Local Legend");
   const [stepOtp, setStepOtp] = useState(false);
   const [stepAbout, setStepAbout] = useState(false);
   const [formData, setFormData] = useState<RecommendationData>({
@@ -42,11 +42,11 @@ export default function StepperModal({
   const nextStep = () => {
     setStep((s) => s + 1);
     setStepAbout(false);
-    setHeaderTitle("Who are you recommending?");
+    setHeaderTitle("Who Are You Recommending?");
   };
   const nextStepThree = () => {
     setStep((s) => s + 2);
-    setHeaderTitle("Who are you recommending?");
+    setHeaderTitle("Who Are You Recommending?");
   };
   const nextStepOne = () => setStep((s) => s - 2);
   const prevStep = () => setStep((s) => s - 1);
@@ -70,7 +70,7 @@ export default function StepperModal({
     setTimeout(() => {
       resetAll();
       setLoading(false);
-      setHeaderTitle("About you");
+      setHeaderTitle("About You");
       setStepOtp(false);
       setStep(2);
     }, 1500);
@@ -100,6 +100,15 @@ export default function StepperModal({
     }
   }, [isOpen]);
 
+
+  const resetModal = () => {
+  setStep(1);
+  setLoading(false);
+  setHeaderTitle("Recommend A Local Legend");
+  setStepOtp(false);
+  setStepAbout(false);
+};
+
   if (!isOpen) return null;
 
   return (
@@ -128,14 +137,17 @@ export default function StepperModal({
                   ""
                 )}
                 <h4
-                  className={`font-manrope ${headerTitle == "Who are you recommending?" ? "sm:w-[269px] leading-relaxed" : ""}  font-semibold md:text-[24px] sm:text-[20px] text-[18px]`}
+                  className={`font-manrope    font-bold   whitespace-break-spaces  md:text-[24px] sm:text-[20px] text-[18px]`}
                 >
                   {headerTitle}
                 </h4>
               </div>
 
               <button
-                onClick={onClose}
+                 onClick={() => {
+    resetModal();
+    onClose();
+  }}
                 className="cursor-pointer sm:flex hidden bg-secondary-close-btn-bg sm:p-[6px] p-[3px] rounded-full "
               >
                 <RxCross2

@@ -80,7 +80,7 @@ const DiscoverSearch = () => {
     <div>
       <Banner
         banner="/images/discover.png"
-        text="Discover the trades and services Northern Beaches locals recommend most."
+        text="Discover the trades and services Northern Beaches locals recommend most"
         bgPosition="center 20%"
       />
 

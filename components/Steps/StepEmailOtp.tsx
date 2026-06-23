@@ -36,12 +36,17 @@ export default function StepEmailOtp({
       );
       setUserData(data);
 
-      if (data?.OTPRequired) {
-        setOtpSent(true);
-        setHeaderTitle("Verify it's really you");
-        setStepOtp(true);
-        toast.success(message);
-      } else if (!data?.isProfileCompleted) {
+     if (data?.OTPRequired) {
+  setTimer(60);
+  setCanResend(false);
+  setOtp("");
+
+  setOtpSent(true);
+  setHeaderTitle("Verify It’s Really You");
+  setStepOtp(true);
+
+  toast.success(message);
+} else if (!data?.isProfileCompleted) {
         onVerified();
       }
       
@@ -83,15 +88,28 @@ export default function StepEmailOtp({
 
   const verifyOtp = () => verifyOtpMutation.mutate(formik.values.email.trim());
 
-  // ---------- Timer ----------
   useEffect(() => {
-    if (timer <= 0) {
-      setCanResend(true);
-      return;
-    }
-    const id = setInterval(() => setTimer((t) => t - 1), 1000);
-    return () => clearInterval(id);
-  }, [timer]);
+  if (otpSent) {
+    setTimer(60);
+    setCanResend(false);
+  }
+}, [otpSent]);
+
+  // ---------- Timer ----------
+ useEffect(() => {
+  if (!otpSent) return;
+
+  if (timer <= 0) {
+    setCanResend(true);
+    return;
+  }
+
+  const id = setTimeout(() => {
+    setTimer((prev) => prev - 1);
+  }, 1000);
+
+  return () => clearTimeout(id);
+}, [timer, otpSent]);
 
   const handleResend = useCallback(() => {
     setTimer(60);

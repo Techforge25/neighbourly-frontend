@@ -15,6 +15,7 @@ import { setPage } from "@/store/paginationSlice";
 import { useQuery } from "@tanstack/react-query";
 import { getSuburbs } from "@/src/discover";
 import AsyncSuburbSelect from "./SuburbSelect/AsyncSuburbSelect";
+import { X } from "lucide-react";
 
 type TabBarProps = {
   tabarActive?: boolean;
@@ -53,8 +54,30 @@ const [isClusterDropdownOpened, setIsClusterDropdownOpened] = useState(false);
     dispatch(setActiveTab(""));
   }, [pathname, fetchRecommendations, dispatch]);
 
-  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -200, behavior: "smooth" });
-  const scrollRight = () => scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
+ const scrollLeft = () => {
+  const el = scrollRef.current;
+  if (!el) return;
+
+  const newScrollLeft = Math.max(el.scrollLeft - 200, 0);
+
+  el.scrollTo({
+    left: newScrollLeft,
+    behavior: "smooth",
+  });
+};
+
+const scrollRight = () => {
+  const el = scrollRef.current;
+  if (!el) return;
+
+  const maxScrollLeft = el.scrollWidth - el.clientWidth;
+  const newScrollLeft = Math.min(el.scrollLeft + 200, maxScrollLeft);
+
+  el.scrollTo({
+    left: newScrollLeft,
+    behavior: "smooth",
+  });
+};
 
   const isDisabled = !tabarActive && !isShowFullList;
 
@@ -103,7 +126,7 @@ router.push(url, { scroll: false });
 
           <div
             ref={scrollRef}
-            className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth w-full lg:max-w-[750px]"
+            className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-hide scroll-smooth w-full lg:max-w-[855px] min-w-0"
           >
             {Tab_Data.map((item: TabItem, ind: number) => (
               <button
@@ -111,7 +134,7 @@ router.push(url, { scroll: false });
                 disabled={isDisabled}
                 onClick={() => handleTabChange(item.title)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all whitespace-nowrap
-                  disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
+                 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
                   ${
                     isTabActive(item.title)
                       ? "bg-share-modal-icon text-white"
@@ -122,6 +145,7 @@ router.push(url, { scroll: false });
                 <span className="font-medium capitalize">{item.title}</span>
               </button>
             ))}
+          
           </div>
 
           <button

@@ -26,10 +26,10 @@ export default function ButtonModal({ bg }: { bg?: string }) {
     <>
       <button
         onClick={handleOpen}
-        className={`flex items-center gap-2 lg:px-6 px-3 lg:py-4 py-3 rounded-full cursor-pointer text-white lg:text-lg sm:text-base text-sm font-outfit transition-colors
+        className={`flex items-center gap-2 lg:px-6 px-3 lg:py-3 py-3 rounded-full cursor-pointer text-white lg:text-lg sm:text-base text-sm font-outfit transition-colors
           ${bg ? "bg-secondary" : "bg-share-modal-icon hover:bg-share-modal-icon/80"}`}
       >
-        <span>Share your recommendation</span>
+        <span>Share Your Recommendation</span>
         <IoMdAdd size={20} />
       </button>
 

@@ -1,24 +1,39 @@
 import { api } from "@/src/service/axios";
 import { useQuery } from "@tanstack/react-query";
 
-function buildQueryString(location: string, filterParam: string, activeTab: string) {
+function buildQueryString(
+  location: string,
+  filterParam: string,
+  activeTab: string
+) {
   const formattedLocation =
     location?.trim()
       ? location
-        .trim()
-        .split(" ")
-        .filter(Boolean)
-        .map(
-          (word) =>
-            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-        )
-        .join(" ")
+          .trim()
+          .split(" ")
+          .filter(Boolean)
+          .map(
+            (word) =>
+              word.charAt(0).toUpperCase() +
+              word.slice(1).toLowerCase()
+          )
+          .join(" ")
       : "";
-  const locationQ = location ? `&location=${formattedLocation}` : "";
-  const tabFilter = activeTab === "Most Recommended" ? "" : `&filter=${activeTab}`;
-  if (location) return `${locationQ}${tabFilter}`;
-  if (filterParam) return `&filter=${filterParam}`;
-  return tabFilter;
+
+  const locationQ = location
+    ? `&location=${formattedLocation}`
+    : "";
+
+  const selectedFilter =
+    activeTab && activeTab !== "Most Recommended"
+      ? activeTab
+      : filterParam;
+
+  const filterQ = selectedFilter
+    ? `&filter=${selectedFilter}`
+    : "";
+
+  return `${locationQ}${filterQ}`;
 }
 
 async function fetchRecommendations(

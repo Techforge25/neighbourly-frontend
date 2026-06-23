@@ -113,7 +113,7 @@ export default function StepAbout({
           value={formik.values.mobile}
           onChange={(value) => formik.setFieldValue("mobile", value)}
           onBlur={() => formik.setFieldTouched("mobile", true)}
-          className="phone-input"
+          className="phone-input text-black"
         />
 
         {formik.touched.mobile && formik.errors.mobile && (
@@ -158,8 +158,8 @@ export default function StepAbout({
         <button
           disabled={!formik.isValid}
           type="submit"
-          className=" disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed rounded-full w-full flex items-center justify-center gap-2 py-2 md:py-[16px] px-4 md:px-[27px] text-[11px] md:text-[16px] font-poppins bg-share-modal-icon text-white"
-        >
+          className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-white text-[16px] font-poppins  gap-2 w-full bg-share-modal-icon py-[14px] rounded-full  "
+                >
           Continue
           <ArrowRight size={20} className="ml-2" />
         </button>
