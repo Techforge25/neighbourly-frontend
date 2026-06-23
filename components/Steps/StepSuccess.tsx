@@ -57,11 +57,11 @@ export default function StepSuccess({ onClose, resetAll }: StepSuccessProps) {
 
         {/* Heading */}
         <h2 className="text-[28px] font-bold font-manrope leading-[42px] font-manrope text-center text-success-modal-txt-dark ">
-          Nice one.
+          Nice One
         </h2>
 
         {/* Subtext */}
-        <p className="text-[18px] font-manrope font-medium leading-[28px]  text-center w-[342px] mx-auto text-para">
+        <p className="text-[18px] font-manrope font-medium leading-[28px]  text-center  w-full lg:w-[342px] mx-auto text-para">
           Your recommendation is in and it’s going to help more local find
           someone worth trusting.
         </p>
