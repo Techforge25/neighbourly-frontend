@@ -82,7 +82,7 @@ export default function StepAbout({
           </Label>
           <Input
             name="firstName"
-            placeholder="e.g. olivia"
+            placeholder="e.g. Olivia"
             value={formik.values.firstName}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -106,15 +106,21 @@ export default function StepAbout({
         </Label>
 
         <PhoneInput
-          defaultCountry="AU"
-          international
-          name="mobile"
-          placeholder="e.g. 012385868664"
-          value={formik.values.mobile}
-          onChange={(value) => formik.setFieldValue("mobile", value)}
-          onBlur={() => formik.setFieldTouched("mobile", true)}
-          className="phone-input text-black"
-        />
+  defaultCountry="AU"
+  international
+  name="mobile"
+  placeholder="e.g. 012385868664"
+  value={formik.values.mobile}
+  onChange={(value) => formik.setFieldValue("mobile", value)}
+  onBlur={() => formik.setFieldTouched("mobile", true)}
+
+
+  countrySelectProps={{
+    disabled: true,
+  }}
+
+  className="phone-input text-black"
+/>
 
         {formik.touched.mobile && formik.errors.mobile && (
           <span className="text-red-500 md:text-[14px] text-[12px]">

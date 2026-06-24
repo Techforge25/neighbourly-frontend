@@ -38,7 +38,7 @@ const Header = () => {
       : "text-heading1";
 
   return (
-    <header className="w-[90%] max-h-[72px] py-2 mx-auto">
+    <header className=" w-[96%] lg:w-[94%] max-h-[72px] py-2 mx-auto">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
