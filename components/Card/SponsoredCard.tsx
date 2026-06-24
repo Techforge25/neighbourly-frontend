@@ -85,7 +85,7 @@ const SponsoredCard = ({
         </p>
 
         <p
-          className={`font-manrope font-bold mt-22 text-[14px] sm:text-[16px] text-center mt-1 ${theme.serviceText}`}
+          className={`font-manrope font-bold text-[14px] sm:text-[16px] text-center mt-1 ${theme.serviceText}`}
         >
           {serviceType}
         </p>
