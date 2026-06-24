@@ -6,6 +6,7 @@ import StepAbout from "./Steps/StepAbout";
 import StepRecommendation from "./Steps/StepRecommendation";
 import StepSuccess from "./Steps/StepSuccess";
 import { RxCross2 } from "react-icons/rx";
+import { IoArrowBackSharp } from "react-icons/io5";
 
 interface RecommendationData {
   firstName: string;
@@ -29,6 +30,7 @@ export default function StepperModal({
   const [headerTitle, setHeaderTitle] = useState("Recommend A Local Legend");
   const [stepOtp, setStepOtp] = useState(false);
   const [stepAbout, setStepAbout] = useState(false);
+  const [hideBackButton, setHideBackButton] = useState(false);
   const [formData, setFormData] = useState<RecommendationData>({
     firstName: "",
     businessName: "",
@@ -107,7 +109,47 @@ export default function StepperModal({
   setHeaderTitle("Recommend A Local Legend");
   setStepOtp(false);
   setStepAbout(false);
+   setHideBackButton(false);
+  setFormData({
+    firstName: "",
+    businessName: "",
+    theirNumber: "",
+    service: "",
+    location: "",
+    recommendationReason: [],
+    comment: "",
+  });
 };
+
+useEffect(() => {
+  if (isOpen) {
+    setStep(1);
+      setHideBackButton(false);
+    setLoading(false);
+    setHeaderTitle("Recommend A Local Legend");
+    setStepOtp(false);
+    setStepAbout(false);
+  }
+}, [isOpen]);
+
+
+const getHeaderTitle = (step: number) => {
+  switch (step) {
+    case 1:
+      return "Recommend A Local Legend";
+    case 2:
+      return "About You";
+    case 3:
+      return "Who Are You Recommending?";
+    default:
+      return "Why Do You Recommend Them (Choose Up To 3)?";
+  }
+};
+
+useEffect(() => {
+  setHeaderTitle(getHeaderTitle(step));
+}, [step]);
+
 
   if (!isOpen) return null;
 
@@ -125,22 +167,23 @@ export default function StepperModal({
 
         {step !== 4 && (
           <>
-            <div className="flex items-center justify-between">
-              <div>
-                {stepOtp || stepAbout ? (
-                  <p className="text-[1rem] font-medium font-manrope text-secondary">
-                    Step{" "}
-                    {stepOtp ? "2" : stepAbout ? "3" : step === 3 ? "4" : ""} of
-                    4
-                  </p>
-                ) : (
-                  ""
-                )}
-                <h4
-                  className={`font-manrope    font-bold   whitespace-break-spaces  md:text-[24px] sm:text-[20px] text-[18px]`}
+            <div className="flex items-center justify-between gap-4">
+{step === 3 && !hideBackButton && (
+                <button
+                  onClick={() => setStep(2)}
+                  className="flex items-center justify-center cursor-pointer  p-[3px] rounded-full"
                 >
-                  {headerTitle}
-                </h4>
+                  <IoArrowBackSharp size={20} className="text-black" />
+                </button>
+              )}
+
+  <div>
+             {step <= 3 && (
+  <p className="text-[1rem] font-medium font-manrope text-secondary">
+    Step {step} of 3
+  </p>
+)}
+              
               </div>
 
               <button
@@ -156,6 +199,11 @@ export default function StepperModal({
                 />
               </button>
             </div>
+              <h4
+                  className={`font-manrope  text-center mt-3  font-bold   whitespace-break-spaces  md:text-[24px] sm:text-[20px] text-[18px]`}
+                >
+                  {headerTitle}
+                </h4>
             <div className="md:py-[32px] sm:py-[28px] py-[22px]">
               <div className="bg-border h-[1px]" />
             </div>
@@ -177,7 +225,10 @@ export default function StepperModal({
           {step === 1 && (
             <StepEmailOtp
               onVerified={handleOtpVerified}
-              nextStepThree={nextStepThree}
+            nextStepThree={() => {
+              setHideBackButton(true); 
+              nextStepThree();
+            }}
               onClose={onClose}
               setHeaderTitle={setHeaderTitle}
               setStepOtp={setStepOtp}

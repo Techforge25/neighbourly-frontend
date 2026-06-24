@@ -89,7 +89,7 @@ export default function StepSuccess({ onClose, resetAll }: StepSuccessProps) {
               <Share2 className="w-5 h-5 text-success-modal-txt-secondary-contrast" />
             </span>
             <span className="text-success-modal-txt-secondary-contrast">
-              Spread the word
+              Spread the Word
             </span>
           </button>
         </div>

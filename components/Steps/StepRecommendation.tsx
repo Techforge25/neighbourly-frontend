@@ -216,7 +216,10 @@ const handleBack = () => {
                     name="theirNumber"
                     value={values.theirNumber}
                     onChange={(value) => setFieldValue("theirNumber", value)}
-                    onBlur={() => setFieldTouched("theirNumber", true)} // 👈 add this
+                    onBlur={() => setFieldTouched("theirNumber", true)} 
+                     countrySelectProps={{
+    disabled: true,
+  }}
                     className={`phone-input ${errors.theirNumber && touched.theirNumber
                       ? "border-red-500"
                       : ""
@@ -231,19 +234,19 @@ const handleBack = () => {
                 </div>
               </div>
               <div className="pt-[32px]">
-                <button
+                {/* <button
                   onClick={() => {
   setHeaderTitle("About You");
   onBack();
 }}
                   type="button"
-                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-share-modal-icon mb-2 text-[16px] font-poppins border border-share-modal-icon gap-2 w-full bg-white py-[14px] rounded-full  "
+                  className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-share-modal-icon mb-2 text-[16px] font-poppins border border-share-modal-icon gap-2 w-full bg-white py-[13px] rounded-full  "
                 >
                   <span>Back</span>
                   <span>
                     <GrFormPreviousLink size={24} />
                   </span>
-                </button>
+                </button> */}
                 <button
                   onClick={() => {
                     setNextStep(true);
@@ -344,14 +347,14 @@ const handleBack = () => {
               </div>
 
               <div className="pt-[32px]">
-                <button
+                {/* <button
                  type="button"
                   onClick={handleBack}
                   className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-share-modal-icon mb-2 text-[16px] font-poppins border border-share-modal-icon gap-2 w-full bg-white py-[14px] rounded-full  "
                 >
                   Back
                   <ArrowLeft size={20} className="md:flex hidden" />
-                </button>
+                </button> */}
                 <button
                   type="submit"
                   className="flex disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer items-center justify-center text-white text-[16px] font-poppins  gap-2 w-full bg-share-modal-icon py-[14px] rounded-full  "

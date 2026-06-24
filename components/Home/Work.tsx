@@ -16,7 +16,7 @@ const Work = () => {
         {work_Data.map((item, ind) => (
           <div
             key={ind}
-            className={`${item.bg} w-full sm:w-[410px] mx-auto rounded-xl flex flex-col items-center md:items-start gap-3 sm:gap-4
+            className={`${item.bg} w-full md:w-[410px] mx-auto rounded-xl flex flex-col items-center md:items-start gap-3 sm:gap-4
               px-4 py-6 sm:px-6 sm:py-8 md:px-7 md:py-10 lg:px-8 lg:py-12`}
           >
             <div className="text-white text-lg sm:text-xl p-2 sm:p-2.5">

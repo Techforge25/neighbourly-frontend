@@ -46,6 +46,10 @@ const AsyncSuburbFormSelect: React.FC<Props> = ({
     label: item.name,
   }));
 
+  
+  const isMobile =
+    typeof window !== "undefined" && window.innerWidth <= 640;
+
   return (
     <div className="flex flex-col gap-[6px]">
       <Select
@@ -56,6 +60,12 @@ const AsyncSuburbFormSelect: React.FC<Props> = ({
         onMenuOpen={handleOpen}
         onFocus={handleOpen}
         isSearchable={false}
+        menuPortalTarget={document.body}
+        menuPosition="fixed"
+
+        
+        menuPlacement={isMobile ? "top" : "bottom"}
+
         onChange={(option: any) => {
           setFieldValue("suburb", option?.value || "");
         }}
@@ -68,13 +78,13 @@ const AsyncSuburbFormSelect: React.FC<Props> = ({
             borderColor: error && touched ? "#ef4444" : "#e5e7eb",
             boxShadow: "none",
           }),
-          valueContainer: (base) => ({
+          menuPortal: (base) => ({
             ...base,
-            padding: "0 10px",
+            zIndex: 99999,
           }),
           menu: (base) => ({
             ...base,
-            zIndex: 9999,
+            zIndex: 99999,
           }),
         }}
       />

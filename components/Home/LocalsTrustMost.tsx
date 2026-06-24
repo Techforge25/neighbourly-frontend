@@ -42,7 +42,7 @@ const LocalsTrustMost = () => {
       {/* Image (bottom aligned) */}
       <div className="absolute bottom-0 right-0 w-[140%] sm:w-[55%] md:w-[60%] lg:w-[70%] xl:w-auto pointer-events-none">
         <Image
-          src="/images/mokUpHand.svg"
+          src="/images/mokUpHand 1.svg"
           alt="Locals Trust Most"
           width={1050}
           height={1000}
