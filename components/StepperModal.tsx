@@ -31,6 +31,7 @@ export default function StepperModal({
   const [stepOtp, setStepOtp] = useState(false);
   const [stepAbout, setStepAbout] = useState(false);
   const [hideBackButton, setHideBackButton] = useState(false);
+  const [nextStepSub, setNextStepSub] = useState(false);
   const [formData, setFormData] = useState<RecommendationData>({
     firstName: "",
     businessName: "",
@@ -48,6 +49,7 @@ export default function StepperModal({
   };
   const nextStepThree = () => {
     setStep((s) => s + 2);
+    setHideBackButton(true);
     setHeaderTitle("Who Are You Recommending?");
   };
   const nextStepOne = () => setStep((s) => s - 2);
@@ -110,6 +112,7 @@ export default function StepperModal({
   setStepOtp(false);
   setStepAbout(false);
    setHideBackButton(false);
+   setNextStepSub(false);
   setFormData({
     firstName: "",
     businessName: "",
@@ -129,6 +132,7 @@ useEffect(() => {
     setHeaderTitle("Recommend A Local Legend");
     setStepOtp(false);
     setStepAbout(false);
+    setNextStepSub(false);
   }
 }, [isOpen]);
 
@@ -150,7 +154,18 @@ useEffect(() => {
   setHeaderTitle(getHeaderTitle(step));
 }, [step]);
 
-
+const handleHeaderBack = () => {
+    if (nextStepSub) {
+      setNextStepSub(false);
+    } else {
+      if (hideBackButton) {
+        setStep(1); 
+        setHideBackButton(false);
+      } else {
+        setStep(2); 
+      }
+    }
+  };
   if (!isOpen) return null;
 
   return (
@@ -168,14 +183,14 @@ useEffect(() => {
         {step !== 4 && (
           <>
             <div className="flex   items-center justify-between gap-4">
-{step === 3 && !hideBackButton && (
-                <button
-                  onClick={() => setStep(2)}
-                  className="flex items-center justify-center cursor-pointer  p-[3px] rounded-full"
-                >
-                  <IoArrowBackSharp size={20} className="text-black" />
-                </button>
-              )}
+{step === 3 && (!hideBackButton || nextStepSub) && (
+  <button
+    onClick={handleHeaderBack}
+    className="flex items-center justify-center cursor-pointer p-[3px] rounded-full transition-all duration-200"
+  >
+    <IoArrowBackSharp size={20} className="text-black" />
+  </button>
+)}
 
   <div className="flex items-center justify-between gap-4 w-full sm:w-auto">
              {step <= 3 && (
@@ -225,10 +240,7 @@ useEffect(() => {
           {step === 1 && (
             <StepEmailOtp
               onVerified={handleOtpVerified}
-            nextStepThree={() => {
-              setHideBackButton(true); 
-              nextStepThree();
-            }}
+            nextStepThree={nextStepThree}
               onClose={onClose}
               setHeaderTitle={setHeaderTitle}
               setStepOtp={setStepOtp}
@@ -254,6 +266,8 @@ useEffect(() => {
               onSubmit={handleSubmit}
               nextStepOne={nextStepOne}
               setHeaderTitle={setHeaderTitle}
+              nextStep={nextStepSub}       
+              setNextStep={setNextStepSub}
             />
           )}
 
