@@ -60,9 +60,6 @@ export default function StepEmailOtp({
     mutationFn: (email: string) => verifyOtpApi(email, otp),
     onSuccess: ({ data: res }) => {
       const { data, message, success } = res;
-       if (data?.accessToken) {
-    localStorage.setItem("token", data.accessToken);
-  }
 
       setUserData(data);
 

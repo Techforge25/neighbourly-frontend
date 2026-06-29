@@ -2,7 +2,9 @@
 
 import { SendFeedbackPayload, TypeUserData } from "@/types";
 import { api } from "./service/axios";
-
+import { getAuth } from "@/src/auth";
+import { setCredentials } from "@/store/authSlice";
+import { store } from "@/store";
 export const sendFeedback = async (
   payload: SendFeedbackPayload,
 ): Promise<string> => {
@@ -31,13 +33,22 @@ export const verifyOtpApi = async (email: string, otp: string) => {
     }
   );
 
-  const accessToken = response?.data?.data?.accessToken;
+  if (response.status === 200 || response.data?.success) {
 
-  if (
-    accessToken &&
-    typeof window !== "undefined"
-  ) {
-    localStorage.setItem("token", accessToken);
+    const accessToken = response.data?.data?.accessToken;
+    const user = response.data?.data;
+
+    if (accessToken) {
+
+      store.dispatch(setCredentials({ accessToken, user }));
+      
+      try {
+    
+        await getAuth(); 
+      } catch (authError) {
+        console.error("OTP verified but AuthMe failed:", authError);
+      }
+    }
   }
 
   return response;
