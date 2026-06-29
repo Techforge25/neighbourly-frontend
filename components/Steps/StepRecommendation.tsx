@@ -30,6 +30,8 @@ export default function StepRecommendation({
   onSubmit,
   nextStepOne,
   setHeaderTitle,
+  nextStep,   
+  setNextStep,
 }: {
   data: RecommendationData;
   setData: React.Dispatch<React.SetStateAction<RecommendationData>>;
@@ -37,11 +39,13 @@ export default function StepRecommendation({
   onSubmit: () => void;
   nextStepOne: () => void;
   setHeaderTitle: (title: string) => void;
+  nextStep: boolean;                     
+  setNextStep: (val: boolean) => void;   
 }) {
   const getAboutData = localStorage.getItem("stepAboutData");
   const parsedAboutData = getAboutData ? JSON.parse(getAboutData) : null;
   const [isError, setIsError] = useState<string>("");
-  const [nextStep, setNextStep] = useState(false);
+  // const [nextStep, setNextStep] = useState(false);
 
   const handleGetFormData = async (values: RecommendationData) => {
     try {
