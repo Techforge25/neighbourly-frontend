@@ -167,7 +167,7 @@ useEffect(() => {
 
         {step !== 4 && (
           <>
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-end  sm:items-center justify-end sm:justify-between gap-4">
 {step === 3 && !hideBackButton && (
                 <button
                   onClick={() => setStep(2)}
