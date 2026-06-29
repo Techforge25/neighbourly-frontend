@@ -167,7 +167,7 @@ useEffect(() => {
 
         {step !== 4 && (
           <>
-            <div className="flex items-end  sm:items-center justify-end sm:justify-between gap-4">
+            <div className="flex   items-center justify-between gap-4">
 {step === 3 && !hideBackButton && (
                 <button
                   onClick={() => setStep(2)}
@@ -177,9 +177,9 @@ useEffect(() => {
                 </button>
               )}
 
-  <div>
+  <div className="flex items-center justify-between gap-4 w-full sm:w-auto">
              {step <= 3 && (
-  <p className="text-[1rem] font-medium font-manrope text-secondary">
+  <p className="text-[1rem] font-medium font-manrope text-secondary text-end w-full">
     Step {step} of 3
   </p>
 )}
@@ -257,7 +257,7 @@ useEffect(() => {
             />
           )}
 
-          {step === 4 && <StepSuccess resetAll={resetAll} onClose={onClose} />}
+          {step === 4 && <StepSuccess resetAll={resetModal} onClose={onClose} />}
         </div>
       </div>
     </div>
