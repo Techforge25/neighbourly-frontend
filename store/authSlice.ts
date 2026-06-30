@@ -1,45 +1,29 @@
-import { api } from '@/src/service/axios';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Async thunk for checking auth
-export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, thunkAPI) => {
-  try {
-    const res = await api.get('auth/user/me');
-    return res.data;
-  } catch (err) {
-    return thunkAPI.rejectWithValue('Failed to check authentication');
-  }
-});
+interface AuthState {
+  accessToken: string | null;
+  user: any | null;
+}
+
+const initialState: AuthState = {
+  accessToken: null,
+  user: null,
+};
 
 const authSlice = createSlice({
-  name: 'auth',
-  initialState: {
-    user: null,
-    isAuthenticated: false,
-    loading: true
-  },
+  name: "auth",
+  initialState,
   reducers: {
+    setCredentials: (state, action: PayloadAction<{ accessToken: string; user?: any }>) => {
+      state.accessToken = action.payload.accessToken;
+      state.user = action.payload.user || null;
+    },
     logout: (state) => {
+      state.accessToken = null;
       state.user = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem('token');
-    }
+    },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(checkAuth.pending, (state) => { state.loading = true; })
-      .addCase(checkAuth.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isAuthenticated = true;
-        state.loading = false;
-      })
-      .addCase(checkAuth.rejected, (state) => {
-        state.user = null;
-        state.isAuthenticated = false;
-        state.loading = false;
-      });
-  }
 });
 
-export const { logout } = authSlice.actions;
+export const { setCredentials, logout } = authSlice.actions;
 export default authSlice.reducer;

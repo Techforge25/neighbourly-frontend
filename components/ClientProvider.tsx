@@ -5,15 +5,16 @@ import { store } from "@/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import { checkAuth } from "@/store/authSlice";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { getAuth } from "@/src/auth";
 
 const AuthChecker: React.FC = () => {
-  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
+    getAuth();
+  }, []);
+
+  return null;
 };
 
 const ClientProvider: React.FC<{ children: React.ReactNode }> = ({

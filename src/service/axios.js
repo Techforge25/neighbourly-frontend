@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { store } from "@/store";
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   withCredentials: true,
@@ -8,15 +8,11 @@ export const api = axios.create({
   },
 });
 
-
 api.interceptors.request.use((config) => {
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    } else {
-      console.log("No token found in localStorage");
-    }
+  const token = store.getState().auth.accessToken;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
 
   return config;
